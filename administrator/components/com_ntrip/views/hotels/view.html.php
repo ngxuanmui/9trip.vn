@@ -39,19 +39,16 @@ class NtripViewHotels extends JViewLegacy
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
 		$this->state		= $this->get('State');
-
+		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
-
+		
 		$this->addToolbar();
 		
-		// Include the component HTML helpers.
-		JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-
 		parent::display($tpl);
 	}
 
@@ -64,11 +61,11 @@ class NtripViewHotels extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		require_once JPATH_COMPONENT . '/helpers/hotels.php';
+		require_once JPATH_COMPONENT . '/helpers/ntrip.php';
 
 		$canDo = NtripHelper::getActions($this->state->get('filter.category_id'));
 		$user = JFactory::getUser();
-		JToolBarHelper::title(JText::_('COM_BANNERS_MANAGER_BANNERS'), 'hotels.png');
+		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_HOTELS'), 'hotels.png');
 		if (count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)
 		{
 			JToolBarHelper::addNew('hotel.add');
@@ -121,8 +118,6 @@ class NtripViewHotels extends JViewLegacy
 		if ($canDo->get('core.admin'))
 		{
 			JToolBarHelper::preferences('com_ntrip');
-			JToolBarHelper::divider();
 		}
-		JToolBarHelper::help('JHELP_COMPONENTS_BANNERS_BANNERS');
 	}
 }

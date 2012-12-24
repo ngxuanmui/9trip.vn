@@ -90,10 +90,7 @@ class NtripModelHotels extends JModelList
 				'a.id AS id, a.name AS name, a.alias AS alias,'.
 				'a.checked_out AS checked_out,'.
 				'a.checked_out_time AS checked_out_time, a.catid AS catid,' .
-				'a.clicks AS clicks, a.metakey AS metakey, a.sticky AS sticky,'.
-				'a.impmade AS impmade, a.imptotal AS imptotal,' .
 				'a.state AS state, a.ordering AS ordering,'.
-				'a.purchase_type as purchase_type,'.
 				'a.language, a.publish_up, a.publish_down'
 			)
 		);

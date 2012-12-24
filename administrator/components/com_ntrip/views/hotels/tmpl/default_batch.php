@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_banners
+ * @subpackage  com_ntrip
  *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -11,6 +11,7 @@
 defined('_JEXEC') or die;
 
 $published = $this->state->get('filter.published');
+/*
 ?>
 <fieldset class="batch">
 	<legend><?php echo JText::_('COM_BANNERS_BATCH_OPTIONS');?></legend>
@@ -19,7 +20,7 @@ $published = $this->state->get('filter.published');
 	<?php echo JHtml::_('batch.language');?>
 
 	<?php if ($published >= 0) : ?>
-		<?php echo JHtml::_('batch.item', 'com_banners');?>
+		<?php echo JHtml::_('batch.item', 'com_ntrip');?>
 	<?php endif; ?>
 
 	<button type="submit" onclick="Joomla.submitbutton('banner.batch');">
@@ -29,3 +30,4 @@ $published = $this->state->get('filter.published');
 		<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>
 	</button>
 </fieldset>
+*/ ?>

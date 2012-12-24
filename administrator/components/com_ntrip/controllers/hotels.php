@@ -42,7 +42,7 @@ class NtripControllerHotels extends JControllerAdmin
 	 * Proxy for getModel.
 	 * @since	1.6
 	 */
-	public function getModel($name = 'Hotel', $prefix = 'HotelsModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'Hotel', $prefix = 'NtripModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 		return $model;
