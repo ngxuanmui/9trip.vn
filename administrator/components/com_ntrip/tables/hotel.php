@@ -23,19 +23,9 @@ class NtripTableHotel extends JTable
 	 */
 	function __construct(&$_db)
 	{
-		parent::__construct('#__banners', 'id', $_db);
+		parent::__construct('#__ntrip_hotels', 'id', $_db);
 		$date = JFactory::getDate();
 		$this->created = $date->toSql();
-	}
-
-	function clicks()
-	{
-		$query = 'UPDATE #__banners'
-		. ' SET clicks = (clicks + 1)'
-		. ' WHERE id = ' . (int) $this->id
-		;
-		$this->_db->setQuery($query);
-		$this->_db->query();
 	}
 
 	/**
@@ -73,47 +63,7 @@ class NtripTableHotel extends JTable
 
 		return true;
 	}
-	/**
-	 * Overloaded bind function
-	 *
-	 * @param	array		$hash named array
-	 * @return	null|string	null is operation was satisfactory, otherwise returns an error
-	 * @see JTable:bind
-	 * @since 1.5
-	 */
-	public function bind($array, $ignore = array())
-	{
-		if (isset($array['params']) && is_array($array['params'])) {
-			$registry = new JRegistry();
-			$registry->loadArray($array['params']);
-
-			if((int) $registry->get('width', 0) < 0){
-				$this->setError(JText::sprintf('JLIB_DATABASE_ERROR_NEGATIVE_NOT_PERMITTED', JText::_('COM_BANNERS_FIELD_WIDTH_LABEL')));
-				return false;
-			}
-
-			if((int) $registry->get('height', 0) < 0){
-				$this->setError(JText::sprintf('JLIB_DATABASE_ERROR_NEGATIVE_NOT_PERMITTED', JText::_('COM_BANNERS_FIELD_HEIGHT_LABEL')));
-				return false;
-			}
-
-			// Converts the width and height to an absolute numeric value:
-			$width = abs((int) $registry->get('width', 0));
-			$height = abs((int) $registry->get('height', 0));
-
-			// Sets the width and height to an empty string if = 0
-			$registry->set('width', ($width ? $width : ''));
-			$registry->set('height', ($height ? $height : ''));
-
-			$array['params'] = (string)$registry;
-		}
-
-		if (isset($array['imptotal'])) {
-			$array['imptotal'] = abs((int) $array['imptotal']);
-		}
-
-		return parent::bind($array, $ignore);
-	}
+	
 	/**
 	 * method to store a row
 	 *
@@ -129,14 +79,14 @@ class NtripTableHotel extends JTable
 		else
 		{
 			// Get the old row
-			$oldrow = JTable::getInstance('Hotel', 'HotelsTable');
+			$oldrow = JTable::getInstance('Hotel', 'NtripTable');
 			if (!$oldrow->load($this->id) && $oldrow->getError())
 			{
 				$this->setError($oldrow->getError());
 			}
 
 			// Verify that the alias is unique
-			$table = JTable::getInstance('Hotel', 'HotelsTable');
+			$table = JTable::getInstance('Hotel', 'NtripTable');
 			if ($table->load(array('alias'=>$this->alias, 'catid'=>$this->catid)) && ($table->id != $this->id || $this->id==0)) {
 				$this->setError(JText::_('COM_BANNERS_ERROR_UNIQUE_ALIAS'));
 				return false;

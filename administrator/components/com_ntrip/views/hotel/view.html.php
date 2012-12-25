@@ -55,7 +55,7 @@ class NtripViewHotel extends JViewLegacy
 		$isNew		= ($this->item->id == 0);
 		$checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 		// Since we don't track these assets at the item level, use the category id.
-		$canDo		= HotelsHelper::getActions($this->item->catid,0);
+		$canDo		= NtripHelper::getActions($this->item->catid,0);
 
 		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_HOTEL_NEW') : JText::_('COM_NTRIP_MANAGER_HOTEL_EDIT'), 'hotels.png');
 

@@ -25,10 +25,12 @@ class NtripHelper
 	 */
 	public static function addSubmenu($vName)
 	{
+		$extension = JRequest::getString('extension', '');
+		
 		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_HOTELS'),
-			'index.php?option=com_ntrip&view=banners',
-			$vName == 'banners'
+			'index.php?option=com_ntrip&view=hotels',
+			$vName == 'hotels'
 		);
 
 		JSubMenuHelper::addEntry(
@@ -36,16 +38,27 @@ class NtripHelper
 			'index.php?option=com_categories&extension=com_ntrip',
 			$vName == 'categories'
 		);
-		if ($vName=='categories') {
+		if ($vName=='categories' && $extension == 'com_ntrip') {
 			JToolBarHelper::title(
 				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip')),
-				'banners-categories');
+				'hotels-categories');
+		}
+		
+		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_FIELD_HOTEL'),
+			'index.php?option=com_categories&extension=com_ntrip.custom_field_hotel',
+			$vName == 'categories'
+		);
+		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_hotel') {
+			JToolBarHelper::title(
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_hotel')),
+				'hotels-categories');
 		}
 
 		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_RESTAURANTS'),
-			'index.php?option=com_ntrip&view=clients',
-			$vName == 'clients'
+			'index.php?option=com_ntrip&view=restaurants',
+			$vName == 'restaurants'
 		);
 	}
 

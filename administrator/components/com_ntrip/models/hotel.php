@@ -114,7 +114,7 @@ class NtripModelHotel extends JModelAdmin
 	}
 
 	/**
-	 * Batch client changes for a group of banners.
+	 * Batch client changes for a group of hotels.
 	 *
 	 * @param   string  $value     The new value matching a client.
 	 * @param   array   $pks       An array of row IDs.
@@ -360,14 +360,14 @@ class NtripModelHotel extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_ntrip.banner', 'banner', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_ntrip.hotel', 'hotel', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('banner.id'))
+		if ($this->getState('hotel.id'))
 		{
 			// Existing record. Can only edit in selected categories.
 			$form->setFieldAttribute('catid', 'action', 'core.edit');
@@ -410,17 +410,17 @@ class NtripModelHotel extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_ntrip.edit.banner.data', array());
+		$data = JFactory::getApplication()->getUserState('com_ntrip.edit.hotel.data', array());
 
 		if (empty($data))
 		{
 			$data = $this->getItem();
 
 			// Prime some default values.
-			if ($this->getState('banner.id') == 0)
+			if ($this->getState('hotel.id') == 0)
 			{
 				$app = JFactory::getApplication();
-				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.banners.filter.category_id')));
+				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.hotels.filter.category_id')));
 			}
 		}
 
@@ -442,5 +442,96 @@ class NtripModelHotel extends JModelAdmin
 		$condition[] = 'catid = '. (int) $table->catid;
 		$condition[] = 'state >= 0';
 		return $condition;
+	}
+	
+	public function save($data) 
+	{
+		if (parent::save($data))
+		{
+			$id = (int) $this->getState($this->getName() . '.id');
+			
+			if ($id)
+				$data['id'] = $id;
+			
+			$delImage = isset($data['del_image']) ? $data['del_image'] : null;
+			
+			// Upload thumb
+			$data['images'] = $this->uploadImages($id, $delImage);
+			
+			return parent::save($data);
+		}
+		
+		return false;
+	}
+	
+	private function uploadImages($itemId, $delImage = 0)
+	{
+		$jFileInput = new JInput($_FILES);
+		$file = $jFileInput->get('jform', array(), 'array');
+		
+		// If there is no uploaded file, we have a problem...
+		if (!is_array($file)) {
+//			JError::raiseWarning('', 'No file was selected.');
+			return '';
+		}
+
+		// Build the paths for our file to move to the components 'upload' directory
+		$fileName = $file['name']['images'];
+		$tmp_src    = $file['tmp_name']['images'];
+		
+		$image = '';
+		$oldImage = '';
+		$flagDelete = false;
+		
+		$item = $this->getItem();
+		
+		// if delete old image checked or upload new file
+		if ($delImage || $fileName)
+		{			
+			$oldImage = JPATH_ROOT . DS . str_replace('/', DS, $item->images);
+			
+			// unlink file
+			if (is_file($oldImage))
+				@unlink($oldImage);
+			
+			$flagDelete = true;
+			
+			$image = '';
+		}
+		
+		$date = date('Y') . DS . date('m') . DS . date('d');
+		
+		$dest = JPATH_ROOT . DS . 'images' . DS . 'hotels' . DS . $date . DS . $itemId . DS;
+		
+		// Make directory
+		@mkdir($dest, 0777, true);
+		
+		if (isset($fileName) && $fileName) {
+			
+			$filepath = JPath::clean($dest.$fileName);
+
+			/*
+			if (JFile::exists($filepath)) {
+				JError::raiseWarning(100, JText::_('COM_MEDIA_ERROR_FILE_EXISTS'));	// File exists
+			}
+			*/
+
+			// Move uploaded file
+			jimport('joomla.filesystem.file');
+			
+			if (!JFile::upload($tmp_src, $filepath))
+			{
+				JError::raiseWarning(100, JText::_('COM_MEDIA_ERROR_UNABLE_TO_UPLOAD_FILE')); // Error in upload
+				return '';
+			}
+
+			// set value to return
+			$image = 'images/hotels/' . str_replace(DS, '/', $date) . '/' . $itemId . '/' . $fileName;
+		}
+		else
+			if (!$flagDelete)
+				$image = $item->images;
+		
+		return $image;
 	}
 }

@@ -57,9 +57,6 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 				</th>
-				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_NTRIP_HEADING_STICKY', 'a.sticky', $listDirn, $listOrder); ?>
-				</th>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
 				</th>
@@ -68,12 +65,6 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php if ($canOrder && $saveOrder): ?>
 						<?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'hotels.saveorder'); ?>
 					<?php endif;?>
-				</th>
-				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_NTRIP_HEADING_IMPRESSIONS', 'impmade', $listDirn, $listOrder); ?>
-				</th>
-				<th width="80">
-					<?php echo JHtml::_('grid.sort', 'COM_NTRIP_HEADING_CLICKS', 'clicks', $listDirn, $listOrder); ?>
 				</th>
 				<th width="1%" class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -115,9 +106,6 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'hotels.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
-				</td>
-				<td class="center">
-					<?php echo $item->client_name;?>
 				</td>
 				<td class="center">
 					<?php echo $this->escape($item->category_title); ?>
