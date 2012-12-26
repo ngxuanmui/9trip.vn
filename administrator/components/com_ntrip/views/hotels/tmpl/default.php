@@ -58,13 +58,16 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%">
-					<?php echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_NTRIP_HEADING_LOCATION', 'category_title', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ORDERING', 'ordering', $listDirn, $listOrder); ?>
 					<?php if ($canOrder && $saveOrder): ?>
 						<?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'hotels.saveorder'); ?>
 					<?php endif;?>
+				</th>
+				<th width="5%">
+					<?php echo JText::_('COM_NTRIP_HEADING_COMMENT'); ?>
 				</th>
 				<th width="1%" class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -126,6 +129,11 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php else : ?>
 						<?php echo $item->ordering; ?>
 					<?php endif; ?>
+				</td>
+				<td class="center">
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=comments&type=hotel&item_id='.$item->id); ?>">
+						<?php echo JText::_('COM_NTRIP_HEADING_COMMENT'); ?>
+					</a>
 				</td>
 				<td class="center">
 					<?php echo $item->id; ?>
