@@ -25,7 +25,32 @@ class NtripControllerComment extends JControllerForm
 	 * @var    string  The prefix to use with controller messages.
 	 * @since  1.6
 	 */
-	protected $text_prefix = 'COM_BANNERS_BANNER';
+	protected $text_prefix = 'COM_NTRIP_BANNER';
+	
+	protected $type;
+	protected $item_id;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param  array  $config  An optional associative array of configuration settings.
+	 *
+	 * @since  1.6
+	 * @see    JController
+	 */
+	public function __construct($config = array())
+	{
+		parent::__construct($config);
+		
+		$session = JFactory::getSession();
+
+		// Guess the JText message prefix. Defaults to the option.
+		if (empty($this->type))
+			$this->type = $session->get('type');
+		
+		if (empty($this->item_id))
+			$this->item_id = $session->get('item_id');
+	}
 
 	/**
 	 * Method override to check if you can add a new record.
@@ -93,27 +118,40 @@ class NtripControllerComment extends JControllerForm
 			return parent::allowEdit($data, $key);
 		}
 	}
+	
+	/**
+	 * Gets the URL arguments to append to an item redirect.
+	 *
+	 * @param   integer  $recordId  The primary key id for the item.
+	 * @param   string   $urlVar    The name of the URL variable for the id.
+	 *
+	 * @return  string  The arguments to append to the redirect URL.
+	 *
+	 * @since   1.6
+	 */
+	protected function getRedirectToItemAppend($recordId = null, $urlVar = 'id')
+	{
+		$append = parent::getRedirectToItemAppend($recordId);
+		$append .= '&type=' . $this->type;
+		$append .= '&item_id=' . $this->item_id;
+
+		return $append;
+	}
 
 	/**
-	 * Method to run batch operations.
+	 * Gets the URL arguments to append to a list redirect.
 	 *
-	 * @param   string  $model  The model
+	 * @return  string  The arguments to append to the redirect URL.
 	 *
-	 * @return	boolean  True on success.
-	 *
-	 * @since	2.5
+	 * @since   1.6
 	 */
-	public function batch($model = null)
+	protected function getRedirectToListAppend()
 	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$append = parent::getRedirectToListAppend();
+		$append .= '&type=' . $this->type;
+		$append .= '&item_id=' . $this->item_id;
 
-		// Set the model
-		$model	= $this->getModel('Comment', '', array());
-
-		// Preset the redirect
-		$this->setRedirect(JRoute::_('index.php?option=com_ntrip&view=banners' . $this->getRedirectToListAppend(), false));
-
-		return parent::batch($model);
+		return $append;
 	}
 
 }

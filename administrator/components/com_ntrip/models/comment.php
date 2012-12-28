@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Joomla.Administrator
- * @subpackage  com_banners
+ * @subpackage  com_ntrip
  *
  * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -13,19 +13,19 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.modeladmin');
 
 /**
- * Banner model.
+ * Comment model.
  *
  * @package     Joomla.Administrator
- * @subpackage  com_banners
+ * @subpackage  com_ntrip
  * @since       1.6
  */
-class BannersModelBanner extends JModelAdmin
+class NtripModelComment extends JModelAdmin
 {
 	/**
 	 * @var    string  The prefix to use with controller messages.
 	 * @since  1.6
 	 */
-	protected $text_prefix = 'COM_BANNERS_BANNER';
+	protected $text_prefix = 'COM_NTRIP_BANNER';
 
 	/**
 	 * Method to perform batch operations on an item or a set of items.
@@ -114,7 +114,7 @@ class BannersModelBanner extends JModelAdmin
 	}
 
 	/**
-	 * Batch client changes for a group of banners.
+	 * Batch client changes for a group of comments.
 	 *
 	 * @param   string  $value     The new value matching a client.
 	 * @param   array   $pks       An array of row IDs.
@@ -203,7 +203,7 @@ class BannersModelBanner extends JModelAdmin
 
 		// Check that the user has create permission for the component
 		$user = JFactory::getUser();
-		if (!$user->authorise('core.create', 'com_banners.category.' . $categoryId))
+		if (!$user->authorise('core.create', 'com_ntrip.category.' . $categoryId))
 		{
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_CREATE'));
 			return false;
@@ -297,7 +297,7 @@ class BannersModelBanner extends JModelAdmin
 
 			if (!empty($record->catid))
 			{
-				return $user->authorise('core.delete', 'com_banners.category.' . (int) $record->catid);
+				return $user->authorise('core.delete', 'com_ntrip.category.' . (int) $record->catid);
 			}
 			else
 			{
@@ -322,7 +322,7 @@ class BannersModelBanner extends JModelAdmin
 		// Check against the category.
 		if (!empty($record->catid))
 		{
-			return $user->authorise('core.edit.state', 'com_banners.category.' . (int) $record->catid);
+			return $user->authorise('core.edit.state', 'com_ntrip.category.' . (int) $record->catid);
 		}
 		// Default to component settings if category not known.
 		else
@@ -342,7 +342,7 @@ class BannersModelBanner extends JModelAdmin
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'Banner', $prefix = 'BannersTable', $config = array())
+	public function getTable($type = 'Comment', $prefix = 'NtripTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -360,14 +360,14 @@ class BannersModelBanner extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_banners.banner', 'banner', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_ntrip.comment', 'comment', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('banner.id'))
+		if ($this->getState('comment.id'))
 		{
 			// Existing record. Can only edit in selected categories.
 			$form->setFieldAttribute('catid', 'action', 'core.edit');
@@ -410,17 +410,17 @@ class BannersModelBanner extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_banners.edit.banner.data', array());
+		$data = JFactory::getApplication()->getUserState('com_ntrip.edit.comment.data', array());
 
 		if (empty($data))
 		{
 			$data = $this->getItem();
 
 			// Prime some default values.
-			if ($this->getState('banner.id') == 0)
+			if ($this->getState('comment.id') == 0)
 			{
 				$app = JFactory::getApplication();
-				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_banners.banners.filter.category_id')));
+				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.comments.filter.category_id')));
 			}
 		}
 

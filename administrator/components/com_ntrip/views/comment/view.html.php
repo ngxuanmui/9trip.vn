@@ -55,9 +55,9 @@ class NtripViewComment extends JViewLegacy
 		$isNew		= ($this->item->id == 0);
 		$checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 		// Since we don't track these assets at the item level, use the category id.
-		$canDo		= CommentsHelper::getActions($this->item->catid,0);
+		$canDo		= NtripHelper::getActions();
 
-		JToolBarHelper::title($isNew ? JText::_('COM_BANNERS_MANAGER_BANNER_NEW') : JText::_('COM_BANNERS_MANAGER_BANNER_EDIT'), 'comments.png');
+		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_COMMENT_NEW') : JText::_('COM_NTRIP_MANAGER_COMMENT_EDIT'), 'comments.png');
 
 		// If not checked out, can save the item.
 		if (!$checkedOut && ($canDo->get('core.edit') || count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)) {
@@ -69,19 +69,11 @@ class NtripViewComment extends JViewLegacy
 			}
 		}
 
-		// If an existing item, can save to a copy.
-		if (!$isNew && $canDo->get('core.create')) {
-			JToolBarHelper::save2copy('comment.save2copy');
-		}
-
 		if (empty($this->item->id))  {
 			JToolBarHelper::cancel('comment.cancel');
 		}
 		else {
 			JToolBarHelper::cancel('comment.cancel', 'JTOOLBAR_CLOSE');
 		}
-
-		JToolBarHelper::divider();
-		JToolBarHelper::help('JHELP_COMPONENTS_BANNERS_BANNERS_EDIT');
 	}
 }

@@ -70,6 +70,55 @@ class NtripModelComments extends JModelList
 		}
 		return $this->cache['categoryorders'];
 	}
+	
+	public function getItems()
+	{
+		$items = parent::getItems();
+		
+		$type = JRequest::getString('type');
+		$itemId = JRequest::getInt('item_id');
+		
+		foreach ($items as & $item)
+		{
+			$item->item = $this->getItemType($type, $itemId);
+		}
+		
+		return $items;
+	}
+	
+	private function getItemType($type, $itemId)
+	{
+		$db = JFactory::getDbo();
+		
+		$query = $db->getQuery(true);
+		
+		$query->select('*');
+		
+		$table = '';
+		
+		switch ($type)
+		{
+			case 'hotel':
+				$link = JRoute::_('index.php');
+				$fieldTitle = 'name';
+				$table = '#__ntrip_hotels';
+				break;
+			
+			default: 
+				break;
+		}
+		
+		$query->from($table);
+		$query->where('id = ' . (int) $itemId);
+		
+		$db->setQuery($query);
+		$obj = $db->loadObject();
+		
+		$obj->title = $obj->$fieldTitle;
+		$obj->link = $link;
+		
+		return $obj;
+	}
 
 	/**
 	 * Build an SQL query to load the list data.
@@ -90,7 +139,8 @@ class NtripModelComments extends JModelList
 				'a.id AS id, a.title AS title, a.alias AS alias,'.
 				'a.checked_out AS checked_out,'.
 				'a.checked_out_time AS checked_out_time,' .
-				'a.state AS state, a.ordering AS ordering'
+				'a.state AS state, a.ordering AS ordering,'.
+				'a.publish_up, a.publish_down'
 			)
 		);
 		$query->from($db->quoteName('#__ntrip_comments').' AS a');
@@ -225,6 +275,11 @@ class NtripModelComments extends JModelList
 		// Load the parameters.
 		$params = JComponentHelper::getParams('com_ntrip');
 		$this->setState('params', $params);
+		
+		// Set session type & item_id
+		$session = JFactory::getSession();
+		$session->set('type', JRequest::getString('type'));
+		$session->set('item_id', JRequest::getInt('item_id'));
 
 		// List state information.
 		parent::populateState('a.title', 'asc');

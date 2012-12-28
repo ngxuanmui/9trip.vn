@@ -84,24 +84,6 @@ class NtripViewComments extends JViewLegacy
 				JToolBarHelper::publish('comments.publish', 'JTOOLBAR_PUBLISH', true);
 				JToolBarHelper::unpublish('comments.unpublish', 'JTOOLBAR_UNPUBLISH', true);
 			}
-
-			if ($this->state->get('filter.state') != -1)
-			{
-				JToolBarHelper::divider();
-				if ($this->state->get('filter.state') != 2)
-				{
-					JToolBarHelper::archiveList('comments.archive');
-				}
-				elseif ($this->state->get('filter.state') == 2)
-				{
-					JToolBarHelper::unarchiveList('comments.publish');
-				}
-			}
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::checkin('comments.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
@@ -114,12 +96,5 @@ class NtripViewComments extends JViewLegacy
 			JToolBarHelper::trash('comments.trash');
 			JToolBarHelper::divider();
 		}
-
-		if ($canDo->get('core.admin'))
-		{
-			JToolBarHelper::preferences('com_ntrip');
-			JToolBarHelper::divider();
-		}
-		JToolBarHelper::help('JHELP_COMPONENTS_COMMENTS_COMMENTS');
 	}
 }
