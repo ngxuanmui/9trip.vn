@@ -25,7 +25,7 @@ class NtripControllerComment extends JControllerForm
 	 * @var    string  The prefix to use with controller messages.
 	 * @since  1.6
 	 */
-	protected $text_prefix = 'COM_NTRIP_BANNER';
+	protected $text_prefix = 'COM_NTRIP_COMMENT';
 	
 	protected $type;
 	protected $item_id;

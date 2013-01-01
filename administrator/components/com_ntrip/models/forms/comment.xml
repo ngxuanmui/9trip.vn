@@ -20,10 +20,34 @@
 			<option value="-2">JTRASHED</option>
 		</field>
 
+		<field name="rating" type="list" label="Rating"
+			description="Rating" class="inputbox"
+			filter="intval" size="1" default="1"
+		>
+			<option value="">---</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</field>
 
-		<field name="description" type="textarea" class="inputbox"
+		<field name="visit_time" type="categoryedit" extension="com_ntrip.custom_visit_time"
+			label="Visit time" class="inputbox"
+			addfieldpath="/administrator/components/com_categories/models/fields"
+		>
+			<option value="">---</option>
+		</field>
+
+		<field name="no_like" type="text" class="inputbox"
+			size="10" label="Number of like" />
+
+		<field name="content" type="textarea" class="inputbox"
 			rows="3" cols="30" label="JGLOBAL_DESCRIPTION"
 			description="COM_NTRIP_FIELD_DESCRIPTION_DESC" />
+
+		<field name="tips" type="textarea" class="inputbox"
+			rows="3" cols="30" label="Tips" />
 
 		<field name="type" type="hidden" />
 		<field name="item_id" type="hidden" />
@@ -33,21 +57,23 @@
 	<fieldset name="publish"
 		label="COM_NTRIP_GROUP_LABEL_PUBLISHING_DETAILS"
 	>
+		<field name="created_by" type="user"
+			label="COM_NTRIP_FIELD_CREATED_BY_LABEL" description="COM_NTRIP_FIELD_CREATED_BY_DESC" />
 
 		<field name="created" type="calendar"
 			label="COM_NTRIP_FIELD_CREATED_LABEL" description="COM_NTRIP_FIELD_CREATED_DESC"
 			class="inputbox" size="22" format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc" />
 
-		<field name="publish_up" type="calendar"
+		<!--field name="publish_up" type="calendar"
 			label="COM_NTRIP_FIELD_PUBLISH_UP_LABEL" description="COM_NTRIP_FIELD_PUBLISH_UP_DESC"
 			class="inputbox" format="%Y-%m-%d %H:%M:%S" size="22"
-			filter="user_utc" />
+			filter="user_utc" /-->
 
-		<field name="publish_down" type="calendar"
+		<!--field name="publish_down" type="calendar"
 			label="COM_NTRIP_FIELD_PUBLISH_DOWN_LABEL" description="COM_NTRIP_FIELD_PUBLISH_DOWN_DESC"
 			class="inputbox" format="%Y-%m-%d %H:%M:%S" size="22"
-			filter="user_utc" />
+			filter="user_utc" /-->
 
 			<!-- field name="sticky" type="list" default="0"
 			label="COM_NTRIP_FIELD_STICKY_LABEL"

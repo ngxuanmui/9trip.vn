@@ -37,13 +37,13 @@ class NtripTableComment extends JTable
 	 */
 	function check()
 	{
-		// Set name
-		$this->name = htmlspecialchars_decode($this->name, ENT_QUOTES);
+		// Set title
+		$this->title = htmlspecialchars_decode($this->title, ENT_QUOTES);
 
 		// Set alias
 		$this->alias = JApplication::stringURLSafe($this->alias);
 		if (empty($this->alias)) {
-			$this->alias = JApplication::stringURLSafe($this->name);
+			$this->alias = JApplication::stringURLSafe($this->title);
 		}
 
 		// Check the publish down date is not earlier than publish up.
@@ -58,7 +58,7 @@ class NtripTableComment extends JTable
 			$this->ordering = 0;
 		} elseif (empty($this->ordering)) {
 			// Set ordering to last if ordering was 0
-			$this->ordering = self::getNextOrder($this->_db->quoteName('catid').'=' . $this->_db->Quote($this->catid).' AND state>=0');
+			$this->ordering = self::getNextOrder('state>=0');
 		}
 
 		return true;

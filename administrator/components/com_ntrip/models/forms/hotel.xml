@@ -16,26 +16,24 @@
 			description="COM_NTRIP_FIELD_ALIAS_DESC" />
 
 		<field name="catid" type="categoryedit" extension="com_ntrip"
-			label="JCATEGORY" description="COM_NTRIP_FIELD_CATEGORY_DESC"
+			label="COM_NTRIP_FIELD_LOCATION_LABEL"
 			class="inputbox" required="true"
 			addfieldpath="/administrator/components/com_categories/models/fields"
 		>
-			<option value="">- JCATEGORY -</option>
+			<option value="">COM_NTRIP_SELECT_LOCATION_LABEL</option>
 		</field>
 		
 		<field name="type" type="customfield" class="inputbox"
 			size="40" extension="com_ntrip.custom_field_hotel"
-			label="COM_NTRIP_FIELD_TYPE_LABEL"
-			description="COM_NTRIP_FIELD_TYPE_DESC" required="true" />
+			label="COM_NTRIP_FIELD_TYPE_LABEL" required="true" />
 
 		<field name="images" type="file" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_IMAGES_LABEL"
-			description="COM_NTRIP_FIELD_IMAGES_DESC" />
+			size="40" label="COM_NTRIP_FIELD_IMAGES_LABEL" />
 
 		<field name="del_image" type="checkbox" value="1" label="Delete image" />
 
 		<field name="state" type="list"
-			label="JSTATUS" description="COM_NTRIP_FIELD_STATE_DESC"
+			label="JSTATUS"
 			class="inputbox" size="1" default="1" >
 			<option value="1">JPUBLISHED</option>
 			<option value="0">JUNPUBLISHED</option>
@@ -43,17 +41,17 @@
 			<option value="-2">JTRASHED</option>
 		</field>
 		
-		<field name="price" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_PRICE_LABEL"
-			description="COM_NTRIP_FIELD_PRICE_DESC" />
+		<field name="price_from" type="text" class="inputbox"
+			size="40" label="COM_NTRIP_FIELD_PRICE_FROM_LABEL" />
+
+		<field name="price_to" type="text" class="inputbox"
+			size="40" label="COM_NTRIP_FIELD_PRICE_TO_LABEL" />
 		
 		<field name="system_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_SYSTEM_RANK_LABEL"
-			description="COM_NTRIP_FIELD_SYSTEM_RANK_DESC" />
+			size="40" label="COM_NTRIP_FIELD_SYSTEM_RANK_LABEL" />
 		
 		<field name="user_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_USER_RANK_LABEL"
-			description="COM_NTRIP_FIELD_USER_RANK_DESC" />
+			size="40" label="COM_NTRIP_FIELD_USER_RANK_LABEL" />
 		
 		<field
 				name="hotel_class"
@@ -69,16 +67,22 @@
 			</field>
 		
 		<field name="website" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_WEBSITE_LABEL"
-			description="COM_NTRIP_FIELD_WEBSITE_DESC" />
+			size="40" label="COM_NTRIP_FIELD_WEBSITE_LABEL" />
 		
 		<field name="email" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_EMAIL_LABEL"
-			description="COM_NTRIP_FIELD_EMAIL_DESC" />
+			size="40" label="COM_NTRIP_FIELD_EMAIL_LABEL" />
+
+		<field name="address" type="text" class="inputbox"
+			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" />
+		
+		<field name="phone" type="text" class="inputbox"
+			size="40" label="COM_NTRIP_FIELD_PHONE_LABEL" />
+
+		<field name="hotline" type="text" class="inputbox"
+			size="40" label="COM_NTRIP_FIELD_HOTLINE_LABEL" />
 
 		<field name="description" type="editor" class="inputbox"
-			label="JGLOBAL_DESCRIPTION"
-			description="COM_NTRIP_FIELD_DESCRIPTION_DESC" 
+			label="JGLOBAL_DESCRIPTION" 
 			filter="JComponentHelper::filterText" buttons="true" />
 
 	</fieldset>
@@ -91,24 +95,12 @@
 			label="COM_NTRIP_FIELD_CREATED_LABEL" description="COM_NTRIP_FIELD_CREATED_DESC"
 			class="inputbox" size="22" format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc" />
-
-		<field name="publish_up" type="calendar"
-			label="COM_NTRIP_FIELD_PUBLISH_UP_LABEL" description="COM_NTRIP_FIELD_PUBLISH_UP_DESC"
-			class="inputbox" format="%Y-%m-%d %H:%M:%S" size="22"
-			filter="user_utc" />
-
-		<field name="publish_down" type="calendar"
-			label="COM_NTRIP_FIELD_PUBLISH_DOWN_LABEL" description="COM_NTRIP_FIELD_PUBLISH_DOWN_DESC"
-			class="inputbox" format="%Y-%m-%d %H:%M:%S" size="22"
-			filter="user_utc" />
 		
 		<field name="promotion_title" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_PROMOTION_TITLE_LABEL"
-			description="COM_NTRIP_FIELD_PROMOTION_TITLE_DESC" />
+			size="50" label="COM_NTRIP_FIELD_PROMOTION_TITLE_LABEL" />
 
 		<field name="promotion_desc" type="textarea" class="inputbox"
-			rows="3" cols="30" label="COM_NTRIP_FIELD_PROMOTION_DESC_LABEL"
-			description="COM_NTRIP_FIELD_PROMOTION_DESC_DESC" />
+			rows="7" cols="50" label="COM_NTRIP_FIELD_PROMOTION_DESC_LABEL" />
 
 	</fieldset>
 
@@ -120,18 +112,9 @@
 			rows="3" cols="30" label="JFIELD_META_KEYWORDS_LABEL"
 			description="COM_NTRIP_FIELD_METAKEYWORDS_DESC" />
 
-		<field name="own_prefix" type="radio"
-			label="COM_NTRIP_FIELD_BANNEROWNPREFIX_LABEL"
-			description="COM_NTRIP_FIELD_BANNEROWNPREFIX_DESC"
-			default="0" class="inputbox"
-		>
-			<option value="0">JNO</option>
-			<option value="1">JYES</option>
-		</field>
-
-		<field name="metakey_prefix" type="text"
-			label="COM_NTRIP_FIELD_METAKEYWORDPREFIX_LABEL"
-			description="COM_NTRIP_FIELD_METAKEYWORDPREFIX_DESC" />
+		<field name="metadesc" type="textarea"
+			label="JFIELD_META_DESCRIPTION_LABEL" description="JFIELD_META_DESCRIPTION_DESC"
+			class="inputbox" rows="3" cols="30" />
 
 	</fieldset>
 

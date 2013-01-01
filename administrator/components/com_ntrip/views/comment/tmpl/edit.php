@@ -30,11 +30,23 @@ JHtml::_('behavior.formvalidation');
 				<li><?php echo $this->form->getLabel('title'); ?>
 				<?php echo $this->form->getInput('title'); ?></li>
 
+				<li><?php echo $this->form->getLabel('rating'); ?>
+				<?php echo $this->form->getInput('rating'); ?></li>
+
+				<li><?php echo $this->form->getLabel('visit_time'); ?>
+				<?php echo $this->form->getInput('visit_time'); ?></li>
+
+				<li><?php echo $this->form->getLabel('no_like'); ?>
+				<?php echo $this->form->getInput('no_like'); ?></li>
+				
 				<li><?php echo $this->form->getLabel('state'); ?>
 				<?php echo $this->form->getInput('state'); ?></li>
 
-				<li><?php echo $this->form->getLabel('description'); ?>
-				<?php echo $this->form->getInput('description'); ?></li>
+				<li><?php echo $this->form->getLabel('content'); ?>
+				<?php echo $this->form->getInput('content'); ?></li>
+				
+				<li><?php echo $this->form->getLabel('tips'); ?>
+				<?php echo $this->form->getInput('tips'); ?></li>
 
 				<li><?php echo $this->form->getLabel('id'); ?>
 				<?php echo $this->form->getInput('id'); ?></li>

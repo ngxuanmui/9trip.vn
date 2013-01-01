@@ -34,7 +34,13 @@ class NtripHelper
 		);
 
 		JSubMenuHelper::addEntry(
-			JText::_('COM_NTRIP_SUBMENU_CATEGORIES'),
+			JText::_('COM_NTRIP_SUBMENU_RESTAURANTS'),
+			'index.php?option=com_ntrip&view=restaurants',
+			$vName == 'restaurants'
+		);
+
+		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_LOCATIONS'),
 			'index.php?option=com_categories&extension=com_ntrip',
 			$vName == 'categories'
 		);
@@ -47,19 +53,24 @@ class NtripHelper
 		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_FIELD_HOTEL'),
 			'index.php?option=com_categories&extension=com_ntrip.custom_field_hotel',
-			$vName == 'categories'
+			$vName == 'categories' && $extension == 'com_ntrip.custom_field_hotel'
 		);
 		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_hotel') {
 			JToolBarHelper::title(
 				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_hotel')),
 				'hotels-categories');
 		}
-
+		
 		JSubMenuHelper::addEntry(
-			JText::_('COM_NTRIP_SUBMENU_RESTAURANTS'),
-			'index.php?option=com_ntrip&view=restaurants',
-			$vName == 'restaurants'
+			JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_VISIT_TIME'),
+			'index.php?option=com_categories&extension=com_ntrip.custom_visit_time',
+			$vName == 'categories' && $extension == 'com_ntrip.custom_visit_time'
 		);
+		if ($vName=='categories' && $extension == 'com_ntrip.custom_visit_time') {
+			JToolBarHelper::title(
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_hotel')),
+				'hotels-categories');
+		}
 	}
 
 	/**

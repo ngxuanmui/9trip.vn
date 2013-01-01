@@ -22,7 +22,7 @@ class NtripControllerComments extends JControllerAdmin
 	 * @var		string	The prefix to use with controller messages.
 	 * @since	1.6
 	 */
-	protected $text_prefix = 'COM_BANNERS_BANNERS';
+	protected $text_prefix = 'COM_NTRIP_COMMENTS';
 
 	/**
 	 * Constructor.
@@ -64,7 +64,7 @@ class NtripControllerComments extends JControllerAdmin
 		$value	= JArrayHelper::getValue($values, $task, 0, 'int');
 
 		if (empty($ids)) {
-			JError::raiseWarning(500, JText::_('COM_BANNERS_NO_BANNERS_SELECTED'));
+			JError::raiseWarning(500, JText::_('COM_NTRIP_NO_COMMENTS_SELECTED'));
 		} else {
 			// Get the model.
 			$model	= $this->getModel();
@@ -74,14 +74,27 @@ class NtripControllerComments extends JControllerAdmin
 				JError::raiseWarning(500, $model->getError());
 			} else {
 				if ($value == 1) {
-					$ntext = 'COM_BANNERS_N_BANNERS_STUCK';
+					$ntext = 'COM_NTRIP_N_COMMENTS_STUCK';
 				} else {
-					$ntext = 'COM_BANNERS_N_BANNERS_UNSTUCK';
+					$ntext = 'COM_NTRIP_N_COMMENTS_UNSTUCK';
 				}
 				$this->setMessage(JText::plural($ntext, count($ids)));
 			}
 		}
 
 		$this->setRedirect('index.php?option=com_ntrip&view=comments');
+	}
+	
+	public function publish() {
+		parent::publish();
+		
+		$session = JFactory::getSession();
+		
+		$type = $session->get('type');
+		$item_id = $session->get('item_id');
+		
+		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $this->view_list . '&type='.$type.'&item_id='.$item_id, false));
+		
+		
 	}
 }

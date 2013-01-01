@@ -80,8 +80,5 @@ class NtripViewHotel extends JViewLegacy
 		else {
 			JToolBarHelper::cancel('hotel.cancel', 'JTOOLBAR_CLOSE');
 		}
-
-		JToolBarHelper::divider();
-		JToolBarHelper::help('JHELP_COMPONENTS_HOTELS_HOTELS_EDIT');
 	}
 }

@@ -152,6 +152,10 @@ class NtripModelComments extends JModelList
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
 		$query->join('LEFT', '#__users AS uc ON uc.id=a.checked_out');
+		
+		// Join over user for created_by
+		$query->select('u.username AS username');
+		$query->join('LEFT', '#__users AS u ON u.id=a.created_by');
 
 //		// Join over the categories.
 //		$query->select('c.title AS category_title');
@@ -188,11 +192,6 @@ class NtripModelComments extends JModelList
 			}
 		}
 
-		// Filter on the language.
-		if ($language = $this->getState('filter.language')) {
-			$query->where('a.language = ' . $db->quote($language));
-		}
-
 		// Add the list ordering clause.
 		$orderCol	= $this->state->get('list.ordering', 'ordering');
 		$orderDirn	= $this->state->get('list.direction', 'ASC');
@@ -203,7 +202,7 @@ class NtripModelComments extends JModelList
 			$orderCol = 'cl.name';
 		$query->order($db->escape($orderCol.' '.$orderDirn));
 
-		//echo nl2br(str_replace('#__','jos_',$query));
+//		echo nl2br(str_replace('#__','jos_',$query));
 		return $query;
 	}
 

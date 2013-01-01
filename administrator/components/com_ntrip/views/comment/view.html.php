@@ -63,10 +63,6 @@ class NtripViewComment extends JViewLegacy
 		if (!$checkedOut && ($canDo->get('core.edit') || count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)) {
 			JToolBarHelper::apply('comment.apply');
 			JToolBarHelper::save('comment.save');
-
-			if ($canDo->get('core.create')) {
-				JToolBarHelper::save2new('comment.save2new');
-			}
 		}
 
 		if (empty($this->item->id))  {

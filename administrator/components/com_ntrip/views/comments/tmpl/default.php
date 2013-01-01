@@ -21,8 +21,13 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 $canOrder	= $user->authorise('core.edit.state', 'com_ntrip.category');
 $saveOrder	= $listOrder=='ordering';
 $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
+
+// set session
+$session = JFactory::getSession();
+$type = $session->get('type');
+$item_id = $session->get('item_id');
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_ntrip&view=comments'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_ntrip&view=comments&type='.$type.'&item_id='.$item_id); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
@@ -59,6 +64,9 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				</th>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort', 'Title', 'category_title', $listDirn, $listOrder); ?>
+				</th>
+				<th width="10%">
+					<?php echo JHtml::_('grid.sort', 'User', 'username', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ORDERING', 'ordering', $listDirn, $listOrder); ?>
@@ -111,6 +119,9 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<a href="<?php echo $item->item->link; ?>">
 						<?php echo $this->escape($item->item->title); ?>
 					</a>
+				</td>
+				<td class="center">
+					<?php echo $item->username; ?>
 				</td>
 				<td class="order">
 					<?php if ($canChange) : ?>

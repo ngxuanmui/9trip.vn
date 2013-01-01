@@ -132,7 +132,8 @@ class JFormFieldCustomField extends JFormFieldList
 		foreach ($options as $i => $option)
 		{
 			$checked = ($option->value == $categoryOld) ? 'checked="checked"' : ( ($i == 0) ? 'checked="checked"' : '' );
-			$html .= '<input type="radio" name="jform['.$name.']" value="'.$option->value.'" '.$checked.' /> ' . $option->text;
+			$html .= '<input type="radio" name="jform['.$name.']" value="'.$option->value.'" '.$checked.' /> ';
+			$html .= '<span class="fltlft" style="margin-right: 5px; line-height: 23px;">' . $option->text . '</span>';
 		}
 		
 		$html .= '</div>';
