@@ -87,7 +87,7 @@
     width: 40px;
   }
   .files .name * {
-    width: 80px;
+    width: 150px;
     display: inline-block;
     word-wrap: break-word;
   }

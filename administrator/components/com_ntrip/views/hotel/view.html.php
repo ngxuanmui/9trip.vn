@@ -63,15 +63,6 @@ class NtripViewHotel extends JViewLegacy
 		if (!$checkedOut && ($canDo->get('core.edit') || count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)) {
 			JToolBarHelper::apply('hotel.apply');
 			JToolBarHelper::save('hotel.save');
-
-			if ($canDo->get('core.create')) {
-				JToolBarHelper::save2new('hotel.save2new');
-			}
-		}
-
-		// If an existing item, can save to a copy.
-		if (!$isNew && $canDo->get('core.create')) {
-			JToolBarHelper::save2copy('hotel.save2copy');
 		}
 
 		if (empty($this->item->id))  {

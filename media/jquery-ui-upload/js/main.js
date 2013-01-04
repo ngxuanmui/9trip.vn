@@ -16,20 +16,14 @@ $(function () {
     'use strict';
 	
 
-    // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload({
-        // Uncomment the following to send cross-domain cookies:
-        xhrFields: {withCredentials: true},
-        url: '/'
-    });
-//	
-//	$('#fileupload')
-//    .bind('fileuploadadd', function (e, data) {
-//		var $d = data['originalFiles'][0];
-//		var obj = {'name':$d['name'], 'error':$d['errror'], 'size': $d['size'], 'type': $d['type']};
-//		$('#fileupload').append('<input type="file" name="file_upload" value="'+$d+'" />')
-//	})
-
+//    Initialize the jQuery File Upload widget:
+//    $('#fileupload').fileupload({
+//        // Uncomment the following to send cross-domain cookies:
+//        xhrFields: {withCredentials: true},
+//        url: '/'
+//    });
+//    
+//    
     // Enable iframe cross-domain access via redirect option:
     $('#fileupload').fileupload(
         'option',
@@ -87,20 +81,5 @@ $(function () {
                 .call(this, null, {result: result});
         });
     }
-
-    // Initialize the Image Gallery widget:
-    $('#fileupload .files').imagegallery();
-
-    // Initialize the theme switcher:
-    $('#theme-switcher').change(function () {
-        var theme = $('#theme');
-        theme.prop(
-            'href',
-            theme.prop('href').replace(
-                /[\w\-]+\/jquery-ui.css/,
-                $(this).val() + '/jquery-ui.css'
-            )
-        );
-    });
 
 });

@@ -32,6 +32,8 @@
 
 		<field name="del_image" type="checkbox" value="1" label="Delete image" />
 
+		<field name="uploadfile" type="uploadfile" />
+
 		<field name="state" type="list"
 			label="JSTATUS"
 			class="inputbox" size="1" default="1" >
