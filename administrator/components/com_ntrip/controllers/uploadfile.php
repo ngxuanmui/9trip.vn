@@ -1,19 +1,28 @@
 <?php
 
-class UploadFile 
+class NtripControllerUploadFile extends JController 
 {
     function handle()
     {
-	$otherImagesDir = JPATH_ROOT . DS . 'images' . DS . 'hotels' . DS . 'other_images' . DS . $id . DS;
+	// required upload handler helper
+	require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'uploadhandler.php';
+	
+	$userId = JFactory::getUser()->id;
+	$sessionId = JFactory::getSession()->getId();
+	
+	// make dir
+	$tmpImagesDir = JPATH_ROOT . DS . 'tmp' . DS . $userId . DS . $sessionId . DS;
+	$tmpUrl = JURI::root() . 'tmp/'.$userId.'/'.$sessionId.'/';
 			
-	@mkdir($otherImagesDir, 0777, true);
+	@mkdir($tmpImagesDir, 0777, true);
 
-	$uploadOptions = array('upload_dir' => $otherImagesDir);
+	$uploadOptions = array('upload_dir' => $tmpImagesDir, 'upload_url' => $tmpUrl);
 
 	$uploadHandler = new UploadHandler($uploadOptions, false);
 
-	$files = $uploadHandler->post(false);
+	$files = $uploadHandler->post();
 
-	var_dump($files); die;
+//	var_dump($files); die;
+	exit();
     }
 }

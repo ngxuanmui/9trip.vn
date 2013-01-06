@@ -38,7 +38,7 @@ class UploadHandler
         $this->options = array(
             'script_url' => $this->get_full_url().'/',
 //            'upload_dir' => dirname($_SERVER['SCRIPT_FILENAME']).'/files/',
-            'upload_url' => $this->get_full_url().'/files/',
+//            'upload_url' => $this->get_full_url().'/files/',
             'user_dirs' => false,
             'mkdir_mode' => 0755,
             'param_name' => 'files',

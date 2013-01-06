@@ -1,3 +1,6 @@
+<style type="text/css">
+    #sbox-btn-close { display: none; }
+</style>
 <?php
 /**
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
@@ -29,11 +32,11 @@ class JFormFieldUploadFile extends JFormFieldList
 	{
 		JHtml::_('behavior.modal');
 		
-		$linkUploadFile = 'index.php?option=com_ntrip&view=uploadfile&tmpl=component&format=raw';
+		$linkUploadFile = JRoute::_('index.php?option=com_ntrip&view=uploadfile&tmpl=component&format=raw', false);
 		
 		$html = '<div class="fltlft" style="line-height: 23px;" id="uploaded">';
 		
-		$html .= '<a href="'.$linkUploadFile.'" class="modal" rel="{handler: \'iframe\'}" id="uploadfile">Select Image</a>';
+		$html .= '<a href="'.$linkUploadFile.'" class="modal" rel="{handler: \'iframe\', closable: 0}" id="uploadfile">Select Image</a>';
 				
 		$html .= '</div>';
 		

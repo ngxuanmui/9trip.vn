@@ -42,11 +42,8 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
 				<i class="icon-ban-circle icon-white"></i>
 				<span>Cancel upload</span>
 			</button>
-			<button type="button" class="btn btn-danger delete">
-				<i class="icon-trash icon-white"></i>
-				<span>Delete</span>
-			</button>
-			<input type="checkbox" class="toggle">
+			<button type="button" class="btn close" id="btn-close-add">Close & Add</button>
+			<button type="button" class="btn close" id="btn-close">Close</button>
 		</div>
 		<!-- The global progress information -->
 		<div class="span5 fileupload-progress fade">
@@ -150,6 +147,27 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         xhrFields: {withCredentials: true},
-        url: '<?php echo JRoute::_('index.php?option=com_ntrip&task=uploadfile.handle'); ?>'
+        url: '<?php echo JRoute::_('index.php?option=com_ntrip&task=uploadfile.handle', false); ?>'
     });
+    
+    $('#fileupload').bind('fileuploadsubmit', function (e, data) {
+	var inputs = data.context.find(':input');
+//	if (inputs.filter('[required][value=""]').first().focus().length) {
+//	    return false;
+//	}
+	data.formData = inputs.serializeArray();
+    });
+    
+$('#btn-close-add').click(function(){
+    closeBox();
+});
+
+$('#btn-close').click(function(){
+    closeBox();
+});
+
+function closeBox()
+{
+    window.parent.SqueezeBox.close();
+}
 </script>
