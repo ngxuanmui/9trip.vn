@@ -169,6 +169,9 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				<li>
 					<?php echo $this->form->getInput('uploadfile'); ?>
 				</li>
+				<li>
+				    <div id="tmp-uploaded"></div>
+				</li>
 			</ul>
 		</fieldset>
 

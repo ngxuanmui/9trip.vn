@@ -36,7 +36,7 @@ class UploadHandler
 
     function __construct($options = null, $initialize = true) {
         $this->options = array(
-            'script_url' => $this->get_full_url().'/',
+//            'script_url' => $this->get_full_url().'/',
 //            'upload_dir' => dirname($_SERVER['SCRIPT_FILENAME']).'/files/',
 //            'upload_url' => $this->get_full_url().'/files/',
             'user_dirs' => false,
@@ -181,7 +181,7 @@ class UploadHandler
 
     protected function set_file_delete_properties($file) {
         $file->delete_url = $this->options['script_url']
-            .'?file='.rawurlencode($file->name);
+            .'&file='.rawurlencode($file->name);
         $file->delete_type = $this->options['delete_type'];
         if ($file->delete_type !== 'DELETE') {
             $file->delete_url .= '&_method=DELETE';
@@ -767,7 +767,10 @@ class UploadHandler
                 }
             }
         }
-        return $this->generate_response(array('success' => $success), $print_response);
+	if ($print_response)
+	    return $this->generate_response(array('success' => $success), $print_response);
+	else
+	    return $file;
     }
 
 }

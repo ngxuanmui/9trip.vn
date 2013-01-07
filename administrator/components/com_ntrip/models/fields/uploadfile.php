@@ -1,6 +1,46 @@
 <style type="text/css">
     #sbox-btn-close { display: none; }
 </style>
+
+<script type="text/javascript">
+    function tmpUpload(files)
+    {
+	
+	console.log(files);
+	
+	arrFiles = JSON.decode(files);
+	
+//	console.log(arrFiles.files);
+	
+	html = '<table width="100%">';
+	
+//	html += '<tr><td>' + files + '</td></tr>';
+	
+	Array.each(arrFiles, function(val){
+	    
+	    value = val['files'][0];
+	    
+	    console.log(value);
+	    
+	    if (value.size > 0)
+	    {
+		hidden = '<input type="hidden" name="other_img[]" value="' + value.name + '" />';
+
+		html += '<tr>';
+
+		html += '<td><img src="' + value.thumbnail_url + '" /></td>';
+		html += '<td>' + value.name + '<br><strong>' + value.txt + '</strong></td>';
+		html += '<td><a href="#">Del</a></td>';
+
+		html += '</tr>';
+	    }
+	});
+	
+	html += '</table>'
+	
+	$('tmp-uploaded').set('html', html);
+    }
+</script>
 <?php
 /**
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.

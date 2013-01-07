@@ -16,7 +16,7 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
 
 <style type="text/css">
     .ui-widget { font-size: 11px; }
-    .template-upload td, .txt { font-size: 11px; font-family: sans-serif; }
+    .template-upload td, .txt, .template-download td { font-size: 11px; font-family: sans-serif; }
     .txt { width: 50px; border: 1px solid #CCC; }
     .files .progress { height: 10px; width: 150px; }
 </style>
@@ -159,7 +159,13 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
     });
     
 $('#btn-close-add').click(function(){
-    closeBox();
+    var url = '<?php echo JRoute::_('index.php?option=com_ntrip&task=uploadfile.close', false); ?>';
+    $.get(url, {}, function(data){
+	window.parent.tmpUpload(data);
+	
+	closeBox();
+    });
+    
 });
 
 $('#btn-close').click(function(){

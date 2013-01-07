@@ -2,13 +2,15 @@
 
 class NtripControllerUploadFile extends JController 
 {
-    function handle()
+    public function handle()
     {
 	// required upload handler helper
 	require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'uploadhandler.php';
 	
 	$userId = JFactory::getUser()->id;
-	$sessionId = JFactory::getSession()->getId();
+	
+	$session = JFactory::getSession();
+	$sessionId = $session->getId();
 	
 	// make dir
 	$tmpImagesDir = JPATH_ROOT . DS . 'tmp' . DS . $userId . DS . $sessionId . DS;
@@ -16,13 +18,54 @@ class NtripControllerUploadFile extends JController
 			
 	@mkdir($tmpImagesDir, 0777, true);
 
-	$uploadOptions = array('upload_dir' => $tmpImagesDir, 'upload_url' => $tmpUrl);
+	$uploadOptions = array(	'upload_dir' => $tmpImagesDir, 
+				'upload_url' => $tmpUrl, 
+				'script_url' => JRoute::_('index.php?option=com_ntrip&task=uploadfile.handle')
+			    );
 
 	$uploadHandler = new UploadHandler($uploadOptions, false);
+	
+//	$session->set('files', null);
+	
+	$files = $session->get('files', array());
+	
+	if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
+	{
+	    $fileDelete = $uploadHandler->delete(false);
+	    
+	    // search file
+	    $key = array_search($fileDelete, $files);
+	    
+	    // unset in $files
+	    unset($files[$key]);
+	    
+	    $session->set('files', $files);
+	    
+	    exit();
+	}
 
-	$files = $uploadHandler->post();
-
+	$file = $uploadHandler->post();
+	
+	$files[] = $file;
+	
+	$session->set('files', $files);
+	
 //	var_dump($files); die;
+	exit();
+    }
+    
+    public function close()
+    {
+	$session = JFactory::getSession();
+	
+	$files = $session->get('files');
+	
+//	unset($files[0]);
+	
+	echo json_encode($files);
+	
+//	$session->set('files', null);
+	
 	exit();
     }
 }
