@@ -59,7 +59,7 @@
             // each input field change event. This is required for iframe transport
             // queues and allows change events to be fired for the same file
             // selection, but can be disabled by setting the following option to false:
-            replaceFileInput: false,
+            replaceFileInput: true,
             // The parameter name for the file form data (the request argument name).
             // If undefined or empty, the name property of the file input field is
             // used, or "files[]" if the file input name property is also empty,
@@ -74,7 +74,7 @@
             limitMultiFileUploads: undefined,
             // Set the following option to true to issue all file upload requests
             // in a sequential order:
-            sequentialUploads: false,
+            sequentialUploads: true,
             // To limit the number of concurrent uploads,
             // set the following option to an integer greater than 0:
             limitConcurrentUploads: undefined,

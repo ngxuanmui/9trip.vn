@@ -321,6 +321,7 @@
             destroy: function (e, data) {
                 var that = $(this).data('fileupload');
                 if (data.url) {
+		    data.url = encodeURI(data.url);
                     $.ajax(data);
                     that._adjustMaxNumberOfFiles(1);
                 }

@@ -42,17 +42,7 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
 				<i class="icon-ban-circle icon-white"></i>
 				<span>Cancel upload</span>
 			</button>
-			<button type="button" class="btn close" id="btn-close-add">Close & Add</button>
-			<button type="button" class="btn close" id="btn-close">Close</button>
-		</div>
-		<!-- The global progress information -->
-		<div class="span5 fileupload-progress fade">
-			<!-- The global progress bar -->
-			<div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-				<div class="bar" style="width:0%;"></div>
-			</div>
-			<!-- The extended global progress information -->
-			<div class="progress-extended">&nbsp;</div>
+			<button type="button" class="close-add" id="btn-close-add">Close</button>
 		</div>
 	</div>
 	<!-- The loading indicator is shown during file processing -->
@@ -117,12 +107,11 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
             <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
             <td colspan="2"></td>
         {% } %}
-        <td class="delete">
+        <td class="delete" style="display: none;">
             <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                 <i class="icon-trash icon-white"></i>
                 <span>Delete</span>
             </button>
-            <input type="checkbox" name="delete" value="1">
         </td>
     </tr>
 {% } %}
@@ -158,11 +147,15 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
 	data.formData = inputs.serializeArray();
     });
     
+    jQuery().ready(function($){
+	$('button.close').button({ icons: { primary: "ui-icon-close" } });
+	$('button.close-add').button({ icons: { primary: "ui-icon-copy" } });
+    })
+    
 $('#btn-close-add').click(function(){
     var url = '<?php echo JRoute::_('index.php?option=com_ntrip&task=uploadfile.close', false); ?>';
     $.get(url, {}, function(data){
 	window.parent.tmpUpload(data);
-	
 	closeBox();
     });
     

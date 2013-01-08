@@ -34,8 +34,7 @@ class NtripController extends JControllerLegacy
 
 //		$view	= JRequest::getCmd('view', 'hotels');
 //		$layout = JRequest::getCmd('layout', 'default');
-//		$id		= JRequest::getInt('id');
-
+//		$id		= JRequest::getInt('id');		
 		parent::display();
 
 		return $this;

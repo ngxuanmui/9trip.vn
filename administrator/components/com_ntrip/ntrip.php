@@ -13,6 +13,13 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_ntrip')) {
 	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
+{
+    $session = JFactory::getSession();
+    $session->set('request_method', 'delete');
+    $_SERVER['REQUEST_METHOD'] = 'POST';
+}
+
 // Execute the task.
 $controller	= JControllerLegacy::getInstance('Ntrip');
 $controller->execute(JRequest::getCmd('task'));

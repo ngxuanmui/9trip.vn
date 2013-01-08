@@ -170,7 +170,27 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php echo $this->form->getInput('uploadfile'); ?>
 				</li>
 				<li>
-				    <div id="tmp-uploaded"></div>
+				    <div id="tmp-uploaded">
+					<?php 
+					$images = $this->item->other_images;
+					
+					$path = JURI::root() . 'images/hotels/' . $this->item->id . '/';
+					
+					if ($images):
+					?>
+					<table width="100%">
+					    <?php foreach ($images as $img): ?>
+					    <tr>
+						<td width="80" style="background: #FAFAFA;">
+						    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" />
+						</td>
+						<td valign="top"><?php echo $img->images . '<br><strong>' . $img->title . '</strong>'; ?></td>
+						<td width="50" valign="top"><a href="javascript:;" class="delete-file">Del</a></td>
+					    </tr>
+					    <?php endforeach; ?>
+					</table>
+					<?php endif; ?>
+				    </div>
 				</li>
 			</ul>
 		</fieldset>

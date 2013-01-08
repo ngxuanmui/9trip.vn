@@ -5,41 +5,43 @@
 <script type="text/javascript">
     function tmpUpload(files)
     {
-	
-	console.log(files);
-	
 	arrFiles = JSON.decode(files);
 	
-//	console.log(arrFiles.files);
-	
 	html = '<table width="100%">';
-	
-//	html += '<tr><td>' + files + '</td></tr>';
 	
 	Array.each(arrFiles, function(val){
 	    
 	    value = val['files'][0];
 	    
-	    console.log(value);
-	    
 	    if (value.size > 0)
 	    {
-		hidden = '<input type="hidden" name="other_img[]" value="' + value.name + '" />';
+		hidden = '<input type="hidden" name="tmp_other_img[]" value="' + value.name + '" />';
 
 		html += '<tr>';
 
-		html += '<td><img src="' + value.thumbnail_url + '" /></td>';
-		html += '<td>' + value.name + '<br><strong>' + value.txt + '</strong></td>';
-		html += '<td><a href="#">Del</a></td>';
+		html += '<td width="80"><a href="' + value.url + '" class="modal"><img src="' + value.thumbnail_url + '" /></a></td>';
+		html += '<td>' + value.name + hidden + '<br><strong>' + value.txt + '</strong></td>';
+		html += '<td width="50"><a href="javascript:;" class="delete-file">Del</a></td>';
 
 		html += '</tr>';
 	    }
 	});
 	
-	html += '</table>'
+	html += '</table>';
 	
-	$('tmp-uploaded').set('html', html);
+	var obj = new Element('table', { html: html, styles: { width: '100%' } })
+	
+	obj.inject($('tmp-uploaded'));
     }
+    
+    $(document.body).addEvent('click:relay(.delete-file)', function(){
+	var parent = this.getParent('tr');
+	parent.fade('out');
+	setTimeout(function(){
+	    parent.dispose();
+	}, 500)
+	return false;
+    });
 </script>
 <?php
 /**

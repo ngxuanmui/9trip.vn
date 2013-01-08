@@ -1,5 +1,9 @@
 <?php
 
+defined('_JEXEC') or die;
+
+jimport('joomla.application.component.controller');
+
 class NtripControllerUploadFile extends JController 
 {
     public function handle()
@@ -20,7 +24,7 @@ class NtripControllerUploadFile extends JController
 
 	$uploadOptions = array(	'upload_dir' => $tmpImagesDir, 
 				'upload_url' => $tmpUrl, 
-				'script_url' => JRoute::_('index.php?option=com_ntrip&task=uploadfile.handle')
+				'script_url' => JRoute::_('index.php?option=com_ntrip&task=uploadfile.handle', false)
 			    );
 
 	$uploadHandler = new UploadHandler($uploadOptions, false);
@@ -29,7 +33,7 @@ class NtripControllerUploadFile extends JController
 	
 	$files = $session->get('files', array());
 	
-	if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
+	if ($session->get('request_method') == 'delete')
 	{
 	    $fileDelete = $uploadHandler->delete(false);
 	    
@@ -40,6 +44,7 @@ class NtripControllerUploadFile extends JController
 	    unset($files[$key]);
 	    
 	    $session->set('files', $files);
+	    $session->set('request_method', null);
 	    
 	    exit();
 	}
@@ -50,7 +55,6 @@ class NtripControllerUploadFile extends JController
 	
 	$session->set('files', $files);
 	
-//	var_dump($files); die;
 	exit();
     }
     
@@ -60,11 +64,9 @@ class NtripControllerUploadFile extends JController
 	
 	$files = $session->get('files');
 	
-//	unset($files[0]);
-	
 	echo json_encode($files);
 	
-//	$session->set('files', null);
+	$session->set('files', null);
 	
 	exit();
     }

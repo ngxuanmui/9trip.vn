@@ -426,6 +426,20 @@ class NtripModelHotel extends JModelAdmin
 
 		return $data;
 	}
+	
+	/**
+	 * 
+	 * @param int $pk
+	 * @return object
+	 */
+	function getItem($pk = null)
+	{
+	    $item = parent::getItem($pk);
+	    
+	    $item->other_images = $this->getImages($item->id, 'hotels');
+	    
+	    return $item;
+	}
 
 	/**
 	 * A protected method to get a set of ordering conditions.
@@ -448,36 +462,93 @@ class NtripModelHotel extends JModelAdmin
 	{
 		if (parent::save($data))
 		{
-			$id = (int) $this->getState($this->getName() . '.id');
-			
-			require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'uploadhandler.php';
-			
-			$otherImagesDir = JPATH_ROOT . DS . 'images' . DS . 'hotels' . DS . 'other_images' . DS . $id . DS;
-			
-			@mkdir($otherImagesDir, 0777, true);
-			
-			$uploadOptions = array('upload_dir' => $otherImagesDir);
-			
-			$uploadHandler = new UploadHandler($uploadOptions, false);
-			
-			$files = $uploadHandler->post(false);
-			
-			var_dump($files); die;
-			
-			if ($id)
-				$data['id'] = $id;
-			
-			$delImage = isset($data['del_image']) ? $data['del_image'] : null;
-			
-			// Upload thumb
-			$data['images'] = $this->uploadImages($id, $delImage);
-			
-			return parent::save($data);
+		    $id = (int) $this->getState($this->getName() . '.id');
+
+		    // Copy file 
+		    $this->copyTempFiles($id, $_POST['tmp_other_img'], 'hotels');
+
+		    // Insert images
+		    $this->insertImages($id, $_POST['tmp_other_img'], 'hotels');
+
+		    if ($id)
+			    $data['id'] = $id;
+
+		    $delImage = isset($data['del_image']) ? $data['del_image'] : null;
+
+		    // Upload thumb
+		    $data['images'] = $this->uploadImages($id, $delImage);
+
+		    return parent::save($data);
 		}
 		
 		return false;
 	}
 	
+	function copyTempFiles($itemId, $images = array(), $itemType = 'hotels')
+	{
+	    $tmpFolder = JPATH_ROOT . DS . 'tmp' . DS . JFactory::getUser()->id . DS . JFactory::getSession()->getId() . DS;
+	    $tmpThumbFolder = $tmpFolder . 'thumbnail' . DS;
+	    
+	    $destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
+	    $destThumbFolder = $destFolder . 'thumbnail' . DS;
+	    
+	    jimport( 'joomla.filesystem.folder' );
+	    
+	    // make folder	    
+	    JFolder::create($destFolder, 0777);
+	    
+	    // make thumb
+	    JFolder::create($destThumbFolder, 0777);
+	    
+	    foreach ($images as $img)
+	    {
+		$src = $tmpFolder . $img;
+		$dest = $destFolder . $img;
+		
+		copy($src, $dest);
+		copy($tmpThumbFolder . $img, $destThumbFolder . $img);
+	    }
+	    
+	    // delete tmp folder
+	    JFolder::delete($tmpFolder);
+	}
+	
+	function insertImages($itemId, $images = array(), $itemType = 'hotels')
+	{
+	    $db = JFactory::getDbo();
+	    
+	    foreach ($images as $img)
+	    {
+		$query = $db->getQuery(true);
+		$query->insert('#__ntrip_images (item_id, item_type, title, description, images)')
+			->values($itemId . ', "' . $itemType . '", "", "", "' . $img . '"' );
+		
+		$db->setQuery($query);
+		$db->query();
+		
+		if ($db->getErrorMsg())
+		    die($db->getErrorMsg ());
+	    }
+	    
+	    return true;
+	}
+	
+	function getImages($itemId, $itemType = 'hotels')
+	{
+	    $db = JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    
+	    $query->select('*')
+		    ->from('#__ntrip_images')
+		    ->where('item_id = ' . $itemId)
+		    ->where('item_type = "'.$itemType.'"');
+	    
+	    $db->setQuery($query);
+	    $rs = $db->loadObjectList();
+	    
+	    return $rs;
+	}
+
 	private function uploadImages($itemId, $delImage = 0)
 	{
 		$jFileInput = new JInput($_FILES);
