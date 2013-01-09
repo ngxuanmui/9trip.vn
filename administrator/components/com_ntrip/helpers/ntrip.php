@@ -103,7 +103,7 @@ class NtripHelper
 		return $result;
 	}
 	
-	function copyTempFiles($itemId, $images = array(), $itemType = 'hotels')
+	static function copyTempFiles($itemId, $images = array(), $itemType = 'hotels')
 	{
 	    $tmpFolder = JPATH_ROOT . DS . 'tmp' . DS . JFactory::getUser()->id . DS . JFactory::getSession()->getId() . DS;
 	    $tmpThumbFolder = $tmpFolder . 'thumbnail' . DS;
@@ -133,7 +133,7 @@ class NtripHelper
 		JFolder::delete($tmpFolder);
 	}
 	
-	function insertImages($itemId, $images = array(), $itemType = 'hotels')
+	static function insertImages($itemId, $images = array(), $itemType = 'hotels')
 	{
 	    $db = JFactory::getDbo();
 	    
@@ -153,12 +153,12 @@ class NtripHelper
 	    return true;
 	}
 	
-	function updateImages($itemId, $curentImages = array(), $itemType = 'hotels')
+	static function updateImages($itemId, $curentImages = array(), $itemType = 'hotels')
 	{
 	    $db = JFactory::getDbo();
 	    
 	    // get old images
-	    $images = $this->getImages($itemId, $itemType);
+	    $images = NtripHelper::getImages($itemId, $itemType);
 	    
 	    foreach ($images as $img)
 	    {
@@ -186,7 +186,7 @@ class NtripHelper
 	    }
 	}
 	
-	function getImages($itemId, $itemType = 'hotels')
+	static function getImages($itemId, $itemType = 'hotels')
 	{
 	    $db = JFactory::getDbo();
 	    $query = $db->getQuery(true);
@@ -202,7 +202,7 @@ class NtripHelper
 	    return $rs;
 	}
 
-	private function uploadImages($field, $item, $delImage = 0, $itemType = 'hotels')
+	static function uploadImages($field, $item, $delImage = 0, $itemType = 'hotels')
 	{
 		$jFileInput = new JInput($_FILES);
 		$file = $jFileInput->get('jform', array(), 'array');

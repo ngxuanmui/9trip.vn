@@ -60,7 +60,6 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
     <tr class="template-upload fade">
         <td class="preview"><span class="fade"></span></td>
         <td class="name" valign="top">
-	    <input type="text" class="txt" /> <br>
 	    <span>{%=file.name%}</span>
 	</td>
         <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>

@@ -214,16 +214,20 @@ class NtripModelHotel extends JModelAdmin
 	    if (parent::save($data))
 	    {
 		$id = (int) $this->getState($this->getName() . '.id');
-
-		// Copy file 
-		NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'hotels');
-
-		// Insert images
-		NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'hotels');
 		
 		// Update images
-		NtripHelper::updateImages($id, $_POST['current_images'], 'hotels');
-
+		$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
+		NtripHelper::updateImages($id, $currentImages, 'hotels');
+		
+		// Temp files
+		if (isset($_POST['tmp_other_img']))
+		{
+		    // Copy file 
+		    NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'hotels');
+		    // Insert images
+		    NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'hotels');
+		}
+		
 		if ($id)
 		    $data['id'] = $id;
 

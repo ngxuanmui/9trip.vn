@@ -49,11 +49,15 @@ class NtripControllerUploadFile extends JController
 	    exit();
 	}
 
-	$file = $uploadHandler->post();
+	if ($_POST)
+	{
+	    $file = $uploadHandler->post();
 	
 	$files[] = $file;
 	
 	$session->set('files', $files);
+	}
+	
 	
 	exit();
     }
