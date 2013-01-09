@@ -102,4 +102,174 @@ class NtripHelper
 
 		return $result;
 	}
+	
+	function copyTempFiles($itemId, $images = array(), $itemType = 'hotels')
+	{
+	    $tmpFolder = JPATH_ROOT . DS . 'tmp' . DS . JFactory::getUser()->id . DS . JFactory::getSession()->getId() . DS;
+	    $tmpThumbFolder = $tmpFolder . 'thumbnail' . DS;
+	    
+	    $destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
+	    $destThumbFolder = $destFolder . 'thumbnail' . DS;
+	    
+	    jimport( 'joomla.filesystem.folder' );
+	    
+	    // make folder	    
+	    JFolder::create($destFolder, 0777);
+	    
+	    // make thumb
+	    JFolder::create($destThumbFolder, 0777);
+	    
+	    foreach ($images as $img)
+	    {
+		$src = $tmpFolder . $img;
+		$dest = $destFolder . $img;
+		
+		copy($src, $dest);
+		copy($tmpThumbFolder . $img, $destThumbFolder . $img);
+	    }
+	    
+	    // delete tmp folder
+	    if (is_dir($tmpFolder))
+		JFolder::delete($tmpFolder);
+	}
+	
+	function insertImages($itemId, $images = array(), $itemType = 'hotels')
+	{
+	    $db = JFactory::getDbo();
+	    
+	    foreach ($images as $img)
+	    {
+		$query = $db->getQuery(true);
+		$query->insert('#__ntrip_images (item_id, item_type, title, description, images)')
+			->values($itemId . ', "' . $itemType . '", "", "", "' . $img . '"' );
+		
+		$db->setQuery($query);
+		$db->query();
+		
+		if ($db->getErrorMsg())
+		    die($db->getErrorMsg ());
+	    }
+	    
+	    return true;
+	}
+	
+	function updateImages($itemId, $curentImages = array(), $itemType = 'hotels')
+	{
+	    $db = JFactory::getDbo();
+	    
+	    // get old images
+	    $images = $this->getImages($itemId, $itemType);
+	    
+	    foreach ($images as $img)
+	    {
+		$image = $img->images;
+		
+		if (!in_array($image, $curentImages))
+		{
+		    // delete image
+		    $destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
+		    $destThumbFolder = $destFolder . 'thumbnail' . DS;
+		    
+		    @unlink($destThumbFolder . $image);
+		    @unlink($destFolder . $image);
+		    
+		    // delete rec in db
+		    $query = $db->getQuery(true);
+		    $query->delete('#__ntrip_images')
+			    ->where('item_id = ' . $itemId)
+			    ->where('item_type = "'.$itemType.'"')
+			    ->where('images = "' . $image . '"');
+		    
+		    $db->setQuery($query);
+		    $db->query();
+		}
+	    }
+	}
+	
+	function getImages($itemId, $itemType = 'hotels')
+	{
+	    $db = JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    
+	    $query->select('*')
+		    ->from('#__ntrip_images')
+		    ->where('item_id = ' . $itemId)
+		    ->where('item_type = "'.$itemType.'"');
+	    
+	    $db->setQuery($query);
+	    $rs = $db->loadObjectList();
+	    
+	    return $rs;
+	}
+
+	private function uploadImages($field, $item, $delImage = 0, $itemType = 'hotels')
+	{
+		$jFileInput = new JInput($_FILES);
+		$file = $jFileInput->get('jform', array(), 'array');
+		
+		// If there is no uploaded file, we have a problem...
+		if (!is_array($file)) {
+//			JError::raiseWarning('', 'No file was selected.');
+			return '';
+		}
+
+		// Build the paths for our file to move to the components 'upload' directory
+		$fileName = $file['name'][$field];
+		$tmp_src    = $file['tmp_name'][$field];
+		
+		$image = '';
+		$oldImage = '';
+		$flagDelete = false;
+		
+//		$item = $this->getItem();
+		
+		// if delete old image checked or upload new file
+		if ($delImage || $fileName)
+		{			
+			$oldImage = JPATH_ROOT . DS . str_replace('/', DS, $item->images);
+			
+			// unlink file
+			if (is_file($oldImage))
+				@unlink($oldImage);
+			
+			$flagDelete = true;
+			
+			$image = '';
+		}
+		
+		$date = date('Y') . DS . date('m') . DS . date('d');
+		
+		$dest = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $date . DS . $item->id . DS;
+		
+		// Make directory
+		@mkdir($dest, 0777, true);
+		
+		if (isset($fileName) && $fileName) {
+			
+			$filepath = JPath::clean($dest.$fileName);
+
+			/*
+			if (JFile::exists($filepath)) {
+				JError::raiseWarning(100, JText::_('COM_MEDIA_ERROR_FILE_EXISTS'));	// File exists
+			}
+			*/
+
+			// Move uploaded file
+			jimport('joomla.filesystem.file');
+			
+			if (!JFile::upload($tmp_src, $filepath))
+			{
+				JError::raiseWarning(100, JText::_('COM_MEDIA_ERROR_UNABLE_TO_UPLOAD_FILE')); // Error in upload
+				return '';
+			}
+
+			// set value to return
+			$image = 'images/'.$itemType.'/' . str_replace(DS, '/', $date) . '/' . $item->id . '/' . $fileName;
+		}
+		else
+			if (!$flagDelete)
+			    $image = $item->images;
+		
+		return $image;
+	}
 }

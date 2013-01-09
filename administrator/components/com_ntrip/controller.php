@@ -27,8 +27,6 @@ class NtripController extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
-		require_once JPATH_COMPONENT.'/helpers/ntrip.php';
-
 		// Load the submenu.
 		NtripHelper::addSubmenu(JRequest::getCmd('view', 'hotels'));
 

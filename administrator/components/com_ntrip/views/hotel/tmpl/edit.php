@@ -42,9 +42,8 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				<li><?php echo $this->form->getLabel('type'); ?>
 				<?php echo $this->form->getInput('type'); ?></li>
 
-				<li>
-					<?php echo $this->form->getLabel('hotel_class'); ?>
-					<?php echo $this->form->getInput('hotel_class'); ?>
+				<li><?php echo $this->form->getLabel('hotel_class'); ?>
+				    <?php echo $this->form->getInput('hotel_class'); ?>
 				</li>
 				
 				<li><?php echo $this->form->getLabel('address'); ?>
@@ -59,34 +58,28 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				<li><?php echo $this->form->getLabel('hotline'); ?>
 				<?php echo $this->form->getInput('hotline'); ?></li>
 
-				<li>
-					<?php echo $this->form->getLabel('website'); ?>
-					<?php echo $this->form->getInput('website'); ?>
+				<li><?php echo $this->form->getLabel('website'); ?>
+				    <?php echo $this->form->getInput('website'); ?>
 				</li>
 
-				<li>
-					<?php echo $this->form->getLabel('email'); ?>
-					<?php echo $this->form->getInput('email'); ?>
+				<li><?php echo $this->form->getLabel('email'); ?>
+				    <?php echo $this->form->getInput('email'); ?>
 				</li>
 
-				<li>
-					<?php echo $this->form->getLabel('price_from'); ?>
-					<?php echo $this->form->getInput('price_from'); ?>
+				<li><?php echo $this->form->getLabel('price_from'); ?>
+				    <?php echo $this->form->getInput('price_from'); ?>
 				</li>
 
-				<li>
-					<?php echo $this->form->getLabel('price_to'); ?>
-					<?php echo $this->form->getInput('price_to'); ?>
+				<li><?php echo $this->form->getLabel('price_to'); ?>
+				    <?php echo $this->form->getInput('price_to'); ?>
 				</li>
 
-				<li>
-					<?php echo $this->form->getLabel('system_rank'); ?>
-					<?php echo $this->form->getInput('system_rank'); ?>
+				<li><?php echo $this->form->getLabel('system_rank'); ?>
+				    <?php echo $this->form->getInput('system_rank'); ?>
 				</li>
 
-				<li>
-					<?php echo $this->form->getLabel('user_rank'); ?>
-					<?php echo $this->form->getInput('user_rank'); ?>
+				<li><?php echo $this->form->getLabel('user_rank'); ?>
+				    <?php echo $this->form->getInput('user_rank'); ?>
 				</li>
 
 				<li><?php echo $this->form->getLabel('state'); ?>
@@ -183,6 +176,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					    <tr>
 						<td width="80" style="background: #FAFAFA;">
 						    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" />
+						    <input type="hidden" name="current_images[]" value="<?php echo $img->images; ?>" />
 						</td>
 						<td valign="top"><?php echo $img->images . '<br><strong>' . $img->title . '</strong>'; ?></td>
 						<td width="50" valign="top"><a href="javascript:;" class="delete-file">Del</a></td>

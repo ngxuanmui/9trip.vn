@@ -28,255 +28,6 @@ class NtripModelHotel extends JModelAdmin
 	protected $text_prefix = 'COM_NTRIP_HOTEL';
 
 	/**
-	 * Method to perform batch operations on an item or a set of items.
-	 *
-	 * @param   array   $commands   An array of commands to perform.
-	 * @param   array   $pks        An array of item ids.
-	 * @param   array   $contexts   An array of item contexts.
-	 *
-	 * @return	boolean	 Returns true on success, false on failure.
-	 *
-	 * @since	2.5
-	 */
-	public function batch($commands, $pks, $contexts)
-	{
-		// Sanitize user ids.
-		$pks = array_unique($pks);
-		JArrayHelper::toInteger($pks);
-
-		// Remove any values of zero.
-		if (array_search(0, $pks, true))
-		{
-			unset($pks[array_search(0, $pks, true)]);
-		}
-
-		if (empty($pks))
-		{
-			$this->setError(JText::_('JGLOBAL_NO_ITEM_SELECTED'));
-			return false;
-		}
-
-		$done = false;
-
-		if (!empty($commands['category_id']))
-		{
-			$cmd = JArrayHelper::getValue($commands, 'move_copy', 'c');
-
-			if ($cmd == 'c')
-			{
-				$result = $this->batchCopy($commands['category_id'], $pks, $contexts);
-				if (is_array($result))
-				{
-					$pks = $result;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			elseif ($cmd == 'm' && !$this->batchMove($commands['category_id'], $pks, $contexts))
-			{
-				return false;
-			}
-			$done = true;
-		}
-
-		if (strlen($commands['client_id']) > 0)
-		{
-			if (!$this->batchClient($commands['client_id'], $pks, $contexts))
-			{
-				return false;
-			}
-
-			$done = true;
-		}
-
-		if (!empty($commands['language_id']))
-		{
-			if (!$this->batchLanguage($commands['language_id'], $pks, $contexts))
-			{
-				return false;
-			}
-
-			$done = true;
-		}
-
-		if (!$done)
-		{
-			$this->setError(JText::_('JLIB_APPLICATION_ERROR_INSUFFICIENT_BATCH_INFORMATION'));
-			return false;
-		}
-
-		// Clear the cache
-		$this->cleanCache();
-
-		return true;
-	}
-
-	/**
-	 * Batch client changes for a group of hotels.
-	 *
-	 * @param   string  $value     The new value matching a client.
-	 * @param   array   $pks       An array of row IDs.
-	 * @param   array   $contexts  An array of item contexts.
-	 *
-	 * @return  boolean  True if successful, false otherwise and internal error is set.
-	 *
-	 * @since   2.5
-	 */
-	protected function batchClient($value, $pks, $contexts)
-	{
-		// Set the variables
-		$user = JFactory::getUser();
-		$table = $this->getTable();
-
-		foreach ($pks as $pk)
-		{
-			if ($user->authorise('core.edit', $contexts[$pk]))
-			{
-				$table->reset();
-				$table->load($pk);
-				$table->cid = (int) $value;
-
-				if (!$table->store())
-				{
-					$this->setError($table->getError());
-					return false;
-				}
-			}
-			else
-			{
-				$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_EDIT'));
-				return false;
-			}
-		}
-
-		// Clean the cache
-		$this->cleanCache();
-
-		return true;
-	}
-
-	/**
-	 * Batch copy items to a new category or current.
-	 *
-	 * @param   integer  $value     The new category.
-	 * @param   array    $pks       An array of row IDs.
-	 * @param   array    $contexts  An array of item contexts.
-	 *
-	 * @return  mixed  An array of new IDs on success, boolean false on failure.
-	 *
-	 * @since	2.5
-	 */
-	protected function batchCopy($value, $pks, $contexts)
-	{
-		$categoryId = (int) $value;
-
-		$table = $this->getTable();
-		$i = 0;
-
-		// Check that the category exists
-		if ($categoryId)
-		{
-			$categoryTable = JTable::getInstance('Category');
-			if (!$categoryTable->load($categoryId))
-			{
-				if ($error = $categoryTable->getError())
-				{
-					// Fatal error
-					$this->setError($error);
-					return false;
-				}
-				else
-				{
-					$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_MOVE_CATEGORY_NOT_FOUND'));
-					return false;
-				}
-			}
-		}
-
-		if (empty($categoryId))
-		{
-			$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_MOVE_CATEGORY_NOT_FOUND'));
-			return false;
-		}
-
-		// Check that the user has create permission for the component
-		$user = JFactory::getUser();
-		if (!$user->authorise('core.create', 'com_ntrip.category.' . $categoryId))
-		{
-			$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_CREATE'));
-			return false;
-		}
-
-		// Parent exists so we let's proceed
-		while (!empty($pks))
-		{
-			// Pop the first ID off the stack
-			$pk = array_shift($pks);
-
-			$table->reset();
-
-			// Check that the row actually exists
-			if (!$table->load($pk))
-			{
-				if ($error = $table->getError())
-				{
-					// Fatal error
-					$this->setError($error);
-					return false;
-				}
-				else
-				{
-					// Not fatal error
-					$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_BATCH_MOVE_ROW_NOT_FOUND', $pk));
-					continue;
-				}
-			}
-
-			// Alter the title & alias
-			$data = $this->generateNewTitle($categoryId, $table->alias, $table->name);
-			$table->name = $data['0'];
-			$table->alias = $data['1'];
-
-			// Reset the ID because we are making a copy
-			$table->id = 0;
-
-			// New category ID
-			$table->catid = $categoryId;
-
-			// TODO: Deal with ordering?
-			//$table->ordering	= 1;
-
-			// Check the row.
-			if (!$table->check())
-			{
-				$this->setError($table->getError());
-				return false;
-			}
-
-			// Store the row.
-			if (!$table->store())
-			{
-				$this->setError($table->getError());
-				return false;
-			}
-
-			// Get the new item ID
-			$newId = $table->get('id');
-
-			// Add the new ID to the array
-			$newIds[$i]	= $newId;
-			$i++;
-		}
-
-		// Clean the cache
-		$this->cleanCache();
-
-		return $newIds;
-	}
-
-	/**
 	 * Method to test whether a record can be deleted.
 	 *
 	 * @param   object  $record  A record object.
@@ -381,20 +132,20 @@ class NtripModelHotel extends JModelAdmin
 		// Modify the form based on access controls.
 		if (!$this->canEditState((object) $data))
 		{
-			// Disable fields for display.
-			$form->setFieldAttribute('ordering', 'disabled', 'true');
-			$form->setFieldAttribute('publish_up', 'disabled', 'true');
-			$form->setFieldAttribute('publish_down', 'disabled', 'true');
-			$form->setFieldAttribute('state', 'disabled', 'true');
-			$form->setFieldAttribute('sticky', 'disabled', 'true');
+		    // Disable fields for display.
+		    $form->setFieldAttribute('ordering', 'disabled', 'true');
+		    $form->setFieldAttribute('publish_up', 'disabled', 'true');
+		    $form->setFieldAttribute('publish_down', 'disabled', 'true');
+		    $form->setFieldAttribute('state', 'disabled', 'true');
+		    $form->setFieldAttribute('sticky', 'disabled', 'true');
 
-			// Disable fields while saving.
-			// The controller has already verified this is a record you can edit.
-			$form->setFieldAttribute('ordering', 'filter', 'unset');
-			$form->setFieldAttribute('publish_up', 'filter', 'unset');
-			$form->setFieldAttribute('publish_down', 'filter', 'unset');
-			$form->setFieldAttribute('state', 'filter', 'unset');
-			$form->setFieldAttribute('sticky', 'filter', 'unset');
+		    // Disable fields while saving.
+		    // The controller has already verified this is a record you can edit.
+		    $form->setFieldAttribute('ordering', 'filter', 'unset');
+		    $form->setFieldAttribute('publish_up', 'filter', 'unset');
+		    $form->setFieldAttribute('publish_down', 'filter', 'unset');
+		    $form->setFieldAttribute('state', 'filter', 'unset');
+		    $form->setFieldAttribute('sticky', 'filter', 'unset');
 		}
 
 		return $form;
@@ -436,7 +187,7 @@ class NtripModelHotel extends JModelAdmin
 	{
 	    $item = parent::getItem($pk);
 	    
-	    $item->other_images = $this->getImages($item->id, 'hotels');
+	    $item->other_images = NtripHelper::getImages($item->id, 'hotels');
 	    
 	    return $item;
 	}
@@ -460,163 +211,31 @@ class NtripModelHotel extends JModelAdmin
 	
 	public function save($data) 
 	{
-		if (parent::save($data))
-		{
-		    $id = (int) $this->getState($this->getName() . '.id');
-
-		    // Copy file 
-		    $this->copyTempFiles($id, $_POST['tmp_other_img'], 'hotels');
-
-		    // Insert images
-		    $this->insertImages($id, $_POST['tmp_other_img'], 'hotels');
-
-		    if ($id)
-			    $data['id'] = $id;
-
-		    $delImage = isset($data['del_image']) ? $data['del_image'] : null;
-
-		    // Upload thumb
-		    $data['images'] = $this->uploadImages($id, $delImage);
-
-		    return parent::save($data);
-		}
-		
-		return false;
-	}
-	
-	function copyTempFiles($itemId, $images = array(), $itemType = 'hotels')
-	{
-	    $tmpFolder = JPATH_ROOT . DS . 'tmp' . DS . JFactory::getUser()->id . DS . JFactory::getSession()->getId() . DS;
-	    $tmpThumbFolder = $tmpFolder . 'thumbnail' . DS;
-	    
-	    $destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
-	    $destThumbFolder = $destFolder . 'thumbnail' . DS;
-	    
-	    jimport( 'joomla.filesystem.folder' );
-	    
-	    // make folder	    
-	    JFolder::create($destFolder, 0777);
-	    
-	    // make thumb
-	    JFolder::create($destThumbFolder, 0777);
-	    
-	    foreach ($images as $img)
+	    if (parent::save($data))
 	    {
-		$src = $tmpFolder . $img;
-		$dest = $destFolder . $img;
-		
-		copy($src, $dest);
-		copy($tmpThumbFolder . $img, $destThumbFolder . $img);
-	    }
-	    
-	    // delete tmp folder
-	    JFolder::delete($tmpFolder);
-	}
-	
-	function insertImages($itemId, $images = array(), $itemType = 'hotels')
-	{
-	    $db = JFactory::getDbo();
-	    
-	    foreach ($images as $img)
-	    {
-		$query = $db->getQuery(true);
-		$query->insert('#__ntrip_images (item_id, item_type, title, description, images)')
-			->values($itemId . ', "' . $itemType . '", "", "", "' . $img . '"' );
-		
-		$db->setQuery($query);
-		$db->query();
-		
-		if ($db->getErrorMsg())
-		    die($db->getErrorMsg ());
-	    }
-	    
-	    return true;
-	}
-	
-	function getImages($itemId, $itemType = 'hotels')
-	{
-	    $db = JFactory::getDbo();
-	    $query = $db->getQuery(true);
-	    
-	    $query->select('*')
-		    ->from('#__ntrip_images')
-		    ->where('item_id = ' . $itemId)
-		    ->where('item_type = "'.$itemType.'"');
-	    
-	    $db->setQuery($query);
-	    $rs = $db->loadObjectList();
-	    
-	    return $rs;
-	}
+		$id = (int) $this->getState($this->getName() . '.id');
 
-	private function uploadImages($itemId, $delImage = 0)
-	{
-		$jFileInput = new JInput($_FILES);
-		$file = $jFileInput->get('jform', array(), 'array');
-		
-		// If there is no uploaded file, we have a problem...
-		if (!is_array($file)) {
-//			JError::raiseWarning('', 'No file was selected.');
-			return '';
-		}
+		// Copy file 
+		NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'hotels');
 
-		// Build the paths for our file to move to the components 'upload' directory
-		$fileName = $file['name']['images'];
-		$tmp_src    = $file['tmp_name']['images'];
+		// Insert images
+		NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'hotels');
 		
-		$image = '';
-		$oldImage = '';
-		$flagDelete = false;
-		
+		// Update images
+		NtripHelper::updateImages($id, $_POST['current_images'], 'hotels');
+
+		if ($id)
+		    $data['id'] = $id;
+
+		$delImage = isset($data['del_image']) ? $data['del_image'] : null;
+
+		// Upload thumb
 		$item = $this->getItem();
-		
-		// if delete old image checked or upload new file
-		if ($delImage || $fileName)
-		{			
-			$oldImage = JPATH_ROOT . DS . str_replace('/', DS, $item->images);
-			
-			// unlink file
-			if (is_file($oldImage))
-				@unlink($oldImage);
-			
-			$flagDelete = true;
-			
-			$image = '';
-		}
-		
-		$date = date('Y') . DS . date('m') . DS . date('d');
-		
-		$dest = JPATH_ROOT . DS . 'images' . DS . 'hotels' . DS . $date . DS . $itemId . DS;
-		
-		// Make directory
-		@mkdir($dest, 0777, true);
-		
-		if (isset($fileName) && $fileName) {
-			
-			$filepath = JPath::clean($dest.$fileName);
+		$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, 'hotels');
 
-			/*
-			if (JFile::exists($filepath)) {
-				JError::raiseWarning(100, JText::_('COM_MEDIA_ERROR_FILE_EXISTS'));	// File exists
-			}
-			*/
+		return parent::save($data);
+	    }
 
-			// Move uploaded file
-			jimport('joomla.filesystem.file');
-			
-			if (!JFile::upload($tmp_src, $filepath))
-			{
-				JError::raiseWarning(100, JText::_('COM_MEDIA_ERROR_UNABLE_TO_UPLOAD_FILE')); // Error in upload
-				return '';
-			}
-
-			// set value to return
-			$image = 'images/hotels/' . str_replace(DS, '/', $date) . '/' . $itemId . '/' . $fileName;
-		}
-		else
-			if (!$flagDelete)
-				$image = $item->images;
-		
-		return $image;
+	    return false;
 	}
 }
