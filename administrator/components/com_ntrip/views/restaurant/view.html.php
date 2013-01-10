@@ -6,7 +6,7 @@
 
 defined('_JEXEC') or die;
 
-JLoader::register('BannersHelper', JPATH_COMPONENT.'/helpers/banners.php');
+JLoader::register('RestaurantsHelper', JPATH_COMPONENT.'/helpers/restaurants.php');
 
 /**
  * View to edit a restaurant.
@@ -26,9 +26,9 @@ class NtripViewRestaurant extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
-		// Initialise variables.
-		$this->form	= $this->get('Form');
-		$this->item	= $this->get('Item');
+		// Initialiase variables.
+		$this->form		= $this->get('Form');
+		$this->item		= $this->get('Item');
 		$this->state	= $this->get('State');
 
 		// Check for errors.
@@ -51,33 +51,25 @@ class NtripViewRestaurant extends JViewLegacy
 		JRequest::setVar('hidemainmenu', true);
 
 		$user		= JFactory::getUser();
+		$userId		= $user->get('id');
 		$isNew		= ($this->item->id == 0);
-		$checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
-		$canDo		= BannersHelper::getActions();
+		$checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
+		// Since we don't track these assets at the item level, use the category id.
+		$canDo		= NtripHelper::getActions($this->item->catid,0);
 
-		JToolBarHelper::title($isNew ? JText::_('COM_BANNERS_MANAGER_CLIENT_NEW') : JText::_('COM_BANNERS_MANAGER_CLIENT_EDIT'), 'banners-restaurants.png');
+		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_RESTAURANT_NEW') : JText::_('COM_NTRIP_MANAGER_RESTAURANT_EDIT'), 'restaurants.png');
 
 		// If not checked out, can save the item.
-		if (!$checkedOut && ($canDo->get('core.edit')||$canDo->get('core.create'))) {
+		if (!$checkedOut && ($canDo->get('core.edit') || count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)) {
 			JToolBarHelper::apply('restaurant.apply');
 			JToolBarHelper::save('restaurant.save');
-		}
-		if (!$checkedOut && $canDo->get('core.create')) {
-
-			JToolBarHelper::save2new('restaurant.save2new');
-		}
-		// If an existing item, can save to a copy.
-		if (!$isNew && $canDo->get('core.create')) {
-			JToolBarHelper::save2copy('restaurant.save2copy');
 		}
 
 		if (empty($this->item->id))  {
 			JToolBarHelper::cancel('restaurant.cancel');
-		} else {
+		}
+		else {
 			JToolBarHelper::cancel('restaurant.cancel', 'JTOOLBAR_CLOSE');
 		}
-
-		JToolBarHelper::divider();
-		JToolBarHelper::help('JHELP_COMPONENTS_BANNERS_CLIENTS_EDIT');
 	}
 }

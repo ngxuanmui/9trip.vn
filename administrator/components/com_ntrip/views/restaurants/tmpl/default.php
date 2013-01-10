@@ -1,9 +1,10 @@
 <?php
 /**
- * @package		Joomla.Administrator
- * @subpackage	com_banners
- * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     Joomla.Administrator
+ * @subpackage  com_ntrip
+ *
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
@@ -17,14 +18,15 @@ $user		= JFactory::getUser();
 $userId		= $user->get('id');
 $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
+$canOrder	= $user->authorise('core.edit.state', 'com_ntrip.category');
+$saveOrder	= $listOrder=='ordering';
 $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 ?>
-
-<form action="<?php echo JRoute::_('index.php?option=com_banners&view=clients'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_ntrip&view=restaurants'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_BANNERS_SEARCH_IN_TITLE'); ?>" />
+			<input type="text" name="filter_search" id="filter_search" value="<?php echo $this->escape($this->state->get('filter.search')); ?>" title="<?php echo JText::_('COM_NTRIP_SEARCH_IN_TITLE'); ?>" />
 			<button type="submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
 			<button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		</div>
@@ -33,6 +35,11 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 			<select name="filter_state" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.state'), true);?>
+			</select>
+
+			<select name="filter_category_id" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('JOPTION_SELECT_CATEGORY');?></option>
+				<?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_ntrip'), 'value', 'text', $this->state->get('filter.category_id'));?>
 			</select>
 		</div>
 	</fieldset>
@@ -45,22 +52,22 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 				</th>
 				<th>
-					<?php echo JHtml::_('grid.sort', 'COM_BANNERS_HEADING_CLIENT', 'a.name', $listDirn, $listOrder); ?>
-				</th>
-				<th width="30%">
-					<?php echo JHtml::_('grid.sort', 'COM_BANNERS_HEADING_CONTACT', 'contact', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'COM_NTRIP_HEADING_NAME', 'a.name', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
-					<?php echo JHtml::_('grid.sort',  'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
-				</th>
-				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'COM_BANNERS_HEADING_ACTIVE', 'nbanners', $listDirn, $listOrder); ?>
-				</th>
-				<th width="5%" class="nowrap">
-					<?php echo JText::_('COM_BANNERS_HEADING_METAKEYWORDS'); ?>
+					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%">
-					<?php echo JText::_('COM_BANNERS_HEADING_PURCHASETYPE'); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_NTRIP_HEADING_LOCATION', 'category_title', $listDirn, $listOrder); ?>
+				</th>
+				<th width="10%">
+					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ORDERING', 'ordering', $listDirn, $listOrder); ?>
+					<?php if ($canOrder && $saveOrder): ?>
+						<?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'restaurants.saveorder'); ?>
+					<?php endif;?>
+				</th>
+				<th width="5%">
+					<?php echo JText::_('COM_NTRIP_HEADING_COMMENT'); ?>
 				</th>
 				<th width="1%" class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -69,7 +76,7 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 		</thead>
 		<tfoot>
 			<tr>
-				<td colspan="8">
+				<td colspan="13">
 					<?php echo $this->pagination->getListFooter(); ?>
 				</td>
 			</tr>
@@ -77,10 +84,11 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
 			$ordering	= ($listOrder == 'ordering');
-			$canCreate	= $user->authorise('core.create',		'com_banners');
-			$canEdit	= $user->authorise('core.edit',			'com_banners');
-			$canCheckin	= $user->authorise('core.manage',		'com_checkin') || $item->checked_out==$user->get('id') || $item->checked_out==0;
-			$canChange	= $user->authorise('core.edit.state',	'com_banners') && $canCheckin;
+			$item->cat_link = JRoute::_('index.php?option=com_categories&extension=com_ntrip&task=edit&type=other&cid[]='. $item->catid);
+			$canCreate	= $user->authorise('core.create',		'com_ntrip.category.'.$item->catid);
+			$canEdit	= $user->authorise('core.edit',			'com_ntrip.category.'.$item->catid);
+			$canCheckin	= $user->authorise('core.manage',		'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
+			$canChange	= $user->authorise('core.edit.state',	'com_ntrip.category.'.$item->catid) && $canCheckin;
 			?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
@@ -88,33 +96,44 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				</td>
 				<td>
 					<?php if ($item->checked_out) : ?>
-						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'clients.', $canCheckin); ?>
+						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'restaurants.', $canCheckin); ?>
 					<?php endif; ?>
 					<?php if ($canEdit) : ?>
-						<a href="<?php echo JRoute::_('index.php?option=com_banners&task=client.edit&id='.(int) $item->id); ?>">
+						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=restaurant.edit&id='.(int) $item->id); ?>">
 							<?php echo $this->escape($item->name); ?></a>
 					<?php else : ?>
 							<?php echo $this->escape($item->name); ?>
 					<?php endif; ?>
+					<p class="smallsub">
+						<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?></p>
 				</td>
 				<td class="center">
-					<?php echo $item->contact;?>
+					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'restaurants.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 				</td>
 				<td class="center">
-					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'clients.', $canChange);?>
+					<?php echo $this->escape($item->category_title); ?>
+				</td>
+				<td class="order">
+					<?php if ($canChange) : ?>
+						<?php if ($saveOrder) : ?>
+							<?php if ($listDirn == 'asc') : ?>
+								<span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->catid == $item->catid), 'restaurants.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+								<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->catid == $item->catid), 'restaurants.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+							<?php elseif ($listDirn == 'desc') : ?>
+								<span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->catid == $item->catid), 'restaurants.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+								<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->catid == $item->catid), 'restaurants.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+							<?php endif; ?>
+						<?php endif; ?>
+						<?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>
+						<input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" <?php echo $disabled; ?> class="text-area-order" />
+					<?php else : ?>
+						<?php echo $item->ordering; ?>
+					<?php endif; ?>
 				</td>
 				<td class="center">
-					<?php echo $item->nbanners; ?>
-				</td>
-				<td>
-					<?php echo $item->metakey; ?>
-				</td>
-				<td class="center">
-					<?php if ($item->purchase_type<0):?>
-						<?php echo JText::sprintf('COM_BANNERS_DEFAULT', JText::_('COM_BANNERS_FIELD_VALUE_'.$params->get('purchase_type')));?>
-					<?php else:?>
-						<?php echo JText::_('COM_BANNERS_FIELD_VALUE_'.$item->purchase_type);?>
-					<?php endif;?>
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=comments&type=restaurant&item_id='.$item->id); ?>">
+						<?php echo JText::_('COM_NTRIP_HEADING_COMMENT'); ?>
+					</a>
 				</td>
 				<td class="center">
 					<?php echo $item->id; ?>
@@ -123,6 +142,10 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 			<?php endforeach; ?>
 		</tbody>
 	</table>
+
+	<?php //Load the batch processing form. ?>
+	<?php // echo $this->loadTemplate('batch'); ?>
+
 	<div>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />

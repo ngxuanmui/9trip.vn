@@ -1,7 +1,10 @@
 <?php
 /**
- * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     Joomla.Administrator
+ * @subpackage  com_ntrip
+ *
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
@@ -9,75 +12,113 @@ defined('_JEXEC') or die;
 /**
  * View class for a list of restaurants.
  *
- * @package		Joomla.Administrator
- * @subpackage	com_ntrip
- * @since		1.6
+ * @package     Joomla.Administrator
+ * @subpackage  com_ntrip
+ * @since       1.6
  */
-class BannersViewRestaurants extends JViewLegacy
+class NtripViewRestaurants extends JViewLegacy
 {
+	protected $categories;
 	protected $items;
 	protected $pagination;
 	protected $state;
 
 	/**
-	 * Display the view
+	 * Method to display the view.
+	 *
+	 * @param   string  $tpl  A template file to load. [optional]
+	 *
+	 * @return  mixed  A string if successful, otherwise a JError object.
+	 *
+	 * @since   1.6
 	 */
 	public function display($tpl = null)
 	{
 		// Initialise variables.
+		$this->categories	= $this->get('CategoryOrders');
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
 		$this->state		= $this->get('State');
-
+		
 		// Check for errors.
-		if (count($errors = $this->get('Errors'))) {
+		if (count($errors = $this->get('Errors')))
+		{
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
-
+		
 		$this->addToolbar();
+		
 		parent::display($tpl);
 	}
 
 	/**
 	 * Add the page title and toolbar.
 	 *
-	 * @since	1.6
+	 * @return  void
+	 *
+	 * @since   1.6
 	 */
 	protected function addToolbar()
 	{
-		require_once JPATH_COMPONENT.'/helpers/banners.php';
+		require_once JPATH_COMPONENT . '/helpers/ntrip.php';
 
-		$canDo	= BannersHelper::getActions();
-
-		JToolBarHelper::title(JText::_('COM_BANNERS_MANAGER_CLIENTS'), 'banners-restaurants.png');
-		if ($canDo->get('core.create')) {
+		$canDo = NtripHelper::getActions($this->state->get('filter.category_id'));
+		$user = JFactory::getUser();
+		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_RESTAURANTS'), 'restaurants.png');
+//		if (count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)
+		if (($canDo->get('core.create')))
+		{
 			JToolBarHelper::addNew('restaurant.add');
 		}
-		if ($canDo->get('core.edit')) {
+
+		if (($canDo->get('core.edit')))
+		{
 			JToolBarHelper::editList('restaurant.edit');
 		}
-		if ($canDo->get('core.edit.state')) {
-			JToolBarHelper::divider();
-			JToolBarHelper::publish('restaurants.publish', 'JTOOLBAR_PUBLISH', true);
-			JToolBarHelper::unpublish('restaurants.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-			JToolBarHelper::divider();
-			JToolBarHelper::archiveList('restaurants.archive');
+
+		if ($canDo->get('core.edit.state'))
+		{
+			if ($this->state->get('filter.state') != 2)
+			{
+				JToolBarHelper::divider();
+				JToolBarHelper::publish('restaurants.publish', 'JTOOLBAR_PUBLISH', true);
+				JToolBarHelper::unpublish('restaurants.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+			}
+
+			if ($this->state->get('filter.state') != -1)
+			{
+				JToolBarHelper::divider();
+				if ($this->state->get('filter.state') != 2)
+				{
+					JToolBarHelper::archiveList('restaurants.archive');
+				}
+				elseif ($this->state->get('filter.state') == 2)
+				{
+					JToolBarHelper::unarchiveList('restaurants.publish');
+				}
+			}
+		}
+
+		if ($canDo->get('core.edit.state'))
+		{
 			JToolBarHelper::checkin('restaurants.checkin');
 		}
-		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete')) {
+
+		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
+		{
 			JToolBarHelper::deleteList('', 'restaurants.delete', 'JTOOLBAR_EMPTY_TRASH');
 			JToolBarHelper::divider();
-		} elseif ($canDo->get('core.edit.state')) {
+		}
+		elseif ($canDo->get('core.edit.state'))
+		{
 			JToolBarHelper::trash('restaurants.trash');
 			JToolBarHelper::divider();
 		}
 
-		if ($canDo->get('core.admin')) {
+		if ($canDo->get('core.admin'))
+		{
 			JToolBarHelper::preferences('com_ntrip');
-			JToolBarHelper::divider();
 		}
-
-		JToolBarHelper::help('JHELP_COMPONENTS_BANNERS_CLIENTS');
 	}
 }

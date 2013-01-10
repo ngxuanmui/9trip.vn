@@ -4,22 +4,105 @@
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-// no direct access
+// No direct access.
 defined('_JEXEC') or die;
 
 /**
- * Client table
+ * Restaurant table
  *
  * @package		Joomla.Administrator
  * @subpackage	com_ntrip
- * @since		1.6
+ * @since		1.5
  */
-class BannersTableClient extends JTable
+class NtripTableRestaurant extends JTable
 {
+	/**
+	 * Constructor
+	 *
+	 * @since	1.5
+	 */
 	function __construct(&$_db)
 	{
-		$this->checked_out_time = $_db->getNullDate();
 		parent::__construct('#__ntrip_restaurants', 'id', $_db);
+		$date = JFactory::getDate();
+		$this->created = $date->toSql();
+	}
+
+	/**
+	 * Overloaded check function
+	 *
+	 * @return	boolean
+	 * @see		JTable::check
+	 * @since	1.5
+	 */
+	function check()
+	{
+		// Set name
+		$this->name = htmlspecialchars_decode($this->name, ENT_QUOTES);
+
+		// Set alias
+		$this->alias = JApplication::stringURLSafe($this->alias);
+		if (empty($this->alias)) {
+			$this->alias = JApplication::stringURLSafe($this->name);
+		}
+
+		// Check the publish down date is not earlier than publish up.
+		if ($this->publish_down > $this->_db->getNullDate() && $this->publish_down < $this->publish_up) {
+			$this->setError(JText::_('JGLOBAL_START_PUBLISH_AFTER_FINISH'));
+			return false;
+		}
+
+		// Set ordering
+		if ($this->state < 0) {
+			// Set ordering to 0 if state is archived or trashed
+			$this->ordering = 0;
+		} elseif (empty($this->ordering)) {
+			// Set ordering to last if ordering was 0
+			$this->ordering = self::getNextOrder($this->_db->quoteName('catid').'=' . $this->_db->Quote($this->catid).' AND state>=0');
+		}
+
+		return true;
+	}
+	
+	/**
+	 * method to store a row
+	 *
+	 * @param boolean $updateNulls True to update fields even if they are null.
+	 */
+	function store($updateNulls = false)
+	{
+		if (empty($this->id))
+		{
+			// Store the row
+			parent::store($updateNulls);
+		}
+		else
+		{
+			// Get the old row
+			$oldrow = JTable::getInstance('Restaurant', 'NtripTable');
+			if (!$oldrow->load($this->id) && $oldrow->getError())
+			{
+				$this->setError($oldrow->getError());
+			}
+
+			// Verify that the alias is unique
+			$table = JTable::getInstance('Restaurant', 'NtripTable');
+			if ($table->load(array('alias'=>$this->alias, 'catid'=>$this->catid)) && ($table->id != $this->id || $this->id==0)) {
+				$this->setError(JText::_('COM_BANNERS_ERROR_UNIQUE_ALIAS'));
+				return false;
+			}
+
+			// Store the new row
+			parent::store($updateNulls);
+
+			// Need to reorder ?
+			if ($oldrow->state>=0 && ($this->state < 0 || $oldrow->catid != $this->catid))
+			{
+				// Reorder the oldrow
+				$this->reorder($this->_db->quoteName('catid').'=' . $this->_db->Quote($oldrow->catid).' AND state>=0');
+			}
+		}
+		return count($this->getErrors())==0;
 	}
 
 	/**
@@ -29,10 +112,10 @@ class BannersTableClient extends JTable
 	 *
 	 * @param	mixed	An optional array of primary key values to update.  If not
 	 *					set the instance property value is used.
-	 * @param	integer The publishing state. eg. [0 = unpublished, 1 = published]
+	 * @param	integer The publishing state. eg. [0 = unpublished, 1 = published, 2=archived, -2=trashed]
 	 * @param	integer The user id of the user performing the operation.
 	 * @return	boolean	True on success.
-	 * @since	1.0.4
+	 * @since	1.6
 	 */
 	public function publish($pks = null, $state = 1, $userId = 0)
 	{
@@ -57,48 +140,36 @@ class BannersTableClient extends JTable
 			}
 		}
 
-		// Build the WHERE clause for the primary keys.
-		$where = $k.'='.implode(' OR '.$k.'=', $pks);
+		// Get an instance of the table
+		$table = JTable::getInstance('Restaurant', 'RestaurantsTable');
 
-		// Determine if there is checkin support for the table.
-		if (!property_exists($this, 'checked_out') || !property_exists($this, 'checked_out_time')) {
-			$checkin = '';
-		}
-		else {
-			$checkin = ' AND (checked_out = 0 OR checked_out = '.(int) $userId.')';
-		}
-
-		// Update the publishing state for rows with the given primary keys.
-		$this->_db->setQuery(
-			'UPDATE '.$this->_db->quoteName($this->_tbl).
-			' SET '.$this->_db->quoteName('state').' = '.(int) $state .
-			' WHERE ('.$where.')' .
-			$checkin
-		);
-		$this->_db->query();
-
-		// Check for a database error.
-		if ($this->_db->getErrorNum()) {
-			$this->setError($this->_db->getErrorMsg());
-			return false;
-		}
-
-		// If checkin is supported and all rows were adjusted, check them in.
-		if ($checkin && (count($pks) == $this->_db->getAffectedRows()))
+		// For all keys
+		foreach ($pks as $pk)
 		{
-			// Checkin the rows.
-			foreach($pks as $pk)
+			// Load the banner
+			if(!$table->load($pk))
 			{
-				$this->checkin($pk);
+				$this->setError($table->getError());
+			}
+
+			// Verify checkout
+			if($table->checked_out==0 || $table->checked_out==$userId)
+			{
+				// Change the state
+				$table->state = $state;
+				$table->checked_out=0;
+				$table->checked_out_time=$this->_db->getNullDate();
+
+				// Check the row
+				$table->check();
+
+				// Store the row
+				if (!$table->store())
+				{
+					$this->setError($table->getError());
+				}
 			}
 		}
-
-		// If the JTable instance value is in the list of primary keys that were set, set the instance.
-		if (in_array($this->$k, $pks)) {
-			$this->state = $state;
-		}
-
-		$this->setError('');
-		return true;
+		return count($this->getErrors())==0;
 	}
 }

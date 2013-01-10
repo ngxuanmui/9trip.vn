@@ -136,6 +136,9 @@ class JFormFieldCustomField extends JFormFieldList
 			$html .= '<span class="fltlft" style="margin-right: 5px; line-height: 23px;">' . $option->text . '</span>';
 		}
 		
+		if (empty($options))
+		    $html .= '<strong>No type defined</strong>';
+		
 		$html .= '</div>';
 		
 		return $html;
