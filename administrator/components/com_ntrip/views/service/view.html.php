@@ -7,13 +7,13 @@
 defined('_JEXEC') or die;
 
 /**
- * View to edit a hotel.
+ * View to edit a service.
  *
  * @package		Joomla.Administrator
  * @subpackage	com_ntrip
  * @since		1.5
  */
-class NtripViewHotel extends JViewLegacy
+class NtripViewService extends JViewLegacy
 {
 	protected $form;
 	protected $item;
@@ -55,19 +55,19 @@ class NtripViewHotel extends JViewLegacy
 		// Since we don't track these assets at the item level, use the category id.
 		$canDo		= NtripHelper::getActions($this->item->catid,0);
 
-		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_HOTEL_NEW') : JText::_('COM_NTRIP_MANAGER_HOTEL_EDIT'), 'hotels.png');
+		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_SERVICE_NEW') : JText::_('COM_NTRIP_MANAGER_SERVICE_EDIT'), 'services.png');
 
 		// If not checked out, can save the item.
 		if (!$checkedOut && ($canDo->get('core.edit') || count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)) {
-			JToolBarHelper::apply('hotel.apply');
-			JToolBarHelper::save('hotel.save');
+			JToolBarHelper::apply('service.apply');
+			JToolBarHelper::save('service.save');
 		}
 
 		if (empty($this->item->id))  {
-			JToolBarHelper::cancel('hotel.cancel');
+			JToolBarHelper::cancel('service.cancel');
 		}
 		else {
-			JToolBarHelper::cancel('hotel.cancel', 'JTOOLBAR_CLOSE');
+			JToolBarHelper::cancel('service.cancel', 'JTOOLBAR_CLOSE');
 		}
 	}
 }

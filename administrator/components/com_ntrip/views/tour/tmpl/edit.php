@@ -22,23 +22,23 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'restaurant.cancel' || document.formvalidator.isValid(document.id('restaurant-form'))) {
-			Joomla.submitform(task, document.getElementById('restaurant-form'));
+		if (task == 'tour.cancel' || document.formvalidator.isValid(document.id('tour-form'))) {
+			Joomla.submitform(task, document.getElementById('tour-form'));
 		}
 	}
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="restaurant-form" class="form-validate" enctype="multipart/form-data">
+<form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="tour-form" class="form-validate" enctype="multipart/form-data">
 	<div class="width-60 fltlft">
 		<fieldset class="adminform">
-			<legend><?php echo empty($this->item->id) ? JText::_('COM_NTRIP_NEW_RESTAURANT') : JText::sprintf('COM_NTRIP_RESTAURANT_DETAILS', $this->item->id); ?></legend>
+			<legend><?php echo empty($this->item->id) ? JText::_('COM_NTRIP_NEW_TOUR') : JText::sprintf('COM_NTRIP_TOUR_DETAILS', $this->item->id); ?></legend>
 			<ul class="adminformlist">
 				<li><?php echo $this->form->getLabel('name'); ?>
 				<?php echo $this->form->getInput('name'); ?></li>
 
 				<li><?php echo $this->form->getLabel('alias'); ?>
 				<?php echo $this->form->getInput('alias'); ?></li>
-
+				
 				<li><?php echo $this->form->getLabel('address'); ?>
 				<?php echo $this->form->getInput('address'); ?></li>
 
@@ -57,15 +57,6 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 
 				<li><?php echo $this->form->getLabel('email'); ?>
 				    <?php echo $this->form->getInput('email'); ?>
-				</li>
-
-				<li><?php echo $this->form->getLabel('price_from'); ?>
-				    <?php echo $this->form->getInput('price_from'); ?>
-				</li>
-
-				<li><?php echo $this->form->getLabel('price_to'); ?>
-				    <?php echo $this->form->getInput('price_to'); ?>
-				</li>
 
 				<li><?php echo $this->form->getLabel('system_rank'); ?>
 				    <?php echo $this->form->getInput('system_rank'); ?>
@@ -127,7 +118,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 	</div>
 
 <div class="width-40 fltrt">
-	<?php echo JHtml::_('sliders.start', 'restaurant-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
+	<?php echo JHtml::_('sliders.start', 'tour-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
 
 	<?php echo JHtml::_('sliders.panel', JText::_('COM_NTRIP_GROUP_LABEL_PUBLISHING_DETAILS'), 'publishing-details'); ?>
 		<fieldset class="panelform">
@@ -160,7 +151,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php 
 					$images = $this->item->other_images;
 					
-					$path = JURI::root() . 'images/restaurants/' . $this->item->id . '/';
+					$path = JURI::root() . 'images/tours/' . $this->item->id . '/';
 					
 					if ($images):
 					?>

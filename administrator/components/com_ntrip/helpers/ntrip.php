@@ -38,6 +38,30 @@ class NtripHelper
 			'index.php?option=com_ntrip&view=restaurants',
 			$vName == 'restaurants'
 		);
+		
+		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_TOURS'),
+			'index.php?option=com_ntrip&view=tours',
+			$vName == 'tours'
+		);
+		
+		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_RELAXES'),
+			'index.php?option=com_ntrip&view=relaxes',
+			$vName == 'relaxes'
+		);
+		
+		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_SHOPPINGS'),
+			'index.php?option=com_ntrip&view=shoppings',
+			$vName == 'shoppings'
+		);
+		
+		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_SERVICES'),
+			'index.php?option=com_ntrip&view=services',
+			$vName == 'services'
+		);
 
 		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_LOCATIONS'),

@@ -6,8 +6,6 @@
 
 defined('_JEXEC') or die;
 
-JLoader::register('CommentsHelper', JPATH_COMPONENT.'/helpers/comments.php');
-
 /**
  * View to edit a comment.
  *

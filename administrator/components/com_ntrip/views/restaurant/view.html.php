@@ -6,8 +6,6 @@
 
 defined('_JEXEC') or die;
 
-JLoader::register('RestaurantsHelper', JPATH_COMPONENT.'/helpers/restaurants.php');
-
 /**
  * View to edit a restaurant.
  *
