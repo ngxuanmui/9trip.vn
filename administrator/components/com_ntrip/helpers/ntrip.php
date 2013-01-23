@@ -46,6 +46,12 @@ class NtripHelper
 		);
 		
 		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_WARNINGS'),
+			'index.php?option=com_ntrip&view=warnings',
+			$vName == 'warnings'
+		);
+		
+		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_RELAXES'),
 			'index.php?option=com_ntrip&view=relaxes',
 			$vName == 'relaxes'
