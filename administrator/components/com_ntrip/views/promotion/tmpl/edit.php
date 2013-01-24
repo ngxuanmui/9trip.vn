@@ -22,16 +22,16 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'warning.cancel' || document.formvalidator.isValid(document.id('warning-form'))) {
-			Joomla.submitform(task, document.getElementById('warning-form'));
+		if (task == 'promotion.cancel' || document.formvalidator.isValid(document.id('promotion-form'))) {
+			Joomla.submitform(task, document.getElementById('promotion-form'));
 		}
 	}
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="warning-form" class="form-validate" enctype="multipart/form-data">
+<form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="promotion-form" class="form-validate" enctype="multipart/form-data">
 	<div class="width-60 fltlft">
 		<fieldset class="adminform">
-			<legend><?php echo empty($this->item->id) ? JText::_('COM_NTRIP_NEW_WARNING') : JText::sprintf('COM_NTRIP_WARNING_DETAILS', $this->item->id); ?></legend>
+			<legend><?php echo empty($this->item->id) ? JText::_('COM_NTRIP_NEW_PROMOTION') : JText::sprintf('COM_NTRIP_PROMOTION_DETAILS', $this->item->id); ?></legend>
 			<ul class="adminformlist">
 				<li><?php echo $this->form->getLabel('name'); ?>
 				<?php echo $this->form->getInput('name'); ?></li>
@@ -118,7 +118,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 	</div>
 
 <div class="width-40 fltrt">
-	<?php echo JHtml::_('sliders.start', 'warning-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
+	<?php echo JHtml::_('sliders.start', 'promotion-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
 
 	<?php echo JHtml::_('sliders.panel', JText::_('COM_NTRIP_GROUP_LABEL_PUBLISHING_DETAILS'), 'publishing-details'); ?>
 		<fieldset class="panelform">
@@ -151,7 +151,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php 
 					$images = $this->item->other_images;
 					
-					$path = JURI::root() . 'images/warnings/' . $this->item->id . '/';
+					$path = JURI::root() . 'images/promotions/' . $this->item->id . '/';
 					
 					if ($images):
 					?>

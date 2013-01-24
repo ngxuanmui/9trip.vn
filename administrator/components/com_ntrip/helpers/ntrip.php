@@ -74,6 +74,12 @@ class NtripHelper
 			'index.php?option=com_ntrip&view=discovers',
 			$vName == 'discovers'
 		);
+		
+		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_PROMOTIONS'),
+			'index.php?option=com_ntrip&view=promotions',
+			$vName == 'promotions'
+		);
 
 		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_LOCATIONS'),

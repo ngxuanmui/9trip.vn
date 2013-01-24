@@ -10,13 +10,13 @@
 defined('_JEXEC') or die;
 
 /**
- * View class for a list of warnings.
+ * View class for a list of promotions.
  *
  * @package     Joomla.Administrator
  * @subpackage  com_ntrip
  * @since       1.6
  */
-class NtripViewWarnings extends JViewLegacy
+class NtripViewPromotions extends JViewLegacy
 {
 	protected $categories;
 	protected $items;
@@ -65,16 +65,16 @@ class NtripViewWarnings extends JViewLegacy
 
 		$canDo = NtripHelper::getActions($this->state->get('filter.category_id'));
 		$user = JFactory::getUser();
-		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_WARNINGS'), 'warnings.png');
+		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_PROMOTIONS'), 'promotions.png');
 //		if (count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)
 		if (($canDo->get('core.create')))
 		{
-			JToolBarHelper::addNew('warning.add');
+			JToolBarHelper::addNew('promotion.add');
 		}
 
 		if (($canDo->get('core.edit')))
 		{
-			JToolBarHelper::editList('warning.edit');
+			JToolBarHelper::editList('promotion.edit');
 		}
 
 		if ($canDo->get('core.edit.state'))
@@ -82,8 +82,8 @@ class NtripViewWarnings extends JViewLegacy
 			if ($this->state->get('filter.state') != 2)
 			{
 				JToolBarHelper::divider();
-				JToolBarHelper::publish('warnings.publish', 'JTOOLBAR_PUBLISH', true);
-				JToolBarHelper::unpublish('warnings.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+				JToolBarHelper::publish('promotions.publish', 'JTOOLBAR_PUBLISH', true);
+				JToolBarHelper::unpublish('promotions.unpublish', 'JTOOLBAR_UNPUBLISH', true);
 			}
 
 			if ($this->state->get('filter.state') != -1)
@@ -91,28 +91,28 @@ class NtripViewWarnings extends JViewLegacy
 				JToolBarHelper::divider();
 				if ($this->state->get('filter.state') != 2)
 				{
-					JToolBarHelper::archiveList('warnings.archive');
+					JToolBarHelper::archiveList('promotions.archive');
 				}
 				elseif ($this->state->get('filter.state') == 2)
 				{
-					JToolBarHelper::unarchiveList('warnings.publish');
+					JToolBarHelper::unarchiveList('promotions.publish');
 				}
 			}
 		}
 
 		if ($canDo->get('core.edit.state'))
 		{
-			JToolBarHelper::checkin('warnings.checkin');
+			JToolBarHelper::checkin('promotions.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolBarHelper::deleteList('', 'warnings.delete', 'JTOOLBAR_EMPTY_TRASH');
+			JToolBarHelper::deleteList('', 'promotions.delete', 'JTOOLBAR_EMPTY_TRASH');
 			JToolBarHelper::divider();
 		}
 		elseif ($canDo->get('core.edit.state'))
 		{
-			JToolBarHelper::trash('warnings.trash');
+			JToolBarHelper::trash('promotions.trash');
 			JToolBarHelper::divider();
 		}
 

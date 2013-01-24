@@ -7,13 +7,13 @@
 defined('_JEXEC') or die;
 
 /**
- * View to edit a warning.
+ * View to edit a promotion.
  *
  * @package		Joomla.Administrator
  * @subpackage	com_ntrip
  * @since		1.5
  */
-class NtripViewWarning extends JViewLegacy
+class NtripViewPromotion extends JViewLegacy
 {
 	protected $form;
 	protected $item;
@@ -55,19 +55,19 @@ class NtripViewWarning extends JViewLegacy
 		// Since we don't track these assets at the item level, use the category id.
 		$canDo		= NtripHelper::getActions($this->item->catid,0);
 
-		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_WARNING_NEW') : JText::_('COM_NTRIP_MANAGER_WARNING_EDIT'), 'warnings.png');
+		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_PROMOTION_NEW') : JText::_('COM_NTRIP_MANAGER_PROMOTION_EDIT'), 'promotions.png');
 
 		// If not checked out, can save the item.
 		if (!$checkedOut && ($canDo->get('core.edit') || count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)) {
-			JToolBarHelper::apply('warning.apply');
-			JToolBarHelper::save('warning.save');
+			JToolBarHelper::apply('promotion.apply');
+			JToolBarHelper::save('promotion.save');
 		}
 
 		if (empty($this->item->id))  {
-			JToolBarHelper::cancel('warning.cancel');
+			JToolBarHelper::cancel('promotion.cancel');
 		}
 		else {
-			JToolBarHelper::cancel('warning.cancel', 'JTOOLBAR_CLOSE');
+			JToolBarHelper::cancel('promotion.cancel', 'JTOOLBAR_CLOSE');
 		}
 	}
 }
