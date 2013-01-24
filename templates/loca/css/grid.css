@@ -1,0 +1,23 @@
+/* 
+    Document   : style.css
+    Created on : Jan 21, 2013, 11:10:13 PM
+    Author     : viettrang
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+* { 
+    padding: 0;
+    margin: 0;
+}
+body {
+    font-family: tahoma;
+    background-color: #F6F6F6;
+    color: #5E5E5E;
+}
+#main-content {
+    width: 1024px;
+    margin: 0 auto;
+    padding: 0;
+}
+

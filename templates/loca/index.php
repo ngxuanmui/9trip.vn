@@ -32,10 +32,21 @@ $doc->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 
 <body>
 	
-	<div class="container">
-		
-		<div id="breadcrumbs">
-			<jdoc:include type="modules" name="position-2" />
+	<div id="main-container">
+		<div id="main-header">
+			Đây là header
+	    </div>
+		<div class="menu-container">
+			<ul id="main-menu">
+				<li><a href="#">Trang chủ</a></li>
+				<li><a href="#">Địa danh</a></li>
+				<li><a href="#">Khám phá</a></li>
+				<li><a href="#">Khuyến mại</a></li>
+				<li><a href="#">Hỏi đáp - Tư vấn</a></li>
+				<li><a href="#">Cảnh báo</a></li>
+				<li><a href="#">Album</a></li>
+				<li><a href="#">Diễn đàn</a></li>
+			</ul>
 		</div>
 		
 		<div class="banner">
@@ -48,6 +59,45 @@ $doc->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 			<jdoc:include type="component" />
 		</div>
 		
+		<!-- footer -->
+		<div id="footer">
+			<div class="main-footer">
+				<div class="tab">
+					<div class="title">Chuẩn bị</div>
+					<div class="list-content">
+						<a href="">Chuẩn bị trước chuyến đi</a>
+						<a href="">Chăm sóc sức khỏe</a>
+						<a href="">Du lịch an toàn</a>
+						<a href="">Thiết bị hỗ trợ</a>
+						<a href="">Phương tiện di chuyển</a>
+						<a href="">An toàn thực phẩm</a>
+					</div>
+				</div>
+				<div class="tab">
+					<div class="title">Trải nghiệm</div>
+					<div class="list-content">
+						<a href="">Chuẩn bị trước chuyến đi</a>
+						<a href="">Chăm sóc sức khỏe</a>
+						<a href="">Du lịch an toàn</a>
+						<a href="">Thiết bị hỗ trợ</a>
+						<a href="">Phương tiện di chuyển</a>
+						<a href="">An toàn thực phẩm</a>
+					</div>
+				</div>
+				<div class="tab" style="padding-right: 0;">
+					<div class="title">Chia sẻ</div>
+					<div class="list-content">
+						<a href="">Chuẩn bị trước chuyến đi</a>
+						<a href="">Chăm sóc sức khỏe</a>
+						<a href="">Du lịch an toàn</a>
+						<a href="">Thiết bị hỗ trợ</a>
+						<a href="">Phương tiện di chuyển</a>
+						<a href="">An toàn thực phẩm</a>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>	   
 	</div>
 	
 	<jdoc:include type="modules" name="debug" />
