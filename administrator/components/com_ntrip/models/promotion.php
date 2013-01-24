@@ -213,31 +213,36 @@ class NtripModelPromotion extends JModelAdmin
 	{
 	    if (parent::save($data))
 	    {
-		$id = (int) $this->getState($this->getName() . '.id');
-		
-		// Update images
-		$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
-		NtripHelper::updateImages($id, $currentImages, 'promotions');
-		
-		// Temp files
-		if (isset($_POST['tmp_other_img']))
-		{
-		    // Copy file 
-		    NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'promotions');
-		    // Insert images
-		    NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'promotions');
-		}
-		
-		if ($id)
-		    $data['id'] = $id;
+			$id = (int) $this->getState($this->getName() . '.id');
 
-		$delImage = isset($data['del_image']) ? $data['del_image'] : null;
+			// Update images
+			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
+			NtripHelper::updateImages($id, $currentImages, 'promotions');
 
-		// Upload thumb
-		$item = $this->getItem();
-		$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, 'promotions');
+			// Temp files
+			if (isset($_POST['tmp_other_img']))
+			{
+				// Copy file 
+				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'promotions');
+				// Insert images
+				NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'promotions');
+			}
 
-		return parent::save($data);
+			if ($id)
+				$data['id'] = $id;
+
+			$delImage = isset($data['del_image']) ? $data['del_image'] : null;
+
+			// Upload thumb
+			$item = $this->getItem();
+			$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, 'promotions');
+			
+			$coordinates = LocaHelper::getGmapCoordinates($data['address']);
+			
+			$data['gmap_lat'] = $coordinates['lat'];
+			$data['gmap_long'] = $coordinates['long'];
+
+			return parent::save($data);
 	    }
 
 	    return false;
