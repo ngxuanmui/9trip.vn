@@ -67,7 +67,7 @@ defined('_JEXEC') or die;
 
 								if ($image):
 							?>
-								<img src="<?php echo $image; ?>" width="198" />
+								<img src="<?php echo $image; ?>" />
 							<?php endif; ?>
 						</div>
 						<div class="title"><?php echo $subItem->title; ?></div>
@@ -99,118 +99,19 @@ defined('_JEXEC') or die;
 					<span class="icon-reg"></span>
 					<span>ĐĂNG KÝ THÀNH VIÊN</span>
 				</div>
+				
+				<?php 
+					$modules = JModuleHelper::getModules('right');
 
-				<div class="promotion-content">
-					<div class="promotion-bar">Khuyến mại mới nhất</div>
-					<div class="promotion-item">
-						<div class="title">Hotel in Ha Noi</div>
-						<div class="description">
-							<a href="#">www.agoda.com/hanoi</a> - Đừng bỏ lỡ cơ hội tiết kiệm lên đến 75%. Tiết kiệm - phù hợp - nhanh chóng.
-						</div>
-					</div>
-					<div class="promotion-item">
-						<div class="title">Hotel in Ha Noi</div>
-						<div class="description">
-							<a href="#">www.agoda.com/hanoi</a> - Đừng bỏ lỡ cơ hội tiết kiệm lên đến 75%. Tiết kiệm - phù hợp - nhanh chóng.
-						</div>
-					</div>
-					<div class="promotion-item">
-						<div class="title">Hotel in Ha Noi</div>
-						<div class="description">
-							<a href="#">www.agoda.com/hanoi</a> - Đừng bỏ lỡ cơ hội tiết kiệm lên đến 75%. Tiết kiệm - phù hợp - nhanh chóng.
-						</div>
-					</div>
-					<div class="promotion-item">
-						<div class="title">Hotel in Ha Noi</div>
-						<div class="description">
-							<a href="#">www.agoda.com/hanoi</a> - Đừng bỏ lỡ cơ hội tiết kiệm lên đến 75%. Tiết kiệm - phù hợp - nhanh chóng.
-						</div>
-					</div>
-					<div class="promotion-item">
-						<div class="title">Hotel in Ha Noi</div>
-						<div class="description">
-							<a href="#">www.agoda.com/hanoi</a> - Đừng bỏ lỡ cơ hội tiết kiệm lên đến 75%. Tiết kiệm - phù hợp - nhanh chóng.
-						</div>
-					</div>
-					<div class="promotion-item">
-						<div class="title">Hotel in Ha Noi</div>
-						<div class="description">
-							<a href="#">www.agoda.com/hanoi</a> - Đừng bỏ lỡ cơ hội tiết kiệm lên đến 75%. Tiết kiệm - phù hợp - nhanh chóng.
-						</div>
-					</div>
-				</div>
+					foreach($modules as $module)
+					{
+//						if ($module->showtitle)
+//							echo '<div class="module-title">' . $module->title . '</div>';
 
-				<!-- Tin tuc / bai viet noi bat-->
-				<div class="promotion-content">
-					<div class="promotion-bar">Cảnh báo mới nhất</div>
-					<div class="promotion-item">
-						<img src="images/img1.jpg" />
-						<div class="title">Ăn táo trong quá trình đi du lịch có thể bị ngộ độc</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>
-					<div class="promotion-item">
-						<img src="images/img1.jpg" />
-						<div class="title">Ăn táo trong quá trình đi du lịch có thể bị ngộ độc</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>
-					<div class="promotion-item">
-						<img src="images/img1.jpg" />
-						<div class="title">Ăn táo trong quá trình đi du lịch có thể bị ngộ độc</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>
-					<div class="promotion-item">
-						<img src="images/img1.jpg" />
-						<div class="title">Ăn táo trong quá trình đi du lịch có thể bị ngộ độc</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>
-					<div class="promotion-item">
-						<img src="images/img1.jpg" />
-						<div class="title">Ăn táo trong quá trình đi du lịch có thể bị ngộ độc</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>                            
-					<div class="clear"></div>
-				</div>
-
-				 <!-- Khám phá noi bat-->
-				<div class="promotion-content">
-					<div class="promotion-bar">Khám phá mới nhất</div>
-					<div class="promotion-item">
-						<img src="images/img2.jpg" />
-						<div class="title">Giọt nước mắt đóng băng phía sau Mẫu Sơn lung linh</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>
-					<div class="promotion-item">
-						<img src="images/img2.jpg" />
-						<div class="title">Giọt nước mắt đóng băng phía sau Mẫu Sơn lung linh</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>
-					<div class="promotion-item">
-						<img src="images/img2.jpg" />
-						<div class="title">Giọt nước mắt đóng băng phía sau Mẫu Sơn lung linh</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>
-					<div class="promotion-item">
-						<img src="images/img2.jpg" />
-						<div class="title">Giọt nước mắt đóng băng phía sau Mẫu Sơn lung linh</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>
-					<div class="promotion-item">
-						<img src="images/img2.jpg" />
-						<div class="title">Giọt nước mắt đóng băng phía sau Mẫu Sơn lung linh</div>
-						<div class="date">(01.01.2013)</div>
-						<div class="clear"></div>
-					</div>                        
-					<div class="clear"></div>
-				</div>
+						echo JModuleHelper::renderModule($module);
+					}
+				?>
+				
 			</div>
 			<div class="clear"></div>
 			<!-- End right -->

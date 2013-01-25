@@ -39,7 +39,7 @@ class modLocaLatestHelper
 				break;
 		}
 		
-		$query->select('a.*')
+		$query->select('a.*, UNIX_TIMESTAMP(a.created) AS unix_time_created')
 				->from($table . ' a')
 				->where('a.state = 1')
 				->select('c.title AS category_title, c.id AS category_id, c.alias AS category_alias')
