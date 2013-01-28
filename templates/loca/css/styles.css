@@ -28,9 +28,40 @@ a {
     line-height: 18px;
     padding-bottom: 15px;
 }
+
 #main-header {
+	width: 960px;
+	margin: auto;
     height: 106px;
 }
+
+#main-header .logo {
+	background: url("../images/logo.png") bottom left no-repeat;
+	width: 194px;
+	height: 81px;
+	padding-bottom: 10px;
+	float: left;
+}
+#main-header .right {
+	float: right;
+	color: #00659B;
+	padding-top: 15px;
+}
+#main-header .right a {
+	display: inline;
+	color: #00659B;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+#main-header .right input {
+	background: #E3E3E3;
+	border: none;
+	color: #555555;
+	height: 30px;
+	text-indent: 5px;
+	margin-top: 30px;
+}
+
 .menu-container {
 	width: 100%;
     background: url("../images/bg-main-menu.png") repeat-x;	
@@ -212,3 +243,8 @@ ul#main-menu li a:hover {
 .margin-bottom5 {
     padding-bottom: 8px;
 }
+
+.pagination { margin: auto; text-align: center; }
+.pagination ul { list-style: none; display: inline-block; }
+.pagination ul li { float: left; background: #FFF; border-radius: 3px; margin-right: 5px; padding: 3px 10px; cursor: pointer; }
+.pagination ul li.active { cursor: default; background: #CCC; color: #FFF; }

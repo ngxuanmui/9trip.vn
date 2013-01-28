@@ -3,15 +3,14 @@
 defined('_JEXEC') or die;
 ?>
 
-<ul>
+<div class="promotion-content">
+	<div class="promotion-bar">Khuyến mại mới nhất</div>
 	<?php foreach ($list as $item): ?>
-	<li>
-		<img src="<?php echo $item->images; ?>" />
-		
-		<h1><?php echo $item->title; ?></h1>
-		<div class="desc">
-			<?php echo $item->description; ?>
+	<div class="promotion-item">
+		<div class="title"><?php echo $item->name; ?></div>
+		<div class="description">
+			<a href="#"><?php echo $item->name; ?></a> - <?php echo $item->description; ?>
 		</div>
-	</li>
+	</div>
 	<?php endforeach; ?>
-</ul>
+</div>
