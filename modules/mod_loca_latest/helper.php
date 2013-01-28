@@ -23,6 +23,7 @@ class modLocaLatestHelper
 		$query	= $db->getQuery(true);
 		
 		$type = $params->get('type');
+		$limit = $params->get('limit', 10);
 		
 		$table = '';
 		
@@ -46,7 +47,7 @@ class modLocaLatestHelper
 				->join('INNER', '#__categories c ON a.catid = c.id')
 				->order('a.id desc');
 		
-		$db->setQuery($query);
+		$db->setQuery($query, 0, $limit);
 		$rows = $db->loadObjectList();
 
 		return $rows;
