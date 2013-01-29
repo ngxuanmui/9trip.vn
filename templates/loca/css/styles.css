@@ -53,15 +53,28 @@ a {
 	padding-right: 5px;
 	padding-left: 5px;
 }
+
+#main-header .right form { margin-top: 30px; }
+#main-header .right div { text-align: right; }
 #main-header .right input {
 	background: #E3E3E3;
 	border: none;
 	color: #555555;
 	height: 30px;
 	text-indent: 5px;
-	margin-top: 30px;
+	width: 425px;
+	float: left;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
 }
 
+#main-header .right div a.icon-fb { background: url(../images/icon-fb.png) no-repeat; padding-left: 20px;}
+
+#main-header .btn-search { background: url(../images/btn-search.png) no-repeat; width: 37px; height: 30px; border: none; float: lef; cursor: pointer; }
 .menu-container {
 	width: 100%;
     background: url("../images/bg-main-menu.png") repeat-x;	
@@ -114,13 +127,20 @@ ul#main-menu li a:hover {
     line-height: 59px;
     font-weight: bold;
     font-size: 14px;
-    text-align: center;
+	border-radius: 5px;
+	position: relative;
 }
 .icon-reg {
     width: 51px;
     height: 40px;
     background: url("../images/icon-reg.png") top left no-repeat;
+	position: absolute;
+	top: 10px;
+	left: 30px;
 }
+
+.txt-register { margin-left: 100px; }
+
 .promotion-content {
     margin-top: 15px;
     background-color: #fff;
@@ -131,8 +151,9 @@ ul#main-menu li a:hover {
     height: 46px;
     line-height: 46px;
     text-indent: 50px;
-    color: #5D5D5D;
+    color: #656565;
     font-weight: bold;
+	font-size: 15px;
 }
 .promotion-item {
     border-bottom: 1px #DBDBDB dashed;
@@ -164,7 +185,7 @@ ul#main-menu li a:hover {
 .title-category {
     background: url("../images/category-background.jpg") repeat-x;
     border: 1px solid #E5E5E5;
-    font-size: 16px;
+    font-size: 22px;
     height: 39px;
     line-height: 39px;
     text-indent: 10px;
