@@ -3,7 +3,7 @@
 defined('_JEXEC') or die;
 ?>
 
-<div class="main-content">
+
 	<div id="top-adv">
 		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 	</div>
@@ -98,10 +98,10 @@ defined('_JEXEC') or die;
 
 			<!-- Right content -->
 			<div id="right-content">
-				<div class="register">
+				<a class="register" href="<?php echo JRoute::_('index.php?option=com_users&view=registration', false); ?>" style="display: block;">
 					<span class="icon-reg"></span>
 					<span class="txt-register">ĐĂNG KÝ THÀNH VIÊN</span>
-				</div>
+				</a>
 				
 				<?php 
 					$modules = JModuleHelper::getModules('right');
@@ -118,8 +118,6 @@ defined('_JEXEC') or die;
 			</div>
 			<div class="clear"></div>
 			<!-- End right -->
-	</div>
-
 
 <script src="<?php echo JURI::base() . '/media/loca/jquery.bxslider/jquery.bxslider.js'; ?>"></script>
 

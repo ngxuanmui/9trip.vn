@@ -20,7 +20,7 @@ $doc->addStyleSheet($this->baseurl.'/templates/'.$this->template.'/css/styles.cs
 $doc->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 <jdoc:include type="head" />
 
@@ -33,20 +33,9 @@ $doc->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 <body>
 	
 	<div id="main-container">
-		<div id="main-header">
-			<div class="logo"></div>
-			<div class="right">
-				<div>
-					<a href="#" class="icon-fb">Đăng nhập bằng Facebook</a> | 
-					<a href="#">Đăng nhập</a> |
-					<a href="#">Đăng ký</a>
-				</div>
-				<form>
-					<input type="text" name="search" value="" placeholder="Nhập thông tin cần tìm" />
-					<button class="btn-search"></button>
-				</form>
-			</div>
-	    </div>
+		
+		<jdoc:include type="modules" name="header-user" />
+		
 		<div class="menu-container">
 			<ul id="main-menu">
 				<li><a href="#">Trang chủ</a></li>
@@ -64,10 +53,11 @@ $doc->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 			<jdoc:include type="modules" name="banner" />
 		</div>
 		
-		<jdoc:include type="message" />
-		
 		<div class="component">
-			<jdoc:include type="component" />
+			<div class="main-content">
+				<jdoc:include type="message" />
+				<jdoc:include type="component" />
+			</div>			
 		</div>
 		
 		<!-- footer -->
