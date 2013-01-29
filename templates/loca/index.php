@@ -37,13 +37,14 @@ $doc->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 			<div class="logo"></div>
 			<div class="right">
 				<div>
-					<a href="#">Đăng nhập bằng Facebook</a> | 
+					<a href="#" class="icon-fb">Đăng nhập bằng Facebook</a> | 
 					<a href="#">Đăng nhập</a> |
 					<a href="#">Đăng ký</a>
 				</div>
-				<div>
-					<input type="text" size="50" name="search" value="" placeholder="Nhập thông tin cần tìm" />
-				</div>
+				<form>
+					<input type="text" name="search" value="" placeholder="Nhập thông tin cần tìm" />
+					<button class="btn-search"></button>
+				</form>
 			</div>
 	    </div>
 		<div class="menu-container">

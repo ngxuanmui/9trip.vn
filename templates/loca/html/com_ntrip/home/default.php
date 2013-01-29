@@ -100,7 +100,7 @@ defined('_JEXEC') or die;
 			<div id="right-content">
 				<div class="register">
 					<span class="icon-reg"></span>
-					<span>ĐĂNG KÝ THÀNH VIÊN</span>
+					<span class="txt-register">ĐĂNG KÝ THÀNH VIÊN</span>
 				</div>
 				
 				<?php 
