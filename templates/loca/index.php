@@ -107,7 +107,34 @@ $doc->addScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js');
 				</div>
 				<div class="clear"></div>
 			</div>
-		</div>	   
+		</div>
+
+		<!-- bottom -->
+		<div id="bottom">
+			<div class="display-all">Hiển thị toàn bộ</div>
+			<div class="separate-bottom"></div>
+			<div class="menu-bottom-containter">
+				<ul id="menu-bottom">
+					<li><a href="#">Trang chủ</a></li>
+					<li><a href="#">Địa danh</a></li>
+					<li><a href="#">Khám phá</a></li>
+					<li><a href="#">Khuyến mại</a></li>
+					<li><a href="#">Hỏi đáp - tư vấn</a></li>
+					<li><a href="#">Cảnh báo</a></li>
+					<li><a href="#">Album ảnh</a></li>
+					<li><a href="#">Diễn đàn</a></li>
+				</ul>
+			</div>
+			<div id="copyright-info">
+				<div class="copyright-text">
+					&copy; Copyright 2013 Loca Co.,Ltd <br />
+					Địa chỉ liên hệ: Đại Kim - Hoàng Mai - Hà Nội <br />
+					Số điện thoại: 09123456789 / Fax: 043 216 363 <br />
+					Email: local-travel@gmail.com
+				</div>
+				<div class="bottom-logo"></div>
+			</div>
+		</div>
 	</div>
 	
 	<jdoc:include type="modules" name="debug" />

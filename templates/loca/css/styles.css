@@ -249,6 +249,56 @@ ul#main-menu li a:hover {
 .margin-bottom5 {
     padding-bottom: 8px;
 }
+#bottom {
+	background: #f6f6f6;
+	width: 100%;
+	color: #555555;
+}
+.display-all {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+}
+.separate-bottom {
+	background: #18a622;
+	height: 5px;
+	margin: 10px 0;
+}
+ul#menu-bottom {
+	padding: 5px 0 10px 0;
+	display: block;
+	width: 960px;
+	margin: auto;
+}
+.menu-bottom-containter {
+	margin: auto;
+	border-bottom: 1px solid #d8d8d8;
+}
+ul#menu-bottom li {
+	display: inline;
+	padding: 0 15px;
+}
+ul#menu-bottom li a {
+	color: #0b8a14;
+	font-weight: bold;
+}
+#copyright-info {
+	width: 960px;
+	margin: auto;
+	padding: 10px 0;
+}
+.copyright-text {
+	padding-left: 20px;
+	line-height: 20px;
+	float: left;
+	padding-bottom: 10px;
+}
+.bottom-logo {
+	float: right;
+	background: url("../images/logo.png") bottom left no-repeat;
+	width: 194px;
+	height: 81px;
+}
 
 .pagination { margin: auto; text-align: center; }
 .pagination ul { list-style: none; display: inline-block; }
