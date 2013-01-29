@@ -9,7 +9,7 @@ defined('_JEXEC') or die;
 	<div class="promotion-item">
 		<div class="title"><?php echo $item->name; ?></div>
 		<div class="description">
-			<a href="#"><?php echo $item->website; ?></a> - <?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
+			<a href="#"><?php echo $item->website; ?></a> - <?php echo JHtml::_('string.truncate', strip_tags($item->description), 50); ?>
 		</div>
 	</div>
 	<?php endforeach; ?>

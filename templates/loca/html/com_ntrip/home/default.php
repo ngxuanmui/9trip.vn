@@ -44,46 +44,50 @@ defined('_JEXEC') or die;
 				Các địa danh du lịch <?php echo $item->title; ?>
 			</div>
 			
-			<ul class="tour-container slider-<?php echo $item->id; ?>">				
-				<?php foreach ($subCat as $sub): ?>
-				<li>
-					<?php foreach ($sub as $subItem): ?>
-					<div class="tour-content">
-						<div class="img-block">
-							<?php
-								$params = $subItem->getParams();
-								$image = $params->get('image');
+			<div class="tour-container">
+				<ul class="slider-<?php echo $item->id; ?>">				
+					<?php foreach ($subCat as $sub): ?>
+					<li>
+						<?php foreach ($sub as $subItem): ?>
+						<div class="tour-content">
+							<div class="img-block">
+								<?php
+									$params = $subItem->getParams();
+									$image = $params->get('image');
 
-								if ($image):
-							?>
-								<img src="<?php echo $image; ?>" />
-							<?php endif; ?>
+									if ($image):
+								?>
+									<img src="<?php echo $image; ?>" />
+								<?php endif; ?>
+							</div>
+							<div class="title"><?php echo $subItem->title; ?></div>
+							<div class="info">
+								<?php
+								$sib = $subItem->getChildren();
+								foreach ($sib as $cat)
+									echo '<span>'.$cat->title.'</span> | ';
+								?>
+							</div>
+
 						</div>
-						<div class="title"><?php echo $subItem->title; ?></div>
-						<div class="info">
-							<?php
-							$sib = $subItem->getChildren();
-							foreach ($sib as $cat)
-								echo '<span>'.$cat->title.'</span> | ';
-							?>
-						</div>
-						
-					</div>
+						<?php endforeach; ?>
+					</li>
 					<?php endforeach; ?>
-				</li>
-				<?php endforeach; ?>
-			</ul>
+				</ul>
+				
+				<div class="pagination paging-slider-<?php echo $item->id; ?>" rel="<?php echo $item->id; ?>">
+					<ul class="">
+						<li class="pager-prev">Trang trước</li>
+						<?php foreach ($subCat as $key => $sub): ?>
+						<li class="pager-item <?php if ($key == 0) echo 'active'; ?>" rel="<?php echo $key; ?>"><?php echo $key + 1; ?></li>
+						<?php endforeach; ?>
+						<li class="pager-next">Trang sau</li>
+					</ul>
+				</div>
+			</div>
 			<div class="clear"></div>
 			
-			<div class="pagination paging-slider-<?php echo $item->id; ?>" rel="<?php echo $item->id; ?>">
-				<ul class="">
-					<li class="pager-prev">Trang trước</li>
-					<?php foreach ($subCat as $key => $sub): ?>
-					<li class="pager-item <?php if ($key == 0) echo 'active'; ?>" rel="<?php echo $key; ?>"><?php echo $key + 1; ?></li>
-					<?php endforeach; ?>
-					<li class="pager-next">Trang sau</li>
-				</ul>
-			</div>
+				
 			
 		</div>
 		<?php endforeach; ?>
