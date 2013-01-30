@@ -34,7 +34,7 @@ JHtml::_('behavior.noframes');
 				<?php echo $field->input;?>
 			<?php else:?>
 				<dt>
-					<?php echo $field->label; ?>
+					<?php if (strtolower($field->type) != 'captcha') echo $field->label; ?>
 					<?php if (!$field->required && $field->type!='Spacer'): ?>
 						<span class="optional"><?php echo JText::_('COM_USERS_OPTIONAL'); ?></span>
 					<?php endif; ?>

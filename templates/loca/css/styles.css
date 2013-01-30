@@ -325,3 +325,5 @@ ul#menu-bottom li a {
 .pagination ul { list-style: none; display: inline-block; }
 .pagination ul li { float: left; background: #FFF; border-radius: 3px; margin-right: 5px; padding: 3px 10px; cursor: pointer; }
 .pagination ul li.active { cursor: default; background: #CCC; color: #FFF; }
+
+input.invalid { border: 1px #FF0000 solid; }
