@@ -28,20 +28,20 @@
 					label="PLG_USER_PROFILE_FIELD_NAME_REGISTER_REQUIRE_USER"
 				/>
 
-				<field name="register-require_address1" type="list"
+				<field name="register-require_job" type="list"
 
-					description="PLG_USER_PROFILE_FIELD_ADDRESS1_DESC"
-					label="PLG_USER_PROFILE_FIELD_ADDRESS1_LABEL"
+					description="PLG_USER_PROFILE_FIELD_JOB_DESC"
+					label="PLG_USER_PROFILE_FIELD_JOB_LABEL"
 				>
 					<option value="2">JOPTION_REQUIRED</option>
 					<option value="1">JOPTION_OPTIONAL</option>
 					<option value="0">JDISABLED</option>
 				</field>
 
-				<field name="register-require_address2" type="list"
+				<field name="register-require_address" type="list"
 
-					description="PLG_USER_PROFILE_FIELD_ADDRESS2_DESC"
-					label="PLG_USER_PROFILE_FIELD_ADDRESS2_LABEL"
+					description="PLG_USER_PROFILE_FIELD_ADDRESS_DESC"
+					label="PLG_USER_PROFILE_FIELD_ADDRESS_LABEL"
 				>
 					<option value="2">JOPTION_REQUIRED</option>
 					<option value="1">JOPTION_OPTIONAL</option>
@@ -52,36 +52,6 @@
 
 					description="PLG_USER_PROFILE_FIELD_CITY_DESC"
 					label="PLG_USER_PROFILE_FIELD_CITY_LABEL"
-				>
-					<option value="2">JOPTION_REQUIRED</option>
-					<option value="1">JOPTION_OPTIONAL</option>
-					<option value="0">JDISABLED</option>
-				</field>
-
-				<field name="register-require_region" type="list"
-
-					description="PLG_USER_PROFILE_FIELD_REGION_DESC"
-					label="PLG_USER_PROFILE_FIELD_REGION_LABEL"
-				>
-					<option value="2">JOPTION_REQUIRED</option>
-					<option value="1">JOPTION_OPTIONAL</option>
-					<option value="0">JDISABLED</option>
-				</field>
-
-				<field name="register-require_country" type="list"
-
-					description="PLG_USER_PROFILE_FIELD_COUNTRY_DESC"
-					label="PLG_USER_PROFILE_FIELD_COUNTRY_LABEL"
-				>
-					<option value="2">JOPTION_REQUIRED</option>
-					<option value="1">JOPTION_OPTIONAL</option>
-					<option value="0">JDISABLED</option>
-				</field>
-
-				<field name="register-require_postal_code" type="list"
-
-					description="PLG_USER_PROFILE_FIELD_POSTAL_CODE_DESC"
-					label="PLG_USER_PROFILE_FIELD_POSTAL_CODE_LABEL"
 				>
 					<option value="2">JOPTION_REQUIRED</option>
 					<option value="1">JOPTION_OPTIONAL</option>
@@ -107,11 +77,11 @@
 					<option value="1">JOPTION_OPTIONAL</option>
 					<option value="0">JDISABLED</option>
 				</field>
-				<field 	name="register-require_favoritebook"
-					type="list"
 
-					label="PLG_USER_PROFILE_FIELD_FAVORITE_BOOK_LABEL"
-					description="PLG_USER_PROFILE_FIELD_FAVORITE_BOOK_DESC"
+				<field name="register-require_gender" type="list"
+
+					description="PLG_USER_PROFILE_FIELD_GENDER_DESC"
+					label="PLG_USER_PROFILE_FIELD_GENDER_LABEL"
 				>
 					<option value="2">JOPTION_REQUIRED</option>
 					<option value="1">JOPTION_OPTIONAL</option>
@@ -129,6 +99,18 @@
 					<option	value="1">JOPTION_OPTIONAL</option>
 					<option	value="0">JDISABLED</option>
 				</field>
+
+				<field
+					name="register-require_dob"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_DOB_LABEL"
+					description="PLG_USER_PROFILE_FIELD_DOB_DESC">
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+
 				<field
 					name="register-require_tos"
 					type="list"
@@ -146,16 +128,6 @@
 					label="PLG_USER_PROFILE_FIELD_TOS_ARTICLE_LABEL"
 					description="PLG_USER_PROFILE_FIELD_TOS_ARTICLE_DESC"
 				/>
-				<field
-					name="register-require_dob"
-					type="list"
-
-					label="PLG_USER_PROFILE_FIELD_DOB_LABEL"
-					description="PLG_USER_PROFILE_FIELD_DOB_DESC">
-					<option	value="2">JOPTION_REQUIRED</option>
-					<option	value="1">JOPTION_OPTIONAL</option>
-					<option	value="0">JDISABLED</option>
-				</field>
 
 				<field name="spacer1" type="spacer"
 					hr="true"
@@ -164,20 +136,16 @@
 					label="PLG_USER_PROFILE_FIELD_NAME_PROFILE_REQUIRE_USER"
 				/>
 
-				<field name="profile_ntrip-require_address1" type="list"
-
-					description="PLG_USER_PROFILE_FIELD_ADDRESS1_DESC"
-					label="PLG_USER_PROFILE_FIELD_ADDRESS1_LABEL"
+				<field name="profile_ntrip-require_job" type="list"
+					label="PLG_USER_PROFILE_FIELD_JOB_LABEL"
 				>
 					<option value="2">JOPTION_REQUIRED</option>
 					<option value="1">JOPTION_OPTIONAL</option>
 					<option value="0">JDISABLED</option>
 				</field>
 
-				<field name="profile_ntrip-require_address2" type="list"
-
-					description="PLG_USER_PROFILE_FIELD_ADDRESS2_DESC"
-					label="PLG_USER_PROFILE_FIELD_ADDRESS2_LABEL"
+				<field name="profile_ntrip-require_address" type="list"
+					label="PLG_USER_PROFILE_FIELD_ADDRESS_LABEL"
 				>
 					<option value="2">JOPTION_REQUIRED</option>
 					<option value="1">JOPTION_OPTIONAL</option>
@@ -188,36 +156,6 @@
 
 					description="PLG_USER_PROFILE_FIELD_CITY_DESC"
 					label="PLG_USER_PROFILE_FIELD_CITY_LABEL"
-				>
-					<option value="2">JOPTION_REQUIRED</option>
-					<option value="1">JOPTION_OPTIONAL</option>
-					<option value="0">JDISABLED</option>
-				</field>
-
-				<field name="profile_ntrip-require_region" type="list"
-
-					description="PLG_USER_PROFILE_FIELD_REGION_DESC"
-					label="PLG_USER_PROFILE_FIELD_REGION_LABEL"
-				>
-					<option value="2">JOPTION_REQUIRED</option>
-					<option value="1">JOPTION_OPTIONAL</option>
-					<option value="0">JDISABLED</option>
-				</field>
-
-				<field name="profile_ntrip-require_country" type="list"
-
-					description="PLG_USER_PROFILE_FIELD_COUNTRY_DESC"
-					label="PLG_USER_PROFILE_FIELD_COUNTRY_LABEL"
-				>
-					<option value="2">JOPTION_REQUIRED</option>
-					<option value="1">JOPTION_OPTIONAL</option>
-					<option value="0">JDISABLED</option>
-				</field>
-
-				<field name="profile_ntrip-require_postal_code" type="list"
-
-					description="PLG_USER_PROFILE_FIELD_POSTAL_CODE_DESC"
-					label="PLG_USER_PROFILE_FIELD_POSTAL_CODE_LABEL"
 				>
 					<option value="2">JOPTION_REQUIRED</option>
 					<option value="1">JOPTION_OPTIONAL</option>
@@ -243,11 +181,12 @@
 					<option value="1">JOPTION_OPTIONAL</option>
 					<option value="0">JDISABLED</option>
 				</field>
-				<field 	name="profile_ntrip-require_favoritebook"
-					type="list"
 
-					label="PLG_USER_PROFILE_FIELD_FAVORITE_BOOK_LABEL"
-					description="PLG_USER_PROFILE_FIELD_FAVORITE_BOOK_DESC">
+				<field name="profile_ntrip-require_gender" type="list"
+
+					description="PLG_USER_PROFILE_FIELD_GENDER_DESC"
+					label="PLG_USER_PROFILE_FIELD_GENDER_LABEL"
+				>
 					<option value="2">JOPTION_REQUIRED</option>
 					<option value="1">JOPTION_OPTIONAL</option>
 					<option value="0">JDISABLED</option>

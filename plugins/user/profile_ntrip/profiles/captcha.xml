@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fields name="captcha">
+		<fieldset name="captcha" label="Captcha">
+			<field name="spacer" type="spacer" class="text"
+				label="Required enter captcha"
+			/>
+			<field
+				name="captcha"
+				type="captcha"
+				label="COM_USERS_CAPTCHA_LABEL"
+				description="COM_USERS_CAPTCHA_DESC"
+				validate="captcha"
+			/>
+		</fieldset>
+	</fields>
+</form>

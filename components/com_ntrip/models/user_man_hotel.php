@@ -111,41 +111,10 @@ class NtripModelUser_Man_Hotel extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_ntrip.hotel', 'hotel', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_ntrip.hotel', 'user_man_hotel', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
-		}
-
-		// Determine correct permissions to check.
-		if ($this->getState('hotel.id'))
-		{
-			// Existing record. Can only edit in selected categories.
-			$form->setFieldAttribute('catid', 'action', 'core.edit');
-		}
-		else
-		{
-			// New record. Can only create in selected categories.
-			$form->setFieldAttribute('catid', 'action', 'core.create');
-		}
-
-		// Modify the form based on access controls.
-		if (!$this->canEditState((object) $data))
-		{
-		    // Disable fields for display.
-		    $form->setFieldAttribute('ordering', 'disabled', 'true');
-		    $form->setFieldAttribute('publish_up', 'disabled', 'true');
-		    $form->setFieldAttribute('publish_down', 'disabled', 'true');
-		    $form->setFieldAttribute('state', 'disabled', 'true');
-		    $form->setFieldAttribute('sticky', 'disabled', 'true');
-
-		    // Disable fields while saving.
-		    // The controller has already verified this is a record you can edit.
-		    $form->setFieldAttribute('ordering', 'filter', 'unset');
-		    $form->setFieldAttribute('publish_up', 'filter', 'unset');
-		    $form->setFieldAttribute('publish_down', 'filter', 'unset');
-		    $form->setFieldAttribute('state', 'filter', 'unset');
-		    $form->setFieldAttribute('sticky', 'filter', 'unset');
 		}
 
 		return $form;
@@ -166,13 +135,6 @@ class NtripModelUser_Man_Hotel extends JModelAdmin
 		if (empty($data))
 		{
 			$data = $this->getItem();
-
-			// Prime some default values.
-			if ($this->getState('hotel.id') == 0)
-			{
-				$app = JFactory::getApplication();
-				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.hotels.filter.category_id')));
-			}
 		}
 
 		return $data;
@@ -211,6 +173,9 @@ class NtripModelUser_Man_Hotel extends JModelAdmin
 	
 	public function save($data) 
 	{
+		// always set state is unpublish for each save
+		$data['state'] = 0;
+		
 	    if (parent::save($data))
 	    {
 			$id = (int) $this->getState($this->getName() . '.id');

@@ -52,4 +52,42 @@ class LocaHelper
 		
 		return $c;
 	}
+	
+	public static function renderModulesOnPosition($position) {
+		jimport('joomla.application.module.helper');
+		$modules = JModuleHelper::getModules($position);
+		
+		return self::renderModules($modules);
+	}
+	
+	public static function renderModules($modules) {
+		jimport('joomla.application.module.helper');
+		$html = '';
+		if ($modules && count($modules)) {
+			foreach ($modules as $mod) {
+				$html .= self::renderModule($mod);
+			}
+		}
+		return $html;
+	}
+	
+	public static function renderModule($module) {
+		jimport('joomla.application.module.helper');
+		
+		if (is_object($module) && $module->id) {
+			$html[] = '<div class="widget-blocks widget-block">';
+			$html[] = '	<div class="content">';
+			
+			if ($module->title && $module->showtitle == 1) {
+				$html[] = '<h3>'.$module->title.'</h3>';
+			}
+			$html[] = JModuleHelper::renderModule($module);
+			$html[] = '	</div>';
+			$html[] = '</div>';
+			
+			return implode($html);
+		}
+		
+		return '';
+	}
 }

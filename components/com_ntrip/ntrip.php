@@ -11,6 +11,9 @@ defined('_JEXEC') or die;
 // Include dependancies
 //require_once JPATH_COMPONENT.'/helpers/route.php';
 
+// get helper from admin
+require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'ntrip.php';
+
 $controller = JControllerLegacy::getInstance('Ntrip');
 $controller->execute(JRequest::getCmd('task'));
 $controller->redirect();

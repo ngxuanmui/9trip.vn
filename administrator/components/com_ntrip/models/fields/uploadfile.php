@@ -20,7 +20,7 @@
 		html += '<tr>';
 
 		html += '<td width="80"><a href="' + value.url + '" class="modal"><img src="' + value.thumbnail_url + '" /></a></td>';
-		html += '<td>' + value.name + hidden + '<br><strong>' + value.txt + '</strong></td>';
+//		html += '<td>' + value.name + hidden + '</td>';
 		html += '<td width="50"><a href="javascript:;" class="delete-file">Del</a></td>';
 
 		html += '</tr>';

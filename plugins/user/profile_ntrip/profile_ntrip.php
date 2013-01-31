@@ -173,15 +173,12 @@ class plgUserProfile_Ntrip extends JPlugin
 		$form->loadFile('profile', false);
 
 		$fields = array(
-			'address1',
-			'address2',
-			'city',
-			'region',
-			'country',
-			'postal_code',
+			'job',
+			'address',
+			'province',
+			'gender',
 			'phone',
 			'website',
-			'favoritebook',
 			'aboutme',
 			'dob',
 			'captcha'
@@ -200,13 +197,17 @@ class plgUserProfile_Ntrip extends JPlugin
 		{
 			// Push the TOS article ID into the TOS field.
 			$form->setFieldAttribute('tos', 'article', $tosarticle, 'profile');
+			
 		}
+		
+		if ($name == 'com_users.registration')
+			$form->loadFile('captcha', false);
 
 		foreach ($fields as $field)
 		{	
-			if (strtolower($field) == 'captcha')
+			if (strtolower($field) == 'captcha' && $name != 'com_users.registration')
 			{
-				$form->removeField($field, 'profile');
+				$form->removeField($field, 'captcha');
 			}
 			
 			// Case using the users manager in admin
