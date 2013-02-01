@@ -71,13 +71,29 @@ class NtripTableRelax extends JTable
 	 */
 	function store($updateNulls = false)
 	{
+		$date	= JFactory::getDate();
+		$user	= JFactory::getUser();
+		
 		if (empty($this->id))
 		{
+			// New newsfeed. A feed created and created_by field can be set by the user,
+			// so we don't touch either of these if they are set.
+			if (!intval($this->created)) {
+				$this->created = $date->toSql();
+			}
+			if (empty($this->created_by)) {
+				$this->created_by = $user->get('id');
+			}
+			
 			// Store the row
 			parent::store($updateNulls);
 		}
 		else
 		{
+			// Existing item
+			$this->modified		= $date->toSql();
+			$this->modified_by	= $user->get('id');
+			
 			// Get the old row
 			$oldrow = JTable::getInstance('Relax', 'NtripTable');
 			if (!$oldrow->load($this->id) && $oldrow->getError())

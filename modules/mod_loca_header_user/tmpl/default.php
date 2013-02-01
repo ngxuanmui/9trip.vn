@@ -64,11 +64,35 @@ $loginUrl	= $facebook->getLoginUrl(
 			<div>
 				<a href="<?php echo $loginUrl; ?>" class="icon-fb"  rel="nofollow">Đăng nhập bằng Facebook</a> | 
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=login', false); ?>">Đăng nhập</a> |
-				<a href="#">Đăng ký</a>
+				<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration', false); ?>">Đăng ký</a>
 			</div>
 		<?php else: ?>
 			<div>
-				Hello <?php echo $user->username; ?>
+				Hello 
+				<a href="<?php echo JRoute::_('index.php?option=com_users&view=profile'); ?>">
+					<?php echo $user->username; ?>
+				</a>
+				|
+				<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="logout-form" style="display: inline;">
+				<?php if ($params->get('greeting')) : ?>
+					<div class="login-greeting">
+					<?php if($params->get('name') == 0) : {
+						echo JText::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('name')));
+					} else : {
+						echo JText::sprintf('MOD_LOGIN_HINAME', htmlspecialchars($user->get('username')));
+					} endif; ?>
+					</div>
+				<?php endif; ?>
+					
+				<button type="submit" class="btn-logout"><?php echo JText::_('JLOGOUT'); ?></button>
+				
+				<input type="hidden" name="option" value="com_users" />
+				<input type="hidden" name="task" value="user.logout" />
+				<input type="hidden" name="return" value="<?php echo $return; ?>" />
+				<?php echo JHtml::_('form.token'); ?>
+					
+				</form>
+				
 			</div>
 		<?php endif; ?>
 		
