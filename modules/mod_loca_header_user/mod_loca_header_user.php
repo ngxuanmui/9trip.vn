@@ -10,6 +10,10 @@
 defined('_JEXEC') or die;
 
 // Include the syndicate functions only once
-// require_once dirname(__FILE__).'/helper.php';
+ require_once dirname(__FILE__).'/helper.php';
+
+$type	= modLocaHeaderUserHelper::getType();
+$return	= modLocaHeaderUserHelper::getReturnURL($params, $type);
+$user	= JFactory::getUser();
 
 require JModuleHelper::getLayoutPath('mod_loca_header_user', $params->get('layout', 'default'));

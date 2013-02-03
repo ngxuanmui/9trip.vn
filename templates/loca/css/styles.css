@@ -72,6 +72,8 @@ a {
 	border-bottom-left-radius: 3px;
 }
 
+#main-header .right button.btn-logout { background: none; border: none; }
+
 #main-header .right div a.icon-fb { background: url(../images/icon-fb.png) no-repeat; padding-left: 20px;}
 
 #main-header .btn-search { background: url(../images/btn-search.png) no-repeat; width: 37px; height: 30px; border: none; float: lef; cursor: pointer; }
