@@ -127,62 +127,48 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 	</div>
 
 <div class="width-40 fltrt">
-	<?php echo JHtml::_('sliders.start', 'restaurant-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
-
-	<?php echo JHtml::_('sliders.panel', JText::_('COM_NTRIP_GROUP_LABEL_PUBLISHING_DETAILS'), 'publishing-details'); ?>
-		<fieldset class="panelform">
-		<ul class="adminformlist">
-			<?php foreach($this->form->getFieldset('publish') as $field): ?>
-				<li><?php echo $field->label; ?>
-					<?php echo $field->input; ?></li>
-			<?php endforeach; ?>
-			</ul>
-		</fieldset>
-
-	<?php echo JHtml::_('sliders.panel', JText::_('JGLOBAL_FIELDSET_METADATA_OPTIONS'), 'metadata'); ?>
+	
 		<fieldset class="panelform">
 			<ul class="adminformlist">
-				<?php foreach($this->form->getFieldset('metadata') as $field): ?>
+				<?php foreach($this->form->getFieldset('publish') as $field): ?>
 					<li><?php echo $field->label; ?>
 						<?php echo $field->input; ?></li>
 				<?php endforeach; ?>
-			</ul>
-		</fieldset>
-	
-	<?php echo JHtml::_('sliders.panel', JText::_('Other Images'), 'metadata'); ?>
-		<fieldset class="panelform">
-			<ul class="adminformlist">
-				<li>
-					<?php echo $this->form->getInput('uploadfile'); ?>
-				</li>
-				<li>
-				    <div id="tmp-uploaded">
-					<?php 
-					$images = $this->item->other_images;
-					
-					$path = JURI::root() . 'images/restaurants/' . $this->item->id . '/';
-					
-					if ($images):
-					?>
-					<table width="100%">
-					    <?php foreach ($images as $img): ?>
-					    <tr>
-						<td width="80" style="background: #FAFAFA;">
-						    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" />
-						    <input type="hidden" name="current_images[]" value="<?php echo $img->images; ?>" />
-						</td>
-						<td valign="top"><?php echo $img->images . '<br><strong>' . $img->title . '</strong>'; ?></td>
-						<td width="50" valign="top"><a href="javascript:;" class="delete-file">Del</a></td>
-					    </tr>
-					    <?php endforeach; ?>
-					</table>
-					<?php endif; ?>
-				    </div>
-				</li>
-			</ul>
-		</fieldset>
 
-	<?php echo JHtml::_('sliders.end'); ?>
+				<?php foreach($this->form->getFieldset('metadata') as $field): ?>
+						<li><?php echo $field->label; ?>
+							<?php echo $field->input; ?></li>
+					<?php endforeach; ?>
+
+					<li>
+						<?php echo $this->form->getInput('uploadfile'); ?>
+					</li>
+					<li>
+						<div id="tmp-uploaded">
+						<?php 
+						$images = $this->item->other_images;
+
+						$path = JURI::root() . 'images/restaurants/' . $this->item->id . '/';
+
+						if ($images):
+						?>
+						<table width="100%">
+							<?php foreach ($images as $img): ?>
+							<tr>
+							<td width="80" style="background: #FAFAFA;">
+								<img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" />
+								<input type="hidden" name="current_images[]" value="<?php echo $img->images; ?>" />
+							</td>
+							<td valign="top"><?php echo $img->images . '<br><strong>' . $img->title . '</strong>'; ?></td>
+							<td width="50" valign="top"><a href="javascript:;" class="delete-file">Del</a></td>
+							</tr>
+							<?php endforeach; ?>
+						</table>
+						<?php endif; ?>
+						</div>
+					</li>
+				</ul>
+		</fieldset>
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 </div>

@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
  * @subpackage  com_ntrip
  * @since       1.6
  */
-class NtripViewTours extends JViewLegacy
+class NtripViewUser_Man_Tours extends JViewLegacy
 {
 	protected $categories;
 	protected $items;
@@ -47,78 +47,6 @@ class NtripViewTours extends JViewLegacy
 			return false;
 		}
 		
-		$this->addToolbar();
-		
 		parent::display($tpl);
-	}
-
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	protected function addToolbar()
-	{
-		require_once JPATH_COMPONENT . '/helpers/ntrip.php';
-
-		$canDo = NtripHelper::getActions($this->state->get('filter.category_id'));
-		$user = JFactory::getUser();
-		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_TOURS'), 'tours.png');
-//		if (count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)
-		if (($canDo->get('core.create')))
-		{
-			JToolBarHelper::addNew('tour.add');
-		}
-
-		if (($canDo->get('core.edit')))
-		{
-			JToolBarHelper::editList('tour.edit');
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			if ($this->state->get('filter.state') != 2)
-			{
-				JToolBarHelper::divider();
-				JToolBarHelper::publish('tours.publish', 'JTOOLBAR_PUBLISH', true);
-				JToolBarHelper::unpublish('tours.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-			}
-
-			if ($this->state->get('filter.state') != -1)
-			{
-				JToolBarHelper::divider();
-				if ($this->state->get('filter.state') != 2)
-				{
-					JToolBarHelper::archiveList('tours.archive');
-				}
-				elseif ($this->state->get('filter.state') == 2)
-				{
-					JToolBarHelper::unarchiveList('tours.publish');
-				}
-			}
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::checkin('tours.checkin');
-		}
-
-		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
-		{
-			JToolBarHelper::deleteList('', 'tours.delete', 'JTOOLBAR_EMPTY_TRASH');
-			JToolBarHelper::divider();
-		}
-		elseif ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::trash('tours.trash');
-			JToolBarHelper::divider();
-		}
-
-		if ($canDo->get('core.admin'))
-		{
-			JToolBarHelper::preferences('com_ntrip');
-		}
 	}
 }

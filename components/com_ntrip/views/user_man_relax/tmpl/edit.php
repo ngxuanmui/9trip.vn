@@ -137,6 +137,8 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				</li>
 			</ul>
 		</fieldset>
+	
+	<button type="submit">Submit</button> | <a href="">Cancel</a>
 
 	<input type="hidden" name="task" value="user_man_relax.apply" />
 	<?php echo JHtml::_('form.token'); ?>

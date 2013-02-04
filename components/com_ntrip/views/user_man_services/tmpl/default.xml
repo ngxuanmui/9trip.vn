@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="com_ntrip_user_man_services_view_default_title">
+		<message>
+			<![CDATA[com_ntrip_user_man_services_view_default_desc]]>
+		</message>
+	</layout>
+</metadata>

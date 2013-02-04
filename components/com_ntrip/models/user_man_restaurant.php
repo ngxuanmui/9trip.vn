@@ -19,7 +19,7 @@ jimport('joomla.application.component.modeladmin');
  * @subpackage  com_ntrip
  * @since       1.6
  */
-class NtripModelRestaurant extends JModelAdmin
+class NtripModelUser_Man_Restaurant extends JModelAdmin
 {
 	/**
 	 * @var    string  The prefix to use with controller messages.
@@ -68,18 +68,7 @@ class NtripModelRestaurant extends JModelAdmin
 	 */
 	protected function canEditState($record)
 	{
-		$user = JFactory::getUser();
-
-		// Check against the category.
-		if (!empty($record->catid))
-		{
-			return $user->authorise('core.edit.state', 'com_ntrip.category.' . (int) $record->catid);
-		}
-		// Default to component settings if category not known.
-		else
-		{
-			return parent::canEditState($record);
-		}
+		return true;
 	}
 
 	/**
@@ -111,14 +100,14 @@ class NtripModelRestaurant extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_ntrip.restaurant', 'restaurant', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_ntrip.user_man_restaurant', 'user_man_restaurant', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
 		}
 
 		// Determine correct permissions to check.
-		if ($this->getState('restaurant.id'))
+		if ($this->getState('user_man_restaurant.id'))
 		{
 			// Existing record. Can only edit in selected categories.
 			$form->setFieldAttribute('catid', 'action', 'core.edit');
@@ -161,18 +150,11 @@ class NtripModelRestaurant extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_ntrip.edit.restaurant.data', array());
+		$data = JFactory::getApplication()->getUserState('com_ntrip.edit.user_man_restaurant.data', array());
 
 		if (empty($data))
 		{
 			$data = $this->getItem();
-
-			// Prime some default values.
-			if ($this->getState('restaurant.id') == 0)
-			{
-				$app = JFactory::getApplication();
-				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.restaurants.filter.category_id')));
-			}
 		}
 
 		return $data;

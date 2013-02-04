@@ -124,7 +124,9 @@ class NtripModelUser_Man_Relax extends JModelAdmin
 	{
 	    $item = parent::getItem($pk);
 	    
-	    $item->other_images = NtripHelper::getImages($item->id, 'user_man_relaxs');
+	    $item->other_images = NtripHelper::getImages($item->id, 'relaxes');
+		
+		var_dump($item->other_images);
 	    
 	    return $item;
 	}
@@ -154,15 +156,15 @@ class NtripModelUser_Man_Relax extends JModelAdmin
 
 			// Update images
 			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
-			NtripHelper::updateImages($id, $currentImages, 'relaxs');
+			NtripHelper::updateImages($id, $currentImages, 'relaxes');
 
 			// Temp files
 			if (isset($_POST['tmp_other_img']))
 			{
 				// Copy file 
-				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'relaxs');
+				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'relaes');
 				// Insert images
-				NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'relaxs');
+				NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'relaxes');
 			}
 
 			if ($id)
@@ -172,7 +174,7 @@ class NtripModelUser_Man_Relax extends JModelAdmin
 
 			// Upload thumb
 			$item = $this->getItem();
-			$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, 'relaxs');
+			$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, 'relaxes');
 			
 			$coordinates = LocaHelper::getGmapCoordinates($data['address']);
 			

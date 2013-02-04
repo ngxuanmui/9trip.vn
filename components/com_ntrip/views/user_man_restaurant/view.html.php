@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
  * @subpackage	com_ntrip
  * @since		1.5
  */
-class NtripViewRestaurant extends JViewLegacy
+class NtripViewUser_Man_Restaurant extends JViewLegacy
 {
 	protected $form;
 	protected $item;
@@ -34,40 +34,7 @@ class NtripViewRestaurant extends JViewLegacy
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
-
-		$this->addToolbar();
+		
 		parent::display($tpl);
-	}
-
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @since	1.6
-	 */
-	protected function addToolbar()
-	{
-		JRequest::setVar('hidemainmenu', true);
-
-		$user		= JFactory::getUser();
-		$userId		= $user->get('id');
-		$isNew		= ($this->item->id == 0);
-		$checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
-		// Since we don't track these assets at the item level, use the category id.
-		$canDo		= NtripHelper::getActions($this->item->catid,0);
-
-		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_RESTAURANT_NEW') : JText::_('COM_NTRIP_MANAGER_RESTAURANT_EDIT'), 'restaurants.png');
-
-		// If not checked out, can save the item.
-		if (!$checkedOut && ($canDo->get('core.edit') || count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)) {
-			JToolBarHelper::apply('restaurant.apply');
-			JToolBarHelper::save('restaurant.save');
-		}
-
-		if (empty($this->item->id))  {
-			JToolBarHelper::cancel('restaurant.cancel');
-		}
-		else {
-			JToolBarHelper::cancel('restaurant.cancel', 'JTOOLBAR_CLOSE');
-		}
 	}
 }

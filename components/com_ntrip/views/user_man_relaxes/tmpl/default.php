@@ -56,10 +56,8 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 		<?php foreach ($this->items as $i => $item) : ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td>
-					<?php if ($item->checked_out) : ?>
-						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'relaxs.', $canCheckin); ?>
-					<?php endif; ?>
-						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=relax.edit&id='.(int) $item->id); ?>">
+					
+						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_relax.edit&id='.(int) $item->id); ?>">
 							<?php echo $this->escape($item->name); ?>
 						</a>
 					<p class="smallsub">

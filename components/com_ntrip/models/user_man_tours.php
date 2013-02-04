@@ -15,7 +15,7 @@ jimport('joomla.application.component.modellist');
  * @subpackage	com_ntrip
  * @since		1.6
  */
-class NtripModelTours extends JModelList
+class NtripModelUser_Man_Tours extends JModelList
 {
 	/**
 	 * Constructor.

@@ -16,9 +16,8 @@ defined('_JEXEC') or die;
  * @subpackage  com_ntrip
  * @since       1.6
  */
-class NtripViewServices extends JViewLegacy
+class NtripViewUser_Man_Services extends JViewLegacy
 {
-	protected $categories;
 	protected $items;
 	protected $pagination;
 	protected $state;
@@ -35,7 +34,6 @@ class NtripViewServices extends JViewLegacy
 	public function display($tpl = null)
 	{
 		// Initialise variables.
-		$this->categories	= $this->get('CategoryOrders');
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
 		$this->state		= $this->get('State');
@@ -47,78 +45,6 @@ class NtripViewServices extends JViewLegacy
 			return false;
 		}
 		
-		$this->addToolbar();
-		
 		parent::display($tpl);
-	}
-
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	protected function addToolbar()
-	{
-		require_once JPATH_COMPONENT . '/helpers/ntrip.php';
-
-		$canDo = NtripHelper::getActions($this->state->get('filter.category_id'));
-		$user = JFactory::getUser();
-		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_SERVICES'), 'services.png');
-//		if (count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)
-		if (($canDo->get('core.create')))
-		{
-			JToolBarHelper::addNew('service.add');
-		}
-
-		if (($canDo->get('core.edit')))
-		{
-			JToolBarHelper::editList('service.edit');
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			if ($this->state->get('filter.state') != 2)
-			{
-				JToolBarHelper::divider();
-				JToolBarHelper::publish('services.publish', 'JTOOLBAR_PUBLISH', true);
-				JToolBarHelper::unpublish('services.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-			}
-
-			if ($this->state->get('filter.state') != -1)
-			{
-				JToolBarHelper::divider();
-				if ($this->state->get('filter.state') != 2)
-				{
-					JToolBarHelper::archiveList('services.archive');
-				}
-				elseif ($this->state->get('filter.state') == 2)
-				{
-					JToolBarHelper::unarchiveList('services.publish');
-				}
-			}
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::checkin('services.checkin');
-		}
-
-		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
-		{
-			JToolBarHelper::deleteList('', 'services.delete', 'JTOOLBAR_EMPTY_TRASH');
-			JToolBarHelper::divider();
-		}
-		elseif ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::trash('services.trash');
-			JToolBarHelper::divider();
-		}
-
-		if ($canDo->get('core.admin'))
-		{
-			JToolBarHelper::preferences('com_ntrip');
-		}
 	}
 }

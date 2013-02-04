@@ -16,7 +16,7 @@ jimport('joomla.application.component.controlleradmin');
  * @subpackage	com_ntrip
  * @since		1.6
  */
-class NtripControllerServices extends JControllerAdmin
+class NtripControllerUser_Man_Services extends JControllerAdmin
 {
 	/**
 	 * @var		string	The prefix to use with controller messages.
@@ -42,46 +42,9 @@ class NtripControllerServices extends JControllerAdmin
 	 * Proxy for getModel.
 	 * @since	1.6
 	 */
-	public function getModel($name = 'Service', $prefix = 'NtripModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'User_Man_Service', $prefix = 'NtripModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 		return $model;
-	}
-
-	/**
-	 * @since	1.6
-	 */
-	public function sticky_publish()
-	{
-		// Check for request forgeries.
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
-		// Initialise variables.
-		$user	= JFactory::getUser();
-		$ids	= JRequest::getVar('cid', array(), '', 'array');
-		$values	= array('sticky_publish' => 1, 'sticky_unpublish' => 0);
-		$task	= $this->getTask();
-		$value	= JArrayHelper::getValue($values, $task, 0, 'int');
-
-		if (empty($ids)) {
-			JError::raiseWarning(500, JText::_('COM_NTRIP_NO_SERVICES_SELECTED'));
-		} else {
-			// Get the model.
-			$model	= $this->getModel();
-
-			// Change the state of the records.
-			if (!$model->stick($ids, $value)) {
-				JError::raiseWarning(500, $model->getError());
-			} else {
-				if ($value == 1) {
-					$ntext = 'COM_NTRIP_N_SERVICES_STUCK';
-				} else {
-					$ntext = 'COM_NTRIP_N_SERVICES_UNSTUCK';
-				}
-				$this->setMessage(JText::plural($ntext, count($ids)));
-			}
-		}
-
-		$this->setRedirect('index.php?option=com_ntrip&view=services');
 	}
 }

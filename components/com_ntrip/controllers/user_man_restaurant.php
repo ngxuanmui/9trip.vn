@@ -19,7 +19,7 @@ jimport('joomla.application.component.controllerform');
  * @subpackage  com_ntrip
  * @since       1.6
  */
-class NtripControllerRestaurant extends JControllerForm
+class NtripControllerUser_Man_Restaurant extends JControllerForm
 {
 	/**
 	 * @var    string  The prefix to use with controller messages.

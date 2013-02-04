@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
  * @subpackage  com_ntrip
  * @since       1.6
  */
-class NtripViewRestaurants extends JViewLegacy
+class NtripViewUser_Man_Restaurants extends JViewLegacy
 {
 	protected $categories;
 	protected $items;
@@ -35,7 +35,6 @@ class NtripViewRestaurants extends JViewLegacy
 	public function display($tpl = null)
 	{
 		// Initialise variables.
-		$this->categories	= $this->get('CategoryOrders');
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
 		$this->state		= $this->get('State');
@@ -47,78 +46,6 @@ class NtripViewRestaurants extends JViewLegacy
 			return false;
 		}
 		
-		$this->addToolbar();
-		
 		parent::display($tpl);
-	}
-
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	protected function addToolbar()
-	{
-		require_once JPATH_COMPONENT . '/helpers/ntrip.php';
-
-		$canDo = NtripHelper::getActions($this->state->get('filter.category_id'));
-		$user = JFactory::getUser();
-		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_RESTAURANTS'), 'restaurants.png');
-//		if (count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)
-		if (($canDo->get('core.create')))
-		{
-			JToolBarHelper::addNew('restaurant.add');
-		}
-
-		if (($canDo->get('core.edit')))
-		{
-			JToolBarHelper::editList('restaurant.edit');
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			if ($this->state->get('filter.state') != 2)
-			{
-				JToolBarHelper::divider();
-				JToolBarHelper::publish('restaurants.publish', 'JTOOLBAR_PUBLISH', true);
-				JToolBarHelper::unpublish('restaurants.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-			}
-
-			if ($this->state->get('filter.state') != -1)
-			{
-				JToolBarHelper::divider();
-				if ($this->state->get('filter.state') != 2)
-				{
-					JToolBarHelper::archiveList('restaurants.archive');
-				}
-				elseif ($this->state->get('filter.state') == 2)
-				{
-					JToolBarHelper::unarchiveList('restaurants.publish');
-				}
-			}
-		}
-
-		if ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::checkin('restaurants.checkin');
-		}
-
-		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
-		{
-			JToolBarHelper::deleteList('', 'restaurants.delete', 'JTOOLBAR_EMPTY_TRASH');
-			JToolBarHelper::divider();
-		}
-		elseif ($canDo->get('core.edit.state'))
-		{
-			JToolBarHelper::trash('restaurants.trash');
-			JToolBarHelper::divider();
-		}
-
-		if ($canDo->get('core.admin'))
-		{
-			JToolBarHelper::preferences('com_ntrip');
-		}
 	}
 }

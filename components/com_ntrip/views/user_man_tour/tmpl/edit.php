@@ -118,31 +118,18 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 	</div>
 
 <div class="width-40 fltrt">
-	<?php echo JHtml::_('sliders.start', 'tour-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
-
-	<?php echo JHtml::_('sliders.panel', JText::_('COM_NTRIP_GROUP_LABEL_PUBLISHING_DETAILS'), 'publishing-details'); ?>
-		<fieldset class="panelform">
+	<fieldset class="panelform">
 		<ul class="adminformlist">
 			<?php foreach($this->form->getFieldset('publish') as $field): ?>
 				<li><?php echo $field->label; ?>
 					<?php echo $field->input; ?></li>
 			<?php endforeach; ?>
-			</ul>
-		</fieldset>
-
-	<?php echo JHtml::_('sliders.panel', JText::_('JGLOBAL_FIELDSET_METADATA_OPTIONS'), 'metadata'); ?>
-		<fieldset class="panelform">
-			<ul class="adminformlist">
+				
 				<?php foreach($this->form->getFieldset('metadata') as $field): ?>
 					<li><?php echo $field->label; ?>
 						<?php echo $field->input; ?></li>
 				<?php endforeach; ?>
-			</ul>
-		</fieldset>
-	
-	<?php echo JHtml::_('sliders.panel', JText::_('Other Images'), 'metadata'); ?>
-		<fieldset class="panelform">
-			<ul class="adminformlist">
+					
 				<li>
 					<?php echo $this->form->getInput('uploadfile'); ?>
 				</li>
@@ -151,7 +138,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php 
 					$images = $this->item->other_images;
 					
-					$path = JURI::root() . 'images/tours/' . $this->item->id . '/';
+					$path = JURI::root() . 'images/shoppings/' . $this->item->id . '/';
 					
 					if ($images):
 					?>
@@ -170,10 +157,9 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php endif; ?>
 				    </div>
 				</li>
+				
 			</ul>
 		</fieldset>
-
-	<?php echo JHtml::_('sliders.end'); ?>
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 </div>
