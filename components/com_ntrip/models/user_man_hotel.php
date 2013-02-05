@@ -111,7 +111,7 @@ class NtripModelUser_Man_Hotel extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_ntrip.hotel', 'user_man_hotel', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_ntrip.user_man_hotel', 'user_man_hotel', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
@@ -130,7 +130,7 @@ class NtripModelUser_Man_Hotel extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_ntrip.edit.hotel.data', array());
+		$data = JFactory::getApplication()->getUserState('com_ntrip.edit.user_man_hotel.data', array());
 
 		if (empty($data))
 		{

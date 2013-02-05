@@ -181,15 +181,15 @@ class NtripHelper
 	    
 	    foreach ($images as $img)
 	    {
-		$query = $db->getQuery(true);
-		$query->insert('#__ntrip_images (item_id, item_type, title, description, images)')
-			->values($itemId . ', "' . $itemType . '", "", "", "' . $img . '"' );
-		
-		$db->setQuery($query);
-		$db->query();
-		
-		if ($db->getErrorMsg())
-		    die($db->getErrorMsg ());
+			$query = $db->getQuery(true);
+			$query->insert('#__ntrip_images (item_id, item_type, title, description, images)')
+				->values($itemId . ', "' . $itemType . '", "", "", "' . $img . '"' );
+
+			$db->setQuery($query);
+			$db->query();
+
+			if ($db->getErrorMsg())
+				die($db->getErrorMsg ());
 	    }
 	    
 	    return true;

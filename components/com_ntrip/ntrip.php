@@ -14,6 +14,9 @@ defined('_JEXEC') or die;
 // get helper from admin
 require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'ntrip.php';
 
+// toolbar
+require_once JPATH_COMPONENT_SITE . DS . 'helpers' . DS . 'user_toolbar.php';
+
 $controller = JControllerLegacy::getInstance('Ntrip');
 $controller->execute(JRequest::getCmd('task'));
 $controller->redirect();

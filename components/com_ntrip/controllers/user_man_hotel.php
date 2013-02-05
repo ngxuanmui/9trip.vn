@@ -55,14 +55,4 @@ class NtripControllerUser_Man_Hotel extends JControllerForm
 	{
 		return true;
 	}
-	
-	public function save($key = null, $urlVar = null) 
-	{
-		parent::save($key, $urlVar);
-		
-		$url = JRoute::_('index.php?option=com_ntrip&view=user_man_hotels', false);
-		$this->setRedirect($url);
-		
-		return true;;
-	}
 }
