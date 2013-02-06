@@ -4,7 +4,7 @@ class Ntrip_User_Toolbar
 {
 	public static function buttonEdit($controller = '')
 	{
-		$html[] = array();
+		$html = array();
 		
 		$html[] = '<div class="user-toolbar">';
 		$html[] = '<button id="btn-apply" rel="'.$controller.'.apply">Apply</button>';
@@ -18,12 +18,14 @@ class Ntrip_User_Toolbar
 		
 		$html[] = '</div>';
 		
-		return implode("\n", $html);
+		$button = implode("\n", $html);
+		
+		return $button;
 	}
 	
 	public static function buttonList($controller = '')
 	{
-		$html[] = array();
+		$html = array();
 		
 		$html[] = '<div class="user-toolbar">';
 		$html[] = '<button id="btn-add" rel="'.$controller.'.add">Add new</button>';		

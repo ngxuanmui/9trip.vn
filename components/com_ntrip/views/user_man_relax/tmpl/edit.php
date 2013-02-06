@@ -138,11 +138,13 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 			</ul>
 		</fieldset>
 	
-	<button type="submit">Submit</button> | <a href="">Cancel</a>
+	
 
 	<input type="hidden" name="task" value="user_man_relax.apply" />
 	<?php echo JHtml::_('form.token'); ?>
 </div>
+	
+	<?php echo Ntrip_User_Toolbar::buttonEdit('user_man_hotel'); ?>
 
 <div class="clr"></div>
 </form>

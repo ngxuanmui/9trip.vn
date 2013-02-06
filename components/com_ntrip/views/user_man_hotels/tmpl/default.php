@@ -38,7 +38,9 @@ $items = $this->items;
 		
 		<tr>
 			<td colspan="10">
-				<button type="button" onclick="javascript:location.href='<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.add', false); ?>'">Add new</button>
+				<input type="hidden" name="task" value="" />
+				<?php echo JHtml::_('form.token'); ?>
+				<?php echo Ntrip_User_Toolbar::buttonList('user_man_hotel'); ?>
 			</td>
 		</tr>
 	</table>
