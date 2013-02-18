@@ -20,6 +20,8 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 </style>
 
 <script type="text/javascript">
+	var ITEM_TYPE = 'hotels';
+	var ITEM_ID = <?php echo ($this->item->id) ? $this->item->id : 0; ?>;
 	Joomla.submitbutton = function(task)
 	{
 		if (task == 'hotel.cancel' || document.formvalidator.isValid(document.id('hotel-form'))) {
@@ -38,7 +40,10 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 
 				<li><?php echo $this->form->getLabel('alias'); ?>
 				<?php echo $this->form->getInput('alias'); ?></li>
-
+				
+				<li><?php echo $this->form->getLabel('catid'); ?>
+				<?php echo $this->form->getInput('catid'); ?></li>
+				
 				<li><?php echo $this->form->getLabel('type'); ?>
 				<?php echo $this->form->getInput('type'); ?></li>
 
@@ -49,9 +54,6 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				<li><?php echo $this->form->getLabel('address'); ?>
 				<?php echo $this->form->getInput('address'); ?></li>
 
-				<li><?php echo $this->form->getLabel('catid'); ?>
-				<?php echo $this->form->getInput('catid'); ?></li>
-				
 				<li><?php echo $this->form->getLabel('phone'); ?>
 				<?php echo $this->form->getInput('phone'); ?></li>
 

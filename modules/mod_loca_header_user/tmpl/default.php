@@ -58,7 +58,9 @@ $loginUrl	= $facebook->getLoginUrl(
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div id="main-header">
-	<div class="logo"></div>
+	<div class="logo">
+		<a href="<?php echo JURI::base(); ?>" title="Loca.vn"></a>
+	</div>
 	<div class="right">
 		<?php if (!$user->id): ?>
 			<div>

@@ -49,6 +49,14 @@ JHtml::_('behavior.keepalive');
 
 				<li><?php echo $this->form->getLabel('published'); ?>
 				<?php echo $this->form->getInput('published'); ?></li>
+				
+				<?php 
+//				if (JRequest::getString('extension') != 'com_ntrip'): 
+				if (strpos(JRequest::getString('extension'), 'com_ntrip.') !== false):
+				?>
+				<li><?php echo $this->form->getLabel('locations'); ?>
+				<?php echo $this->form->getInput('locations'); ?></li>
+				<?php endif; ?>
 
 				<li><?php echo $this->form->getLabel('access'); ?>
 				<?php echo $this->form->getInput('access'); ?></li>

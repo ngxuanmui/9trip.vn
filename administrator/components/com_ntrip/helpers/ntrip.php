@@ -104,14 +104,74 @@ class NtripHelper
 		}
 		
 		JSubMenuHelper::addEntry(
+			/* JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_FIELD_HOTEL') */
+			JText::_('[Restaurant: Type]'),
+			'index.php?option=com_categories&extension=com_ntrip.custom_field_restaurant',
+			$vName == 'categories' && $extension == 'com_ntrip.custom_field_restaurant'
+		);
+		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_restaurant') {
+			JToolBarHelper::title(
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_restaurant')),
+				'restaurants-categories');
+		}
+		
+		JSubMenuHelper::addEntry(
+			/* JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_FIELD_HOTEL') */
+			JText::_('[Tour: Type]'),
+			'index.php?option=com_categories&extension=com_ntrip.custom_field_tour',
+			$vName == 'categories' && $extension == 'com_ntrip.custom_field_tour'
+		);
+		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_tour') {
+			JToolBarHelper::title(
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_tour')),
+				'tours-categories');
+		}
+		
+		JSubMenuHelper::addEntry(
+			/* JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_FIELD_HOTEL') */
+			JText::_('[Service: Type]'),
+			'index.php?option=com_categories&extension=com_ntrip.custom_field_service',
+			$vName == 'categories' && $extension == 'com_ntrip.custom_field_service'
+		);
+		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_service') {
+			JToolBarHelper::title(
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_service')),
+				'services-categories');
+		}
+		
+		JSubMenuHelper::addEntry(
+			/* JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_FIELD_HOTEL') */
+			JText::_('[Shopping: Type]'),
+			'index.php?option=com_categories&extension=com_ntrip.custom_field_shopping',
+			$vName == 'categories' && $extension == 'com_ntrip.custom_field_shopping'
+		);
+		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_shopping') {
+			JToolBarHelper::title(
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_shopping')),
+				'shoppings-categories');
+		}
+		
+		JSubMenuHelper::addEntry(
+			/* JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_FIELD_HOTEL') */
+			JText::_('[Relax: Type]'),
+			'index.php?option=com_categories&extension=com_ntrip.custom_field_relax',
+			$vName == 'categories' && $extension == 'com_ntrip.custom_field_relax'
+		);
+		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_relax') {
+			JToolBarHelper::title(
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_relax')),
+				'relaxs-categories');
+		}
+		
+		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_VISIT_TIME'),
 			'index.php?option=com_categories&extension=com_ntrip.custom_visit_time',
 			$vName == 'categories' && $extension == 'com_ntrip.custom_visit_time'
 		);
 		if ($vName=='categories' && $extension == 'com_ntrip.custom_visit_time') {
 			JToolBarHelper::title(
-				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_hotel')),
-				'hotels-categories');
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_custom_field_custom_visit_time')),
+				'custom_visit_times-categories');
 		}
 	}
 
@@ -313,5 +373,44 @@ class NtripHelper
 			    $image = $item->images;
 		
 		return $image;
+	}
+	
+	public static function updateCountLocations($type = 'hotels', $locId = 0, $add = false, $custom = false, $categoryId = 0)
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		if ($custom)
+		{
+			$table = '#__ntrip_count_location';
+		}
+		else
+		{
+			$table = '#__ntrip_count_custom_field';
+		}
+		
+		$query->select('*')
+				->from($table)
+				->where('location_id = ' . $locId)
+				->where('type= ' . $type);
+		
+		if ($custom)
+			$query->where ('category_id = ' . $categoryId);
+		
+		$db->setQuery($query);
+		$rec = $db->loadObject();
+		
+		if ($rec->location_id)
+		{
+			// if add
+			if ($add)
+			{
+				
+			}
+			else
+			{
+				// subtract
+			}
+		}
 	}
 }

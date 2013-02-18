@@ -452,6 +452,41 @@ class CategoriesModelCategory extends JModelAdmin
 		}
 
 		$this->setState($this->getName() . '.id', $table->id);
+		
+		/* muinx */
+		// Save locations
+		if (!empty($data['locations']))
+		{
+			$db = JFactory::getDbo();
+			$query = $db->getQuery(true);
+			
+			// delete all in category_locations before insert
+			$query->delete('#__category_location')->where('category_id = ' . $table->id);
+			$db->setQuery($query);
+			$db->query();
+			
+			if ($db->getErrorMsg())
+				die($db->getErrorMsg ());
+			
+			$query = $db->getQuery(true);
+			
+//			$locations = json_encode($data['locations']);
+			
+			$query->insert('#__category_location');
+			
+			foreach ($data['locations'] as $loc)
+			{
+				$query->values($table->id . ", '" .$loc . "'");
+			}
+			
+			$db->setQuery($query);
+			
+			$db->query();
+			
+			if ($db->getErrorMsg())
+				die($db->getErrorMsg ());
+		}
+		/* end */
 
 		// Clear the cache
 		$this->cleanCache();

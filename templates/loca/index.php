@@ -39,7 +39,7 @@ $doc->addScript(JURI::base() . 'media/loca/main.js');
 		
 		<div class="menu-container">
 			<ul id="main-menu">
-				<li><a href="#">Trang chủ</a></li>
+				<li><a href="<?php echo JURI::base(); ?>">Trang chủ</a></li>
 				<li><a href="#">Địa danh</a></li>
 				<li><a href="#">Khám phá</a></li>
 				<li><a href="#">Khuyến mại</a></li>

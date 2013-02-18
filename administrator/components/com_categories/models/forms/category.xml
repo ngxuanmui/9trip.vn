@@ -184,6 +184,15 @@
 	</field>
 
 	<field
+		name="locations"
+		type="customcategory"
+		label="Locations"
+		class="inputbox"
+		extension="com_ntrip"
+		addfieldpath="/administrator/components/com_ntrip/models/fields">
+	</field>
+
+	<field
 		id="rules"
 		name="rules"
 		type="rules"

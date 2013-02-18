@@ -1,95 +1,3 @@
-<script type="text/javascript" src="<?php echo JURI::base()?>components/com_banana_magazine/html/js/jquery.min.js"></script>
-<script type="text/javascript">
-<!--
-jQuery.noConflict();
-
-jQuery.fn.contains = function(txt) { return jQuery(this).indexOf(txt) >= 0; }
-
-jQuery().ready(function($){
-	var err = '<div style="color:red" id="custom-category-error">Select category !</div>';	
-	
-	$('.category-checkbox').click(function(){
-		setFocus($(this));
-
-		//if checked, insert value to default category, else, remove it
-		if($(this).attr('checked'))
-		{
-			$('#jform_default_category').append('<option value="'+$(this).val()+'">'+$(this).attr('text')+'</option>');
-		}
-		else
-		{
-			$("#jform_default_category option[value='"+$(this).val()+"']").remove();
-		}
-
-		var el = $('#jform_list_custom_category');
-		var $checkboxes = $('#jform_list_custom_category input.category-checkbox');
-		
-		var check = false;
-
-		$('#custom-category-error').remove();
-		
-		$checkboxes.each(function(){			
-			if($(this).attr('checked'))
-			{
-				check = true;
-				return false;
-			}
-		});
-		
-		if(!check)
-		{		
-			$('#input_custom_category_textbox').val('');	
-			el.prepend(err);
-		}
-		else
-		{
-			$('#input_custom_category_textbox').val('INPUT_OK');
-			$('#custom-category-error').remove();
-		}
-		
-	});
-
-	$('.category-checkbox').each(function(){
-		setFocus($(this));
-
-		if($(this).attr('checked'))
-			$('#input_custom_category_textbox').val('INPUT_OK');
-	});
-
-	$('a.toolbar').click(function(){
-		var action = $(this).attr('onclick').toString();
-
-		$('#custom-category-error').remove();
-		
-		//alert(action);
-		if (action == '')
-        {
-	        return false;
-        }
-        else
-        {
-            //if ( action.indexOf('cancel') < 0 && action.indexOf('close') < 0 )
-            if( ! action.contains('cancel') && ! action.contains('close') )
-            {
-                if($('#input_custom_category_textbox').hasClass('invalid'))
-                {
-                	$('#input_custom_category_textbox').val('');	
-                	$('#jform_list_custom_category').prepend(err);
-                }
-            }
-        }
-	});
-});
-
-function setFocus(obj)
-{
-	if(obj.attr('checked'))
-		obj.parent().css({'background': '#0066CC', 'color':'#FFF'});
-	else
-		obj.parent().css({'background': '', 'color':''});
-}
-//-->
-</script>
 <?php
 /**
  * @version		$Id: customcategory.php 16825 2010-05-05 12:10:37Z louis $
@@ -136,11 +44,9 @@ class JFormFieldCustomCategory extends JFormFieldList
 		
 		$moduleValue = $form->getValue('params');
 		
-		$arr = array();
-		
 		$itemId = JRequest::getVar('id', 0);
 		
-		$getValue = $this->element['get_value'] ? $this->element['get_value'] : '#__magazine_category, category_id, magazine_id';
+		$getValue = $this->element['get_value'] ? $this->element['get_value'] : '#__category_location, locations, category_id';
 		
 		$getValue = explode(',', $getValue);
 		
@@ -149,6 +55,15 @@ class JFormFieldCustomCategory extends JFormFieldList
 		
 		$arr = $db->loadResultArray();
 		
+//		$tmp = $db->loadObject();
+//		
+//		$field = trim($getValue[1]);
+//		
+//		$arr = array();
+		
+//		if (!empty($tmp->$field))
+//			$arr = json_decode($tmp->$field);
+		
 		$options = $this->getCategoryOptions();
 		
 		//echo'<pre>'; print_r($result);
@@ -156,7 +71,7 @@ class JFormFieldCustomCategory extends JFormFieldList
 		$str  = "";
 		$str .= "<div id='jform_list_custom_category' name='jform[list_custom_category]' style='float:left; width: 290px; height:150px; overflow: auto; padding: 5px 10px 5px 5px; border: 1px solid #CCC;'>\n";
 		
-		$str .= "<input type='hidden' name='input_custom_category_textbox' id='input_custom_category_textbox' class='required' />";
+//		$str .= "<input type='hidden' name='input_custom_category_textbox' id='input_custom_category_textbox' class='required' />";
 		
 		if($moduleValue && isset($moduleValue->catid))
 			$arr = $moduleValue->catid;
@@ -174,7 +89,7 @@ class JFormFieldCustomCategory extends JFormFieldList
 			{
 				
 				$option->textDisplay = $option->text; # str_replace('- ', '<span class="gi">|&mdash;</span>', $option->text);
-				$checked = (in_array($option->value, $arr) ) ? "checked" : null;
+				$checked = (!empty($arr) && in_array($option->value, $arr) ) ? "checked" : null;
 				
 				$str .= "<div style='float:left; padding-left: ".$paddingLeft."px; line-height:22px; width: ".(280 - $paddingLeft)."px;'>
 							<input class='category-checkbox' id='".$this->id."_".$option->value."' name='".$this->name."[]' $checked type='checkbox' value='".$option->value."' text='".$option->text."'> ".$option->textDisplay.

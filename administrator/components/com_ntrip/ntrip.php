@@ -13,6 +13,12 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_ntrip')) {
 	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
+// Add script
+$doc = JFactory::getDocument();
+
+$doc->addScript(JURI::root() . 'media/loca/jquery.1.8.3.min.js');
+$doc->addScript(JURI::base() . 'components/com_ntrip/helpers/html/js/ntrip.js');
+
 // Helper
 require_once JPATH_COMPONENT.'/helpers/ntrip.php';
 

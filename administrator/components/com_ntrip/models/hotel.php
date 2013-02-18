@@ -241,6 +241,12 @@ class NtripModelHotel extends JModelAdmin
 			
 			$data['gmap_lat'] = $coordinates['lat'];
 			$data['gmap_long'] = $coordinates['long'];
+			
+			//TODO: Update count location
+			NtripHelper::updateCountLocations('hotels');
+			
+			//TODO: Update count custom field for each location
+			NtripHelper::updateCountCustomFieldLocations('hotels');
 
 			return parent::save($data);
 	    }

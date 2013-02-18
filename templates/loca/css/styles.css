@@ -42,6 +42,11 @@ a {
 	padding-bottom: 10px;
 	float: left;
 }
+
+#main-header .logo a {
+	display: block; width: 194px; height: 91px;
+}
+	
 #main-header .right {
 	float: right;
 	color: #00659B;
