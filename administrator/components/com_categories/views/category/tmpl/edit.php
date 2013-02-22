@@ -16,6 +16,8 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
+
+$arrExt = array('com_ntrip.custom_field_hotel', 'com_ntrip.custom_field_restaurant')
 ?>
 
 <script type="text/javascript">
@@ -52,7 +54,7 @@ JHtml::_('behavior.keepalive');
 				
 				<?php 
 //				if (JRequest::getString('extension') != 'com_ntrip'): 
-				if (strpos(JRequest::getString('extension'), 'com_ntrip.') !== false):
+				if (in_array(JRequest::getString('extension'), $arrExt)):
 				?>
 				<li><?php echo $this->form->getLabel('locations'); ?>
 				<?php echo $this->form->getInput('locations'); ?></li>
