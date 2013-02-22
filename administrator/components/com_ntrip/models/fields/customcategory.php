@@ -85,8 +85,8 @@ class JFormFieldCustomCategory extends JFormFieldList
 				
 			$paddingLeft = ($option->level - 1) * 20; //20 is 20px
 			
-			if(!$optionRoot)
-			{
+//			if(!$optionRoot)
+//			{
 				
 				$option->textDisplay = $option->text; # str_replace('- ', '<span class="gi">|&mdash;</span>', $option->text);
 				$checked = (!empty($arr) && in_array($option->value, $arr) ) ? "checked" : null;
@@ -94,14 +94,14 @@ class JFormFieldCustomCategory extends JFormFieldList
 				$str .= "<div style='float:left; padding-left: ".$paddingLeft."px; line-height:22px; width: ".(280 - $paddingLeft)."px;'>
 							<input class='category-checkbox' id='".$this->id."_".$option->value."' name='".$this->name."[]' $checked type='checkbox' value='".$option->value."' text='".$option->text."'> ".$option->textDisplay.
 						"</div>\n";
-			}
-			else 
-			{
-				$option->textDisplay = $option->text; # str_replace('- ', '<span class="gi">|&mdash;</span>', $option->text);
-				$str .= "<div style='float:left; padding-left: ".$paddingLeft."px; font-weight:bold; line-height:22px; width: 200px;'>
-							[x] $option->textDisplay
-						</div>\n";
-			}
+//			}
+//			else 
+//			{
+//				$option->textDisplay = $option->text; # str_replace('- ', '<span class="gi">|&mdash;</span>', $option->text);
+//				$str .= "<div style='float:left; padding-left: ".$paddingLeft."px; font-weight:bold; line-height:22px; width: 200px;'>
+//							[x] $option->textDisplay
+//						</div>\n";
+//			}
 			
 		}
 		
