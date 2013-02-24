@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	client="site"
+	method="upgrade">
+	<name>mod_custom_field</name>
+	<author>Nguyen Xuan Mui</author>
+	<creationDate>Feb 2013</creationDate>
+	<copyright>Copyright (C) 2005 - 2012 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>nguyenxuanmui@gmail.com</authorEmail>
+	<authorUrl>www.thongtinonline.net</authorUrl>
+	<version>2.5.0</version>
+	<description>Show custom field</description>
+	<files>
+		<filename module="mod_custom_field">mod_custom_field.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>		
+		<filename>mod_custom_field.xml</filename>
+	</files>
+</extension>

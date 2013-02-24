@@ -15,13 +15,15 @@ defined('_JEXEC') or die;
  * @subpackage	com_ntrip
  * @since 1.5
  */
-class NtripViewHome extends JViewLegacy
+class NtripViewCategory extends JViewLegacy
 {
 	protected $items;
-	
+	protected $category;
+
 	function display($tpl = null)
 	{
 		$this->items = $this->get('Items');
+		$this->category = $this->get('Category');
 		
 		$this->_prepareDocument();
 

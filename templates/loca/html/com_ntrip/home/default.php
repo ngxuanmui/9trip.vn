@@ -60,7 +60,9 @@ defined('_JEXEC') or die;
 									<img src="<?php echo $image; ?>" />
 								<?php endif; ?>
 							</div>
-							<div class="title"><?php echo $subItem->title; ?></div>
+							<div class="title">
+								<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=category&id='.$subItem->id); ?>"><?php echo $subItem->title; ?></a>
+							</div>
 							<div class="info">
 								<?php
 								$sib = $subItem->getChildren();

@@ -19,6 +19,9 @@ body {
 a {
     text-decoration: none;
 }
+
+.fltlft, .fltleft { float: left; }
+.fltrgt, .fltright { float: right; }
 #main-container {                        
     padding: 0;
 }
@@ -265,7 +268,7 @@ ul#main-menu li a:hover {
     color: #01669A;
     display: block;
 }
-.clear {
+.clear, .clr {
     clear: both;
 }
 .debug {
@@ -334,3 +337,17 @@ ul#menu-bottom li a {
 .pagination ul li.active { cursor: default; background: #CCC; color: #FFF; }
 
 input.invalid { border: 1px #FF0000 solid; }
+
+div.show-custom-field { width: 650px; margin-bottom: 10px; }
+
+ul.custom-field { margin: 0; margin: 10px 0; padding: 0; list-style: none; }
+ul.custom-field li { float: left; width: 210px; margin-right: 5px; }
+ul.custom-field li h1 { font-size: 16px; margin: 10px 0;  }
+
+ul.custom-field ul { margin-left: 30px; margin-bottom: 10px; }
+ul.custom-field ul li { padding: 2px 0; }
+
+p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-weight: bold; padding-bottom: 10px; }
+
+.location-album { background: #FFF; border-radius: 3px; border: 1px solid #CCC; margin-bottom: 20px; width: 624px; height: 453px; padding: 15px 12px; }
+.location-album h1 { font-size: 18px; margin-bottom: 5px; }
