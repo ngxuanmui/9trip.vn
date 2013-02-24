@@ -56,7 +56,8 @@ class modCustomFieldHelper
 		$query->select('*')
 				->from('#__categories')
 				->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$location.')')
-				->where('extension = "com_ntrip.'.$type.'"');
+				->where('extension = "com_ntrip.'.$type.'"')
+				->where('published = 1');
 		
 		$db->setQuery($query);
 		$rs = $db->loadObjectList();
