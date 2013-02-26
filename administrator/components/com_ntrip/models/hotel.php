@@ -217,7 +217,8 @@ class NtripModelHotel extends JModelAdmin
 
 			// Update images
 			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
-			NtripHelper::updateImages($id, $currentImages, 'hotels');
+			$currentDesc = (isset($_POST['current_desc'])) ? $_POST['current_desc'] : array();
+			NtripHelper::updateImages($id, $currentImages, $currentDesc, 'hotels');
 
 			// Temp files
 			if (isset($_POST['tmp_other_img']))
@@ -225,7 +226,7 @@ class NtripModelHotel extends JModelAdmin
 				// Copy file 
 				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'hotels');
 				// Insert images
-				NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'hotels');
+				NtripHelper::insertImages($id, $_POST['tmp_other_img'], $_POST['tmp_desc'], 'hotels');
 			}
 
 			if ($id)
@@ -243,10 +244,10 @@ class NtripModelHotel extends JModelAdmin
 			$data['gmap_long'] = $coordinates['long'];
 			
 			//TODO: Update count location
-			NtripHelper::updateCountLocations('hotels');
+//			NtripHelper::updateCountLocations('hotels');
 			
 			//TODO: Update count custom field for each location
-			NtripHelper::updateCountCustomFieldLocations('hotels');
+//			NtripHelper::updateCountCustomFieldLocations('hotels');
 
 			return parent::save($data);
 	    }

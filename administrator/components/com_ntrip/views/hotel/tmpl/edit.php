@@ -178,9 +178,11 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					    <tr>
 						<td width="80" style="background: #FAFAFA;">
 						    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" />
-						    <input type="hidden" name="current_images[]" value="<?php echo $img->images; ?>" />
+						    <input type="hidden" name="current_images[<?php echo $img->id; ?>]" value="<?php echo $img->images; ?>" />
 						</td>
-						<td valign="top"><?php echo $img->images . '<br><strong>' . $img->title . '</strong>'; ?></td>
+						<td valign="top">
+							<?php echo $img->images . '<br><input type="text" size="40" name="current_desc['.$img->id.']" value="' . $img->description . '" placeholder="Input Description" />'; ?>
+						</td>
 						<td width="50" valign="top"><a href="javascript:;" class="delete-file">Del</a></td>
 					    </tr>
 					    <?php endforeach; ?>

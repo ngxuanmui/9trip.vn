@@ -235,15 +235,15 @@ class NtripHelper
 		JFolder::delete($tmpFolder);
 	}
 	
-	static function insertImages($itemId, $images = array(), $itemType = 'hotels')
+	static function insertImages($itemId, $images = array(), $desc = array(), $itemType = 'hotels')
 	{
 	    $db = JFactory::getDbo();
 	    
-	    foreach ($images as $img)
+	    foreach ($images as $key => $img)
 	    {
 			$query = $db->getQuery(true);
 			$query->insert('#__ntrip_images (item_id, item_type, title, description, images)')
-				->values($itemId . ', "' . $itemType . '", "", "", "' . $img . '"' );
+				->values($itemId . ', "' . $itemType . '", "", "'.$desc[$key].'", "' . $img . '"' );
 
 			$db->setQuery($query);
 			$db->query();
@@ -255,36 +255,46 @@ class NtripHelper
 	    return true;
 	}
 	
-	static function updateImages($itemId, $curentImages = array(), $itemType = 'hotels')
+	static function updateImages($itemId, $curentImages = array(), $currentDesc = array(), $itemType = 'hotels')
 	{
 	    $db = JFactory::getDbo();
 	    
 	    // get old images
 	    $images = NtripHelper::getImages($itemId, $itemType);
+		
+//		var_dump($images, $curentImages, $currentDesc);
+//		
+//		die;
 	    
 	    foreach ($images as $img)
 	    {
-		$image = $img->images;
-		
-		if (!in_array($image, $curentImages))
-		{
-		    // delete image
-		    $destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
-		    $destThumbFolder = $destFolder . 'thumbnail' . DS;
-		    
-		    @unlink($destThumbFolder . $image);
-		    @unlink($destFolder . $image);
-		    
-		    // delete rec in db
-		    $query = $db->getQuery(true);
-		    $query->delete('#__ntrip_images')
-			    ->where('item_id = ' . $itemId)
-			    ->where('item_type = "'.$itemType.'"')
-			    ->where('images = "' . $image . '"');
-		    
-		    $db->setQuery($query);
-		    $db->query();
-		}
+			$image = $img->images;
+			
+			$query = $db->getQuery(true);
+
+			if (!in_array($image, $curentImages))
+			{
+				// delete image
+				$destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
+				$destThumbFolder = $destFolder . 'thumbnail' . DS;
+
+				@unlink($destThumbFolder . $image);
+				@unlink($destFolder . $image);
+
+				// delete rec in db
+				
+				$query->delete('#__ntrip_images')
+					->where('item_id = ' . $itemId)
+					->where('item_type = "'.$itemType.'"')
+					->where('images = "' . $image . '"');
+			}
+			else
+			{
+				$query->update('#__ntrip_images')->set('description = "'.$currentDesc[$img->id].'"')->where('id = ' . $img->id);				
+			}
+			
+			$db->setQuery($query);
+			$db->query();
 	    }
 	}
 	

@@ -17,7 +17,7 @@ JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
 
-$arrExt = array('com_ntrip.custom_field_hotel', 'com_ntrip.custom_field_restaurant')
+$arrExt = LocaHelper::getExtensionLocation();
 ?>
 
 <script type="text/javascript">

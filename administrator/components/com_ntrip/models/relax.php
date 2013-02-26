@@ -171,7 +171,7 @@ class NtripModelRelax extends JModelAdmin
 			if ($this->getState('relax.id') == 0)
 			{
 				$app = JFactory::getApplication();
-				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.relaxs.filter.category_id')));
+				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.relaxes.filter.category_id')));
 			}
 		}
 
@@ -187,7 +187,7 @@ class NtripModelRelax extends JModelAdmin
 	{
 	    $item = parent::getItem($pk);
 	    
-	    $item->other_images = NtripHelper::getImages($item->id, 'relaxs');
+	    $item->other_images = NtripHelper::getImages($item->id, 'relaxes');
 	    
 	    return $item;
 	}
@@ -216,16 +216,20 @@ class NtripModelRelax extends JModelAdmin
 			$id = (int) $this->getState($this->getName() . '.id');
 
 			// Update images
+//			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
+//			NtripHelper::updateImages($id, $currentImages, 'relaxes');
+			
 			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
-			NtripHelper::updateImages($id, $currentImages, 'relaxs');
+			$currentDesc = (isset($_POST['current_desc'])) ? $_POST['current_desc'] : array();
+			NtripHelper::updateImages($id, $currentImages, $currentDesc, 'relaxes');
 
 			// Temp files
 			if (isset($_POST['tmp_other_img']))
 			{
 				// Copy file 
-				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'relaxs');
+				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'relaxes');
 				// Insert images
-				NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'relaxs');
+				NtripHelper::insertImages($id, $_POST['tmp_other_img'], $_POST['tmp_desc'], 'relaxes');
 			}
 
 			if ($id)
@@ -235,7 +239,7 @@ class NtripModelRelax extends JModelAdmin
 
 			// Upload thumb
 			$item = $this->getItem();
-			$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, 'relaxs');
+			$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, 'relaxes');
 			
 			$coordinates = LocaHelper::getGmapCoordinates($data['address']);
 			

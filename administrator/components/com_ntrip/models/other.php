@@ -9,10 +9,16 @@ class NtripModelOther extends JModel
 		$query = $db->getQuery(true);
 		
 		$locationId = JRequest::getInt('location');
+		$extension = JRequest::getString('extension');
+		
+		$arrExt = LocaHelper::getExtensionLocation();
 		
 		$query->select('*')
 				->from('#__categories')
-				->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$locationId.')');
+				->where('extension = "'.$extension.'"');
+		
+		if (in_array($extension, $arrExt))
+			$query->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$locationId.')');
 		
 		$db->setQuery($query);
 		$rs = $db->loadObjectList();

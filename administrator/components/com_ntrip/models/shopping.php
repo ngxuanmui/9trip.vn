@@ -216,8 +216,12 @@ class NtripModelShopping extends JModelAdmin
 			$id = (int) $this->getState($this->getName() . '.id');
 
 			// Update images
+//			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
+//			NtripHelper::updateImages($id, $currentImages, 'shoppings');
+			
 			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
-			NtripHelper::updateImages($id, $currentImages, 'shoppings');
+			$currentDesc = (isset($_POST['current_desc'])) ? $_POST['current_desc'] : array();
+			NtripHelper::updateImages($id, $currentImages, $currentDesc, 'shoppings');
 
 			// Temp files
 			if (isset($_POST['tmp_other_img']))
@@ -225,7 +229,7 @@ class NtripModelShopping extends JModelAdmin
 				// Copy file 
 				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'shoppings');
 				// Insert images
-				NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'shoppings');
+				NtripHelper::insertImages($id, $_POST['tmp_other_img'], $_POST['tmp_desc'], 'shoppings');
 			}
 
 			if ($id)

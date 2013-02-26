@@ -90,4 +90,14 @@ class LocaHelper
 		
 		return '';
 	}
+	
+	/**
+	 * Function to get extension (customfield) related to location (category) 
+	 */
+	public static function getExtensionLocation()
+	{
+		$arrExt = array('com_ntrip.custom_field_hotel', 'com_ntrip.custom_field_restaurant');
+		
+		return $arrExt;
+	}
 }

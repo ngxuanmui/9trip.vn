@@ -27,6 +27,8 @@ class JFormFieldCustomType extends JFormFieldList
 					Please select location first
 				</div>';
 		
+		$html .= '<script type="text/javascript">EXTENSION="'.$this->element['extension'].'"</script>';
+		
 		return $html;
 	}
 }
