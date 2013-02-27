@@ -20,6 +20,9 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 </style>
 
 <script type="text/javascript">
+	var ITEM_TYPE = 'services';
+	var ITEM_ID = <?php echo ($this->item->id) ? $this->item->id : 0; ?>;
+	
 	Joomla.submitbutton = function(task)
 	{
 		if (task == 'service.cancel' || document.formvalidator.isValid(document.id('service-form'))) {
@@ -39,9 +42,6 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				<li><?php echo $this->form->getLabel('alias'); ?>
 				<?php echo $this->form->getInput('alias'); ?></li>
 
-				<li><?php echo $this->form->getLabel('type'); ?>
-				<?php echo $this->form->getInput('type'); ?></li>
-
 				<li><?php echo $this->form->getLabel('service_class'); ?>
 				    <?php echo $this->form->getInput('service_class'); ?>
 				</li>
@@ -51,6 +51,9 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 
 				<li><?php echo $this->form->getLabel('catid'); ?>
 				<?php echo $this->form->getInput('catid'); ?></li>
+
+				<li><?php echo $this->form->getLabel('type'); ?>
+				<?php echo $this->form->getInput('type'); ?></li>
 				
 				<li><?php echo $this->form->getLabel('phone'); ?>
 				<?php echo $this->form->getInput('phone'); ?></li>
@@ -176,9 +179,11 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					    <tr>
 						<td width="80" style="background: #FAFAFA;">
 						    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" />
-						    <input type="hidden" name="current_images[]" value="<?php echo $img->images; ?>" />
+						    <input type="hidden" name="current_images[<?php echo $img->id; ?>]" value="<?php echo $img->images; ?>" />
 						</td>
-						<td valign="top"><?php echo $img->images . '<br><strong>' . $img->title . '</strong>'; ?></td>
+						<td valign="top">
+							<?php echo $img->images . '<br><input type="text" size="40" name="current_desc['.$img->id.']" value="' . $img->description . '" placeholder="Input Description" />'; ?>
+						</td>
 						<td width="50" valign="top"><a href="javascript:;" class="delete-file">Del</a></td>
 					    </tr>
 					    <?php endforeach; ?>

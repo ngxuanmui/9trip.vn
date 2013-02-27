@@ -23,6 +23,10 @@
 			<option value="">COM_NTRIP_SELECT_LOCATION_LABEL</option>
 		</field>
 
+		<field name="type" type="customtype" class="inputbox"
+			size="40" extension="com_ntrip.custom_field_tour"
+			label="COM_NTRIP_FIELD_TYPE_LABEL" />
+
 		<field name="images" type="file" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_IMAGES_LABEL" />
 

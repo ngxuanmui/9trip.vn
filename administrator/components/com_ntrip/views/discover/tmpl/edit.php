@@ -151,7 +151,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php 
 					$images = $this->item->other_images;
 					
-					$path = JURI::root() . 'images/relaxes/' . $this->item->id . '/';
+					$path = JURI::root() . 'images/discovers/' . $this->item->id . '/';
 					
 					if ($images):
 					?>

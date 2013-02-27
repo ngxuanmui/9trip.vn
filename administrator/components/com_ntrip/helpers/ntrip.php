@@ -272,7 +272,7 @@ class NtripHelper
 			
 			$query = $db->getQuery(true);
 
-			if (!in_array($image, $curentImages))
+			if (!in_array($img->id, array_keys($curentImages)))
 			{
 				// delete image
 				$destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
@@ -284,9 +284,7 @@ class NtripHelper
 				// delete rec in db
 				
 				$query->delete('#__ntrip_images')
-					->where('item_id = ' . $itemId)
-					->where('item_type = "'.$itemType.'"')
-					->where('images = "' . $image . '"');
+					->where('id = ' . $img->id);
 			}
 			else
 			{
@@ -309,7 +307,7 @@ class NtripHelper
 		    ->where('item_type = "'.$itemType.'"');
 	    
 	    $db->setQuery($query);
-	    $rs = $db->loadObjectList();
+	    $rs = $db->loadObjectList('id');
 	    
 	    return $rs;
 	}

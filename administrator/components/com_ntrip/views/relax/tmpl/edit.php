@@ -20,7 +20,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 </style>
 
 <script type="text/javascript">
-	var ITEM_TYPE = 'hotels';
+	var ITEM_TYPE = 'relaxes';
 	var ITEM_ID = <?php echo ($this->item->id) ? $this->item->id : 0; ?>;
 	
 	Joomla.submitbutton = function(task)
