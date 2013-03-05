@@ -37,17 +37,86 @@ $items = $this->items;
 			Khám phá mới nhất
 		</div>
 		
-		<div class="clr"></div>
-		
-		<div class="tour-container">
+		<div class="item-container">
 			<ul>
 				<?php foreach ($items['discovers'] as $discover): ?>
 				<li>
+					<div class="img">
+						<img src="<?php echo $discover->images; ?>" />
+					</div>
 					<?php echo $discover->name; ?>
 				</li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
+		
+		<div class="clr"></div>
+	</div>
+	
+	<div class="margin-bottom5">
+		<div class="title-category">
+			Khuyến mãi mới nhất
+		</div>
+		
+		<div class="clr"></div>
+		
+		<div class="item-container">
+			<ul>
+				<?php foreach ($items['promotions'] as $promotion): ?>
+				<li>
+					<div class="img">
+						<img src="<?php echo $promotion->images; ?>" />
+					</div>
+					<?php echo $promotion->name; ?>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+		
+		<div class="clr"></div>
+	</div>
+	
+	<div class="margin-bottom5">
+		<div class="title-category">
+			Hỏi đáp mới nhất
+		</div>
+		
+		<div class="clr"></div>
+		
+		<div class="item-container">
+			<ul>
+				
+				<li>
+					kkk
+				</li>
+				
+			</ul>
+		</div>
+		
+		<div class="clr"></div>
+	</div>
+	
+	<div class="margin-bottom5">
+		<div class="title-category">
+			Album mới nhất
+		</div>
+		
+		<div class="clr"></div>
+		
+		<div class="item-container">
+			<ul>
+				<?php foreach ($items['albums'] as $album): ?>
+				<li>
+					<div class="img">
+						<img src="<?php echo $album->images; ?>" />
+					</div>
+					<?php echo $album->name; ?>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+		
+		<div class="clr"></div>
 	</div>
 </div>
 

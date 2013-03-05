@@ -201,10 +201,12 @@ ul#main-menu li a:hover {
     text-indent: 10px;
     font-weight: bold;
 }
-.tour-container {    
+.tour-container, .item-container {    
     border: 1px solid #E6E6E6;
     border-top: 1px solid #fff;
 	padding: 10px 0 10px 11px;
+	float: left;
+	width: 637px;
 }
 .tour-content {
     padding-right: 11px;
@@ -351,3 +353,8 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 
 .location-album { background: #FFF; border-radius: 3px; border: 1px solid #CCC; margin-bottom: 20px; width: 624px; height: 453px; padding: 15px 12px; }
 .location-album h1 { font-size: 18px; margin-bottom: 5px; }
+
+.item-container ul li { float: left; width: 118px; margin-right: 10px; }
+.item-container ul li:last-child { margin-right: 0; }
+.item-container .img { width: 116px; height: 87px; overflow: hidden; border: 1px solid #dfdfdf; }
+.item-container .img img { width: 114px; }

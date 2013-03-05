@@ -14,15 +14,17 @@ class NtripModelCategory extends JModel
 		
 		$catid = $this->getState('filter.catid', 0);
 		
-		$rows['hotels']		= $this->_getLatestItems('hotels', $catid);
+//		$rows['hotels']		= $this->_getLatestItems('hotels', $catid);
+		$rows['discovers'] = $this->_getLatestItems('discovers', $catid);
 		$rows['promotions'] = $this->_getLatestItems('promotions', $catid);
 //		$rows['suggests']	= $this->_getLatestItems('suggests', $catid);
-		$rows['discovers']	= $this->_getLatestItems('discovers', $catid);
+		$rows['warnings']	= $this->_getLatestItems('warnings', $catid);
+		$rows['albums']	= $this->_getLatestItems('albums', $catid);
 				
 		return $rows;
 	}
 	
-	public function _getLatestItems($type = 'hotels', $catid = 0)
+	public function _getLatestItems($type = 'hotels', $catid = 0, $limit = 5)
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -33,7 +35,7 @@ class NtripModelCategory extends JModel
 				->where('(catid = '. $catid.' OR catid IN (SELECT id FROM #__categories WHERE parent_id = '. $catid.'))')
 				->order('id DESC');
 		
-		$db->setQuery($query);
+		$db->setQuery($query, 0, $limit);
 		$rs = $db->loadObjectList();
 		
 		return $rs;
