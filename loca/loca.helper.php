@@ -71,7 +71,8 @@ class LocaHelper
 		return $html;
 	}
 	
-	public static function renderModule($module) {
+	public static function renderModule($module) 
+	{
 		jimport('joomla.application.module.helper');
 		
 		if (is_object($module) && $module->id) {

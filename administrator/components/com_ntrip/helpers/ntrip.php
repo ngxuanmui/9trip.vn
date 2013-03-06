@@ -99,6 +99,17 @@ class NtripHelper
 		}
 		
 		JSubMenuHelper::addEntry(
+			JText::_('[Discover: Type]'),
+			'index.php?option=com_categories&extension=com_ntrip.custom_field_discover',
+			$vName == 'categories'
+		);
+		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_discover') {
+			JToolBarHelper::title(
+				JText::sprintf('COM_CATEGORIES_CATEGORIES_TITLE', JText::_('com_ntrip_discover_category')),
+				'discovers-categories');
+		}
+		
+		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_CATEGORIES_CUSTOM_FIELD_HOTEL'),
 			'index.php?option=com_categories&extension=com_ntrip.custom_field_hotel',
 			$vName == 'categories' && $extension == 'com_ntrip.custom_field_hotel'

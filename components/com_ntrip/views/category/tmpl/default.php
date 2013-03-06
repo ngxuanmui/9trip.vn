@@ -1,4 +1,6 @@
 <?php
+// no direct access
+defined('_JEXEC') or die;
 
 $items = $this->items;
 ?>
@@ -104,10 +106,10 @@ $items = $this->items;
 		<div class="clr"></div>
 		
 		<div class="item-container">
-			<ul>
-				<?php foreach ($items['albums'] as $album): ?>
-				<li>
-					<div class="img">
+			<ul class="album-container">
+				<?php foreach ($items['albums'] as $key => $album): ?>
+				<li <?php if ( ($key + 1) % 3 == 0 ) echo 'class="last-item"' ?>>
+					<div class="img album-img">
 						<img src="<?php echo $album->images; ?>" />
 					</div>
 					<?php echo $album->name; ?>

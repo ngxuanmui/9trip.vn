@@ -20,6 +20,9 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 </style>
 
 <script type="text/javascript">
+	var ITEM_TYPE = 'discovers';
+	var ITEM_ID = <?php echo ($this->item->id) ? $this->item->id : 0; ?>;
+		
 	Joomla.submitbutton = function(task)
 	{
 		if (task == 'discover.cancel' || document.formvalidator.isValid(document.id('discover-form'))) {
@@ -41,9 +44,12 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				
 				<li><?php echo $this->form->getLabel('address'); ?>
 				<?php echo $this->form->getInput('address'); ?></li>
-
+				
 				<li><?php echo $this->form->getLabel('catid'); ?>
 				<?php echo $this->form->getInput('catid'); ?></li>
+				
+				<li><?php echo $this->form->getLabel('type'); ?>
+				<?php echo $this->form->getInput('type'); ?></li>
 				
 				<li><?php echo $this->form->getLabel('phone'); ?>
 				<?php echo $this->form->getInput('phone'); ?></li>

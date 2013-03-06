@@ -15,6 +15,10 @@
 			size="40" label="JFIELD_ALIAS_LABEL"
 			description="COM_NTRIP_FIELD_ALIAS_DESC" />
 
+		<field name="type" type="customfield" class="inputbox"
+			size="40" extension="com_ntrip.custom_field_discover"
+			label="COM_NTRIP_FIELD_TYPE_LABEL" />
+
 		<field name="catid" type="categoryedit" extension="com_ntrip"
 			label="COM_NTRIP_FIELD_LOCATION_LABEL"
 			class="inputbox" required="true"

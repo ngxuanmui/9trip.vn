@@ -22,6 +22,11 @@ a {
 
 .fltlft, .fltleft { float: left; }
 .fltrgt, .fltright { float: right; }
+
+.icons { background: url('../images/icons.png') no-repeat; display: block; }
+
+ul { list-style: none; }
+
 #main-container {                        
     padding: 0;
 }
@@ -354,7 +359,22 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .location-album { background: #FFF; border-radius: 3px; border: 1px solid #CCC; margin-bottom: 20px; width: 624px; height: 453px; padding: 15px 12px; }
 .location-album h1 { font-size: 18px; margin-bottom: 5px; }
 
-.item-container ul li { float: left; width: 118px; margin-right: 10px; }
+.item-container ul li { float: left; width: 116px; margin-right: 10px; margin-bottom: 5px; }
 .item-container ul li:last-child { margin-right: 0; }
-.item-container .img { width: 116px; height: 87px; overflow: hidden; border: 1px solid #dfdfdf; }
-.item-container .img img { width: 114px; }
+
+.item-container .img,
+.other-items .img { width: 114px; height: 87px; overflow: hidden; border: 1px solid #dfdfdf; margin-bottom: 5px; }
+
+.item-container .img img, 
+.other-items .img img { width: 114px; }
+
+.item-container .album-img { width: 198px; height: 150px; }
+.item-container .album-img img { width: 198px; }
+.item-container .album-container li { width: 200px;}
+.item-container .album-container li.last-item { margin-right: 0; }
+
+.quote { background-position: -181px 0; width: 27px; height: 20px; }
+.loca-button  { background-position: 0 0; width: 178px; height: 45px; }
+
+.list-restaurants .img { width: 200px; height: 150px; overflow: hidden; }
+.list-restaurants .img img { width: 200px; }

@@ -33,4 +33,18 @@ class Ntrip_User_Toolbar
 		
 		return implode("\n", $html);
 	}
+	
+	public static function itemsMenu()
+	{
+		$html = '<ul class="items-menu">
+					<li>Khách sạn</li>
+					<li>Nhà hàng</li>
+					<li>Giải trí</li>
+					<li>Tham quan</li>
+					<li>Mua sắm</li>
+					<li>Dịch vụ</li>
+				</ul>';
+		
+		return $html;
+	}
 }

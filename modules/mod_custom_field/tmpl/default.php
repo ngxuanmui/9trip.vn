@@ -1,7 +1,7 @@
 <?php
 /**
  * @package		Joomla.Site
- * @subpackage	mod_stats
+ * @subpackage	mod_custom_field
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -32,7 +32,16 @@ defined('_JEXEC') or die;
 		<h1>Nhà hàng</h1>
 		<ul>
 			<?php foreach ($list['restaurants'] as $resCustomField): ?>
-			<li><?php echo $resCustomField->title; ?> (*)</li>
+			<li>
+				<?php 
+				$id = JRequest::getInt('id');
+				
+				$linkId = ($id) ? '&id=' . $id : '';
+				?>
+				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=restaurants&custom_field=' . $resCustomField->id . $linkId, false); ?>">
+					<?php echo $resCustomField->title; ?> (*)
+				</a>				
+			</li>
 			<?php endforeach; ?>
 		</ul>
 		<div class="clr"></div>

@@ -17,6 +17,10 @@ require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'ntrip.php';
 // toolbar
 require_once JPATH_COMPONENT_SITE . DS . 'helpers' . DS . 'user_toolbar.php';
 
+// abs class
+require_once JPATH_COMPONENT_SITE . DS . 'models' . DS . 'items.php';
+require_once JPATH_COMPONENT_SITE . DS . 'models' . DS . 'item.php';
+
 $controller = JControllerLegacy::getInstance('Ntrip');
 $controller->execute(JRequest::getCmd('task'));
 $controller->redirect();
