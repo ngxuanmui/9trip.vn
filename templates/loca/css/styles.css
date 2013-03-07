@@ -371,10 +371,22 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .item-container .album-img { width: 198px; height: 150px; }
 .item-container .album-img img { width: 198px; }
 .item-container .album-container li { width: 200px;}
-.item-container .album-container li.last-item { margin-right: 0; }
 
 .quote { background-position: -181px 0; width: 27px; height: 20px; }
 .loca-button  { background-position: 0 0; width: 178px; height: 45px; }
 
 .list-restaurants .img { width: 200px; height: 150px; overflow: hidden; }
 .list-restaurants .img img { width: 200px; }
+
+.list-discovers .img { width: 615px; height: 440px; margin-bottom: 5px; overflow: hidden; }
+.list-discovers .img img { width: 615px; }
+
+.list-albums { margin-left: 10px; }
+.list-albums li { float: left; width: 200px; margin-right: 10px; margin-bottom: 10px; }
+
+.list-albums li .img { height: 150px; overflow: hidden;  border: 1px solid #dbdbdb; margin-bottom: 5px; }
+.list-albums li .img img { width: 198px; }
+
+.list-albums li h2 { font-size: 12px; }
+
+.last-item { margin-right: 0 !important; }

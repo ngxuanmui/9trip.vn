@@ -68,6 +68,8 @@ abstract class AbsNtripModelItems extends JModelList
 			
 		}
 		
+		$query->order('a.id DESC');
+		
 //		$query->join('INNER', '#__category_location cl ON a.type = cl.category_id');
 //		$query->where('cl.category_id = ');
 		
@@ -105,6 +107,10 @@ abstract class AbsNtripModelItems extends JModelList
 
 			case 'relaxes':
 				$extension = 'com_ntrip.custom_field_relax';
+				break;
+			
+			case 'discovers':
+				$extension = 'com_ntrip.custom_field_discover';
 				break;
 
 			default :

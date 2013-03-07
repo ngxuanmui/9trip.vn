@@ -57,8 +57,10 @@ abstract class AbsNtripModelItem extends JModelItem
 				->from('#__ntrip_'. $type)
 				->where('id != ' . $item->id)
 				->where('state = 1')
-				->where('catid = ' . $item->catid)
-				->where('type = "' . $item->type . '"');
+				->where('catid = ' . $item->catid);
+				
+		if (isset($item->type))
+				$query->where('type = "' . $item->type . '"');
 		
 		$db->setQuery($query, 0, CFG_DEFAULT_NUMBER_OF_OTHER_ITEMS);
 		$rs = $db->loadObjectList();
