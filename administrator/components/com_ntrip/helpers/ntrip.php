@@ -86,6 +86,12 @@ class NtripHelper
 			'index.php?option=com_ntrip&view=albums',
 			$vName == 'albums'
 		);
+		
+		JSubMenuHelper::addEntry(
+			JText::_('COM_NTRIP_SUBMENU_QAS'),
+			'index.php?option=com_ntrip&view=questions',
+			$vName == 'questions'
+		);
 
 		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_LOCATIONS'),

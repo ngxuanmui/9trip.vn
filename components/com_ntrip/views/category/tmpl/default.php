@@ -46,7 +46,9 @@ $items = $this->items;
 					<div class="img">
 						<img src="<?php echo $discover->images; ?>" />
 					</div>
-					<?php echo $discover->name; ?>
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $discover->id, false); ?>">
+						<?php echo $discover->name; ?>
+					</a>
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -69,7 +71,9 @@ $items = $this->items;
 					<div class="img">
 						<img src="<?php echo $promotion->images; ?>" />
 					</div>
-					<?php echo $promotion->name; ?>
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $promotion->id, false); ?>">
+						<?php echo $promotion->name; ?>
+					</a>					
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -112,7 +116,9 @@ $items = $this->items;
 					<div class="img album-img">
 						<img src="<?php echo $album->images; ?>" />
 					</div>
-					<?php echo $album->name; ?>
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $album->id, false); ?>">
+						<?php echo $album->name; ?>
+					</a>					
 				</li>
 				<?php endforeach; ?>
 			</ul>

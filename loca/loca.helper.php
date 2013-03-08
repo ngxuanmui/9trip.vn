@@ -101,4 +101,13 @@ class LocaHelper
 		
 		return $arrExt;
 	}
+	
+	public static function getLocationMultiType()
+	{
+//		$arr = array('hotels');
+		
+		$arr = array();
+		
+		return $arr;
+	}
 }
