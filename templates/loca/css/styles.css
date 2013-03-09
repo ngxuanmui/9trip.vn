@@ -390,3 +390,119 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .list-albums li h2 { font-size: 12px; }
 
 .last-item { margin-right: 0 !important; }
+
+/* list hotel style */
+.intro-list-hotel {
+	background: url("../images/bg-intro-hotels.gif") #EBE9E9 top left repeat-x;
+	height: auto;
+	border: 1px solid #E5E5E5;
+	padding: 10px 5px 15px 20px;
+}
+.intro-list-hotel label {
+	font-size: 18px;
+	font-weight: bold;
+	text-indent: 15px;
+	display: block;
+	color: #000;
+	height: 40px;
+}
+.intro-list-hotel input[type=button] {
+	background: #049F4F;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 10px;
+}
+ul.tab-categories {
+	margin: 10px 0px;
+	list-style: none;
+}
+ul.tab-categories li {
+	float: left;
+	width: 108px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 14px;
+	color: #fff;
+	background: #717171;
+}
+ul.tab-categories li.active{
+	background: #fff;
+	color: #676666;
+}
+ul.tab-categories li.even {
+	background: #8C8C8C;
+}
+.search-conditions {
+	background: #fff;
+	padding: 10px;
+}
+.list-hotels-container {
+	background: #fff;
+	margin-top: 15px;
+}
+ul.tab-list-hotels {
+	display: block;
+	background: #676666;
+	list-style: none;
+}
+ul.tab-list-hotels li {
+	padding: 10px;
+	float: left;
+	font-size: 16px;
+	color: #fff;
+	font-weight: bold;
+}
+ul.tab-list-hotels li.active {
+	background: #fff;
+	color: #555555;
+}
+.list-hotels-content {
+	padding-top: 20px;
+	padding-left: 10px;
+	color: #000;
+}
+.list-hotels-content ul li {
+	padding-top: 10px;
+	border-bottom: 1px dashed #DBDBDB;
+}
+.list-hotels-content a.title {
+	color: #006699;
+	font-weight: bold;
+	font-size: 14px;
+	display: block;
+	height: 30px;
+}
+.list-hotels-content .img-container {
+	width: 200px;
+	height: 152px;
+	float: left;
+	margin-right: 10px;
+}
+.list-hotels-content .content {
+	float: right;
+	width: 430px;
+}
+.list-hotels-content .img-container img {
+	overflow: hidden;
+	max-width: 200px;
+	border: 1px solid #B8B9B7;
+}
+.rating-content {
+	height: 30px;
+	line-height: 30px;
+}
+.rating-content img {
+	float: left;
+	margin-right: 10px;
+}
+.list-hotels-container .pagination {
+	background: #EBE9E9;
+	padding: 15px;
+}
+.list-hotels-content .content .description {
+	border: 1px solid #A0A0A0;
+	margin: 10px 20px 5px 0;
+	padding: 10px;
+}
