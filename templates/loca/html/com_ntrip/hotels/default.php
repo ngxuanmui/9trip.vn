@@ -57,9 +57,40 @@ $fields = $this->fields;
 	</ul>
 	<div class="clr"></div>
 	<div class="search-conditions">
-		<ul>
-			<li></li>
-		</ul>
+		<div class="style">
+			<label class="title">Phong cách</label>
+			<div style="float: left; margin-right: 10px;">
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> Miền Bắc </div>
+				<div class="row-input"><input type="checkbox" name="all" /> Miền Trung</div>
+			</div>
+			<div style="float: left; margin-right: 10px;">
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> Miền Bắc </div>
+				<div class="row-input"><input type="checkbox" name="all" /> Miền Trung</div>
+			</div>
+			<div style="float: left; margin-right: 10px;">
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> Miền Bắc </div>
+				<div class="row-input"><input type="checkbox" name="all" /> Miền Trung</div>
+			</div>
+		</div>
+		<div class="other-conditions">
+			<div class="col">
+				<label class="title">Đánh giá</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+			</div>
+			<div class="col">
+				<label class="title">Giá</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+			</div>
+			<div class="col">
+				<label class="title">Tiêu chuẩn</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
 	</div>
 
 	<div class="clr"></div>
@@ -82,23 +113,20 @@ $fields = $this->fields;
 						<img src="<?php echo $item->images; ?>" />
 					</div>
 					<div class="content">
-						<div class="discover-info">
-							<span class="user">Username Test</span>
-							<span class="datetime">Wed, 26/09/2012</span>
-							<span class="counter">182 lượt</span>
-							<span class="no-reply">0 trả lời</span>
+						<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
+						<b>Giá: </b>120 - 150 000 VNĐ/người <br />
+						<div class="rating-content">
+							<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/rate.gif" />
 						</div>
-						<div class="description">
+						<div class="description" style="display: none;">
 							<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 						</div>
 
 						<div class="rating-content">
 							<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/rate.gif" />
-							12 thành viên thích
+							234 lượt đánh giá
 						</div>
-						<div class="small-button">
-							Chi tiết
-						</div>
+						<a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a>
 					</div>
 					<div class="clr"></div>
 				</li>
