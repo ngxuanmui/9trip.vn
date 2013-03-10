@@ -5,42 +5,45 @@
 <script type="text/javascript">
     function tmpUpload(files)
     {
-	arrFiles = JSON.decode(files);
-	
-	html = '<table width="100%">';
-	
-	Array.each(arrFiles, function(val){
-	    
-	    value = val['files'][0];
-	    
-	    if (value.size > 0)
-	    {
-		hidden = '<input type="hidden" name="tmp_other_img[]" value="' + value.name + '" />';
+		arrFiles = JSON.decode(files);
 
-		html += '<tr>';
+		if (arrFiles instanceof Array && arrFiles.length > 0)
+		{
+			html = '<table width="100%">';
 
-		html += '<td width="80"><img src="' + value.thumbnail_url + '" /></td>';
-		html += '<td valign="top">'+value.name+'<br><input type="text" name="tmp_desc[]" size="40" placeholder="Input Description" />' + hidden + '</td>';
-		html += '<td width="50"><a href="javascript:;" class="delete-file">Del</a></td>';
+			Array.each(arrFiles, function(val){
 
-		html += '</tr>';
-	    }
-	});
-	
-	html += '</table>';
-	
-	var obj = new Element('table', { html: html, styles: { width: '100%' } })
-	
-	obj.inject($('tmp-uploaded'));
+				value = val['files'][0];
+
+				if (value.size > 0)
+				{
+					hidden = '<input type="hidden" name="tmp_other_img[]" value="' + value.name + '" />';
+
+					html += '<tr>';
+
+					html += '<td width="80"><img src="' + value.thumbnail_url + '" /></td>';
+					html += '<td valign="top">'+value.name+'<br><input type="text" name="tmp_desc[]" size="40" placeholder="Input Description" />' + hidden + '</td>';
+					html += '<td width="50"><a href="javascript:;" class="delete-file">Del</a></td>';
+
+					html += '</tr>';
+				}
+			});
+
+			html += '</table>';
+
+			var obj = new Element('table', { html: html, styles: { width: '100%' } })
+
+			obj.inject($('tmp-uploaded'));
+		}
     }
     
     $(document.body).addEvent('click:relay(.delete-file)', function(){
-	var parent = this.getParent('tr');
-	parent.fade('out');
-	setTimeout(function(){
-	    parent.dispose();
-	}, 500)
-	return false;
+		var parent = this.getParent('tr');
+		parent.fade('out');
+		setTimeout(function(){
+			parent.dispose();
+		}, 500)
+		return false;
     });
 </script>
 <?php

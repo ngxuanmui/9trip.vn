@@ -50,9 +50,6 @@
 		<field name="price_to" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_PRICE_TO_LABEL" />
 		
-		<field name="system_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_SYSTEM_RANK_LABEL" />
-		
 		<field name="user_rank" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_USER_RANK_LABEL" />
 		
@@ -67,13 +64,6 @@
 		
 		<field name="phone" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_PHONE_LABEL" />
-
-		<field name="hotline" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_HOTLINE_LABEL" />
-
-		<field name="description" type="editor" class="inputbox"
-			label="JGLOBAL_DESCRIPTION" 
-			filter="JComponentHelper::filterText" buttons="true" />
 
 	</fieldset>
 

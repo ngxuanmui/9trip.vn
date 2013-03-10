@@ -49,9 +49,6 @@
 		<field name="price_to" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_PRICE_TO_LABEL" />
 		
-		<field name="system_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_SYSTEM_RANK_LABEL" />
-		
 		<field name="user_rank" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_USER_RANK_LABEL" />
 		
@@ -62,9 +59,13 @@
 				description="COM_NTRIP_FIELD_HOTEL_CLASS_DESC">
 				<option value="">- Select -</option>
 				<option	value="1">1</option>
+				<option	value="1.5">1.5</option>
 				<option value="2">2</option>
+				<option value="2.5">2.5</option>
 				<option	value="3">3</option>
+				<option	value="3.5">3.5</option>
 				<option value="4">4</option>
+				<option value="4.5">4.5</option>
 				<option	value="5">5</option>
 			</field>
 		
@@ -80,12 +81,8 @@
 		<field name="phone" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_PHONE_LABEL" />
 
-		<field name="hotline" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_HOTLINE_LABEL" />
-
-		<field name="description" type="editor" class="inputbox"
-			label="JGLOBAL_DESCRIPTION" 
-			filter="JComponentHelper::filterText" buttons="true" />
+		<field name="external_link" type="textarea" class="inputbox"
+			rows="7" cols="55" label="Link to price" />
 
 	</fieldset>
 
@@ -98,11 +95,11 @@
 			class="inputbox" size="22" format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc" />
 		
-		<field name="promotion_title" type="text" class="inputbox"
+		<!-- field name="promotion_title" type="text" class="inputbox"
 			size="50" label="COM_NTRIP_FIELD_PROMOTION_TITLE_LABEL" />
 
 		<field name="promotion_desc" type="textarea" class="inputbox"
-			rows="7" cols="50" label="COM_NTRIP_FIELD_PROMOTION_DESC_LABEL" />
+			rows="7" cols="50" label="COM_NTRIP_FIELD_PROMOTION_DESC_LABEL" /-->
 
 	</fieldset>
 

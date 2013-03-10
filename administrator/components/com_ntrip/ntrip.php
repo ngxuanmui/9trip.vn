@@ -16,7 +16,7 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_ntrip')) {
 // Add script
 $doc = JFactory::getDocument();
 
-$doc->addScript(JURI::root() . 'media/loca/jquery.1.8.3.min.js');
+$doc->addScript(JURI::root() . 'media/loca/jquery-1.7.2.min.js');
 $doc->addScript(JURI::base() . 'components/com_ntrip/helpers/html/js/ntrip.js');
 
 // Helper

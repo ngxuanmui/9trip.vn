@@ -7,6 +7,11 @@ jQuery(function($){
 	
 	if (typeof ITEM_TYPE != 'undefined')
 		changeLoc($('#jform_catid').val());
+	
+//	$('#jform_select_type').change(function(){
+//		alert($(this).val());
+//		changeItemTypePromotion($(this).val());
+//	});
 });
 
 function changeLoc($loc)
@@ -21,3 +26,16 @@ function changeLoc($loc)
 			}
 		);
 }
+
+//function changeItemTypePromotion(type)
+//{
+//	jQuery('#select-item').html('Wating ...');
+//	jQuery.post(
+//			'index.php?option=com_ntrip&task=other.changeItemTypePromotion&tmpl=component',
+//			{ type: type, id: ITEM_ID },
+//			function(data)
+//			{
+//				jQuery('#select-item').html(data);
+//			}
+//		);
+//}

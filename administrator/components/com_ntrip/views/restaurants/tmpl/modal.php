@@ -20,7 +20,8 @@ $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
 $canOrder	= $user->authorise('core.edit.state', 'com_ntrip.category');
 $saveOrder	= $listOrder=='ordering';
-$params		= (isset($this->state->params)) ? $this->state->params : new JObject();
+
+$function	= JRequest::getCmd('function', 'jSelect');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_ntrip&view=restaurants'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
@@ -48,9 +49,6 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 	<table class="adminlist">
 		<thead>
 			<tr>
-				<th width="1%">
-					<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
-				</th>
 				<th>
 					<?php echo JHtml::_('grid.sort',  'COM_NTRIP_HEADING_NAME', 'a.name', $listDirn, $listOrder); ?>
 				</th>
@@ -84,51 +82,28 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
 			$ordering	= ($listOrder == 'ordering');
-			$item->cat_link = JRoute::_('index.php?option=com_categories&extension=com_ntrip&task=edit&type=other&cid[]='. $item->catid);
 			$canCreate	= $user->authorise('core.create',		'com_ntrip.category.'.$item->catid);
 			$canEdit	= $user->authorise('core.edit',			'com_ntrip.category.'.$item->catid);
 			$canCheckin	= $user->authorise('core.manage',		'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
 			$canChange	= $user->authorise('core.edit.state',	'com_ntrip.category.'.$item->catid) && $canCheckin;
 			?>
 			<tr class="row<?php echo $i % 2; ?>">
-				<td class="center">
-					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
-				</td>
 				<td>
 					<?php if ($item->checked_out) : ?>
 						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'restaurants.', $canCheckin); ?>
 					<?php endif; ?>
-					<?php if ($canEdit) : ?>
-						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=restaurant.edit&id='.(int) $item->id); ?>">
-							<?php echo $this->escape($item->name); ?></a>
-					<?php else : ?>
-							<?php echo $this->escape($item->name); ?>
-					<?php endif; ?>
+					<a class="pointer" onclick="if (window.parent) window.parent.<?php echo $this->escape($function);?>('<?php echo $item->id; ?>', '<?php echo $this->escape(addslashes($item->name)); ?>');">
+						<?php echo $this->escape($item->name); ?>
+					</a>
 					<p class="smallsub">
-						<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?></p>
+						<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?>
+					</p>
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'restaurants.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 				</td>
 				<td class="center">
 					<?php echo $this->escape($item->category_title); ?>
-				</td>
-				<td class="order">
-					<?php if ($canChange) : ?>
-						<?php if ($saveOrder) : ?>
-							<?php if ($listDirn == 'asc') : ?>
-								<span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->catid == $item->catid), 'restaurants.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-								<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->catid == $item->catid), 'restaurants.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-							<?php elseif ($listDirn == 'desc') : ?>
-								<span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->catid == $item->catid), 'restaurants.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-								<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->catid == $item->catid), 'restaurants.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
-							<?php endif; ?>
-						<?php endif; ?>
-						<?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>
-						<input type="text" name="order[]" size="5" value="<?php echo $item->ordering;?>" <?php echo $disabled; ?> class="text-area-order" />
-					<?php else : ?>
-						<?php echo $item->ordering; ?>
-					<?php endif; ?>
 				</td>
 				<td class="center">
 					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=comments&type=restaurant&item_id='.$item->id); ?>">

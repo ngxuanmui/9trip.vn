@@ -20,12 +20,41 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 </style>
 
 <script type="text/javascript">
+	
+	var ITEM_ID = <?php echo ($this->item->item_id) ? $this->item->item_id : 0; ?>;
+	
 	Joomla.submitbutton = function(task)
 	{
 		if (task == 'promotion.cancel' || document.formvalidator.isValid(document.id('promotion-form'))) {
 			Joomla.submitform(task, document.getElementById('promotion-form'));
 		}
 	}
+	
+	jQuery(function($){
+		$('#jform_item_type').change(function(){
+			var val = $(this).val();
+			
+			if (val == '')
+			{
+				$('#show-select-custom-item').css('display', 'none');
+				$('#custom-item').css('display', 'block');
+				return false;
+			}
+			
+			var a = $('a.select-item');
+			var href = a.attr('href').replace(/&item_id=[0-9]+&view=[a-z]+/, '');
+			
+			href += '&item_id=' + <?php echo ($this->item->item_id) ? $this->item->item_id : 0 ; ?>;
+			href += '&view=' + $(this).val();
+			
+			a.attr('href', href);
+			
+			$('#custom-item').css('display', 'none');
+			$('#show-select-custom-item').css('display', 'block');
+		});
+		
+		$('#jform_item_type').change();
+	});
 </script>
 
 <form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="promotion-form" class="form-validate" enctype="multipart/form-data">
@@ -38,32 +67,25 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 
 				<li><?php echo $this->form->getLabel('alias'); ?>
 				<?php echo $this->form->getInput('alias'); ?></li>
-				
-				<li><?php echo $this->form->getLabel('address'); ?>
-				<?php echo $this->form->getInput('address'); ?></li>
 
 				<li><?php echo $this->form->getLabel('catid'); ?>
 				<?php echo $this->form->getInput('catid'); ?></li>
+
+				<li><?php echo $this->form->getLabel('item_type'); ?>
+				    <?php echo $this->form->getInput('item_type'); ?>
+				</li>
 				
-				<li><?php echo $this->form->getLabel('phone'); ?>
-				<?php echo $this->form->getInput('phone'); ?></li>
-
-				<li><?php echo $this->form->getLabel('hotline'); ?>
-				<?php echo $this->form->getInput('hotline'); ?></li>
-
-				<li><?php echo $this->form->getLabel('website'); ?>
-				    <?php echo $this->form->getInput('website'); ?>
-				</li>
-
-				<li><?php echo $this->form->getLabel('email'); ?>
-				    <?php echo $this->form->getInput('email'); ?>
-
-				<li><?php echo $this->form->getLabel('system_rank'); ?>
-				    <?php echo $this->form->getInput('system_rank'); ?>
-				</li>
-
-				<li><?php echo $this->form->getLabel('user_rank'); ?>
-				    <?php echo $this->form->getInput('user_rank'); ?>
+				<li><?php echo $this->form->getLabel('item_id'); ?>
+				
+					
+					<div id="custom-item" style="line-height: 23px; float: left;">
+						Please select type first
+					</div>
+					
+					<div id="show-select-custom-item" style="display: none;">
+						<?php echo $this->form->getInput('item_id'); ?>
+					</div>
+				
 				</li>
 
 				<li><?php echo $this->form->getLabel('state'); ?>

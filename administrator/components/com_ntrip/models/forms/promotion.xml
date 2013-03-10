@@ -38,18 +38,21 @@
 			<option value="2">JARCHIVED</option>
 			<option value="-2">JTRASHED</option>
 		</field>
-		
-		<field name="system_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_SYSTEM_RANK_LABEL" />
-		
-		<field name="user_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_USER_RANK_LABEL" />
 
-		<field name="website" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_WEBSITE_LABEL" />
-		
-		<field name="address" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" />
+		<field name="item_type" type="list"
+			label="Select Type"
+			class="inputbox" size="1" default="" >
+			<option value="">- Select type -</option>
+			<option value="hotels">Hotels</option>
+			<option value="restaurants">Restaurants</option>
+			<option value="tours">Tours</option>
+			<option value="relaxes">Relaxes</option>
+			<option value="shoppings">Shoppings</option>
+			<option value="services">Services</option>
+		</field>
+
+		<field name="item_id" type="customitem" class="inputbox"
+			size="40" label="Select Item" />
 
 		<field name="description" type="editor" class="inputbox"
 			label="JGLOBAL_DESCRIPTION" 

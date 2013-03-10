@@ -57,9 +57,6 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				<li><?php echo $this->form->getLabel('phone'); ?>
 				<?php echo $this->form->getInput('phone'); ?></li>
 
-				<li><?php echo $this->form->getLabel('hotline'); ?>
-				<?php echo $this->form->getInput('hotline'); ?></li>
-
 				<li><?php echo $this->form->getLabel('website'); ?>
 				    <?php echo $this->form->getInput('website'); ?>
 				</li>
@@ -76,8 +73,8 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				    <?php echo $this->form->getInput('price_to'); ?>
 				</li>
 
-				<li><?php echo $this->form->getLabel('system_rank'); ?>
-				    <?php echo $this->form->getInput('system_rank'); ?>
+				<li><?php echo $this->form->getLabel('external_link'); ?>
+				    <?php echo $this->form->getInput('external_link'); ?>
 				</li>
 
 				<li><?php echo $this->form->getLabel('user_rank'); ?>

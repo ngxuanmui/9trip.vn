@@ -154,8 +154,11 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
 $('#btn-close-add').click(function(){
     var url = '<?php echo JRoute::_('index.php?option=com_ntrip&task=uploadfile.close', false); ?>';
     $.get(url, {}, function(data){
-	window.parent.tmpUpload(data);
-	closeBox();
+		
+		if (data.length > 0)
+			window.parent.tmpUpload(data);
+		
+		closeBox();
     });
     
 });

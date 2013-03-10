@@ -38,33 +38,9 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 
 				<li><?php echo $this->form->getLabel('alias'); ?>
 				<?php echo $this->form->getInput('alias'); ?></li>
-				
-				<li><?php echo $this->form->getLabel('address'); ?>
-				<?php echo $this->form->getInput('address'); ?></li>
 
 				<li><?php echo $this->form->getLabel('catid'); ?>
 				<?php echo $this->form->getInput('catid'); ?></li>
-				
-				<li><?php echo $this->form->getLabel('phone'); ?>
-				<?php echo $this->form->getInput('phone'); ?></li>
-
-				<li><?php echo $this->form->getLabel('hotline'); ?>
-				<?php echo $this->form->getInput('hotline'); ?></li>
-
-				<li><?php echo $this->form->getLabel('website'); ?>
-				    <?php echo $this->form->getInput('website'); ?>
-				</li>
-
-				<li><?php echo $this->form->getLabel('email'); ?>
-				    <?php echo $this->form->getInput('email'); ?>
-
-				<li><?php echo $this->form->getLabel('system_rank'); ?>
-				    <?php echo $this->form->getInput('system_rank'); ?>
-				</li>
-
-				<li><?php echo $this->form->getLabel('user_rank'); ?>
-				    <?php echo $this->form->getInput('user_rank'); ?>
-				</li>
 
 				<li><?php echo $this->form->getLabel('state'); ?>
 				<?php echo $this->form->getInput('state'); ?></li>
