@@ -53,12 +53,6 @@
 			label="COM_NTRIP_FIELD_CREATED_LABEL" description="COM_NTRIP_FIELD_CREATED_DESC"
 			class="inputbox" size="22" format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc" />
-		
-		<field name="promotion_title" type="text" class="inputbox"
-			size="50" label="COM_NTRIP_FIELD_PROMOTION_TITLE_LABEL" />
-
-		<field name="promotion_desc" type="textarea" class="inputbox"
-			rows="7" cols="50" label="COM_NTRIP_FIELD_PROMOTION_DESC_LABEL" />
 
 	</fieldset>
 

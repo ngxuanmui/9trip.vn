@@ -64,6 +64,9 @@ class JFormFieldCustomItem extends JFormField
 			$db->setQuery($query);
 			
 			$type = $db->loadResult();
+			
+			if (!$type)
+				$type = 'hotels';
 		}
 		
 		$db->setQuery(
