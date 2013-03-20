@@ -453,6 +453,7 @@ ul.tab-categories li.even {
 .search-conditions .row-input {
 	color: #006699;
 	padding: 5px 10px;
+	height: 20px;
 }
 .search-conditions .style input[type=checkbox] {
 	margin-bottom: 5px;
@@ -524,6 +525,19 @@ ul.tab-list-hotels li.active {
 	height: 30px;
 	line-height: 30px;
 }
+.rule-star {
+	width: 100%;
+	height: 30px;
+}
+.rule-star label {
+	line-height: 24px;
+	display: block;
+	font-weight: bold;
+	float: left;
+}
+.rule-star img {
+	margin-left: 10px;
+}
 .rating-content img {
 	float: left;
 	margin-right: 10px;
@@ -556,3 +570,40 @@ ul.tab-list-hotels li.active {
 }
 
 ul.questions li { float: none; width: 100%; }
+.row-input input[type=checkbox] {
+	float: left;
+	height: 16px;
+	margin-right: 10px;
+}
+.star-1 {
+	width: 20px;
+	height: 17px;
+	background: url("../images/full-stars.gif") 0 0;
+	float: left;
+}
+.star-2 {
+	width: 40px;
+	height: 17px;
+	background: url("../images/full-stars.gif") 0 0;
+	float: left;
+}
+.star-3 {
+	width: 60px;
+	height: 17px;
+	background: url("../images/full-stars.gif") 0 0;
+	float: left;
+}
+.star-4 {
+	width: 80px;
+	height: 17px;
+	background: url("../images/full-stars.gif") 0 0;
+	float: left;
+}
+.star-5 {
+	width: 105px;
+	height: 17px;
+	background: url("../images/full-stars.gif") 0 0;
+	float: left;
+}
+
+

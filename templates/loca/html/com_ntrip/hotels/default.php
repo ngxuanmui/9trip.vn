@@ -79,10 +79,21 @@ $fields = $this->fields;
 			<div class="col">
 				<label class="title">Đánh giá</label>
 				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-1"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-2"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-3"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-4"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-5"></div> </div>
 			</div>
 			<div class="col">
 				<label class="title">Giá</label>
 				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 0 VNĐ - 200N VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 200 VNĐ - 500N VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 500 VNĐ - 1TR VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 1TR VNĐ - 2TR VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" />TRÊN 2TR VNĐ </div>
+
 			</div>
 			<div class="col">
 				<label class="title">Tiêu chuẩn</label>
@@ -115,8 +126,9 @@ $fields = $this->fields;
 					<div class="content">
 						<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
 						<b>Giá: </b>120 - 150 000 VNĐ/người <br />
-						<div class="rating-content">
-							<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/rate.gif" />
+						<div class="rule-star">
+							<label>Tiêu chí:</label>
+							<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/5-stars.gif" />
 						</div>
 						<div class="description" style="display: none;">
 							<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>

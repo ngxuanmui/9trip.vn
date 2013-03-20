@@ -37,7 +37,7 @@ $item = $this->item;
 					<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
 					<b>Giá: </b>120 - 150 000 VNĐ/người <br />
 					<div class="rating-content">
-						<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/rate.gif" />
+						<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/5-stars.gif" />
 					</div>
 					<div class="description">
 						<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
