@@ -8,7 +8,11 @@ defined('_JEXEC') or die;
 	<?php foreach ($list as $key => $item): ?>
 	<div class="promotion-item <?php if ($key == 0) echo 'discover-featured'; ?>">
 		<img src="<?php echo $item->images; ?>" />
-		<div class="title"><?php echo $item->name; ?></div>
+		<div class="title">
+			<a href="#">
+				<?php echo $item->name; ?>
+			</a>
+		</div>
 		<?php if ($key > 0): ?>
 		<div class="date">(<?php echo date('d.m.Y', $item->unix_time_created); ?>)</div>
 		<?php endif; ?>

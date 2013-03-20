@@ -554,3 +554,5 @@ ul.tab-list-hotels li.active {
 .hotel-container .social-info {
 	padding: 5px 0;
 }
+
+ul.questions li { float: none; width: 100%; }

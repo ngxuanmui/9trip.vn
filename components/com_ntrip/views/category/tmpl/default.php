@@ -5,6 +5,13 @@ defined('_JEXEC') or die;
 $items = $this->items;
 ?>
 
+<script type="text/javascript">
+	jQuery(function(){
+		Galleria.loadTheme('<?php echo JURI::base(); ?>media/loca/galleria/themes/classic/galleria.classic.min.js');
+		Galleria.run('#galleria');
+	});
+</script>
+
 <div id="top-adv">
 		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 	</div>
@@ -14,7 +21,13 @@ $items = $this->items;
 	<div class="location-album">
 		<h1><?php echo $this->category->title; ?></h1>
 		<div class="album">
-			<img src="<?php echo JURI::base() . '/templates/loca/images/sample/location-album.png'; ?>" />
+			<div id="galleria">
+				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/10m.jpg'; ?>">
+				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/6m.jpg'; ?>">
+				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/7m.jpg'; ?>">
+				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/8m.jpg'; ?>">
+				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/9m.jpg'; ?>">
+			</div>
 		</div>
 	</div>
 	
@@ -90,12 +103,14 @@ $items = $this->items;
 		<div class="clr"></div>
 		
 		<div class="item-container">
-			<ul>
-				
+			<ul class="questions">
+				<?php foreach ($items['questions'] as $question): ?>
 				<li>
-					kkk
+					<a href="#">
+						<?php echo $question->title; ?>
+					</a>
 				</li>
-				
+				<?php endforeach; ?>
 			</ul>
 		</div>
 		

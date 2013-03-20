@@ -193,8 +193,8 @@ class NtripModelQuestion extends JModelAdmin
 		
 		$query->select('qa.*')
 				->from('#__ntrip_question_answers qa')
-				->where('question_id = ' . $item->id)
-				->order('id DESC');
+				->where('question_id = ' . (int) $item->id)
+				->order('qa.id DESC');
 		
 		// Join over the users for the author.
 		$query->select('ua.name AS author_name');
@@ -229,7 +229,8 @@ class NtripModelQuestion extends JModelAdmin
 	
 	public function save($data) 
 	{
-	    if (parent::save($data))
+		$saveResult = parent::save($data);
+	    if ($saveResult)
 	    {
 			$id = (int) $this->getState($this->getName() . '.id');
 			
@@ -260,7 +261,7 @@ class NtripModelQuestion extends JModelAdmin
 					die($db->getErrorMsg ());
 			}
 
-			return parent::save($data);
+			return $saveResult;
 	    }
 
 	    return false;

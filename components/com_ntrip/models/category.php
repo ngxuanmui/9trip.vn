@@ -20,6 +20,7 @@ class NtripModelCategory extends JModel
 //		$rows['suggests']	= $this->_getLatestItems('suggests', $catid);
 		$rows['warnings']	= $this->_getLatestItems('warnings', $catid);
 		$rows['albums']	= $this->_getLatestItems('albums', $catid);
+		$rows['questions']	= $this->_getLatestItems('questions', $catid);
 				
 		return $rows;
 	}
