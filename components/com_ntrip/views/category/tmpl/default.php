@@ -7,7 +7,19 @@ $items = $this->items;
 
 <script type="text/javascript">
 	jQuery(function(){
-		Galleria.loadTheme('<?php echo JURI::base(); ?>media/loca/galleria/themes/classic/galleria.classic.min.js');
+		Galleria.loadTheme('<?php echo JURI::base(); ?>media/loca/galleria/themes/azur/galleria.azur.min.js');
+		Galleria.configure({
+			imageCrop: 'landscape',
+			imageMargin: 60,
+			imagePosition: 'top',
+			transition: 'fade',
+			showCounter: false,
+			idleMode: 'hover',
+    idleSpeed: 500,
+	fullscreenTransition: false,
+	trueFullscreen: false
+		});
+		
 		Galleria.run('#galleria');
 	});
 </script>
@@ -22,7 +34,7 @@ $items = $this->items;
 		<h1><?php echo $this->category->title; ?></h1>
 		<div class="album">
 			<div id="galleria">
-				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/10m.jpg'; ?>">
+				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/10m.jpg'; ?>" title="test title" data-description="here is desc">
 				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/6m.jpg'; ?>">
 				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/7m.jpg'; ?>">
 				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/8m.jpg'; ?>">

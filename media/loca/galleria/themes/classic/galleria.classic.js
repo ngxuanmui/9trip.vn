@@ -20,7 +20,12 @@ Galleria.addTheme({
         thumbCrop:  'height',
 
         // set this to false if you want to show the caption all the time:
-        _toggleInfo: true
+        _toggleInfo: true,
+		// Toggles tooltip
+    _showTooltip: true,
+
+    // Sets this to false if you don’t want to show the captions initially
+    _showCaption: true,
     },
     init: function(options) {
 
@@ -49,9 +54,9 @@ Galleria.addTheme({
 
         // toggle info
         if ( options._toggleInfo === true ) {
-            info.bind( click, function() {
+            //info.bind( click, function() {
                 info.toggle();
-            });
+            //});
         } else {
             info.show();
             this.$('info-link, info-close').hide();
