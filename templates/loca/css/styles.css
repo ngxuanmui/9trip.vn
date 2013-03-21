@@ -18,10 +18,12 @@ body {
 }
 a {
     text-decoration: none;
+	color: #006699;
 }
 
 .fltlft, .fltleft { float: left; }
 .fltrgt, .fltright { float: right; }
+.bold { font-weight: bold; }
 
 .icons { background: url('../images/icons.png') no-repeat; display: block; }
 
@@ -356,7 +358,7 @@ ul.custom-field ul li { padding: 2px 0; }
 
 p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-weight: bold; padding-bottom: 10px; }
 
-.location-album { background: #FFF; border-radius: 3px; border: 1px solid #CCC; margin-bottom: 20px; width: 624px; height: 453px; padding: 15px 12px; }
+.location-album { background: #FFF; border-radius: 3px; border: 1px solid #CCC; margin-bottom: 20px; width: 624px; height: 453px; padding: 15px 10px; }
 .location-album h1 { font-size: 18px; margin-bottom: 5px; }
 
 .item-container ul li { float: left; width: 116px; margin-right: 10px; margin-bottom: 5px; }
@@ -569,7 +571,8 @@ ul.tab-list-hotels li.active {
 	padding: 5px 0;
 }
 
-ul.questions li { float: none; width: 100%; }
+ul.questions li { float: none; width: 100%; font-weight: bold; }
+ul.questions li .question-info { font-weight: normal; }
 .row-input input[type=checkbox] {
 	float: left;
 	height: 16px;

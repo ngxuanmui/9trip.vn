@@ -2,7 +2,7 @@
 
 #galleria-loader{height:1px!important}
 
-#galleria{ width: 700px; height: 400px; background: #000; }
+#galleria{ width: 625px; height: 400px; background: #2a2a2a; }
 
 .galleria-container {
     position: relative;
@@ -15,7 +15,7 @@
 }
 .galleria-stage {
     position: absolute;
-    top: 10px;
+    top: 0px;
     bottom: 60px;
     left: 10px;
     right: 10px;
@@ -34,8 +34,8 @@
     margin-right: 30px;
 }
 .galleria-thumbnails .galleria-image {
-    height: 40px;
-    width: 60px;
+    height: 25px;
+    width: 25px;
     background: #000;
     margin: 0 5px 0 0;
     border: 1px solid #000;
@@ -185,6 +185,8 @@
     filter: alpha(opacity=20);
     cursor: default;
 }
+
+.galleria-thumbnails-container .galleria-thumbnails-list { margin-top: 15px; }
 .notouch .galleria-thumb-nav-left:hover,
 .notouch .galleria-thumb-nav-right:hover {
     opacity: 1;

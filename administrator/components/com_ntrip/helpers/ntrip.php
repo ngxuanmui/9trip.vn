@@ -261,12 +261,15 @@ class NtripHelper
 	static function insertImages($itemId, $images = array(), $desc = array(), $itemType = 'hotels')
 	{
 	    $db = JFactory::getDbo();
+		
+		$created = date('Y-m-d H:i:s');
+		$created_by = JFactory::getUser()->id;
 	    
 	    foreach ($images as $key => $img)
 	    {
 			$query = $db->getQuery(true);
-			$query->insert('#__ntrip_images (item_id, item_type, title, description, images)')
-				->values($itemId . ', "' . $itemType . '", "", "'.$desc[$key].'", "' . $img . '"' );
+			$query->insert('#__ntrip_images (item_id, item_type, title, description, images, created, created_by)')
+				->values($itemId . ', "' . $itemType . '", "", "'.$desc[$key].'", "' . $img . '", "'.$created.'", "'.$created_by.'"' );
 
 			$db->setQuery($query);
 			$db->query();
