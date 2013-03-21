@@ -18,10 +18,12 @@ body {
 }
 a {
     text-decoration: none;
+	color: #006699;
 }
 
 .fltlft, .fltleft { float: left; }
 .fltrgt, .fltright { float: right; }
+.bold { font-weight: bold; }
 
 .icons { background: url('../images/icons.png') no-repeat; display: block; }
 
@@ -569,7 +571,8 @@ ul.tab-list-hotels li.active {
 	padding: 5px 0;
 }
 
-ul.questions li { float: none; width: 100%; }
+ul.questions li { float: none; width: 100%; font-weight: bold; }
+ul.questions li .question-info { font-weight: normal; }
 .row-input input[type=checkbox] {
 	float: left;
 	height: 16px;

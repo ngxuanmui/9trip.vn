@@ -30,11 +30,13 @@ class NtripModelCategory extends JModel
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		
-		$query->select('*')
-				->from('#__ntrip_'.$type)
-				->where('state = 1')
-				->where('(catid = '. $catid.' OR catid IN (SELECT id FROM #__categories WHERE parent_id = '. $catid.'))')
-				->order('id DESC');
+		$query->select('a.*')
+				->from('#__ntrip_'.$type.' a')
+				->select('u.name AS author')
+				->join('LEFT', '#__users u ON a.created_by = u.id')
+				->where('a.state = 1')
+				->where('(a.catid = '. $catid.' OR a.catid IN (SELECT id FROM #__categories WHERE parent_id = '. $catid.'))')
+				->order('a.id DESC');
 		
 		$db->setQuery($query, 0, $limit);
 		$rs = $db->loadObjectList();
@@ -51,5 +53,43 @@ class NtripModelCategory extends JModel
 		$category = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip', 'table' => '#__ntrip_hotels'));
 		
 		return $category->get($catid);
+	}
+	
+	public function getFirstAlbum()
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		$catid = $this->getState('filter.catid', 0);
+		
+		$query->select('a.*')
+				->from('#__ntrip_albums a')
+				->select('u.name AS author')
+				->join('LEFT', '#__users u ON a.created_by = u.id')
+				->where('a.state = 1')
+				->where('(a.catid = '. $catid.' OR a.catid IN (SELECT id FROM #__categories WHERE parent_id = '. $catid.'))')
+				->order('a.id DESC');
+		
+		$db->setQuery($query);
+		$row = $db->loadObject();
+		
+		$query = $db->getQuery(true);
+		
+		$query->select('i.*')
+				->from('#__ntrip_images i')
+				->select('u.name AS author')
+				->join('LEFT', '#__users u ON i.created_by = u.id')
+				->where('i.item_type = "albums"')
+				->where('i.item_id = ' . $row->id);
+		
+		$db->setQuery($query);
+		$rs = $db->loadObjectList();
+		
+		if ($db->getErrorMsg())
+			die($db->getErrorMsg ());
+		
+		$row->other_images = $rs;
+		
+		return $row;
 	}
 }

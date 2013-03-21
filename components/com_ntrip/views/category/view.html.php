@@ -19,11 +19,13 @@ class NtripViewCategory extends JViewLegacy
 {
 	protected $items;
 	protected $category;
+	protected $firstAlbum;
 
 	function display($tpl = null)
 	{
 		$this->items = $this->get('Items');
 		$this->category = $this->get('Category');
+		$this->firstAlbum = $this->get('FirstAlbum');
 		
 		$this->_prepareDocument();
 

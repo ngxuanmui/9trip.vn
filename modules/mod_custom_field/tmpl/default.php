@@ -8,6 +8,9 @@
 
 // no direct access
 defined('_JEXEC') or die;
+
+$id = JRequest::getInt('id');
+$linkId = ($id) ? '&id=' . $id : '';
 ?>
 
 <p class="custom-field-title">Nhà cung cấp dịch vụ - Khám phá - Du ngoạn</p>
@@ -17,14 +20,25 @@ defined('_JEXEC') or die;
 		<h1>Khách sạn</h1>
 		<ul>
 			<?php foreach ($list['hotels'] as $hotelCustomField): ?>
-			<li><?php echo $hotelCustomField->title; ?> (*)</li>
+			<li>
+				<?php 
+				
+				?>
+				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=hotels&custom_field=' . $hotelCustomField->id . $linkId, false); ?>">
+					<?php echo $hotelCustomField->title; ?> (*)
+				</a>
+			</li>
 			<?php endforeach; ?>
 		</ul>
 		<div class="clr"></div>
 		<h1>Dịch vụ</h1>
 		<ul>
-			<?php foreach ($list['services'] as $tourCustomField): ?>
-			<li><?php echo $tourCustomField->title; ?> (*)</li>
+			<?php foreach ($list['services'] as $serviceCustomField): ?>
+			<li>				
+				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=services&custom_field=' . $serviceCustomField->id . $linkId, false); ?>">
+					<?php echo $serviceCustomField->title; ?> (*)
+				</a>
+			</li>
 			<?php endforeach; ?>
 		</ul>
 	</li>
@@ -33,11 +47,6 @@ defined('_JEXEC') or die;
 		<ul>
 			<?php foreach ($list['restaurants'] as $resCustomField): ?>
 			<li>
-				<?php 
-				$id = JRequest::getInt('id');
-				
-				$linkId = ($id) ? '&id=' . $id : '';
-				?>
 				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=restaurants&custom_field=' . $resCustomField->id . $linkId, false); ?>">
 					<?php echo $resCustomField->title; ?> (*)
 				</a>				
@@ -47,8 +56,12 @@ defined('_JEXEC') or die;
 		<div class="clr"></div>
 		<h1>Mua sắm</h1>
 		<ul>
-			<?php foreach ($list['shoppings'] as $tourCustomField): ?>
-			<li><?php echo $tourCustomField->title; ?> (*)</li>
+			<?php foreach ($list['shoppings'] as $shoppingCustomField): ?>
+			<li>
+				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=shoppings&custom_field=' . $shoppingCustomField->id . $linkId, false); ?>">
+					<?php echo $shoppingCustomField->title; ?> (*)
+				</a>
+			</li>
 			<?php endforeach; ?>
 		</ul>
 	</li>
@@ -56,14 +69,22 @@ defined('_JEXEC') or die;
 		<h1>Tham quan</h1>
 		<ul>
 			<?php foreach ($list['tours'] as $tourCustomField): ?>
-			<li><?php echo $tourCustomField->title; ?> (*)</li>
+			<li>
+				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=tours&custom_field=' . $tourCustomField->id . $linkId, false); ?>">
+					<?php echo $tourCustomField->title; ?> (*)
+				</a>
+			</li>
 			<?php endforeach; ?>
 		</ul>
 		<div class="clr"></div>
 		<h1>Giải trí</h1>
 		<ul>
-			<?php foreach ($list['relaxes'] as $tourCustomField): ?>
-			<li><?php echo $tourCustomField->title; ?> (*)</li>
+			<?php foreach ($list['relaxes'] as $relaxCustomField): ?>
+			<li>
+				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=relaxes&custom_field=' . $relaxCustomField->id . $linkId, false); ?>">
+					<?php echo $relaxCustomField->title; ?> (*)
+				</a>
+			</li>
 			<?php endforeach; ?>
 		</ul>
 	</li>

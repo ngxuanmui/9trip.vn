@@ -3,6 +3,7 @@
 defined('_JEXEC') or die;
 
 $items = $this->items;
+$firstAlbum = $this->firstAlbum;
 ?>
 
 <script type="text/javascript">
@@ -34,11 +35,20 @@ $items = $this->items;
 		<h1><?php echo $this->category->title; ?></h1>
 		<div class="album">
 			<div id="galleria">
-				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/10m.jpg'; ?>" title="test title" data-description="here is desc">
-				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/6m.jpg'; ?>">
-				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/7m.jpg'; ?>">
-				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/8m.jpg'; ?>">
-				<img src="<?php echo JURI::base() . 'templates/loca/images/sample/9m.jpg'; ?>">
+				<?php if ($firstAlbum->images): ?>
+				<img src="<?php echo $firstAlbum->images; ?>" title="<?php echo $firstAlbum->author; ?>" data-description="<?php echo $firstAlbum->name; ?>" />
+				<?php 
+				endif; 
+				
+				if (!empty($firstAlbum->other_images)): 
+					foreach ($firstAlbum->other_images as $other_image):
+				?>
+				<img src="<?php echo JURI::base() . 'images/albums/' . $firstAlbum->id . '/' . $other_image->images; ?>" title="<?php echo $other_image->author ? $other_image->author : 'Anonymous'; ?>" data-description="<?php echo $other_image->description; ?>">
+				
+				<?php 
+					endforeach; 
+				endif; 
+				?>
 			</div>
 		</div>
 	</div>
@@ -56,6 +66,45 @@ $items = $this->items;
 			}
 		?>
 	</div>
+	
+	<div class="clr"></div>
+	
+	<?php 
+	$subChild = $this->category->getChildren();
+	if (!empty($subChild)): 
+	?>
+	<div class="margin-bottom5">
+		<div class="title-category">
+			Các địa danh du lịch của <?php echo $this->category->title; ?>
+		</div>
+		
+		<div class="clr"></div>
+		
+		<div class="item-container">
+			<ul class="album-container">
+				<?php foreach ($subChild as $key => $child): ?>
+				<li <?php if ( ($key + 1) % 3 == 0 ) echo 'class="last-item"' ?>>
+					<div class="img album-img">
+						<?php
+							$params = $child->getParams();
+							$image = $params->get('image');
+
+							if ($image):
+						?>
+							<img src="<?php echo $image; ?>" />
+						<?php endif; ?>
+					</div>
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=category&id=' . $child->id, false); ?>" class="bold">
+						<?php echo $child->title; ?>
+					</a>					
+				</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+		
+		<div class="clr"></div>
+	</div>
+	<?php endif; ?>
 	
 	<div class="clr"></div>
 	
@@ -121,6 +170,10 @@ $items = $this->items;
 					<a href="#">
 						<?php echo $question->title; ?>
 					</a>
+					
+					<div class="question-info">
+						<a href="#"><?php echo $question->author; ?></a> <?php echo $question->created; ?> | <?php echo $question->hits; ?> | <?php #echo $question->answers; ?>
+					</div>
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -143,7 +196,7 @@ $items = $this->items;
 					<div class="img album-img">
 						<img src="<?php echo $album->images; ?>" />
 					</div>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $album->id, false); ?>">
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $album->id, false); ?>" class="bold">
 						<?php echo $album->name; ?>
 					</a>					
 				</li>
