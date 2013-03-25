@@ -1,7 +1,7 @@
 <?php
 /**
  * @package		Joomla.Site
- * @subpackage	com_content
+ * @subpackage	com_ntrip
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -20,6 +20,9 @@ require_once JPATH_COMPONENT_SITE . DS . 'helpers' . DS . 'user_toolbar.php';
 // abs class
 require_once JPATH_COMPONENT_SITE . DS . 'models' . DS . 'items.php';
 require_once JPATH_COMPONENT_SITE . DS . 'models' . DS . 'item.php';
+
+// get comment helper
+require_once JPATH_SITE . DS . 'components/com_ntrip_comment/helpers/ntrip_comment.php';
 
 $controller = JControllerLegacy::getInstance('Ntrip');
 $controller->execute(JRequest::getCmd('task'));

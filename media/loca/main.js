@@ -26,4 +26,8 @@ jQuery(function($){
 		else
 			return false;
 	});
+	
+	$('#loca-btn-post-comment').click(function(){
+		alert('test');
+	});
 })

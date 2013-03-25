@@ -376,6 +376,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 
 .quote { background-position: -181px 0; width: 27px; height: 20px; }
 .loca-button  { background-position: 0 0; width: 178px; height: 45px; }
+.loca-button-smaller  { background-position: 0 -74px; width: 128px; height: 45px; }
 
 .list-restaurants .img { width: 200px; height: 150px; overflow: hidden; }
 .list-restaurants .img img { width: 200px; }
@@ -610,3 +611,19 @@ ul.questions li .question-info { font-weight: normal; }
 }
 
 
+/* Other items */
+.comments { border: 1px solid #D6DAD9; border-top: none; padding: 10px; margin-bottom: 10px; }
+.other-items ul { margin-left: 3px; }
+.other-items ul li { margin-right: 10px; }
+
+/* Comment */
+.comments .social { margin-bottom: 10px; }
+.avatar { height: 51px; width: 51px; overflow: hidden; margin-right: 10px; border: 1px solid #D6DAD9; }
+.comment-content-container { width: 560px; }
+.sub-comment-content { width: 495px; }
+.comment-like { margin: 5px 0;}
+.comment-user-info { font-weight: bold; color: #006699; }
+.comment-user-info span { font-weight: normal; color: #6e6e6e; }
+
+.tags-container { margin: 5px 0; }
+.tags { width: 30px; height: 17px; background-position: -2px -48px; margin-right: 10px; }

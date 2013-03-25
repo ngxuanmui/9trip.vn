@@ -60,7 +60,7 @@ class modCustomFieldHelper
 				->where('extension = "com_ntrip.'.$type.'"')
 				->where('published = 1');
 		
-		echo str_replace('#__', 'jos_', $query);
+//		echo str_replace('#__', 'jos_', $query);
 		
 		$db->setQuery($query);
 		$rs = $db->loadObjectList();
