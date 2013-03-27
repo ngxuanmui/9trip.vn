@@ -537,8 +537,8 @@ ul.tab-list-hotels li.active {
 	border: 1px solid #B8B9B7;
 }
 .rating-content {
-	height: 30px;
-	line-height: 30px;
+	height: 35px;
+	line-height: 35px;
 }
 .rule-star {
 	width: 100%;
@@ -639,3 +639,18 @@ ul.questions li .question-info { font-weight: normal; }
 
 .tags-container { margin: 5px 0; }
 .tags { width: 30px; height: 17px; background-position: -2px -48px; margin-right: 10px; }
+
+/* css for rating */
+.ratings_stars {
+	background: url('../images/star_empty.png') no-repeat;
+	float:      left;
+	height:     20px;
+	padding:    2px;
+	width:      20px;
+}
+.ratings_vote {
+	background: url('../images/star_full.png') no-repeat;
+}
+.ratings_over {
+	background: url('../images/star_highlight.png') no-repeat;
+}
