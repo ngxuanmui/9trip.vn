@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
  * @subpackage	com_ntrip
  * @since		1.5
  */
-class NtripController extends JControllerLegacy
+class Ntrip_CommentController extends JControllerLegacy
 {
 	function __construct($config = array())
 	{

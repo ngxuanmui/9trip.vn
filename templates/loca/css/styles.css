@@ -27,6 +27,17 @@ a {
 
 .icons { background: url('../images/icons.png') no-repeat; display: block; }
 
+.error {
+	color: red;
+}
+
+.success { color: blue; }
+
+.comment-msg {
+	line-height: 41px;
+	padding-left: 10px;
+}
+
 ul { list-style: none; }
 
 #main-container {                        

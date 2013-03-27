@@ -24,7 +24,7 @@ $item = $this->item;
 			</div>
 		</div>
 		
-		<?php Ntrip_CommentHelper::showForm(); ?>
+		<?php Ntrip_CommentHelper::showForm($item->id, 'discovers'); ?>
 		
 		<?php if (!empty($this->otherItems)): ?>	
 		<div class="margin-bottom5">
@@ -45,12 +45,11 @@ $item = $this->item;
 							<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>">
 								<?php echo $item->name; ?>
 							</a>
+							
 						</li>
 						<?php endforeach; ?>
 					</ul>
 				</div>		
-				
-
 				<div class="clr"></div>
 			</div>
 		</div>
