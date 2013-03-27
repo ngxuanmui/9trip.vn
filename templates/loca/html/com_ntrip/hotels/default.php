@@ -117,7 +117,7 @@ $fields = $this->fields;
 			<ul>
 				<?php foreach ($this->items as $item): ?>
 				<li>
-					<a class="title" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>">
+					<a class="title" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false); ?>">
 						<?php echo $item->name; ?>
 					</a>
 					<div class="img-container">

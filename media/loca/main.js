@@ -70,4 +70,21 @@ jQuery(function($){
 		
 		return false;
 	});
+	
+	
+	Galleria.loadTheme(BASE_URL + 'media/loca/galleria/themes/azur/galleria.azur.min.js');
+	Galleria.configure({
+			imageCrop: 'landscape',
+			imageMargin: 60,
+			imagePosition: 'top',
+			transition: 'fade',
+			showCounter: false,
+			idleMode: 'hover',
+			idleSpeed: 500,
+			fullscreenTransition: false,
+			trueFullscreen: false
+		});
+		
+	Galleria.run('#galleria');
+	
 })

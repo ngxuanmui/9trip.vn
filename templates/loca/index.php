@@ -30,6 +30,9 @@ $doc->addScript(JURI::base() . 'media/loca/galleria/galleria-1.2.9.min.js');
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/ie7only.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 
+<script type="text/javascript">
+	var BASE_URL = '<?php echo JURI::base(); ?>';
+</script>
 </head>
 
 <body>

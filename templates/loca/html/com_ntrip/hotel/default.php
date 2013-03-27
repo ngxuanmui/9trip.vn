@@ -28,9 +28,25 @@ $item = $this->item;
 			</div>
 
 			<div class="info">
-				<div class="img">
-					<!--<img src="<?php echo $item->images; ?>" />-->
-					<img src="<?php echo JURI::base() . 'templates/loca/images/hotel-detail.jpg'; ?>" />
+				<div class="other-album">
+					<div class="album">
+						<div id="galleria">
+							<?php if ($firstAlbum->images): ?>
+							<img src="<?php echo $firstAlbum->images; ?>" title="<?php echo $firstAlbum->author; ?>" data-description="<?php echo $firstAlbum->name; ?>" />
+							<?php 
+							endif; 
+
+							if (!empty($firstAlbum->other_images)): 
+								foreach ($firstAlbum->other_images as $other_image):
+							?>
+							<img src="<?php echo JURI::base() . 'images/albums/' . $firstAlbum->id . '/' . $other_image->images; ?>" title="<?php echo $other_image->author ? $other_image->author : 'Anonymous'; ?>" data-description="<?php echo $other_image->description; ?>">
+
+							<?php 
+								endforeach; 
+							endif; 
+							?>
+						</div>
+					</div>
 				</div>
 
 				<div class="content">
@@ -67,9 +83,7 @@ $item = $this->item;
 			<div class="clr"></div>
 		</div>
 
-		<div class="comments">
-			Comment here
-		</div>
+		<?php Ntrip_CommentHelper::showForm($item->id, 'discovers'); ?>
 
 		<?php if (!empty($this->otherItems)): ?>
 		<div class="other-items">
