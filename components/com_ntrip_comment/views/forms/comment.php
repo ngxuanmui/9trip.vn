@@ -2,11 +2,6 @@
 //var_dump($listComments);
 ?>
 
-<script type="text/javascript">
-	var ITEM_ID = <?php echo JRequest::getInt('id', 0); ?>;
-	var ITEM_TYPE = 'discovers';
-</script>
-
 <div class="clr"></div>
 
 <div class="comments">

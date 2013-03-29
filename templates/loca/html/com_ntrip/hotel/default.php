@@ -3,7 +3,25 @@
 defined('_JEXEC') or die;
 
 $item = $this->item;
+
+/* // rating
+
+jQuery.post(
+				'index.php?option=com_ntrip&task=other.rating',
+				{item_id: ITEM_ID, item_type: ITEM_TYPE, rating: 5},
+				function(res){
+					if (res == 'OK')
+						alert('success');
+					else 
+						alert(res);
+				}
+); */
 ?>
+
+<script type="text/javascript">
+	var ITEM_ID = <?php echo $item->id; ?>;
+	var ITEM_TYPE = 'hotels';
+</script>
 
 <div id="top-adv">
 	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />

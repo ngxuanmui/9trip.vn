@@ -3,7 +3,7 @@ ALTER TABLE  `jos_ntrip_discovers` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTE
 ALTER TABLE  `jos_ntrip_albums` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTER  `alias`;
 ALTER TABLE  `jos_ntrip_hotels` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTER  `alias`;
 ALTER TABLE  `jos_ntrip_images` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTER  `images`;
-ALTER TABLE  `jos_ntrip_promotions` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTER  `alias`;
+-- ALTER TABLE  `jos_ntrip_promotions` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTER  `alias`;
 ALTER TABLE  `jos_ntrip_questions` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTER  `alias`;
 ALTER TABLE  `jos_ntrip_relaxes` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTER  `alias`;
 ALTER TABLE  `jos_ntrip_restaurants` ADD  `user_like` FLOAT( 11, 2 ) NOT NULL AFTER  `alias`;

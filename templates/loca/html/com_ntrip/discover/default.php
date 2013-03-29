@@ -5,6 +5,11 @@ defined('_JEXEC') or die;
 $item = $this->item;
 ?>
 
+<script type="text/javascript">
+	var ITEM_ID = <?php echo $item->id; ?>;
+	var ITEM_TYPE = 'discovers';
+</script>
+
 <div id="top-adv">
 	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 </div>
