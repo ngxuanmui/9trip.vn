@@ -121,14 +121,8 @@ $fields = $this->fields;
 		<?php endforeach; ?>
 	</ul>
 	
-	<ul class="tab-categories">
-		<li>Khách sạn</li>
-		<li class="active">Nhà hàng</li>
-		<li class="">Giải trí</li>
-		<li class="even">Tham quan</li>
-		<li class="">Mua sắm</li>
-		<li class="even">Dịch vụ</li>
-	</ul>
+	<?php echo NtripFrontHelper::itemsMenu('hotels'); ?>
+	
 	<div class="clr"></div>
 	<div class="search-conditions">
 		<div class="style">

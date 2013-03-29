@@ -14,6 +14,9 @@ defined('_JEXEC') or die;
 // get helper from admin
 require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'ntrip.php';
 
+// get front helper
+require_once JPATH_COMPONENT.'/helpers/ntrip.php';
+
 // toolbar
 require_once JPATH_COMPONENT_SITE . DS . 'helpers' . DS . 'user_toolbar.php';
 

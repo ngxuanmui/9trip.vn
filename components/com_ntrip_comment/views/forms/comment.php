@@ -35,7 +35,7 @@
 
 					<img src="<?php echo JURI::base(); ?>/templates/loca/images/sample/star.png" />
 
-					<span>Ngày 12/12/1212</span>
+					<span><?php echo $comment->created; ?></span>
 				</div>
 				
 				<p><?php echo $comment->content; ?></p>
@@ -53,7 +53,7 @@
 				?>
 				<div class="list-other-comments">
 					<div class="comment-user-info">
-						
+						<?php echo $sub->username ? $sub->username : 'Anonymous'; ?>
 					</div>
 					<div class="avatar fltlft">
 						Avatar
@@ -76,19 +76,21 @@
 		<div class="clr"></div>
 	</div>
 	
+	<?php if (JFactory::getUser()->id): ?>
 	<form action="<?php echo JRoute::_('index.php'); ?>" id="loca-frm-comment">
 		<div class="post-comment" style="margin: 10px 0;">
-			Post in 
+			<?php if ($isItemOwner): ?>
+			Gửi bình luận: 
 			<select name="loca_comment_parent_id" id="comment-parent-id">
-				<option value="">New comment</option>
+				<option value="">Bình luận mới</option>
 				<?php 
 				foreach ($listComments as $comment): 
 					$author = $comment->username ? $comment->username : 'Anonymous';
 				?>
-				
 				<option value="<?php echo $comment->id; ?>"><?php echo JHtml::_('string.truncate', $comment->content, 50) . '('.$author.')'; ?></option>
 				<?php endforeach; ?>
 			</select>
+			<?php endif; ?>
 			<textarea style="height: 100px; width: 100%; margin: 10px 0 0;" id="loca-textarea-comment"></textarea>
 			<div class="clr"></div>
 		</div>
@@ -96,6 +98,7 @@
 		<div class="fltlft error comment-msg" id="comment-msg"></div>
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
+	<?php endif; ?>
 
 	<div class="clr"></div>
 </div>

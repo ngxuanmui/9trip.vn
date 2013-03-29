@@ -43,6 +43,22 @@ class Ntrip_CommentModelComment extends JModelLegacy
 		
 		return $rs;
 	}
+	
+	public function isItemOwner($itemId, $itemType)
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		$query->select('id, created_by')->from('#__ntrip_' . $itemType)->where('id = ' . $itemId);
+		$db->setQuery($query);
+		
+		$item = $db->loadObject();
+		
+		if ($item->created_by == JFactory::getUser()->id)
+			return true;
+		
+		return false;
+	}
 
 	public function save($itemId, $itemType, $parentId, $content)
 	{

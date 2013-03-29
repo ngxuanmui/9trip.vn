@@ -24,10 +24,10 @@ class NtripViewHotels extends JViewLegacy
 
 	function display($tpl = null)
 	{
-		$this->items = $this->get('Items');
-		$this->fields = $this->get('CustomField');
-		$this->pagination = $this->get('Pagination');
-		$this->category = $this->get('Category');
+		$this->items		= $this->get('Items');
+		$this->fields		= $this->get('CustomField');
+		$this->pagination	= $this->get('Pagination');
+		$this->category		= $this->get('Category');
 		
 		$this->_prepareDocument();
 
