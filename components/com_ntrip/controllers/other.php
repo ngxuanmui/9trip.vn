@@ -6,7 +6,8 @@ class NtripControllerOther extends JController
 	{
 		$itemId		= JRequest::getInt('item_id');
 		$itemType	= JRequest::getString('item_type');
-		$rating		= JRequest::getInt('rating');
+		preg_match('/star_([1-5]{1})/', $_POST['clicked_on'], $match);
+		$rating = $match[1];
 		
 		$model = $this->getModel('Other', 'NtripModel');
 		
@@ -17,6 +18,20 @@ class NtripControllerOther extends JController
 		else
 			echo 'OK';
 		
+		exit();
+	}
+
+	function get_rating() {
+		$itemID = JRequest::getInt('item_id');
+		$itemType = JRequest::getString('item_type');
+
+		$model = $this->getModel('Other', 'NtripModel');
+		$votes_data =  $model->getRating($itemID, $itemType);
+		if ($votes_data && $votes_data['total']) {
+			echo "{$votes_data['total']}##{$votes_data['avg_star']}";
+		} else {
+			echo '234##4';
+		}
 		exit();
 	}
 }

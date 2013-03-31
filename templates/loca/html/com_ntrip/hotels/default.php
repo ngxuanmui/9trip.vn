@@ -4,7 +4,7 @@ defined('_JEXEC') or die;
 
 $fields = $this->fields;
 ?>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>
 	// This is the first thing we add ------------------------------------------
 	$(document).ready(function() {
@@ -208,7 +208,7 @@ $fields = $this->fields;
 							<div class="star_3 ratings_stars"></div>
 							<div class="star_4 ratings_stars"></div>
 							<div class="star_5 ratings_stars"></div>
-							234 lượt đánh giá
+							<span class="total_votes"> lượt đánh giá </span>
 						</div>
 						<a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a>
 					</div>

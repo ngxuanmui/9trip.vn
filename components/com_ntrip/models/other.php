@@ -51,4 +51,29 @@ class NtripModelOther extends JModelLegacy
 		
 		return true;
 	}
+
+	function getRating($itemId, $itemType) {
+		$db = JFactory::getDbo();
+
+		$query = $db->getQuery(true);
+		$query->select('COUNT(item_id) AS total_rating, SUM(rated) AS total_score')
+				->from('#__ntrip_rating')
+				->where('item_type = ' . $db->quote($itemType))
+				->where('item_id = ' . (int) $itemId)
+			;
+
+		$db->setQuery($query);
+		$rec = $db->loadObject();
+
+		$totalRating 	= $rec->total_rating;
+		$totalScore 	= $rec->total_score;
+
+		if ($totalRating) {
+			$userRating = round($totalScore / $totalRating);
+
+			return array('total' => $totalRating, 'avg_star' => $userRating);
+		} else {
+			return false;
+		}
+	}
 }
