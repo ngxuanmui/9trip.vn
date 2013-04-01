@@ -393,8 +393,8 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .list-restaurants .img { width: 200px; height: 150px; overflow: hidden; }
 .list-restaurants .img img { width: 200px; }
 
-.list-discovers .img { width: 615px; height: 440px; margin-bottom: 5px; overflow: hidden; }
-.list-discovers .img img { width: 615px; }
+.list-discovers .img { width: 650px; height: 440px; margin-bottom: 5px; overflow: hidden; }
+.list-discovers .img img { width: 650px; }
 
 .list-albums { margin-left: 10px; }
 .list-albums li { float: left; width: 200px; margin-right: 10px; margin-bottom: 10px; }
@@ -429,6 +429,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 	font-size: 14px;
 	padding: 10px;
 }
+div.tabs { margin: 10px 0; background: #717171; }
 ul.tab-categories {
 	margin: 10px 0px;
 	list-style: none;
@@ -442,10 +443,17 @@ ul.tab-categories li {
 	color: #fff;
 	background: #717171;
 }
+
+ul.tab-categories li a { color: #FFF; }
 ul.tab-categories li.active{
-	background: #fff;
+	background: #fff !important;
 	color: #676666;
 }
+
+ul.tab-categories li.active a{
+	color: #676666;
+}
+
 ul.tab-categories li.even {
 	background: #8C8C8C;
 }
