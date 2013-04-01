@@ -34,32 +34,48 @@ jQuery.post(
 			<label><?php echo $item->name; ?></label>
 		</div>
 
-		<div class="hotel-container">
-			<div class="address"><?php echo "Phường Hồng Hà, Thành Phố Hạ Long - Quảng Ninh"; ?></div>
+		<div class="item-container">
+			<div class="address"><?php echo $item->address; ?></div>
+			
 			<div class="contact">
-				<span class="website item">Website</span>
-				<span class="email item">Email</span>
-				<span class="phone item">Phone</span>
+				<span class="item">
+					<span class="icons website"></span>
+					<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->webiste; ?>" target="_blank">
+						Website
+					</a>
+				</span>
+				<span class="item">
+					<span class="email icons"></span>
+					<a href="mailto:<?php echo $item->email; ?>">
+						Email
+					</a>
+				</span>
+				<span class="item">
+					<span class="phone icons"></span>
+					<?php echo $item->phone; ?>
+				</span>
+				
 			</div>
+			
+			<div class="clr"></div>
+			
 			<div class="social-info">
-				<img src="<?php echo JURI::base() . 'templates/loca/images/social-info.jpg'; ?>" />
+				<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+				<div class="clr"></div>
 			</div>
+			
+			<div class="clr"></div>
 
 			<div class="info">
 				<div class="other-album">
 					<div class="album">
 						<div id="galleria">
-							<?php if ($firstAlbum->images): ?>
-							<img src="<?php echo $firstAlbum->images; ?>" title="<?php echo $firstAlbum->author; ?>" data-description="<?php echo $firstAlbum->name; ?>" />
 							<?php 
-							endif; 
-
-							if (!empty($firstAlbum->other_images)): 
-								foreach ($firstAlbum->other_images as $other_image):
-							?>
-							<img src="<?php echo JURI::base() . 'images/albums/' . $firstAlbum->id . '/' . $other_image->images; ?>" title="<?php echo $other_image->author ? $other_image->author : 'Anonymous'; ?>" data-description="<?php echo $other_image->description; ?>">
-
-							<?php 
+							if (!empty($this->otherImages)):
+								foreach ($this->otherImages as $img): 
+								?>
+								<img src="images/hotels/<?php echo $item->id; ?>/<?php echo $img->images; ?>" />
+								<?php 
 								endforeach; 
 							endif; 
 							?>
@@ -86,48 +102,13 @@ jQuery.post(
 						<?php endfor; ?>
 						<span class="total_votes"> <?php echo $item->count_rating; ?> đánh giá</span>
 					</div>
-					<div>
-						<div class="like-icon"></div> <a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker">20</div>
-					</div>
 				</div>
 
 				<div class="clr"></div>
 			</div>
-
-			<div class="other-images">
-				<h3>Cơ sở vật chất</h3>
-
-				<ul>
-					<?php foreach ($this->otherImages as $img): ?>
-					<li class="img">
-						<img src="images/restaurants/<?php echo $item->id; ?>/thumbnail/<?php echo $img->images; ?>" />
-					</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-
-			<div class="clr"></div>
 		</div>
 
-		<?php Ntrip_CommentHelper::showForm($item->id, 'discovers'); ?>
-
-		<?php if (!empty($this->otherItems)): ?>
-		<div class="other-items">
-			<ul>
-				<?php foreach ($this->otherItems as $other): ?>
-				<li>
-					<div class="img">
-						<img src="<?php echo $item->images; ?>" />
-					</div>
-
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>">
-						<?php echo $item->name; ?>
-					</a>
-				</li>
-				<?php endforeach; ?>
-			</ul>
-		</div>
-		<?php endif; ?>
+		<?php Ntrip_CommentHelper::showForm($item->id, 'hotels'); ?>
 
 		<div class="clr"></div>
 	</div>

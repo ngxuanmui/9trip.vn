@@ -117,6 +117,7 @@ jQuery(function($){
 		function() {
 			var item_id = $(this).attr('id');
 			var tmp = item_id.split('-');
+			var t = $(this);
 			item_id = tmp[1];
 			jQuery.post(
 				'index.php?option=com_ntrip&task=other.like',
@@ -126,11 +127,14 @@ jQuery(function($){
 						tmp = $('.number-liker').html();
 						tmp = parseInt(tmp);
 						var current_liker = tmp + 1;
-						alert('Bạn đã like thành công')
+//						alert('Bạn đã like thành công')
+						t.addClass('liked');
 						$('.number-liker').html(current_liker);
 					}
 				}
 			);
+			
+			return false;
 		}
 	);
 
