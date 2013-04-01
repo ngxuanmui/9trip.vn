@@ -86,6 +86,9 @@ jQuery.post(
 						<?php endfor; ?>
 						<span class="total_votes"> <?php echo $item->count_rating; ?> đánh giá</span>
 					</div>
+					<div>
+						<div class="like-icon"></div> <a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker">20</div>
+					</div>
 				</div>
 
 				<div class="clr"></div>

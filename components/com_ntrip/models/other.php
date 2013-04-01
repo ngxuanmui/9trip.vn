@@ -76,4 +76,18 @@ class NtripModelOther extends JModelLegacy
 			return false;
 		}
 	}
+
+	public function saveLike($itemId, $itemType) {
+		$db = JFactory::getDbo();
+		$obj->item_id	= $itemId;
+		$obj->item_type = $itemType;
+		$obj->like		= 1;
+		$obj->created	= date('Y-m-d H:i:s');
+		$obj->created_by = JFactory::getUser()->id;
+
+		$result = $db->insertObject('#__ntrip_user_like', $obj, 'id');
+
+		if (!$result)
+			return array('error' => 1, 'msg' => $db->getErrorMsg ());
+	}
 }

@@ -35,4 +35,19 @@ class NtripControllerOther extends JController
 		}
 		exit();
 	}
+
+	public function like()
+	{
+		$itemID = JRequest::getInt('item_id');
+		$itemType = JRequest::getString('item_type');
+
+		$model = $this->getModel('Other', 'NtripModel');
+		$saveResult =  $model->saveLike($itemID, $itemType);
+		if (is_array($saveResult) && $saveResult['error'] == 1)
+			echo 'Error: ' . $saveResult['msg'];
+		else
+			echo 'OK';
+
+		exit();
+	}
 }

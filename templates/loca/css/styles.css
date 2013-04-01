@@ -654,3 +654,20 @@ ul.questions li .question-info { font-weight: normal; }
 .ratings_over {
 	background: url('../images/star_highlight.png') no-repeat;
 }
+.like-icon {
+	background: url('../images/like.png') no-repeat;
+	width: 22px;
+	height: 17px;
+	padding-bottom: 10px;
+	padding-right: 5px;
+	float: left;
+}
+a.like {
+	display: block;
+	float: left;
+	padding-right: 10px;
+	color: #55555;
+}
+.number-liker {
+	float: left;
+}

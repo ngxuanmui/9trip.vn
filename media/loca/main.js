@@ -113,6 +113,27 @@ jQuery(function($){
 		}
 	);
 
+	$('.like').click(
+		function() {
+			var item_id = $(this).attr('id');
+			var tmp = item_id.split('-');
+			item_id = tmp[1];
+			jQuery.post(
+				'index.php?option=com_ntrip&task=other.like',
+				{item_id: item_id, item_type: ITEM_TYPE},
+				function(data) {
+					if (data == 'OK') {
+						tmp = $('.number-liker').html();
+						tmp = parseInt(tmp);
+						var current_liker = tmp + 1;
+						alert('Bạn đã like thành công')
+						$('.number-liker').html(current_liker);
+					}
+				}
+			);
+		}
+	);
+
 	// This actually records the vote
 	$('.ratings_stars').bind('click', function() {
 		
