@@ -21,63 +21,6 @@ jQuery.post(
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
 	var ITEM_TYPE = 'hotels';
-	$(document).ready(function() {
-		var widget = $('.rate_widget');
-		set_votes(widget);		
-
-		// This actually records the vote
-		$('.ratings_stars').bind('click', function() {
-			var star = this;
-			var widget = $(this).parent();
-			var item_id = $(star).parent().attr('id');
-
-			var clicked_data = {
-				clicked_on : $(star).attr('class'),
-				item_id : $(star).parent().attr('id'),
-				item_type: ITEM_TYPE
-			};
-			
-			$.post(
-				'index.php?option=com_ntrip&task=other.rating',
-				clicked_data,
-				function(INFO) {
-					if (INFO == 'OK') {
-						set_votes(widget);
-					}
-				}
-			);
-		});
-
-		$('.ratings_stars').hover(
-			// Handles the mouseover
-			function() {
-				$(this).prevAll().andSelf().addClass('ratings_over');
-				$(this).nextAll().removeClass('ratings_vote');
-			},
-			// Handles the mouseout
-			function() {
-				$(this).prevAll().andSelf().removeClass('ratings_over');
-				set_votes($(this).parent());
-			}
-		);
-
-		function set_votes(widget) {
-			var item_id = widget.attr('id');
-			$.post(
-				'index.php?option=com_ntrip&task=other.get_rating',
-				{item_id: item_id, item_type: ITEM_TYPE},
-				function(data) {
-					var rating_data = data.split('##');
-					$('.total_votes').html = '';
-					$('.total_votes').html(rating_data[0] + ' lượt đánh giá');
-					var avg = rating_data[1];
-					$(widget).find('.star_' + avg).prevAll().andSelf().addClass('ratings_vote');
-					$(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote');
-				}
-			);
-		}
-		
-	});
 </script>
 
 <div id="top-adv">
@@ -126,21 +69,22 @@ jQuery.post(
 
 				<div class="content">
 					<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
-					<b>Giá: </b>120 - 150 000 VNĐ/người <br />
+					<b>Giá: </b><?php echo number_format($item->price_from); ?> - <?php echo number_format($item->price_to); ?> VNĐ/người <br />
 					<div class="rating-content">
 						<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/5-stars.gif" />
 					</div>
+					<?php /*
 					<div class="description">
 						<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 					</div>
+					 */ ?>
 
-					<div id="<?php echo $item->id; ?>" class="rating-content rate_widget">
-						<div class="star_1 ratings_stars"></div>
-						<div class="star_2 ratings_stars"></div>
-						<div class="star_3 ratings_stars"></div>
-						<div class="star_4 ratings_stars"></div>
-						<div class="star_5 ratings_stars"></div>
-						<span class="total_votes"> lượt đánh giá</span>
+					<?php $rank = round($item->user_rank); ?>
+					<div id="<?php echo $item->id; ?>" class="rating-content rate_widget" rated="<?php echo $rank; ?>">						
+						<?php for ($i = 1; $i <= 5; $i ++): ?>
+						<div class="star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>
+						<?php endfor; ?>
+						<span class="total_votes"> <?php echo $item->count_rating; ?> đánh giá</span>
 					</div>
 				</div>
 

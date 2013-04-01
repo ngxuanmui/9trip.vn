@@ -12,6 +12,7 @@ abstract class AbsNtripModelItem extends JModelItem
 		$query = $db->getQuery(true);
 		
 		$query->select('a.*')
+				->select('(SELECT COUNT(id) FROM #__ntrip_rating WHERE item_type = "'.$type.'" AND item_id = '.(int) $id.') AS count_rating')
 				->from('#__ntrip_'. $type . ' a')
 				->where('a.id = ' . $id);
 		

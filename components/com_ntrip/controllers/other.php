@@ -21,7 +21,8 @@ class NtripControllerOther extends JController
 		exit();
 	}
 
-	function get_rating() {
+	function get_rating()
+	{
 		$itemID = JRequest::getInt('item_id');
 		$itemType = JRequest::getString('item_type');
 

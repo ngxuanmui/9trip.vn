@@ -89,4 +89,69 @@ jQuery(function($){
 
 		Galleria.run('#galleria');
 	}
-})
+		
+	// Rating
+	var widget = $('.rate_widget');
+//	set_votes(widget);		
+
+	$('.ratings_stars').hover(
+		// Handles the mouseover
+		function() {
+			$(this).prevAll().andSelf().addClass('ratings_over');
+			$(this).nextAll().removeClass('ratings_vote');
+		},
+		// Handles the mouseout
+		function() {
+			$(this).prevAll().andSelf().removeClass('ratings_over');
+			
+			var avg = $(this).parent().attr('rated');
+			
+			jQuery(widget).find('.star_' + avg).prevAll().andSelf().addClass('ratings_vote');
+			jQuery(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote');
+			
+//			set_votes($(this).parent());
+		}
+	);
+
+	// This actually records the vote
+	$('.ratings_stars').bind('click', function() {
+		
+		jQuery('.total_votes').html('Vui lòng đợi ...');
+		
+		var star = this;
+		var widget = $(this).parent();
+
+		var clicked_data = {
+			clicked_on : $(star).attr('class'),
+			item_id : ITEM_ID,
+			item_type: ITEM_TYPE
+		};
+
+		$.post(
+			'index.php?option=com_ntrip&task=other.rating',
+			clicked_data,
+			function(INFO) {
+				if (INFO == 'OK') {
+					set_votes(widget);
+				}
+			}
+		);
+	});
+		
+});
+
+function set_votes(widget) {
+	var item_id = widget.attr('id');
+	jQuery.post(
+		'index.php?option=com_ntrip&task=other.get_rating',
+		{item_id: item_id, item_type: ITEM_TYPE},
+		function(data) {
+			var rating_data = data.split('##');
+			jQuery('.total_votes').html = '';
+			jQuery('.total_votes').html(rating_data[0] + ' đánh giá');
+			var avg = rating_data[1];
+			jQuery(widget).find('.star_' + avg).prevAll().andSelf().addClass('ratings_vote');
+			jQuery(widget).find('.star_' + avg).nextAll().removeClass('ratings_vote');
+		}
+	);
+}
