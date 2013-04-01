@@ -16,6 +16,8 @@ abstract class AbsNtripModelItem extends JModelItem
 				->from('#__ntrip_'. $type . ' a')
 				->where('a.id = ' . $id);
 		
+		
+		
 		$db->setQuery($query);
 		
 		$item = $db->loadObject();

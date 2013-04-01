@@ -30,18 +30,12 @@ $fields = $this->fields;
 		<div class="clr"></div>
 	</div>
 	
-	<ul>
-		<li><a href="">Khám phá</a></li>
-		<?php foreach ($fields as $field): ?>
-		<li>
-			<a href="#">
-				<?php echo $field->title; ?>
-			</a>
-		</li>
-		<?php endforeach; ?>
-	</ul>
+	<div class="tabs">
+		<?php echo NtripFrontHelper::customFieldMenu($fields, JRequest::getInt('custom_field', 0)); ?>
+		<div class="clr"></div>
+	</div>
 	
-	<div class="clr"></div>
+	
 		
 	<div class="items">
 				
@@ -55,9 +49,9 @@ $fields = $this->fields;
 				</h2>
 				
 				<div class="discover-info">
-					<span class="user">Username Test</span>
-					<span class="datetime">Wed, 26/09/2012</span>
-					<span class="counter">182 lượt</span>
+					<span class="user"><?php echo $item->author; ?></span>
+					<span class="datetime"><?php echo date("D, d/m/Y", strtotime('item->created')); ?></span>
+					<span class="counter"><?php echo $item->hits; ?> lượt</span>
 					<span class="no-reply">0 trả lời</span>
 				</div>
 				
@@ -65,18 +59,15 @@ $fields = $this->fields;
 					<img src="<?php echo $item->images; ?>" />
 				</div>
 				
-				<p class="description">
-					<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
-				</p>
+				<div class="description"><?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?></div>
 				
-				<div class="social-info">
+				<div class="social-info fltlft">
 					<span>12 thành viên thích</span>
-					
-					
-					<div class="small-button">
-						Chi tiết
-					</div>
 				</div>
+				
+				<a class="fltrgt" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>">
+					Chi tiết
+				</a>
 				
 			</li>
 			<?php endforeach; ?>
