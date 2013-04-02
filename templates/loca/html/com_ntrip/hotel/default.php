@@ -21,6 +21,18 @@ jQuery.post(
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
 	var ITEM_TYPE = 'hotels';
+	
+	jQuery(function($){
+		$('button.show-image').click(function(){
+			$(this).addClass('show-image-focus');
+			$('button.show-map').removeClass('show-map-focus');
+		});
+		
+		$('button.show-map').click(function(){
+			$(this).addClass('show-map-focus');
+			$('button.show-image').removeClass('show-image-focus');
+		});
+	});
 </script>
 
 <div id="top-adv">
@@ -61,6 +73,13 @@ jQuery.post(
 			
 			<div class="social-info">
 				<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+				
+				<div class="social-button fltrgt">
+					<button class="icons add-image"></button>
+					<button class="icons show-image show-image-focus"></button>
+					<button class="icons show-map"></button>
+				</div>
+				
 				<div class="clr"></div>
 			</div>
 			

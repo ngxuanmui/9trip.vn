@@ -696,3 +696,10 @@ a.like {
 .contact .website { background-position: 0 -123px; }
 .contact .email { background-position: -21px -123px; }
 .contact .phone { background-position: -40px -127px; }
+
+.social-button button { border: none; float: left; margin-right: 5px; cursor: pointer; }
+.add-image { background-position: -216px -53px; width: 92px; height: 22px; }
+.show-image { background-position: -216px 0; width: 70px; height: 22px; }
+.show-image-focus { background-position: -289px 0; }
+.show-map { background-position: -216px -27px; width: 70px; height: 22px; }
+.show-map-focus { background-position: -289px -27px; }
