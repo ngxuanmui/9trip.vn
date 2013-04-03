@@ -741,6 +741,74 @@ span.star5 {
 	background: url('../images/full-over-star.png') 0 -20px;
 }
 
+span.full-star-over-yellow {
+	display: block;
+	width: 94px;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 0;
+}
+span.star-yellow1 {
+	display: block;
+	width: 20%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+span.star-yellow1-5 {
+	display: block;
+	width: 32%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+
+span.star-yellow2 {
+	display: block;
+	width: 40%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+span.star-yellow2-5 {
+	display: block;
+	width: 51%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+span.star-yellow3 {
+	display: block;
+	width: 61%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+span.star-yellow3-5 {
+	display: block;
+	width: 72%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+span.star-yellow3-5 {
+	display: block;
+	width: 72%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+span.star-yellow4 {
+	display: block;
+	width: 83%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+span.star-yellow4-5 {
+	display: block;
+	width: 91%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+span.star-yellow5 {
+	display: block;
+	width: 100%;
+	height: 20px;
+	background: url('../images/full-over-star-yellow.png') 0 -20px;
+}
+
 a.like {
 	display: block;
 	float: left;

@@ -122,10 +122,17 @@ $fields = $this->fields;
 					<div class="content">
 						<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
 						<b>Giá: </b>120 - 150 000 VNĐ/người <br />
-						<div class="rule-star">
-							<label>Tiêu chí:</label>
-							<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/5-stars.gif" />
-						</div>
+						<label>Tiêu chí:</label>
+						<div class="clear"></div>
+						<span class="full-star-over-yellow"><span class="star-yellow1"></span></span>
+						<span class="full-star-over-yellow"><span class="star-yellow1-5"></span></span>
+						<span class="full-star-over-yellow"><span class="star-yellow2"></span></span>
+						<span class="full-star-over-yellow"><span class="star-yellow2-5"></span></span>
+						<span class="full-star-over-yellow"><span class="star-yellow3"></span></span>
+						<span class="full-star-over-yellow"><span class="star-yellow3-5"></span></span>
+						<span class="full-star-over-yellow"><span class="star-yellow4"></span></span>
+						<span class="full-star-over-yellow"><span class="star-yellow4-5"></span></span>
+						<span class="full-star-over-yellow"><span class="star-yellow5"></span></span>
 						<div class="description" style="display: none;">
 							<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 						</div>
