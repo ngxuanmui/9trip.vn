@@ -673,6 +673,74 @@ ul.questions li .question-info { font-weight: normal; }
 .liked {
 	background: url('../images/liked.png') no-repeat;
 }
+span.full-star-over {
+	display: block;
+	width: 94px;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 0;
+}
+span.star1 {
+	display: block;
+	width: 20%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+span.star1-5 {
+	display: block;
+	width: 32%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+
+span.star2 {
+	display: block;
+	width: 40%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+span.star2-5 {
+	display: block;
+	width: 51%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+span.star3 {
+	display: block;
+	width: 61%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+span.star3-5 {
+	display: block;
+	width: 72%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+span.star3-5 {
+	display: block;
+	width: 72%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+span.star4 {
+	display: block;
+	width: 83%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+span.star4-5 {
+	display: block;
+	width: 91%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+span.star5 {
+	display: block;
+	width: 100%;
+	height: 20px;
+	background: url('../images/full-over-star.png') 0 -20px;
+}
+
 a.like {
 	display: block;
 	float: left;

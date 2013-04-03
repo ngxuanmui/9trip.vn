@@ -40,7 +40,9 @@ $fields = $this->fields;
 	</div>
 	<!-- Kết quả tài trợ -->	
 	<ul>
-		<?php foreach ($fields as $field): ?>
+		<?php
+			foreach ($fields as $field):
+		?>
 		<li>
 			<a class="title" href="#"><?php echo $field->title; ?></a>
 		</li>
@@ -128,14 +130,16 @@ $fields = $this->fields;
 							<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 						</div>
 
-						<div class="rating-content">
-							<div class="star_1 ratings_stars"></div>
-							<div class="star_2 ratings_stars"></div>
-							<div class="star_3 ratings_stars"></div>
-							<div class="star_4 ratings_stars"></div>
-							<div class="star_5 ratings_stars"></div>
-							<span class="total_votes"> lượt đánh giá </span>
-						</div>
+						<span class="full-star-over"><span class="star1"></span></span>
+						<span class="full-star-over"><span class="star1-5"></span></span>
+						<span class="full-star-over"><span class="star2"></span></span>
+						<span class="full-star-over"><span class="star2-5"></span></span>
+						<span class="full-star-over"><span class="star3"></span></span>
+						<span class="full-star-over"><span class="star3-5"></span></span>
+						<span class="full-star-over"><span class="star4"></span></span>
+						<span class="full-star-over"><span class="star4-5"></span></span>
+						<span class="full-star-over"><span class="star5"></span></span>
+						<span class="total_votes"> 234 lượt đánh giá </span>
 						<a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a>
 					</div>
 					<div class="clr"></div>
