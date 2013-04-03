@@ -42,18 +42,7 @@ $doc->addScript("http://code.jquery.com/jquery-latest.js");
 		
 		<jdoc:include type="modules" name="header-user" />
 		
-		<div class="menu-container">
-			<ul id="main-menu">
-				<li><a href="<?php echo JURI::base(); ?>">Trang chủ</a></li>
-				<li><a href="#">Địa danh</a></li>
-				<li><a href="#">Khám phá</a></li>
-				<li><a href="#">Khuyến mại</a></li>
-				<li><a href="#">Hỏi đáp - Tư vấn</a></li>
-				<li><a href="#">Cảnh báo</a></li>
-				<li><a href="#">Album</a></li>
-				<li><a href="#">Diễn đàn</a></li>
-			</ul>
-		</div>
+		<jdoc:include type="modules" name="loca-main-menu" />
 		
 		<div class="banner">
 			<jdoc:include type="modules" name="banner" />

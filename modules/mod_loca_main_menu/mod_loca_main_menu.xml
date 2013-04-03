@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	client="site"
+	method="upgrade">
+	<name>mod_loca_main_menu</name>
+	<author>Loca.vn</author>
+	<creationDate>Jan 2004</creationDate>
+	<copyright>Copyright (C) 2005 - 2012 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>contact@loca.vn</authorEmail>
+	<authorUrl>www.loca.vn</authorUrl>
+	<version>2.5.0</version>
+	<description>Loca Main Menu</description>
+	<files>
+		<filename module="mod_loca_main_menu">mod_loca_main_menu.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>		
+		<filename>mod_loca_main_menu.xml</filename>
+	</files>
+</extension>
