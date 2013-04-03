@@ -104,4 +104,26 @@ class NtripModelOther extends JModelLegacy
 		
 		return true;
 	}
+	
+	public function saveImage($itemId, $itemType, $image, $desc)
+	{
+		$db = JFactory::getDbo();
+		
+		// Insert to tbl rating
+		$obj = new JObject();
+		
+		$obj->item_id	= $itemId;
+		$obj->item_type = $itemType;
+		$obj->images	= $image;
+		$obj->description = $desc;
+		$obj->created	= date('Y-m-d H:i:s');
+		$obj->created_by = JFactory::getUser()->id;
+		
+		$result = $db->insertObject('#__ntrip_images', $obj, 'id');
+		
+		if (!$result)
+			return array('error' => 1, 'msg' => $db->getErrorMsg ());
+		
+		return true;
+	}
 }

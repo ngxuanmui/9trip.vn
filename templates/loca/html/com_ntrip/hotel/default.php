@@ -4,6 +4,8 @@ defined('_JEXEC') or die;
 
 $item = $this->item;
 
+JHtml::_('behavior.modal');
+
 /* // rating
 
 jQuery.post(
@@ -18,21 +20,63 @@ jQuery.post(
 ); */
 ?>
 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?php echo CFG_GOOGLE_MAP_API ?>&sensor=true"></script>
+
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
 	var ITEM_TYPE = 'hotels';
+	// var UPLOAD_URL = '<?php echo JRoute::_('index.php?option=com_ntrip&task=other.upload'); ?>';
 	
 	jQuery(function($){
 		$('button.show-image').click(function(){
 			$(this).addClass('show-image-focus');
+			$('#show-album').css('display', 'block');
+			$('#show-map').css('display', 'none');
 			$('button.show-map').removeClass('show-map-focus');
 		});
 		
 		$('button.show-map').click(function(){
 			$(this).addClass('show-map-focus');
+			$('#show-album').css('display', 'none');
+			$('#show-map').css('display', 'block');
 			$('button.show-image').removeClass('show-image-focus');
 		});
+		
+		// LOAD MAP
+		jQuery('#show-map').css({'height':'400', 'width':'628'});
+		
+		initialize(50.083, 19.917, '22 Thành Công, Ba Đình, Hà Nội, Việt Nam', 'show-map');
 	});
+	
+	function initialize(gmaps_latitude, gmaps_longitude, address_title, map_canvas) 
+	{
+		var mapOptions = {
+			center: new google.maps.LatLng(gmaps_latitude, gmaps_longitude),
+			zoom: 16,
+			scrollwheel: false,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById(map_canvas), mapOptions);
+
+		var marker = new google.maps.Marker({
+			position: map.getCenter(),
+			map: map,
+			title: address_title
+		  });
+
+		  google.maps.event.addListener(map, 'center_changed', function() {
+			// 3 seconds after the center of the map has changed, pan back to the
+			// marker.
+			/*window.setTimeout(function() {
+			  map.panTo(marker.getPosition());
+			}, 3000);*/
+		  });
+
+		  google.maps.event.addListener(marker, 'click', function() {
+			map.setZoom(16);
+			map.setCenter(marker.getPosition());
+		  });
+	}
 </script>
 
 <div id="top-adv">
@@ -53,7 +97,7 @@ jQuery.post(
 				<span class="item">
 					<span class="icons website"></span>
 					<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->webiste; ?>" target="_blank">
-						Website
+						Hotel website
 					</a>
 				</span>
 				<span class="item">
@@ -75,7 +119,7 @@ jQuery.post(
 				<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
 				
 				<div class="social-button fltrgt">
-					<button class="icons add-image"></button>
+					<a class="icons add-image modal" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type=hotels'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
 					<button class="icons show-image show-image-focus"></button>
 					<button class="icons show-map"></button>
 				</div>
@@ -87,7 +131,7 @@ jQuery.post(
 
 			<div class="info">
 				<div class="other-album">
-					<div class="album">
+					<div class="album" id="show-album">
 						<div id="galleria">
 							<?php 
 							if (!empty($this->otherImages)):
@@ -99,6 +143,10 @@ jQuery.post(
 							endif; 
 							?>
 						</div>
+					</div>
+					
+					<div class="map" id="show-map" style="display: none;">
+						map here
 					</div>
 				</div>
 

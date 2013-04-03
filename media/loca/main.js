@@ -162,6 +162,19 @@ jQuery(function($){
 			}
 		);
 	});
+	
+	// upload image
+	$('#btn-upload-image').click(function(){
+		$.post(
+			'index.php?option=com_ntrip&task=other.save_image',
+			{item_id: 12, item_type: 'hotels', desc: $('#desc-upload-image').val()},
+			function(INFO) {
+				if (INFO == 'OK') {
+					window.parent.SqueezeBox.close();
+				}
+			}
+		);
+	});
 		
 });
 

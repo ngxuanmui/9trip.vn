@@ -698,8 +698,25 @@ a.like {
 .contact .phone { background-position: -40px -127px; }
 
 .social-button button { border: none; float: left; margin-right: 5px; cursor: pointer; }
-.add-image { background-position: -216px -53px; width: 92px; height: 22px; }
+.add-image { background-position: -216px -53px; width: 92px; height: 22px; float: left; margin-right: 30px; }
 .show-image { background-position: -216px 0; width: 70px; height: 22px; }
 .show-image-focus { background-position: -289px 0; }
 .show-map { background-position: -216px -27px; width: 70px; height: 22px; }
 .show-map-focus { background-position: -289px -27px; }
+
+#dropbox
+{
+	background-color:#FAFAFA;
+	color: #333;
+	border: 5px solid #fff;
+	width:320px;
+	height:240px;
+	overflow: hidden;
+}
+
+#dropbox span { display: block; text-align: center; line-height: 60px; }
+#form-upload-image { margin-left: 60px; }
+#form-upload-image h1 { margin: 10px 0; }
+#form-upload-image p { margin: 10px 0; }
+#form-upload-image button { padding: 2px 10px; }
+#form-upload-image textarea { width: 328px; }
