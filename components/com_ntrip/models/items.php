@@ -72,6 +72,10 @@ abstract class AbsNtripModelItems extends JModelList
 		$query->select('u.name AS author');
 		$query->join('LEFT', '#__users AS u ON u.id=a.created_by');
 		
+		// join category
+		$query->select('c.title AS category_title');
+		$query->join('INNER', '#__categories c ON c.id = a.catid');
+		
 		$query->order('a.id DESC');
 		
 //		$query->join('INNER', '#__category_location cl ON a.type = cl.category_id');
