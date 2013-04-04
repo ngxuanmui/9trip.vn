@@ -16,7 +16,9 @@ abstract class AbsNtripModelItem extends JModelItem
 				->from('#__ntrip_'. $type . ' a')
 				->where('a.id = ' . $id);
 		
-		
+		// join category
+		$query->select('c.title AS category_title');
+		$query->join('INNER', '#__categories c ON c.id = a.catid');
 		
 		$db->setQuery($query);
 		

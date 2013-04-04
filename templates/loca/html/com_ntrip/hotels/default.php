@@ -13,7 +13,7 @@ $fields = $this->fields;
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-hotel">
-			<label> Khám phá </label>
+			<label>Khách sạn <?php echo $this->items[0]->category_title; ?> </label>
 			<span class="icons quote fltlft"></span>
 			<span class="fltlft">
 				Hãy chia sẻ những trải nghiệm của bạn về chuyến đi của mình,
