@@ -39,15 +39,6 @@ $fields = $this->fields;
 		<div class="clr"></div>
 	</div>
 	<!-- Kết quả tài trợ -->	
-	<ul>
-		<?php
-			foreach ($fields as $field):
-		?>
-		<li>
-			<a class="title" href="#"><?php echo $field->title; ?></a>
-		</li>
-		<?php endforeach; ?>
-	</ul>
 	
 	<?php echo NtripFrontHelper::itemsMenu('hotels'); ?>
 	
@@ -56,19 +47,18 @@ $fields = $this->fields;
 		<div class="style">
 			<label class="title">Phong cách</label>
 			<div style="float: left; margin-right: 10px;">
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> Miền Bắc </div>
-				<div class="row-input"><input type="checkbox" name="all" /> Miền Trung</div>
-			</div>
-			<div style="float: left; margin-right: 10px;">
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> Miền Bắc </div>
-				<div class="row-input"><input type="checkbox" name="all" /> Miền Trung</div>
-			</div>
-			<div style="float: left; margin-right: 10px;">
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> Miền Bắc </div>
-				<div class="row-input"><input type="checkbox" name="all" /> Miền Trung</div>
+				<ul>
+					<li class="row-input">
+						<input type="checkbox" name="all" /> Tất cả
+					</li>
+					<?php
+						foreach ($fields as $field):
+					?>
+					<li>
+						<input type="checkbox" name="all" /> <?php echo $field->title; ?>
+					</li>
+					<?php endforeach; ?>
+				</ul>
 			</div>
 		</div>
 		<div class="other-conditions">

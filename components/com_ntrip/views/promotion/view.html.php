@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
  * @subpackage	com_ntrip
  * @since 1.5
  */
-class NtripViewDiscover extends JViewLegacy
+class NtripViewPromotion extends JViewLegacy
 {
 	protected $item;
 	protected $otherImages;

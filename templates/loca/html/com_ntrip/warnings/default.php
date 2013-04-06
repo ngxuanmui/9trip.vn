@@ -45,16 +45,16 @@ $fields = $this->fields;
 		
 	<div class="items">
 				
-		<ul class="list-promotions">
+		<ul class="list-warnings">
 			<?php foreach ($this->items as $item): ?>
 			<li>
 				<h2>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=promotion&id=' . $item->id . ':' . $item->alias, false); ?>">
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=warning&id=' . $item->id . ':' . $item->alias, false); ?>">
 						<?php echo $item->name; ?>
 					</a>
 				</h2>
 				
-				<div class="promotion-info">
+				<div class="warning-info">
 					<span class="user">Username Test</span>
 					<span class="datetime">Wed, 26/09/2012</span>
 					<span class="counter">182 lượt</span>
