@@ -111,17 +111,17 @@ ul { list-style: none; }
     background: url("../images/bg-main-menu.png") repeat-x;	
     height: 40px;   
 }
-ul#main-menu {
+ul.main-menu {
     width: 960px;
 	margin: auto;
     padding: 0;
 }
-ul#main-menu > li {
+ul.main-menu > li {
    list-style: none;
    line-height: 40px;
    display: inline;
 }
-ul#main-menu > li > a {    
+ul.main-menu > li > a {    
     float: left;
     padding: 0 20px;
     color: #ffffff;
@@ -130,7 +130,7 @@ ul#main-menu > li > a {
     font-weight: bold;
     height: 40px;
 }
-ul#main-menu > li > a:hover {
+ul.main-menu > li > a:hover {
     background: url("../images/bg-main-menu-hover.png") repeat-x;
 }
 #top-adv {

@@ -73,22 +73,27 @@ class NtripModelCategory extends JModel
 		$db->setQuery($query);
 		$row = $db->loadObject();
 		
-		$query = $db->getQuery(true);
+		$row->other_images = '';
 		
-		$query->select('i.*')
-				->from('#__ntrip_images i')
-				->select('u.name AS author')
-				->join('LEFT', '#__users u ON i.created_by = u.id')
-				->where('i.item_type = "albums"')
-				->where('i.item_id = ' . $row->id);
-		
-		$db->setQuery($query);
-		$rs = $db->loadObjectList();
-		
-		if ($db->getErrorMsg())
-			die($db->getErrorMsg ());
-		
-		$row->other_images = $rs;
+		if ($row->id)
+		{
+			$query = $db->getQuery(true);
+
+			$query->select('i.*')
+					->from('#__ntrip_images i')
+					->select('u.name AS author')
+					->join('LEFT', '#__users u ON i.created_by = u.id')
+					->where('i.item_type = "albums"')
+					->where('i.item_id = ' . $row->id);
+
+			$db->setQuery($query);
+			$rs = $db->loadObjectList();
+
+			if ($db->getErrorMsg())
+				die($db->getErrorMsg ());
+
+			$row->other_images = $rs;
+		}
 		
 		return $row;
 	}

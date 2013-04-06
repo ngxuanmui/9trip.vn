@@ -12,6 +12,16 @@ defined('_JEXEC') or die;
 // Include the syndicate functions only once
 require_once dirname(__FILE__).'/helper.php';
 
+$session = JFactory::getSession();
+$location = $session->get('loca_location');
+
+jimport('joomla.application.categories');
+
+$tmpCat = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip', 'table' => ''));
+$locaCategory = $tmpCat->get($location);
+
+//var_dump($locaCategory);
+
 // $list = modLocaLocationsHelper::getList($params);
 // $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 

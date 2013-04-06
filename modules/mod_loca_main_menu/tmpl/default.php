@@ -22,10 +22,18 @@ jQuery(function($){
 </script>
 
 <div class="menu-container">
-	<ul id="main-menu">
+	<ul class="main-menu">
 		<li><a href="<?php echo JURI::base(); ?>">Trang chủ</a></li>
 		<li class='loca-location-container relative'>
-			<a href="#" id='loca-location'>Địa danh</a>
+			<a id='loca-location'>
+				<?php 
+				if ($locaCategory->title != 'ROOT')
+					echo $locaCategory->title;
+				else
+					echo 'Địa danh';					
+				?>
+				
+			</a>
 
 			<ul class='show-locations absolute'>
 				<li>
@@ -37,7 +45,14 @@ jQuery(function($){
 				<li>
 					<?php echo LocaHelper::renderModulesOnPosition('dia-danh-mien-nam'); ?>
 				</li>
-			</ul></li>
+			</ul>
+		</li>		
+	</ul>
+	
+	<?php echo LocaHelper::renderModulesOnPosition('main-top-menu'); ?>
+	
+	<?php /*
+	<ul class="main-menu">
 		<li><a href="#">Khám phá</a></li>
 		<li><a href="#">Khuyến mại</a></li>
 		<li><a href="#">Hỏi đáp - Tư vấn</a></li>
@@ -45,4 +60,5 @@ jQuery(function($){
 		<li><a href="#">Album</a></li>
 		<li><a href="#">Diễn đàn</a></li>
 	</ul>
+	 */ ?>
 </div>
