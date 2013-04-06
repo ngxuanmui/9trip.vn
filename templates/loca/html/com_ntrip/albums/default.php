@@ -18,49 +18,44 @@ $fields = $this->fields;
 		
 		<div class="item-container">
 			<span class="icons quote fltlft"></span>
-			<span class="fltlft">
+			<span class="fltlft album-quote">
 				Hãy chia sẻ những khoảng khắc đáng nhớ của các bạn về những chuyến đi, 
 				các thành viên Loca.vn sẽ trải nghiệm cùng bạn.
 			</span>
 			
-			<a href="#" class="icons loca-button loca-button-album fltlft">Chia sẻ Ảnh</a>
+			<a href="#" class="share-img"></a>
+		</div>		
+		<div class="clr"></div>
+	</div>
+	<div class="list-hotels-container">
+		<div class="tabs">
+			<ul class="tab-categories">
+				<li class="active"><a href="#">Album ảnh mới nhất</a></li>
+				<li><a href="#">Nhiều người thích nhất</a></li>
+			</ul>
+			<div class="clr"></div>
 		</div>
-		
-		<div class="clr"></div>
-	</div>
 	
-	<div class="album-menu">
-		<ul>
-			<li>
-				<a href="#">Album ảnh mới nhất</a>
-			</li>
-			<li>
-				<a href="#">Nhiều người thích nhất</a>
-			</li>
-		</ul>
-	</div>
-	
-	<div class="clr"></div>
-		
-	<div class="items">
-				
-		<ul class="list-albums">
-			<?php foreach ($this->items as $key => $item): ?>
-			<li <?php if (($key + 1) % 3 == 0) echo 'class="last-item"'; ?>>
-				<div class="img">
-					<img src="<?php echo $item->images; ?>" />
+		<div class="items">
+			<ul class="list-albums">
+				<?php foreach ($this->items as $key => $item): ?>
+				<li <?php if (($key + 1) % 3 == 0) echo 'class="last-item"'; ?>>
+					<div class="img">
+						<img src="<?php echo $item->images; ?>" />
+
+					</div>
+
+					<h2 class="title-album">
+						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=album&id=' . $item->id . ':' . $item->alias, false); ?>">
+							<?php echo $item->name; ?>
+						</a>
+					</h2>
 					
-				</div>		
-				
-				<h2>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=album&id=' . $item->id . ':' . $item->alias, false); ?>">
-						<?php echo $item->name; ?>
-					</a>
-				</h2>
-			</li>
-			<?php endforeach; ?>
-		</ul>
-		<div class="clr"></div>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+			<div class="clr"></div>
+		</div>
 	</div>
 	
 	<div class="pagination">

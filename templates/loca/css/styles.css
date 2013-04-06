@@ -225,9 +225,9 @@ ul.main-menu > li > a:hover {
 .tour-container, .item-container {    
     border: 1px solid #E6E6E6;
     border-top: 1px solid #fff;
-	padding: 10px 0 10px 11px;
+	padding: 10px 7px 10px 11px;
 	float: left;
-	width: 637px;
+	width: 630px;
 }
 .tour-content {
     padding-right: 11px;
@@ -396,8 +396,8 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .list-restaurants .img { width: 200px; height: 150px; overflow: hidden; }
 .list-restaurants .img img { width: 200px; }
 
-.list-discovers .img { width: 650px; height: 440px; margin-bottom: 5px; overflow: hidden; }
-.list-discovers .img img { width: 650px; }
+.list-discovers .img { width: 640px; height: 440px; margin-bottom: 5px; overflow: hidden; }
+.list-discovers .img img { width: 630px; }
 
 .list-albums { margin-left: 10px; }
 .list-albums li { float: left; width: 200px; margin-right: 10px; margin-bottom: 10px; }
@@ -494,6 +494,7 @@ ul.tab-categories li.even {
 .list-hotels-container {
 	background: #fff;
 	margin-top: 15px;
+	padding: 0 7px 10px 7px;
 }
 ul.tab-list-hotels {
 	display: block;
@@ -825,7 +826,49 @@ a.like {
 	height: 20px;
 	padding-left: 7px;
 }
-
+.album-quote {
+	font-size: 14px;
+	line-height: 27px;
+	display: block;
+	float: left;
+	width: 420px;
+	padding-right: 10px;
+}
+.share-img {
+	background: url('../images/share-img.gif');
+	float: left;
+	width: 154px;
+	margin-top: 18px;
+	height: 45px;
+}
+h2.title-album {
+	text-indent: 5px;
+}
+.txt-btn {
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 40px;
+	text-align: center;
+	display: block;
+}
+ul.list-discovers h2 {
+	line-height: 30px;
+	text-indent: 5px;
+	padding-top: 5px;
+}
+.saparate-line {
+	padding: 5px 0;
+	border-bottom: 1px dashed #DBDBDB;
+}
+.discover-info {
+	line-height: 25px;
+}
+.item-detail {
+	background:  url('../images/bg-detail-article.gif') #fff repeat-x;
+	line-height: 18px;
+}
 .social-info { margin: 10px 0;}
 
 .contact > span { float: left; width: 120px; height: 20px; }
@@ -860,7 +903,7 @@ a.like {
 #form-upload-image button { padding: 2px 10px; }
 #form-upload-image textarea { width: 328px; }
 
-.show-locations { background: #FAFAFA; top: 40px; left: -187px; width: 960px; z-index: 10; display: none; }
+.show-locations { background: #FAFAFA; top: 40px; left: -202px; width: 960px; z-index: 10; display: none; }
 .show-locations > li { float: left; width: 33%; }
 .show-locations > li ul li { float: left; width: 33%; line-height: 25px; }
 #form-upload-image textarea { width: 328px; }
@@ -868,4 +911,5 @@ a.like {
 .question-content { width: 405px; padding: 10px; }
 .question-avatar-image { border: 1px solid #CCC; width: 50px; height: 50px; margin: 10px 10px 0 0; }
 .question-info { width: 135px; padding: 10px; }
+.block {display: block;}
 
