@@ -25,58 +25,12 @@ jQuery.post(
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
 	var ITEM_TYPE = 'hotels';
+	var GMAP_LAT = '50.083';
+	var GMAP_LONG = '19.917';
+	var GMAP_ADD = '22 Thành Công, Ba Đình, Hà Nội, Việt Nam';
+	
 	// var UPLOAD_URL = '<?php echo JRoute::_('index.php?option=com_ntrip&task=other.upload'); ?>';
 	
-	jQuery(function($){
-		$('button.show-image').click(function(){
-			$(this).addClass('show-image-focus');
-			$('#show-album').css('display', 'block');
-			$('#show-map').css('display', 'none');
-			$('button.show-map').removeClass('show-map-focus');
-		});
-		
-		$('button.show-map').click(function(){
-			$(this).addClass('show-map-focus');
-			$('#show-album').css('display', 'none');
-			$('#show-map').css('display', 'block');
-			$('button.show-image').removeClass('show-image-focus');
-		});
-		
-		// LOAD MAP
-		jQuery('#show-map').css({'height':'400', 'width':'628'});
-		
-		initialize(50.083, 19.917, '22 Thành Công, Ba Đình, Hà Nội, Việt Nam', 'show-map');
-	});
-	
-	function initialize(gmaps_latitude, gmaps_longitude, address_title, map_canvas) 
-	{
-		var mapOptions = {
-			center: new google.maps.LatLng(gmaps_latitude, gmaps_longitude),
-			zoom: 16,
-			scrollwheel: false,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
-		var map = new google.maps.Map(document.getElementById(map_canvas), mapOptions);
-
-		var marker = new google.maps.Marker({
-			position: map.getCenter(),
-			map: map,
-			title: address_title
-		  });
-
-		  google.maps.event.addListener(map, 'center_changed', function() {
-			// 3 seconds after the center of the map has changed, pan back to the
-			// marker.
-			/*window.setTimeout(function() {
-			  map.panTo(marker.getPosition());
-			}, 3000);*/
-		  });
-
-		  google.maps.event.addListener(marker, 'click', function() {
-			map.setZoom(16);
-			map.setCenter(marker.getPosition());
-		  });
-	}
 </script>
 
 <div id="top-adv">

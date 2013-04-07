@@ -386,7 +386,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .other-items .img img { width: 114px; }
 
 .item-container .album-img { width: 198px; height: 150px; }
-.item-container .album-img img { width: 198px; }
+.item-container .album-img img { height: 150px; width: auto; }
 .item-container .album-container li { width: 200px;}
 
 .quote { background-position: -181px 0; width: 27px; height: 20px; margin-top: 11px; }
@@ -905,7 +905,7 @@ ul.list-discovers h2 {
 	background:  url('../images/bg-detail-article.gif') #fff repeat-x;
 	line-height: 18px;
 }
-.social-info { margin: 10px 0;}
+.social-info { margin: 0 0 10px 0;}
 
 .contact > span { float: left; width: 120px; height: 20px; }
 .contact > span > span { float: left; width: 18px; height: 22px; margin-right: 10px; }
