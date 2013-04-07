@@ -76,6 +76,8 @@ abstract class AbsNtripModelItems extends JModelList
 		$query->select('c.title AS category_title');
 		$query->join('INNER', '#__categories c ON c.id = a.catid');
 		
+		$query->select('(SELECT COUNT(item_id) FROM #__ntrip_rating WHERE item_id = a.id AND item_type = "'.$type.'") AS count_rating');
+		
 		$query->order('a.id DESC');
 		
 //		$query->join('INNER', '#__category_location cl ON a.type = cl.category_id');
