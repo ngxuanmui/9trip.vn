@@ -12,7 +12,7 @@ $fields = $this->fields;
 
 <div id="left-content">
 	<div class="margin-bottom5">
-		<div class="intro-list-hotel">
+		<div class="intro-list-main-item">
 			<label>Khách sạn <?php echo $this->items[0]->category_title; ?> </label>
 			<span class="icons quote fltlft"></span>
 			<span class="fltlft hotel-quote">
@@ -95,15 +95,15 @@ $fields = $this->fields;
 	</div>
 
 	<div class="clr"></div>
-	<div class="list-hotels-container">
-		<ul class="tab-list-hotels">
+	<div class="list-main-items-content">
+		<ul class="tab-list-main">
 			<li class="active">Thích nhiều nhất</li>
 			<li>Rẻ nhất</li>
 			<li>Mới nhất</li>
 			<div class="clr"></div>
 		</ul>
 		<!-- List nha hang -->
-		<div class="list-hotels-content">
+		<div class="list-main-items-content">
 			<ul>
 				<?php foreach ($this->items as $item): ?>
 				<li>

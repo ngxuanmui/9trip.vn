@@ -4,6 +4,8 @@ defined('_JEXEC') or die;
 
 $items = $this->items;
 $firstAlbum = $this->firstAlbum;
+
+JHtml::_('behavior.modal');
 ?>
 
 <div id="top-adv">

@@ -21,6 +21,13 @@ class NtripFrontHelper
 		{
 			$classMenu = ($idx % 2 == 0) ? '' : 'even';
 			$classActive = ($itemType == $itemKey) ? ' active' : '';
+			
+			$link = JRoute::_('index.php?option=com_ntrip&view='. $itemKey );
+			
+			if (JRequest::getInt('id'))
+				$link .= '&id=' . JRequest::getInt ('id');
+			
+			$itemMenu = '<a href="' . $link . '">' . $itemMenu . '</a>';
 				
 			$html .= '<li class="' . $classMenu . $classActive . '">'.$itemMenu.'</li>';
 			
