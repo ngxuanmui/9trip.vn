@@ -5,16 +5,6 @@
 <div class="clr"></div>
 
 <div class="comments">
-	<div class="social">
-		<img src="<?php echo JURI::base(); ?>/templates/loca/images/sample/article-social-like.png" />
-		
-		<div class="tags-container">
-			<span class="fltlft tags icons"></span>
-			<span class="fltlft">Dis proin, elementum ac duis, enim magnis, </span>
-			
-			<div class="clr"></div>
-		</div>
-	</div>
 	
 	<div class="list-comments">
 		
@@ -89,7 +79,9 @@
 			<textarea style="height: 100px; width: 100%; margin: 10px 0 0;" id="loca-textarea-comment"></textarea>
 			<div class="clr"></div>
 		</div>
-		<a href="#" class="icons loca-button-smaller fltlft" id="loca-btn-post-comment">Bình luận</a>
+		<button class="icons button fltrgt" id="loca-btn-post-comment">
+			Bình luận
+		</button>
 		<div class="fltlft error comment-msg" id="comment-msg"></div>
 		<?php echo JHtml::_('form.token'); ?>
 	</form>

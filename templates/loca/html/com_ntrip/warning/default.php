@@ -24,7 +24,7 @@ $item = $this->item;
 			</div>
 		</div>
 		
-		<?php Ntrip_CommentHelper::showForm($item->id, 'discovers'); ?>
+		<?php Ntrip_CommentHelper::showForm($item->id, 'warnings'); ?>
 		
 		<?php if (!empty($this->otherItems)): ?>	
 		<div class="margin-bottom5">

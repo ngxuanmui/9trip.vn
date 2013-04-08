@@ -20,21 +20,30 @@ $item = $this->item;
 			<div class="info">
 				<?php echo $item->description; ?>
 				<?php $rank = round($item->user_rank); ?>
-				<div id="<?php echo $item->id; ?>" class="rating-content rate_widget" rated="<?php echo $rank; ?>">
+				<div id="<?php echo $item->id; ?>" class="rating-content rate_widget fltlft" rated="<?php echo $rank; ?>">
 					<?php for ($i = 1; $i <= 5; $i ++): ?>
 					<div class="star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>
 					<?php endfor; ?>
 					<span class="total_votes"> <?php echo $item->count_rating; ?> đánh giá</span>
 					<div class="clr"></div>					
 				</div>
-				<div class="social-info">
+				<div class="social-info fltrgt">
 					<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
 				</div>
 				<div class="clr"></div>
 			</div>
+			
+			<div class="tags-container">
+				<span class="fltlft tags icons"></span>
+				<span class="fltlft">Dis proin, elementum ac duis, enim magnis, </span>
+
+				<div class="clr"></div>
+			</div>
+			
+			<?php Ntrip_CommentHelper::showForm($item->id, 'discovers'); ?>
 		</div>
 		
-		<?php Ntrip_CommentHelper::showForm($item->id, 'discovers'); ?>
+		
 		
 		<?php if (!empty($this->otherItems)): ?>	
 		<div class="margin-bottom5">

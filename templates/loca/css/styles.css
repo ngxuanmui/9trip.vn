@@ -38,7 +38,6 @@ a {
 
 .comment-msg {
 	line-height: 41px;
-	padding-left: 10px;
 }
 
 ul { list-style: none; }
@@ -399,6 +398,9 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .list-discovers .img { width: 640px; height: 440px; margin-bottom: 5px; overflow: hidden; }
 .list-discovers .img img { width: 630px; }
 
+.list-items .img { width: 640px; height: 440px; margin-bottom: 5px; overflow: hidden; }
+.list-items .img img { width: 630px; }
+
 .list-albums { margin-left: 10px; }
 .list-albums li { float: left; width: 200px; margin-right: 10px; margin-bottom: 10px; }
 
@@ -424,7 +426,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 	color: #000;
 	height: 40px;
 }
-.intro-list-hotel input[type=button] {
+.intro-list-hotel input[type=button], .button {
 	background: url('../images/bg-button.png') repeat-x;
 	color: #fff;
 	text-transform: uppercase;
@@ -435,7 +437,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 	border: none;
 	height: 45px;
 }
-div.tabs { margin: 10px 0; background: #717171; }
+div.tabs { /* margin: 10px 0; */ background: #717171; }
 ul.tab-categories {
 	margin: 10px 0px;
 	list-style: none;
@@ -501,6 +503,13 @@ ul.tab-categories li.even {
 	margin-top: 15px;
 	padding: 0 7px 10px 7px;
 }
+
+.list-container {
+	background: #fff;
+	margin-top: 0px;
+	padding: 10px 7px;
+}
+
 ul.tab-list-hotels {
 	display: block;
 	background: #676666;
@@ -672,7 +681,7 @@ div.star-yellow5 {
 
 
 /* Other items */
-.comments { border: 1px solid #D6DAD9; border-top: none; padding: 10px; margin-bottom: 10px; }
+.comments { border-top: none; padding: 10px; margin-bottom: 10px; }
 .other-items ul { margin-left: 3px; }
 .other-items ul li { margin-right: 10px; }
 
@@ -685,7 +694,7 @@ div.star-yellow5 {
 .comment-user-info { font-weight: bold; color: #006699; }
 .comment-user-info span { font-weight: normal; color: #6e6e6e; }
 
-.tags-container { margin: 5px 0; }
+.tags-container { margin: 10px 0 0px 0; border-bottom: 1px dashed #CCC; padding-bottom: 20px; }
 .tags { width: 30px; height: 17px; background-position: -2px -48px; margin-right: 10px; }
 
 /* css for rating */
@@ -897,7 +906,7 @@ ul.list-discovers h2 {
 	padding: 5px 0;
 	border-bottom: 1px dashed #DBDBDB;
 }
-.discover-info {
+.discover-info, .item-info {
 	line-height: 25px;
 }
 .item-detail {
@@ -953,10 +962,12 @@ ul.list-discovers h2 {
 #form-upload-image textarea { width: 328px; }
 
 .question-content, .promotion-content, .warning-content { width: 405px; margin: 10px 0; border-right: 1px solid #eee;}
-.question-avatar-image { border: 1px solid #CCC; width: 50px; height: 50px; margin: 10px 10px 0 0; }
+.question-avatar-image { border: 1px solid #CCC; width: 50px; height: 50px; margin: 10px 10px 0 0; overflow: hidden; }
 .question-info, .promotion-info, .warning-info { width: 130px; padding: 10px; }
 .block {display: block;}
 
 .label-criteria { margin-right: 10px; }
 .total_votes { margin-left: 10px; }
 .hotel-quote { padding: 15px 15px 0 5px; font-size: 14px; font-style: italic; }
+
+.left-module-content { margin-top: 15px; background-color: #FFF; }

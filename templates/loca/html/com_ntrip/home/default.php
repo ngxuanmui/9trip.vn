@@ -105,17 +105,7 @@ defined('_JEXEC') or die;
 					<span class="txt-register">ĐĂNG KÝ THÀNH VIÊN</span>
 				</a>
 				
-				<?php 
-					$modules = JModuleHelper::getModules('right');
-
-					foreach($modules as $module)
-					{
-//						if ($module->showtitle)
-//							echo '<div class="module-title">' . $module->title . '</div>';
-
-						echo JModuleHelper::renderModule($module);
-					}
-				?>
+				<?php echo LocaHelper::renderModulesOnPosition('right'); ?>
 				
 			</div>
 			<div class="clear"></div>

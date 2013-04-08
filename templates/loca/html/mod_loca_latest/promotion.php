@@ -3,12 +3,15 @@
 defined('_JEXEC') or die;
 ?>
 
-<div class="promotion-content">
+<div class="left-module-content">
 	<div class="promotion-bar">Khuyến mại mới nhất</div>
 	<?php foreach ($list as $item): ?>
 	<div class="promotion-item">
 		<div class="title">
-			<a href="#">
+			<?php
+			$link = JRoute::_('index.php?option=com_ntrip&view=promotion&id='.$item->id.':'.$item->alias);
+			?>
+			<a href="<?php echo $link; ?>">
 				<?php echo $item->name; ?>
 			</a>
 		</div>
