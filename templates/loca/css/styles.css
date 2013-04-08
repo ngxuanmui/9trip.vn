@@ -613,6 +613,10 @@ ul.tab-list-main li.active {
 	padding: 5px 0;
 }
 
+.contact { margin: 10px 0 20px 0; }
+
+div.content p { margin: 5px 0; }
+div.rating-content .criteria { margin: -6px 5px 0 0; }
 ul.questions li { float: none; width: 100%; font-weight: bold; }
 ul.questions li .question-info { font-weight: normal; }
 .row-input input[type=checkbox] {
@@ -684,7 +688,8 @@ div.star-yellow5 {
 
 
 /* Other items */
-.comments { border-top: none; padding: 10px; margin-bottom: 10px; }
+.comments { border-top: none; padding: 10px; margin-bottom: 10px; background: #FFF; }
+.tab-comments { margin-top: 20px; }
 .other-items ul { margin-left: 3px; }
 .other-items ul li { margin-right: 10px; }
 
