@@ -18,26 +18,26 @@ $items = $this->items;
 		<div class="profile-menu">
 			<?php echo LocaHelper::renderModulesOnPosition('profile-menu') ?>
 		</div>
-		<div class="list-hotels-container">
-			<div class="tabs">
-				<ul class="tab-categories">
-					<li class="active"><a href="#">Khách sạn</a></li>
-					<li class="even"><a href="#">Nhà hàng</a></li>
-					<li><a href="#">Tham quan</a></li>
-					<li class="even" ><a href="#">Dịch vụ</a></li>
-					<li><a href="#">Mua sắm</a></li>
-					<li class="even"><a href="#">Giải trí</a></li>
-				</ul>
-				<div class="clr"></div>
-			</div>
+		<div class="tabs">
+			<ul class="tab-categories">
+				<li class="active"><a href="#">Khách sạn</a></li>
+				<li class="even"><a href="#">Nhà hàng</a></li>
+				<li><a href="#">Tham quan</a></li>
+				<li class="even" ><a href="#">Dịch vụ</a></li>
+				<li><a href="#">Mua sắm</a></li>
+				<li class="even"><a href="#">Giải trí</a></li>
+			</ul>
+			<div class="clr"></div>
+		</div>
+		<div class="list-hotels-container" style="padding: 10px 0; margin-top: 0">
 			<form method="post" action="<?php echo ''; ?>">
-				<table class="list-user-hotels" cellpadding="10" border="0" cellspacing="0" width="100%">
+				<table class="list-user-hotels" cellpadding="10" border="0" cellspacing="0" width="98%">
 					<tr class="oven">
-						<th>Select</th>
-						<th>Date posted</th>
+						<th>#</th>
 						<th>Tiêu đề</th>
+						<th>Tỉnh thành</th>
 						<th>Rating</th>
-						<th>Response</th>
+						<th>Trạng thái</th>
 					</tr>
 					<?php foreach ($items as $key => $item): ?>
 					<tr class="<?php if (($key+1) %2 == 0) echo 'oven' ?>">
@@ -49,10 +49,7 @@ $items = $this->items;
 						</td>
 						<td><?php echo $item->category_title; ?></td>
 						<td>
-							<?php $rank = round($item->user_rank); ?>
-							<?php for ($i = 1; $i <= 5; $i ++): ?>
-								<div class="star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>
-							<?php endfor; ?>
+							<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
 						</td>
 						<td><?php echo ($item->state == 1) ? 'Yes' : 'No'; ?></td>
 					</tr>
@@ -66,13 +63,13 @@ $items = $this->items;
 						</td>
 					</tr>
 
-					<tr>
+					<!--<tr>
 						<td colspan="10">
 							<input type="hidden" name="task" value="" />
 							<?php echo JHtml::_('form.token'); ?>
 							<?php echo Ntrip_User_Toolbar::buttonList('user_man_hotel'); ?>
 						</td>
-					</tr>
+					</tr>-->
 				</table>
 			</form>
 		</div>
