@@ -193,7 +193,7 @@ jQuery(function($){
 	// LOAD MAP
 	jQuery('#show-map').css({'height':'400', 'width':'628'});
 
-	if (typeof GMAP_LAT != undefined)
+	if (typeof GMAP_LAT !== 'undefined')
 		initialize(GMAP_LAT, GMAP_LONG, GMAP_ADD, 'show-map');
 		
 });

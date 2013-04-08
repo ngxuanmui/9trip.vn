@@ -911,6 +911,7 @@ ul.list-discovers h2 {
 }
 .discover-info, .item-info {
 	line-height: 25px;
+	font-weight: normal;
 }
 .item-detail {
 	background:  url('../images/bg-detail-article.gif') #fff repeat-x;

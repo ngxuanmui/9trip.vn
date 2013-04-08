@@ -70,4 +70,23 @@ class NtripFrontHelper
 		
 		return $html;
 	}
+	
+	public static function updateGmapInfo($itemId, $itemType, $address)
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		$coordinate = LocaHelper::getGmapCoordinates($address);
+		
+		$obj = new stdClass();
+		
+		$obj->item_id = $itemId;
+		$obj->item_type = $itemType;
+		$obj->gmap_lat = $coordinate['lat'];
+		$obj->gmap_long = $coordinate['long'];
+		
+		$db->insertObject('#__ntrip_gmap_info', $obj);
+		
+		return true;
+	}
 }
