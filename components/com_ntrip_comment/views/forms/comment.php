@@ -4,10 +4,15 @@
 
 <div class="clr"></div>
 
+<ul class="tab-list-main tab-comments">
+	<li class="active">Đánh giá mới nhất</li>
+	<li>Nhiều người thích nhất</li>
+	<div class="clr"></div>
+</ul>
+
 <div class="comments">
 	
 	<div class="list-comments">
-		
 		
 		<div class="comment-content">
 			<?php foreach ($listComments as $comment): ?>
@@ -64,7 +69,7 @@
 	<?php if (JFactory::getUser()->id): ?>
 	<form action="<?php echo JRoute::_('index.php'); ?>" id="loca-frm-comment">
 		<div class="post-comment" style="margin: 10px 0;">
-			<?php if ($isItemOwner): ?>
+			<?php #if ($isItemOwner): ?>
 			Gửi bình luận: 
 			<select name="loca_comment_parent_id" id="comment-parent-id">
 				<option value="">Bình luận mới</option>
@@ -75,7 +80,7 @@
 				<option value="<?php echo $comment->id; ?>"><?php echo JHtml::_('string.truncate', $comment->content, 50) . '('.$author.')'; ?></option>
 				<?php endforeach; ?>
 			</select>
-			<?php endif; ?>
+			<?php #endif; ?>
 			<textarea style="height: 100px; width: 100%; margin: 10px 0 0;" id="loca-textarea-comment"></textarea>
 			<div class="clr"></div>
 		</div>

@@ -65,9 +65,11 @@ jQuery.post(
 					<?php echo $item->phone; ?>
 				</span>
 				
+				<div class="clr"></div>
+				
 			</div>
 			
-			<div class="clr"></div>
+			
 			
 			<div class="social-info">
 				<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
@@ -105,10 +107,13 @@ jQuery.post(
 				</div>
 
 				<div class="content">
-					<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
-					<b>Giá: </b><?php echo number_format($item->price_from); ?> - <?php echo number_format($item->price_to); ?> VNĐ/người <br />
+					<p><b>Xếp hạng:</b> Nhà hàng ở Quảng Ninh</p>
+					<p><b>Giá: </b><?php echo number_format((int) $item->price_from); ?> - <?php echo number_format((int) $item->price_to); ?> VNĐ/người</p>
 					<div class="rating-content">
-						<img src="<?php echo JURI::base() . 'templates/loca/'; ?>images/5-stars.gif" />
+						<span class="fltlft criteria">Tiêu chí: </span>
+						<span class="fltlft full-star-over-yellow">
+							<span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span>
+						</span>
 					</div>
 					<?php /*
 					<div class="description">
