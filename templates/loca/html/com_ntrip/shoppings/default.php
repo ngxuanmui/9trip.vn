@@ -12,11 +12,17 @@ $fields = $this->fields;
 
 <div id="left-content">
 	<div class="margin-bottom5">
-		<div class="title-category">
-			Khám phá
+		<div class="intro-list-main-item">
+			<label>Khách sạn <?php echo $this->items[0]->category_title; ?> </label>
+			<span class="icons quote fltlft"></span>
+			<span class="fltlft shopping-quote">
+				Nếu thông tin mua sắm của bạn chưa có trên Loca.vn, hãy tạo mới ngay
+			</span>
+			<input type="button" value="Tạo mới mua sắm" class="fltlft" />
+			<div class="clear"></div>
 		</div>
 		
-		<div class="item-container">
+		<!--<div class="item-container">
 			<span class="icons quote fltlft"></span>
 			<span class="fltlft">
 				Hãy chia sẻ những trải nghiệm của bạn về chuyến đi của mình, 
@@ -25,68 +31,111 @@ $fields = $this->fields;
 			</span>
 			
 			<a href="#" class="icons loca-button fltlft">Chia sẻ trải nghiệm</a>
-		</div>
+		</div>-->
 		
 		<div class="clr"></div>
 	</div>
+	<!-- Kết quả tài trợ -->	
 	
-	<ul>
-		<li><a href="">Khám phá</a></li>
-		<?php foreach ($fields as $field): ?>
-		<li>
-			<a href="#">
-				<?php echo $field->title; ?>
-			</a>
-		</li>
-		<?php endforeach; ?>
-	</ul>
+	<?php echo NtripFrontHelper::itemsMenu('shoppings'); ?>
 	
 	<div class="clr"></div>
-		
-	<div class="items">
+	<div class="search-conditions">
+		<div class="style">
+			<label class="title">Phong cách</label>
+			<div style="float: left; margin-right: 10px;">
+				<ul>
+					<li class="row-input fltlft custom-field-input">
+						<input type="checkbox" name="all" /> Tất cả
+					</li>
+					<?php
+						foreach ($fields as $field):
+					?>
+					<li class="row-input fltlft custom-field-input">
+						<input type="checkbox" name="all" /> <?php echo $field->title; ?>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="clr"></div>
+		</div>
+		<div class="other-conditions">
+			<div class="col">
+				<label class="title">Đánh giá</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-1"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-2"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-3"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-4"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-5"></div> </div>
+			</div>
+			<div class="col">
+				<label class="title">Giá</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 0 VNĐ - 200N VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 200 VNĐ - 500N VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 500 VNĐ - 1TR VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 1TR VNĐ - 2TR VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" />TRÊN 2TR VNĐ </div>
+
+			</div>
+			<div class="col">
+				<label class="title">Tiêu chuẩn</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow1"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow2"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow3"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow4"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow5"></div> </div>
 				
-		<ul class="list-discovers">
-			<?php foreach ($this->items as $item): ?>
-			<li>
-				<h2>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>">
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="clr"></div>
+	<div class="list-main-items-content">
+		<ul class="tab-list-main">
+			<li class="active">Thích nhiều nhất</li>
+			<li>Rẻ nhất</li>
+			<li>Mới nhất</li>
+			<div class="clr"></div>
+		</ul>
+		<!-- List nha hang -->
+		<div class="list-main-items-content">
+			<ul>
+				<?php foreach ($this->items as $item): ?>
+				<li>
+					<a class="title" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=shopping&id=' . $item->id . ':' . $item->alias, false); ?>">
 						<?php echo $item->name; ?>
 					</a>
-				</h2>
-				
-				<div class="discover-info">
-					<span class="user">Username Test</span>
-					<span class="datetime">Wed, 26/09/2012</span>
-					<span class="counter">182 lượt</span>
-					<span class="no-reply">0 trả lời</span>
-				</div>
-				
-				<div class="img">
-					<img src="<?php echo $item->images; ?>" />
-				</div>
-				
-				<p class="description">
-					<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
-				</p>
-				
-				<div class="social-info">
-					<span>12 thành viên thích</span>
-					
-					
-					<div class="small-button">
-						Chi tiết
+					<div class="img-container">
+						<img src="<?php echo $item->images; ?>" />
 					</div>
-				</div>
-				
-			</li>
-			<?php endforeach; ?>
-		</ul>
-		<div class="clr"></div>
+					<div class="content">
+						<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
+						<b>Giá: </b>120 - 150 000 VNĐ/người <br />
+						<label class="fltlft label-criteria">Tiêu chí:</label>
+						<span class="fltlft full-star-over-yellow"><span class="star-yellow<?php echo str_replace('.', '-', $item->shopping_class); ?>"></span></span>
+						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
+						<div class="clear"></div>
+						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
+						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>
+						<div class="clear"></div>
+						<a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a>
+					</div>
+					<div class="clr"></div>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+			<div class="clr"></div>
+		</div>
+		<div class="pagination">
+			<?php echo $this->pagination->getPagesLinks(); ?>
+		</div>
 	</div>
 	
-	<div class="pagination">
-		<?php echo $this->pagination->getPagesLinks(); ?>
-	</div>
 	
 </div>
 

@@ -12,119 +12,119 @@ $fields = $this->fields;
 
 <div id="left-content">
 	<div class="margin-bottom5">
-		<div class="title-category">
-			Nhà hàng
-		</div>
-		
-		<div class="item-container">
+		<div class="intro-list-main-item">
+			<label>Khách sạn <?php echo $this->items[0]->category_title; ?> </label>
 			<span class="icons quote fltlft"></span>
-			<span class="fltlft">
+			<span class="fltlft hotel-quote">
 				Nếu nhà hàng của bạn chưa có trên Loca.vn, hãy tạo mới ngay
 			</span>
-			
-			<a href="#" class="icons loca-button fltlft">Tạo mới nhà hàng</a>
+			<input type="button" value="Tạo mới nhà hàng" class="fltlft" />
+			<div class="clear"></div>
 		</div>
 		
 		<div class="clr"></div>
 	</div>
+	<!-- Kết quả tài trợ -->	
 	
-	<?php echo Ntrip_User_Toolbar::itemsMenu(); ?>
+	<?php echo NtripFrontHelper::itemsMenu('restaurants'); ?>
 	
-	<ul>
-		<li>
-			<h3>Phong cách</h3>
+	<div class="clr"></div>
+	<div class="search-conditions">
+		<div class="style">
+			<label class="title">Phong cách</label>
+			<div style="float: left; margin-right: 10px;">
+				<ul>
+					<li class="row-input fltlft custom-field-input">
+						<input type="checkbox" name="all" /> Tất cả
+					</li>
+					<?php
+						foreach ($fields as $field):
+					?>
+					<li class="row-input fltlft custom-field-input">
+						<input type="checkbox" name="all" /> <?php echo $field->title; ?>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="clr"></div>
+		</div>
+		<div class="other-conditions">
+			<div class="col">
+				<label class="title">Đánh giá</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-1"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-2"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-3"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-4"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-5"></div> </div>
+			</div>
+			<div class="col">
+				<label class="title">Giá</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 0 VNĐ - 200N VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 200 VNĐ - 500N VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 500 VNĐ - 1TR VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" /> 1TR VNĐ - 2TR VNĐ </div>
+				<div class="row-input"><input type="checkbox" name="all" />TRÊN 2TR VNĐ </div>
+
+			</div>
+			<div class="col">
+				<label class="title">Tiêu chuẩn</label>
+				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow1"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow2"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow3"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow4"></div> </div>
+				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow5"></div> </div>
+				
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="clr"></div>
+	<div class="list-main-items-content">
+		<ul class="tab-list-main">
+			<li class="active">Thích nhiều nhất</li>
+			<li>Rẻ nhất</li>
+			<li>Mới nhất</li>
+			<div class="clr"></div>
+		</ul>
+		<!-- List nha hang -->
+		<div class="list-main-items-content">
 			<ul>
-				<li><input type="checkbox" name="" value="" /> Tất cả</li>
-				<?php foreach ($fields as $field): ?>
+				<?php foreach ($this->items as $item): ?>
 				<li>
-					<input type="checkbox" name="" value="" /> <?php echo $field->title; ?>
+					<a class="title" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=restaurant&id=' . $item->id . ':' . $item->alias, false); ?>">
+						<?php echo $item->name; ?>
+					</a>
+					<div class="img-container">
+						<img src="<?php echo $item->images; ?>" />
+					</div>
+					<div class="content">
+						<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
+						<b>Giá: </b>120 - 150 000 VNĐ/người <br />
+						<label class="fltlft label-criteria">Tiêu chí:</label>
+						<span class="fltlft full-star-over-yellow"><span class="star-yellow<?php echo str_replace('.', '-', $item->restaurant_class); ?>"></span></span>
+						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
+						<div class="clear"></div>
+						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
+						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>
+						<div class="clear"></div>
+						<a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a>
+					</div>
+					<div class="clr"></div>
 				</li>
 				<?php endforeach; ?>
 			</ul>
-		</li>
-		<li>
-			<h3>Giá</h3>
-			<ul>
-				<li>
-					<input type="checkbox" name="" value="" /> Tất cả
-				</li>
-				<li><input type="checkbox" name="" value="" /> 0 VNĐ - 200N VNĐ</li>
-				<li><input type="checkbox" name="" value="" /> 200N VNĐ - 500N VNĐ</li>
-				<li><input type="checkbox" name="" value="" /> 500N VNĐ - 1TR VNĐ</li>
-				<li><input type="checkbox" name="" value="" /> 1TR VNĐ - 2TR VNĐ</li>
-				<li><input type="checkbox" name="" value="" /> Trên 2TR VNĐ</li>
-			</ul>
-		</li>
-		<li>
-			<h3>Đánh giá</h3>
-			<ul>
-				<li><input type="checkbox" name="" value="" /> Tất cả</li>
-				<li><input type="checkbox" name="" value="" /> 1 *</li>
-				<li><input type="checkbox" name="" value="" /> 2 *</li>
-				<li><input type="checkbox" name="" value="" /> 3 *</li>
-				<li><input type="checkbox" name="" value="" /> 4 *</li>
-				<li><input type="checkbox" name="" value="" /> 5 *</li>
-			</ul>
-		</li>
-	</ul>
-	
-	<div class="clr"></div>
-	
-	<div class="margin-bottom5">
-		<div class="title-category">
-			Kết quả tài trợ
+			<div class="clr"></div>
 		</div>
-		
-		<div class="item-container">
-			<ul>
-				<li>
-					abc
-				</li>
-			</ul>
+		<div class="pagination">
+			<?php echo $this->pagination->getPagesLinks(); ?>
 		</div>
-		
-		<div class="clr"></div>
 	</div>
 	
-	<div class="items">
-		<div class="list-items-menu">
-			<span class="mostlike">Thích nhiều nhất</span>
-			<span class="cheapest">Rẻ nhất</span>
-			<span class="newest">Mới nhất</span>
-		</div>
-		<div class="clr"></div>
-		
-		<ul class="list-restaurants">
-			<?php foreach ($this->items as $item): ?>
-			<li>
-				<h2>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=restaurant&id=' . $item->id . ':' . $item->alias, false); ?>">
-						<?php echo $item->name; ?>
-					</a>
-				</h2>
-				
-				<div class="img">
-					<img src="<?php echo $item->images; ?>" />
-				</div>
-				
-				<div class="info">
-					<p class="ranking">Xếp hạng 1/35 nhà hàng ở Quảng Ninh</p>
-					<p class="price">Giá: <?php echo number_format($item->price_from) . ' - ' . number_format($item->price_to); ?> VNĐ / 1 người</p>
-					<p class="rating">3 * 256 đánh giá</p>
-					<p class="description">
-						<?php echo $item->description; ?>
-					</p>
-				</div>
-				
-			</li>
-			<?php endforeach; ?>
-		</ul>
-		<div class="clr"></div>
-	</div>
-	
-	<div class="pagination">
-		<?php echo $this->pagination->getPagesLinks(); ?>
-	</div>
 	
 </div>
 
