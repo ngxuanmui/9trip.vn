@@ -933,6 +933,24 @@ ul.list-discovers h2 {
 .title-detail {color: #000;}
 .social-info { margin: 0 0 10px 0;}
 
+table.list-user-hotels {
+	margin: 20px 5px;
+	border: 1px solid #DEDEDE;
+}
+table.list-user-hotels td, table.list-user-hotels th {
+	padding: 7px 5px;
+	border-right: 1px solid #DEDEDE;
+}
+table.list-user-hotels tr{
+	background: #fff;
+	text-align: center;
+}
+table.list-user-hotels tr.oven{
+	background: #EBEBEB;
+	padding: 10px 5px;
+	border: 1px solid #DEDEDE;
+}
+
 .contact > span { float: left; width: 120px; height: 20px; }
 .contact > span > span { float: left; width: 18px; height: 22px; margin-right: 10px; }
 .contact > span > span.phone { margin-right: 5px; }
