@@ -36,3 +36,14 @@ ALTER TABLE  `jos_ntrip_shoppings` ADD  `hits` INT NOT NULL AFTER  `user_like`;
 ALTER TABLE  `jos_ntrip_tours` ADD  `hits` INT NOT NULL AFTER  `user_like`;
 ALTER TABLE  `jos_ntrip_warnings` ADD  `hits` INT NOT NULL AFTER  `user_like`;
 
+
+-- 8.4.2013 - muinx - add user_rank to question table
+ALTER TABLE  `jos_ntrip_questions` ADD  `user_rank` FLOAT( 11, 2 ) NOT NULL AFTER  `state`;
+
+CREATE TABLE `jos_ntrip_gmap_info` (
+  `item_id` int(11) NOT NULL DEFAULT '0',
+  `item_type` varchar(255) NOT NULL DEFAULT '',
+  `gmap_lat` varchar(255) DEFAULT NULL,
+  `gmap_long` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`item_id`,`item_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

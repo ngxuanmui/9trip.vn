@@ -17,67 +17,35 @@ $item = $this->item;
 		</div>
 		
 		<div class="item-container item-detail">
-			<div class="address"><?php echo $item->address; ?></div>
-			<div class="contact">
-				<span class="website">Website</span>
-				<span class="email">Email</span>
-				<span class="phone">Phone</span>
-			</div>
-			
 			<div class="info">
-				<div class="img">
-					<img src="<?php echo $item->images; ?>" />
-				</div>
+				<?php echo $item->content; ?>
 				
-				<div class="info">
-					<p class="ranking">Xếp hạng 1/35 nhà hàng ở Quảng Ninh</p>
-					<p class="rating">3 * 256 đánh giá</p>
-					<p class="description">
-						<?php echo $item->description; ?>
-					</p>
-				</div>
+				<div class="clr"></div>
 				
+				<?php $rank = round($item->user_rank); ?>
+				<div id="<?php echo $item->id; ?>" class="rating-content rate_widget fltlft" rated="<?php echo $rank; ?>">
+					<?php for ($i = 1; $i <= 5; $i ++): ?>
+					<div class="star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>
+					<?php endfor; ?>
+					<span class="total_votes"> <?php echo $item->count_rating; ?> đánh giá</span>
+					<div class="clr"></div>					
+				</div>
+				<div class="social-info fltrgt">
+					<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+				</div>
 				<div class="clr"></div>
 			</div>
 			
-			<div class="other-images">
-				<h3>Cơ sở vật chất</h3>
-				
-				<ul>
-					<?php foreach ($this->otherImages as $img): ?>
-					<li class="img">
-						<img src="images/restaurants/<?php echo $item->id; ?>/thumbnail/<?php echo $img->images; ?>" />
-					</li>
-					<?php endforeach; ?>
-				</ul>
+			<div class="tags-container">
+				<span class="fltlft tags icons"></span>
+				<span class="fltlft">Dis proin, elementum ac duis, enim magnis, </span>
+
+				<div class="clr"></div>
 			</div>
 			
-			<div class="clr"></div>
+			<?php Ntrip_CommentHelper::showForm($item->id, 'questions'); ?>
 		</div>
 		
-		<div class="comments">
-			Comment here
-		</div>
-		
-		<?php if (!empty($this->otherItems)): ?>		
-		<div class="other-items">
-			<ul>
-				<?php foreach ($this->otherItems as $other): ?>
-				<li>
-					<div class="img">
-						<img src="<?php echo $item->images; ?>" />
-					</div>				
-					
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>">
-						<?php echo $item->name; ?>
-					</a>
-				</li>
-				<?php endforeach; ?>
-			</ul>
-		</div>		
-		<?php endif; ?>
-		
-		<div class="clr"></div>
 	</div>
 </div>
 

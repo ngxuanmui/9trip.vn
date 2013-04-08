@@ -21,10 +21,10 @@ $firstAlbum = $this->firstAlbum;
 			
 			<div class="item-container">
 				<div class="social-info">
-					<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+					<a class="like" href="#" id="like-<?php echo $firstAlbum->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $firstAlbum->user_like; ?></div>
 
 					<div class="social-button fltrgt">
-						<a class="icons add-image modal" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type=hotels'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
+						<a class="icons add-image modal" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$firstAlbum->id.'&type=albums'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
 						<button class="icons show-image show-image-focus"></button>
 						<button class="icons show-map"></button>
 					</div>
@@ -173,11 +173,11 @@ $firstAlbum = $this->firstAlbum;
 			<ul class="questions">
 				<?php foreach ($items['questions'] as $question): ?>
 				<li>
-					<a href="#">
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=question&id=' . $question->id . ':' . $question->alias, false); ?>">
 						<?php echo $question->title; ?>
 					</a>
 					
-					<div class="question-info">
+					<div class="item-info">
 						<a href="#"><?php echo $question->author; ?></a> <?php echo $question->created; ?> | <?php echo $question->hits; ?> | <?php #echo $question->answers; ?>
 					</div>
 				</li>
