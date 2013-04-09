@@ -940,14 +940,13 @@ table.list-user-hotels {
 	border: 1px solid #DEDEDE;
 }
 table.list-user-hotels td, table.list-user-hotels th {
-	padding: 7px 5px;
+	padding: 7px 15px;
 	border-right: 1px solid #DEDEDE;
 }
-table.list-user-hotels tr{
+table.list-user-hotels tr, table.list-user-hotels tr.row0{
 	background: #fff;
-	text-align: center;
 }
-table.list-user-hotels tr.oven{
+table.list-user-hotels tr.oven, table.list-user-hotels tr.row1{
 	background: #EBEBEB;
 	padding: 10px 5px;
 	border: 1px solid #DEDEDE;
