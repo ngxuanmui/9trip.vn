@@ -20,12 +20,12 @@ $items = $this->items;
 		</div>
 		<div class="tabs">
 			<ul class="tab-categories">
-				<li class="active"><a href="#">Khách sạn</a></li>
-				<li class="even"><a href="#">Nhà hàng</a></li>
-				<li><a href="#">Tham quan</a></li>
-				<li class="even" ><a href="#">Dịch vụ</a></li>
-				<li><a href="#">Mua sắm</a></li>
-				<li class="even"><a href="#">Giải trí</a></li>
+				<li class="active"><a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=user_man_hotels'); ?>">Khách sạn</a></li>
+				<li class="even"><a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=user_man_restaurants'); ?>">Nhà hàng</a></li>
+				<li><a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=user_man_tours'); ?>">Tham quan</a></li>
+				<li class="even" ><a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=user_man_services'); ?>">Dịch vụ</a></li>
+				<li><a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=user_man_shoppings'); ?>">Mua sắm</a></li>
+				<li class="even"><a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=user_man_relaxes'); ?>">Giải trí</a></li>
 			</ul>
 			<div class="clr"></div>
 		</div>
@@ -33,7 +33,6 @@ $items = $this->items;
 			<form method="post" action="<?php echo ''; ?>">
 				<table class="list-user-hotels" cellpadding="10" border="0" cellspacing="0" width="98%">
 					<tr class="oven">
-						<th>#</th>
 						<th>Tiêu đề</th>
 						<th>Tỉnh thành</th>
 						<th>Rating</th>
@@ -41,7 +40,6 @@ $items = $this->items;
 					</tr>
 					<?php foreach ($items as $key => $item): ?>
 					<tr class="<?php if (($key+1) %2 == 0) echo 'oven' ?>">
-						<td><input type="radio" name="hotel_id" value="<?php echo $item->id; ?>" /></td>
 						<td>
 							<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.edit&id='. $item->id . '&Itemid=' . JRequest::getInt('Itemid'), false); ?>">
 								<?php echo $item->name; ?>
@@ -55,11 +53,7 @@ $items = $this->items;
 					</tr>
 					<?php endforeach; ?>
 					<tr>
-						<td colspan="5">
-							<div class="pagination fltleft" style="background: #fff;"><?php echo $this->pagination->getPagesLinks();//$this->pagination->getListFooter(); ?></div>
-							<div class="fltright">
-								<a href="#" class="icons loca-button"><span class="txt-btn">Thêm mới</span></a>
-							</div>
+						<td colspan="5">							
 						</td>
 					</tr>
 
@@ -71,6 +65,13 @@ $items = $this->items;
 						</td>
 					</tr>-->
 				</table>
+				<div class="clear">
+					<div class="pagination fltleft" style="background: #fff;"><?php echo $this->pagination->getPagesLinks();//$this->pagination->getListFooter(); ?></div>
+					<div class="fltright">
+						<a href="#" class="icons loca-button"><span class="txt-btn">Thêm mới</span></a>
+					</div>
+					<div class="clear"></div>
+				</div>
 			</form>
 		</div>
 	</div>
