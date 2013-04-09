@@ -49,13 +49,18 @@ $loginUrl	= $facebook->getLoginUrl(
 ?>
 
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
+
+<script>
+	
+(function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<?php echo CFG_FACEBOOK_API_ID ?>";
     fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+
+</script>
 
 <div id="main-header">
 	<div class="logo">
@@ -69,11 +74,94 @@ $loginUrl	= $facebook->getLoginUrl(
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration', false); ?>">Đăng ký</a>
 			</div>
 		<?php else: ?>
-			<div>
-				Hello 
-				<a href="<?php echo JRoute::_('index.php?option=com_users&view=profile'); ?>">
+			<div class="relative">
+				<script type="text/javascript">
+					jQuery(function(){
+						$('#user-function').click(function(){
+							
+							$('.list-user-function').toggleClass('display-none');
+							
+							return false;
+						});
+					});
+				</script>
+				<a href="#" id="user-function">
 					<?php echo $user->username; ?>
+					
+					
 				</a>
+				<div class="absolute list-user-function display-none">
+					<ul>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_hotel.add">
+								Thêm mới khách sạn
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_discover.add">
+								Thêm mới khám phá
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_restaurant.add">
+								Thêm mới nhà hàng
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_promotion.add">
+								Thêm mới khuyến mãi
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_tour.add">
+								Thêm mới thăm quan
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_warning.add">
+								Thêm mới cảnh báo
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_shopping.add">
+								Thêm mới mua sắm
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_question.add">
+								Thêm mới câu hỏi
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_relax.add">
+								Thêm mới giải trí
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_album.add">
+								Thêm mới album ảnh
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_ntrip&task=user_man_service.add">
+								Thêm mới dịch vụ
+							</a>
+						</li>
+						<li>
+							<a href="index.php?option=com_users&view=profile">
+								Cài đặt
+							</a>
+						</li>
+					</ul>
+					<div class="clr">
+						<span class="fltlft">
+							<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=user_man_hotels'); ?>">
+								QUẢN LÝ DỊCH VỤ
+							</a>
+						</span>
+						<span class="fltrgt">ĐĂNG XUẤT</span>
+					</div>
+				</div>
 				|
 				<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="logout-form" style="display: inline;">
 				<?php if ($params->get('greeting')) : ?>

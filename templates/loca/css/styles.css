@@ -1002,3 +1002,12 @@ table.list-user-hotels tr.oven{
 .shopping-quote { width: 420px; }
 
 .left-module-content { margin-top: 15px; background-color: #FFF; }
+
+.list-user-function { top: 20px; right: 0; border: 1px solid #CCC; background: #FFF; }
+.list-user-function ul { float: left; width: 290px; list-style: square; margin: 10px 0px 10px 30px; }
+.list-user-function li { float: left; width: 135px; margin-right: 10px; text-align: left; padding: 4px 0; }
+.list-user-function li a { padding: 0 !important; }
+.list-user-function div { border-top: 1px solid #CCC; padding: 5px 0; }
+.list-user-function div span { padding: 0 10px 5px 10px; }
+
+.display-none { display: none; }
