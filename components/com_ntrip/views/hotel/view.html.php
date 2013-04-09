@@ -28,6 +28,9 @@ class NtripViewHotel extends JViewLegacy
 		$this->otherItems = $this->get('OtherItems');
 		
 		$this->_prepareDocument();
+		
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($this->item->id, 'hotels', $this->item->address);
 
 		parent::display($tpl);
 	}

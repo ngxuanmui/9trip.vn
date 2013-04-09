@@ -30,6 +30,9 @@ class NtripViewRestaurants extends JViewLegacy
 		$this->category = $this->get('Category');
 		
 		$this->_prepareDocument();
+		
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($this->item->id, 'restaurants', $this->item->address);
 
 		parent::display($tpl);
 	}

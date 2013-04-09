@@ -30,6 +30,9 @@ class NtripViewRelaxes extends JViewLegacy
 		$this->category = $this->get('Category');
 		
 		$this->_prepareDocument();
+		
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($this->item->id, 'relaxes', $this->item->address);
 
 		parent::display($tpl);
 	}

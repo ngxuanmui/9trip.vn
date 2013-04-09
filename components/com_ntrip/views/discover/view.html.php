@@ -28,6 +28,9 @@ class NtripViewDiscover extends JViewLegacy
 		$this->otherItems = $this->get('OtherItems');
 		
 		$this->_prepareDocument();
+		
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($this->item->id, 'discovers', $this->item->address);
 
 		parent::display($tpl);
 	}

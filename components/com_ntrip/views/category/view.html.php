@@ -28,6 +28,9 @@ class NtripViewCategory extends JViewLegacy
 		$this->firstAlbum = $this->get('FirstAlbum');
 		
 		$this->_prepareDocument();
+		
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($this->category->id, 'category', $this->category->title);
 
 		parent::display($tpl);
 	}

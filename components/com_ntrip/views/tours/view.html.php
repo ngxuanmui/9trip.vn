@@ -30,6 +30,9 @@ class NtripViewTours extends JViewLegacy
 		$this->category = $this->get('Category');
 		
 		$this->_prepareDocument();
+		
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($this->item->id, 'tours', $this->item->address);
 
 		parent::display($tpl);
 	}

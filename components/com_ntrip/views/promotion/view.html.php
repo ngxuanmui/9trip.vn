@@ -28,6 +28,9 @@ class NtripViewPromotion extends JViewLegacy
 		$this->otherItems = $this->get('OtherItems');
 		
 		$this->_prepareDocument();
+		
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($this->item->id, 'promotions', $this->item->address);
 
 		parent::display($tpl);
 	}
