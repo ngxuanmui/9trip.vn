@@ -165,16 +165,33 @@ jQuery(function($){
 	
 	// upload image
 	$('#btn-upload-image').click(function(){
-		$.post(
-			'index.php?option=com_ntrip&task=other.save_image',
-			{item_id: 12, item_type: 'hotels', desc: $('#desc-upload-image').val()},
-			function(INFO) {
-				if (INFO == 'OK') {
-					window.parent.SqueezeBox.close();
+		if (typeof ITEM_ID !== 'undefined' && typeof ITEM_TYPE !== 'undefined')
+			$.post(
+				'index.php?option=com_ntrip&task=other.save_image',
+				{item_id: ITEM_ID, item_type: ITEM_TYPE, desc: $('#desc-upload-image').val()},
+				function(INFO) {
+					if (INFO == 'OK') {
+						window.parent.SqueezeBox.close();
+					}
 				}
-			}
-		);
+			);
 	});
+	
+	// check button upload 
+	$('#btn-add-image').click(function(){
+		if ($(this).attr('login') !== 'yes')
+		{
+			show_error();
+			return false;
+		}
+	});
+	
+	function show_error()
+	{
+		var error = $('.error-msg');
+		error.fadeIn('slow');
+		setTimeout(function(){ error.fadeToggle('slow'); }, 3000);
+	}
 	
 	$('button.show-image').click(function(){
 		$(this).addClass('show-image-focus');
@@ -194,7 +211,9 @@ jQuery(function($){
 	jQuery('#show-map').css({'height':'400', 'width':'628'});
 
 	if (typeof GMAP_LAT !== 'undefined')
+	{
 		initialize(GMAP_LAT, GMAP_LONG, GMAP_ADD, 'show-map');
+	}
 		
 });
 

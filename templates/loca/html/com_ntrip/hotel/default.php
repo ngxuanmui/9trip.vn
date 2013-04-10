@@ -6,6 +6,8 @@ $item = $this->item;
 
 JHtml::_('behavior.modal');
 
+$userGuest = JFactory::getUser()->guest ? true : false;
+
 /* // rating
 
 jQuery.post(
@@ -19,8 +21,6 @@ jQuery.post(
 				}
 ); */
 ?>
-
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?php echo CFG_GOOGLE_MAP_API ?>&sensor=true"></script>
 
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
@@ -51,7 +51,7 @@ jQuery.post(
 				<span class="item">
 					<span class="icons website"></span>
 					<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->webiste; ?>" target="_blank">
-						Hotel website
+						Website
 					</a>
 				</span>
 				<span class="item">
@@ -75,7 +75,8 @@ jQuery.post(
 				<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
 				
 				<div class="social-button fltrgt">
-					<a class="icons add-image modal" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type=hotels'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
+					<div class="error error-msg fltlft" style="display: none; margin-right: 10px;">Bạn chưa đăng nhập!</div>
+					<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" login="<?php echo ($userGuest) ? 'no' : 'yes'; ?>" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type=hotels'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
 					<button class="icons show-image show-image-focus"></button>
 					<button class="icons show-map"></button>
 				</div>

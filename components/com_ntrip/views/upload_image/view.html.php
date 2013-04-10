@@ -22,6 +22,9 @@ class NtripViewUpload_Image extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
+		if (JFactory::getUser()->guest)
+			return false;
+		
 		parent::display($tpl);
 	}
 }
