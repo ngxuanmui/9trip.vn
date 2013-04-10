@@ -6,25 +6,14 @@ $item = $this->item;
 
 JHtml::_('behavior.modal');
 
-/* // rating
-
-jQuery.post(
-				'index.php?option=com_ntrip&task=other.rating',
-				{item_id: ITEM_ID, item_type: ITEM_TYPE, rating: 5},
-				function(res){
-					if (res == 'OK')
-						alert('success');
-					else 
-						alert(res);
-				}
-); */
+$userGuest = JFactory::getUser()->guest ? true : false;
 ?>
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?php echo CFG_GOOGLE_MAP_API ?>&sensor=true"></script>
 
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
-	var ITEM_TYPE = 'restaurants';
+	var ITEM_TYPE = 'shoppings';
 	var GMAP_LAT = '50.083';
 	var GMAP_LONG = '19.917';
 	var GMAP_ADD = '22 Thành Công, Ba Đình, Hà Nội, Việt Nam';
@@ -75,7 +64,8 @@ jQuery.post(
 				<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
 				
 				<div class="social-button fltrgt">
-					<a class="icons add-image modal" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type=restaurants'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
+					<div class="error error-msg fltlft" style="display: none; margin-right: 10px;">Bạn chưa đăng nhập!</div>
+					<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" login="<?php echo ($userGuest) ? 'no' : 'yes'; ?>" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type=shoppings'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
 					<button class="icons show-image show-image-focus"></button>
 					<button class="icons show-map"></button>
 				</div>

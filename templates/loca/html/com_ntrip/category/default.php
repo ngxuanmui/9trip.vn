@@ -6,7 +6,17 @@ $items = $this->items;
 $firstAlbum = $this->firstAlbum;
 
 JHtml::_('behavior.modal');
+
+$userGuest = JFactory::getUser()->guest ? true : false;
 ?>
+
+<script type="text/javascript">
+	var ITEM_ID = <?php echo $firstAlbum->id; ?>;
+	var ITEM_TYPE = 'albums';
+	var GMAP_LAT = '<?php echo $items['gmap_info']->gmap_lat; ?>';
+	var GMAP_LONG = '<?php echo $items['gmap_info']->gmap_long; ?>';
+	var GMAP_ADD = '<?php echo $this->category->title; ?>, Việt Nam';
+</script>
 
 <div id="top-adv">
 		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
@@ -26,7 +36,8 @@ JHtml::_('behavior.modal');
 					<a class="like" href="#" id="like-<?php echo $firstAlbum->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $firstAlbum->user_like; ?></div>
 
 					<div class="social-button fltrgt">
-						<a class="icons add-image modal" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$firstAlbum->id.'&type=albums'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
+						<div class="error error-msg fltlft" style="display: none; margin-right: 10px;">Bạn chưa đăng nhập!</div>
+						<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" login="<?php echo ($userGuest) ? 'no' : 'yes'; ?>" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$firstAlbum->id.'&type=albums'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
 						<button class="icons show-image show-image-focus"></button>
 						<button class="icons show-map"></button>
 					</div>
@@ -50,6 +61,10 @@ JHtml::_('behavior.modal');
 							endforeach; 
 						endif; 
 						?>
+					</div>
+					
+					<div class="map" id="show-map" style="display: none;">
+						map here
 					</div>
 				</div>
 			</div>

@@ -21,6 +21,8 @@ defined('_JEXEC') or die;
 
 <script type="text/javascript">
 	var UPLOAD_URL = '<?php echo JRoute::_('index.php?option=com_ntrip&task=other.upload'); ?>';
+	var ITEM_ID = '<?php echo JRequest::getInt('id', 0); ?>';
+	var ITEM_TYPE = '<?php echo JRequest::getString('type', 'hotels'); ?>';
 </script>
 
 <!-- Including the HTML5 Uploader plugin -->

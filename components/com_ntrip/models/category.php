@@ -14,6 +14,9 @@ class NtripModelCategory extends JModel
 		
 		$catid = $this->getState('filter.catid', 0);
 		
+		// get gmap info
+		$rows['gmap_info'] = $this->getGmapInfo($catid);
+		
 //		$rows['hotels']		= $this->_getLatestItems('hotels', $catid);
 		$rows['discovers'] = $this->_getLatestItems('discovers', $catid);
 		$rows['promotions'] = $this->_getLatestItems('promotions', $catid);
@@ -44,6 +47,22 @@ class NtripModelCategory extends JModel
 		return $rs;
 	}
 	
+	public function getGmapInfo($itemId)
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		// join gmap info
+		$query->select('g.*');
+		$query->from('#__ntrip_gmap_info g');
+		$query->where('g.item_id = '. (int) $itemId .' AND g.item_type = "category"');
+		
+		$db->setQuery($query);
+		$rec = $db->loadObject();
+		
+		return $rec;
+	}
+
 	public function getCategory()
 	{
 		$catid = $this->getState('filter.catid', 0);

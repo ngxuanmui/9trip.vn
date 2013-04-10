@@ -20,6 +20,10 @@ abstract class AbsNtripModelItem extends JModelItem
 		$query->select('c.title AS category_title');
 		$query->join('INNER', '#__categories c ON c.id = a.catid');
 		
+		// join gmap info
+		$query->select('g.*');
+		$query->join('LEFT', '#__ntrip_gmap_info g ON a.id = g.item_id AND g.item_type = "'.$type.'"');
+		
 		$db->setQuery($query);
 		
 		$item = $db->loadObject();
