@@ -47,3 +47,16 @@ CREATE TABLE `jos_ntrip_gmap_info` (
   `gmap_long` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`item_id`,`item_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- 10.04.2013 - Mui NX - add tags field
+ALTER TABLE  `jos_ntrip_albums` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_discovers` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_hotels` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_promotions` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_questions` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_relaxes` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_restaurants` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_services` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_shoppings` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_tours` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;
+ALTER TABLE  `jos_ntrip_warnings` ADD  `tags` VARCHAR( 255 ) NOT NULL AFTER  `user_like`;

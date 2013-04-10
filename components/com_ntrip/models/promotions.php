@@ -20,6 +20,6 @@ class NtripModelPromotions extends AbsNtripModelItems
 	{
 		parent::populateState($ordering, $direction);
 		
-		$this->setState('list.limit', 5);
+		$this->setState('list.limit', 12);
 	}
 }

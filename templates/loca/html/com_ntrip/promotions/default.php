@@ -12,51 +12,45 @@ $fields = $this->fields;
 
 <div id="left-content">
 	<div class="margin-bottom5">
-		<div class="title-category">
-			Khuyến mại
+		<div class="intro-list-main-item">
+			<label>Khuyến mại <?php echo $this->items[0]->category_title; ?> </label>
+			<span class="icons quote fltlft"></span>
+			<span class="fltlft hotel-quote">
+				Thông tin khuyến mại
+			</span>
+			<input type="button" value="Thêm khuyến mại" class="fltrgt" />
+			<div class="clear"></div>
 		</div>
 		
 		<div class="clr"></div>
 	</div>
+	
+	<?php echo NtripFrontHelper::itemsMenu(null); ?>
+	
+	<div class="clr"></div>
 
-	<div class="list-hotels-container">
-		<div class="tabs">
-			<ul class="tab-categories">
-				<li class="active">Khuyến mại mới nhất</li>
-				<li>Khuyến mại xem nhiều nhất</li>
-			</ul>
-			<div class="clr"></div>
-		</div>
+	<div class="list-promotions-container">
 		<div class="items">
 			<ul class="list-promotions">
-				<?php foreach ($this->items as $item): ?>
-				<li>
-					<div class="fltlft question-avatar-image">
-
+				<?php foreach ($this->items as $key => $item): ?>
+				<li <?php if (($key + 1) % 3 == 0) echo 'class="last"'; ?>>
+					<div class="image">
+						<img src="<?php echo $item->images; ?>" />
 					</div>
-					<div class="promotion-content fltlft">
-
-						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=promotion&id=' . $item->id, false); ?>">
-							<h3><?php echo $item->name; ?></h3>
-						</a>
-						<?php echo JHtml::_('string.truncate', $item->description, 100); ?>
-
-						<div class="promotion-detail-info">
-							<span class="user">Đăng bởi: <label class="author"><?php echo $item->author; ?></label></span> |
-							<span class="datetime"><?php echo date("D, d/m/Y", strtotime('item->created')); ?></span> |
-							<span class="counter"><?php echo $item->hits; ?> lượt</span> |
-							<span class="no-reply">0 trả lời</span>
-						</div>
+					
+					<a class='promotion-title' href="<?php echo JRoute::_('index.php?option=com_ntrip&view=promotion&id=' . $item->id, false); ?>">
+						<h3><?php echo $item->name; ?></h3>
+					</a>
+						
+					<div class="author"><?php echo $item->author; ?>&nbsp;</div>
+					
+					<div class="promotion-desc">
+						<?php echo JHtml::_('string.truncate', strip_tags($item->description), 200); ?>
 					</div>
-
-					<div class="promotion-info fltrgt">
-						<div class="clr">
-							<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
-						</div>
-						<div class="clr">Like FB</div>
-						<div class="clr">Like G+</div>
+					
+					<div class="clr">
+						<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
 					</div>
-					<div class="clr saparate-line"></div>
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -66,7 +60,7 @@ $fields = $this->fields;
 	<div class="clr"></div>
 
 
-	<div class="pagination">
+	<div class="item-paging pagination">
 		<?php echo $this->pagination->getPagesLinks(); ?>
 	</div>
 
