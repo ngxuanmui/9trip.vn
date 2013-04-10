@@ -1023,3 +1023,36 @@ ul.list-promotions li div.promotion-desc { height: 90px; overflow: hidden; margi
 ul.list-promotions li div.author { color: #959595; padding: 3px 0; }
 
 div.item-paging { background: #ebe9e9; padding: 15px 0; }
+
+/*edit user hotel page*/
+.container-edit-page {	background: #fff; padding: 10px 0; border: 1px solid #DEDEDE; }
+.container-edit-page h1 { height: 30px; font-size: 18px; text-indent: 10px;}
+.saparate-line-breakcrum {
+	border-bottom: 1px solid #DEDEDE;
+}
+.container-edit-page label.title-field {
+	float: left;
+	font-size: 14px;
+	padding-right: 10px;
+}
+.container-edit-page textarea, .container-edit-page input[type="text"] {
+	width: 100%;
+	border: 1px solid #DEDEDE;
+	margin-bottom: 15px;
+}
+.container-edit-page input[type="text"] {
+	height: 20px;
+}
+.container-edit-page .row {
+	height: 30px;
+}
+.container-edit-page .col {
+	width: 45%;
+	margin-right: 2%;
+	line-height: 30px;
+}
+.container-edit-page span.note {
+	font-style: italic;
+	float: right;
+	display: block;
+}

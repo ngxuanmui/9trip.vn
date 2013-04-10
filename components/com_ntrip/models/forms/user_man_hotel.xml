@@ -7,7 +7,7 @@
 			readonly="true" class="readonly"
 			label="JGLOBAL_FIELD_ID_LABEL" 	description ="JGLOBAL_FIELD_ID_DESC" />
 
-		<field name="name" type="text" class="inputbox"
+		<field name="name" type="textarea" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_NAME_LABEL"
 			description="COM_NTRIP_FIELD_NAME_DESC" required="true" />
 
