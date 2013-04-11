@@ -49,6 +49,11 @@ class NtripModelCategory extends JModel
 	
 	public function getGmapInfo($itemId)
 	{
+		$category = $this->getCategory();
+		
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($itemId, 'category', $category->title);
+		
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		

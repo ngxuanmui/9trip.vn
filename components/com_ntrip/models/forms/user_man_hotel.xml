@@ -67,9 +67,8 @@
 		<field name="hotline" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_HOTLINE_LABEL" />
 
-		<field name="description" type="editor" class="inputbox"
-			label="JGLOBAL_DESCRIPTION" 
-			filter="JComponentHelper::filterText" buttons="false" />
+		<field name="description" type="textarea" rows="10"
+			label="JGLOBAL_DESCRIPTION"  />
 
 	</fieldset>
 

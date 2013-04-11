@@ -115,6 +115,13 @@ jQuery(function($){
 
 	$('.like').click(
 		function() {
+			
+			if (USER_GUEST === 'y' )
+			{
+				show_error();
+				return false;
+			}
+		
 			var item_id = $(this).attr('id');
 			var tmp = item_id.split('-');
 			var t = $(this);
@@ -179,7 +186,7 @@ jQuery(function($){
 	
 	// check button upload 
 	$('#btn-add-image').click(function(){
-		if ($(this).attr('login') !== 'yes')
+		if (USER_GUEST === 'y' )
 		{
 			show_error();
 			return false;
@@ -189,21 +196,34 @@ jQuery(function($){
 	function show_error()
 	{
 		var error = $('.error-msg');
-		error.fadeIn('slow');
-		setTimeout(function(){ error.fadeToggle('slow'); }, 3000);
+		if (!error.is(":visible"))
+		{
+			error.fadeIn('slow').html('Bạn chưa đăng nhập!');
+			setTimeout(function(){ error.html('').fadeToggle('slow'); }, 3000);
+		}
 	}
 	
 	$('button.show-image').click(function(){
 		$(this).addClass('show-image-focus');
-		$('#show-album').css('display', 'block');
-		$('#show-map').css('display', 'none');
+		
+//		$('#show-album').css('display', 'block');
+//		$('#show-map').css('display', 'none');
+
+		$('#show-album').css('visibility', 'visible');
+		$('#show-map').css('visibility', 'hidden');
+		
 		$('button.show-map').removeClass('show-map-focus');
 	});
 
 	$('button.show-map').click(function(){
 		$(this).addClass('show-map-focus');
-		$('#show-album').css('display', 'none');
-		$('#show-map').css('display', 'block');
+		
+//		$('#show-album').css('display', 'none');
+//		$('#show-map').css('display', 'block');
+		
+		$('#show-album').css('visibility', 'hidden');
+		$('#show-map').css('visibility', 'visible');
+		
 		$('button.show-image').removeClass('show-image-focus');
 	});
 
@@ -237,7 +257,7 @@ function initialize(gmaps_latitude, gmaps_longitude, address_title, map_canvas)
 {
 	var mapOptions = {
 		center: new google.maps.LatLng(gmaps_latitude, gmaps_longitude),
-		zoom: 16,
+		zoom: 12,
 		scrollwheel: false,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};

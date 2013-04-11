@@ -41,7 +41,7 @@ class NtripController extends JControllerLegacy
 		$vName	= JRequest::getCmd('view', 'account');
 		JRequest::setVar('view', $vName);
 		
-		$signInUrl	= JRoute::_('index.php?option=com_users&view=signin', false);
+		$signInUrl	= JRoute::_('index.php?option=com_users&view=login', false);
 		$user 		= JFactory::getUser();
 		
 		// Check Auth

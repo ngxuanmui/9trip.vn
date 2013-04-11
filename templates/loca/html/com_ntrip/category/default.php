@@ -16,6 +16,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 	var GMAP_LAT = '<?php echo $items['gmap_info']->gmap_lat; ?>';
 	var GMAP_LONG = '<?php echo $items['gmap_info']->gmap_long; ?>';
 	var GMAP_ADD = '<?php echo $this->category->title; ?>, Việt Nam';
+	var USER_GUEST = '<?php echo $userGuest ? 'y' : 'n'; ?>';
 </script>
 
 <div id="top-adv">
@@ -36,8 +37,8 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 					<a class="like" href="#" id="like-<?php echo $firstAlbum->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $firstAlbum->user_like; ?></div>
 
 					<div class="social-button fltrgt">
-						<div class="error error-msg fltlft" style="display: none; margin-right: 10px;">Bạn chưa đăng nhập!</div>
-						<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" login="<?php echo ($userGuest) ? 'no' : 'yes'; ?>" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$firstAlbum->id.'&type=albums'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
+						<div class="error error-msg fltlft" style="display: none; margin-right: 10px;"></div>
+						<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$firstAlbum->id.'&type=albums'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
 						<button class="icons show-image show-image-focus"></button>
 						<button class="icons show-map"></button>
 					</div>
@@ -45,25 +46,22 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 					<div class="clr"></div>
 				</div>
 
-				<div class="album">
-					<div id="galleria">
-						<?php if ($firstAlbum->images): ?>
-						<img src="<?php echo $firstAlbum->images; ?>" title="<?php echo $firstAlbum->author; ?>" data-description="<?php echo $firstAlbum->name; ?>" />
-						<?php 
-						endif; 
+				<div class="other-album relative">
+					<div class="album absolute" id="show-album">
+						<div id="galleria">
+							<?php
+							if (!empty($firstAlbum->other_images)): 
+								foreach ($firstAlbum->other_images as $other_image):
+							?>
+							<img src="<?php echo JURI::base() . 'images/albums/' . $firstAlbum->id . '/' . $other_image->images; ?>" title="<?php echo $other_image->author ? $other_image->author : 'Anonymous'; ?>" data-description="<?php echo $other_image->description; ?>">
 
-						if (!empty($firstAlbum->other_images)): 
-							foreach ($firstAlbum->other_images as $other_image):
-						?>
-						<img src="<?php echo JURI::base() . 'images/albums/' . $firstAlbum->id . '/' . $other_image->images; ?>" title="<?php echo $other_image->author ? $other_image->author : 'Anonymous'; ?>" data-description="<?php echo $other_image->description; ?>">
-
-						<?php 
-							endforeach; 
-						endif; 
-						?>
+							<?php 
+								endforeach; 
+							endif; 
+							?>
+						</div>						
 					</div>
-					
-					<div class="map" id="show-map" style="display: none;">
+					<div class="map absolute" id="show-map" style="visibility: hidden;">
 						map here
 					</div>
 				</div>

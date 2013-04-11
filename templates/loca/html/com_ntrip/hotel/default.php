@@ -7,30 +7,14 @@ $item = $this->item;
 JHtml::_('behavior.modal');
 
 $userGuest = JFactory::getUser()->guest ? true : false;
-
-/* // rating
-
-jQuery.post(
-				'index.php?option=com_ntrip&task=other.rating',
-				{item_id: ITEM_ID, item_type: ITEM_TYPE, rating: 5},
-				function(res){
-					if (res == 'OK')
-						alert('success');
-					else 
-						alert(res);
-				}
-); */
 ?>
 
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
 	var ITEM_TYPE = 'hotels';
-	var GMAP_LAT = '50.083';
-	var GMAP_LONG = '19.917';
-	var GMAP_ADD = '22 Thành Công, Ba Đình, Hà Nội, Việt Nam';
-	
-	// var UPLOAD_URL = '<?php echo JRoute::_('index.php?option=com_ntrip&task=other.upload'); ?>';
-	
+	var GMAP_LAT = '<?php echo $item->gmap_lat; ?>';
+	var GMAP_LONG = '<?php echo $item->gmap_long; ?>';
+	var GMAP_ADD = '<?php echo $item->address; ?>';
 </script>
 
 <div id="top-adv">
@@ -87,8 +71,8 @@ jQuery.post(
 			<div class="clr"></div>
 
 			<div class="info">
-				<div class="other-album">
-					<div class="album" id="show-album">
+				<div class="other-album relative">
+					<div class="album absolute" id="show-album">
 						<div id="galleria">
 							<?php 
 							if (!empty($this->otherImages)):
@@ -102,7 +86,7 @@ jQuery.post(
 						</div>
 					</div>
 					
-					<div class="map" id="show-map" style="display: none;">
+					<div class="map absolute" id="show-map" style="display: none;">
 						map here
 					</div>
 				</div>

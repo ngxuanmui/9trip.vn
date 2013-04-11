@@ -81,6 +81,8 @@ class NtripModelOther extends JModelLegacy
 	{
 		$db = JFactory::getDbo();
 		
+		$obj = new stdClass();
+		
 		$obj->item_id	= $itemId;
 		$obj->item_type = $itemType;
 		$obj->like		= 1;

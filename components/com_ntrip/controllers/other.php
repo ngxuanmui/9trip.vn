@@ -119,6 +119,9 @@ class NtripControllerOther extends JController
 		$destThumb = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemID . DS . 'thumbnail' . DS;
 		$dest = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemID . DS;
 		
+		JFolder::create($dest, 0777);
+		JFolder::create($destThumb, 0777);
+		
 		// copy file on save
 		JFile::copy($tmpDir . $image, $dest.$image);
 		

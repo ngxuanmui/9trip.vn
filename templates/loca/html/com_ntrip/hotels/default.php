@@ -3,6 +3,18 @@
 defined('_JEXEC') or die;
 
 $fields = $this->fields;
+
+$arrSearch = array(
+					'common'	=> array('all' => 'Tất cả', 1, 2, 3, 4, 5),
+					'price'		=> array(
+											'all' => 'Tất cả', 
+											1 => '0 VNĐ - 200N VNĐ', 
+											2 => '200 VNĐ - 500N VNĐ', 
+											3 => '500 VNĐ - 1TR VNĐ', 
+											4 => '1TR VNĐ - 2TR VNĐ', 
+											5 => 'TRÊN 2TR VNĐ'
+									)
+			);
 ?>
 
 <div id="top-adv">
@@ -18,20 +30,11 @@ $fields = $this->fields;
 			<span class="fltlft hotel-quote">
 				Nếu khách sạn của bạn chưa có trên Loca.vn, hãy tạo mới ngay
 			</span>
-			<input type="button" value="Tạo mới khách sạn" class="fltlft" />
+			<a class="button fltlft" href="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.add'); ?>">
+				Tạo mới khách sạn
+			</a>
 			<div class="clear"></div>
 		</div>
-		
-		<!--<div class="item-container">
-			<span class="icons quote fltlft"></span>
-			<span class="fltlft">
-				Hãy chia sẻ những trải nghiệm của bạn về chuyến đi của mình, 
-				các chia sẻ thực tế của bạn sẽ giúp ích rất nhiều cho các 
-				thành viên khác.
-			</span>
-			
-			<a href="#" class="icons loca-button fltlft">Chia sẻ trải nghiệm</a>
-		</div>-->
 		
 		<div class="clr"></div>
 	</div>
@@ -40,59 +43,86 @@ $fields = $this->fields;
 	<?php echo NtripFrontHelper::itemsMenu('hotels'); ?>
 	
 	<div class="clr"></div>
-	<div class="search-conditions">
-		<div class="style">
-			<label class="title">Phong cách</label>
-			<div style="float: left; margin-right: 10px;">
-				<ul>
-					<li class="row-input fltlft custom-field-input">
-						<input type="checkbox" name="all" /> Tất cả
-					</li>
-					<?php
-						foreach ($fields as $field):
+	
+	<form action="index.php" method="get">
+		<div class="search-conditions">
+			<div class="style">
+				<label class="title">Phong cách</label>
+				<div style="float: left; margin-right: 10px;">
+					<ul>
+						<li class="row-input fltlft custom-field-input">
+							<input type="checkbox" name="all" /> Tất cả
+						</li>
+						<?php
+							foreach ($fields as $field):
+						?>
+						<li class="row-input fltlft custom-field-input">
+							<input type="checkbox" name="all" /> <?php echo $field->title; ?>
+						</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+				<div class="clr"></div>
+			</div>
+			<div class="other-conditions">
+				<div class="col">
+					<label class="title">Đánh giá</label>
+					<?php 
+					foreach ($arrSearch['common'] as $key => $val): 
+						if ($key === 'all'):
 					?>
-					<li class="row-input fltlft custom-field-input">
-						<input type="checkbox" name="all" /> <?php echo $field->title; ?>
-					</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="clr"></div>
-		</div>
-		<div class="other-conditions">
-			<div class="col">
-				<label class="title">Đánh giá</label>
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-1"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-2"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-3"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-4"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-5"></div> </div>
-			</div>
-			<div class="col">
-				<label class="title">Giá</label>
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> 0 VNĐ - 200N VNĐ </div>
-				<div class="row-input"><input type="checkbox" name="all" /> 200 VNĐ - 500N VNĐ </div>
-				<div class="row-input"><input type="checkbox" name="all" /> 500 VNĐ - 1TR VNĐ </div>
-				<div class="row-input"><input type="checkbox" name="all" /> 1TR VNĐ - 2TR VNĐ </div>
-				<div class="row-input"><input type="checkbox" name="all" />TRÊN 2TR VNĐ </div>
+							<div class="row-input"><input type="checkbox" name="rating_all" value="all" /> Tất cả </div>
+						<?php else: ?>
+							<div class="row-input"><input type="checkbox" name="rating_<?php echo $val; ?>" value="<?php echo $val; ?>" /> <div class="star-<?php echo $val; ?>"></div> </div>
+					<?php 
+						endif;
+					endforeach; 
+					?>
+				</div>
+				<div class="col">
+					<label class="title">Giá</label>
+					<?php 
+					foreach ($arrSearch['price'] as $key => $val): 
+						if ($key === 'all'):
+					?>
+							<div class="row-input"><input type="checkbox" name="price_all" value="all" /> Tất cả </div>
+						<?php else: ?>
+							<div class="row-input"><input type="checkbox" name="price_<?php echo $key; ?>" value="<?php echo $key; ?>" /> <?php echo $val; ?> </div>
+					<?php 
+						endif;
+					endforeach; 
+					?>
 
-			</div>
-			<div class="col">
-				<label class="title">Tiêu chuẩn</label>
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow1"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow2"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow3"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow4"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow5"></div> </div>
-				
+				</div>
+				<div class="col">
+					<label class="title">Tiêu chuẩn</label>
+					<?php 
+					foreach ($arrSearch['common'] as $key => $val): 
+						if ($key === 'all'):
+					?>
+							<div class="row-input"><input type="checkbox" name="criteria_all_" /> Tất cả </div>
+						<?php else: ?>
+							<div class="row-input"><input type="checkbox" name="criteria_<?php echo $val; ?>" /> <div class="star-yellow<?php echo $val; ?>"></div> </div>
+					<?php 
+						endif;
+					endforeach; 
+					?>
+
+				</div>
+
+				<div class="clear"></div>
+
+				<button class="button fltrgt">Xem kết quả</button>
 			</div>
 			<div class="clear"></div>
 		</div>
-		<div class="clear"></div>
-	</div>
+		<input type="hidden" name="option" value="<?php echo JRequest::getString('option'); ?>" />
+		<input type="hidden" name="view" value="<?php echo JRequest::getString('view'); ?>" />
+		<input type="hidden" name="custom_field" value="<?php echo JRequest::getInt('custom_field'); ?>" />
+		<input type="hidden" name="id" value="<?php echo JRequest::getInt('id'); ?>" />
+		<input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid'); ?>" />
+		
+	</form>
 
 	<div class="clr"></div>
 	<div class="list-main-items-content">

@@ -30,7 +30,7 @@ class NtripViewCategory extends JViewLegacy
 		$this->_prepareDocument();
 		
 		// update gmap info
-		NtripFrontHelper::updateGmapInfo($this->category->id, 'category', $this->category->title);
+//		NtripFrontHelper::updateGmapInfo($this->category->id, 'category', $this->category->title);
 
 		parent::display($tpl);
 	}
