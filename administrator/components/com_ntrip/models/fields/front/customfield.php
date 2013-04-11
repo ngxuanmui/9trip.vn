@@ -133,7 +133,7 @@ class JFormFieldFront_CustomField extends JFormFieldList
 		{
 			$checked = ($option->value == $categoryOld) ? 'checked="checked"' : ( ($i == 0) ? 'checked="checked"' : '' );
 			$html .= '<input type="radio" name="jform['.$name.']" value="'.$option->value.'" '.$checked.' /> ';
-			$html .= '<span class="fltlft" style="margin-right: 5px; line-height: 23px;">' . $option->text . '</span>';
+			$html .= '<span class="" style="margin-right: 10px; line-height: 30px;">' . $option->text . '</span>';
 		}
 		
 		if (empty($options))

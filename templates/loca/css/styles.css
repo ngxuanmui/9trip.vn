@@ -450,7 +450,7 @@ ul.tab-categories li {
 	font-size: 14px;
 	color: #fff;
 	background: #717171;
-	padding: 0 25px;
+	padding: 0 24px;
 }
 
 ul.tab-categories li:first-child { padding: 0 27px; }
@@ -1049,7 +1049,7 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 	height: 30px;
 }
 .container-edit-page .col {
-	width: 45%;
+	width: 48%;
 	margin-right: 2%;
 	line-height: 30px;
 }
