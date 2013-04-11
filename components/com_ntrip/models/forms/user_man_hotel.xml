@@ -22,7 +22,7 @@
 			<option value="">COM_NTRIP_SELECT_LOCATION_LABEL</option>
 		</field>
 		
-		<field name="type" type="customfield" class="inputbox"
+		<field name="type" type="front_customfield" class="inputbox"
 			size="40" extension="com_ntrip.custom_field_hotel"
 			label="COM_NTRIP_FIELD_TYPE_LABEL" required="true" />
 
