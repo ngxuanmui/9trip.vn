@@ -45,6 +45,12 @@ $arrSearch = array(
 	<div class="clr"></div>
 	
 	<form action="index.php" method="get">
+		<input type="hidden" name="option" value="<?php echo JRequest::getString('option'); ?>" />
+		<input type="hidden" name="view" value="<?php echo JRequest::getString('view'); ?>" />
+		<input type="hidden" name="custom_field" value="<?php echo JRequest::getInt('custom_field'); ?>" />
+		<input type="hidden" name="id" value="<?php echo JRequest::getInt('id'); ?>" />
+		<input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid'); ?>" />
+		
 		<div class="search-conditions">
 			<div class="style">
 				<label class="title">Phong cách</label>
@@ -73,7 +79,7 @@ $arrSearch = array(
 					?>
 							<div class="row-input"><input type="checkbox" name="rating_all" value="all" /> Tất cả </div>
 						<?php else: ?>
-							<div class="row-input"><input type="checkbox" name="rating_<?php echo $val; ?>" value="<?php echo $val; ?>" /> <div class="star-<?php echo $val; ?>"></div> </div>
+							<div class="row-input"><input type="checkbox" name="rating_<?php echo $val; ?>" value="1" /> <div class="star-<?php echo $val; ?>"></div> </div>
 					<?php 
 						endif;
 					endforeach; 
@@ -87,7 +93,7 @@ $arrSearch = array(
 					?>
 							<div class="row-input"><input type="checkbox" name="price_all" value="all" /> Tất cả </div>
 						<?php else: ?>
-							<div class="row-input"><input type="checkbox" name="price_<?php echo $key; ?>" value="<?php echo $key; ?>" /> <?php echo $val; ?> </div>
+							<div class="row-input"><input type="checkbox" name="price_<?php echo $key; ?>" value="1" /> <?php echo $val; ?> </div>
 					<?php 
 						endif;
 					endforeach; 
@@ -100,9 +106,9 @@ $arrSearch = array(
 					foreach ($arrSearch['common'] as $key => $val): 
 						if ($key === 'all'):
 					?>
-							<div class="row-input"><input type="checkbox" name="criteria_all_" /> Tất cả </div>
+							<div class="row-input"><input type="checkbox" name="criteria_all" value="all" /> Tất cả </div>
 						<?php else: ?>
-							<div class="row-input"><input type="checkbox" name="criteria_<?php echo $val; ?>" /> <div class="star-yellow<?php echo $val; ?>"></div> </div>
+							<div class="row-input"><input type="checkbox" name="criteria_<?php echo $val; ?>" value="1" /> <div class="star-yellow<?php echo $val; ?>"></div> </div>
 					<?php 
 						endif;
 					endforeach; 
@@ -116,11 +122,7 @@ $arrSearch = array(
 			</div>
 			<div class="clear"></div>
 		</div>
-		<input type="hidden" name="option" value="<?php echo JRequest::getString('option'); ?>" />
-		<input type="hidden" name="view" value="<?php echo JRequest::getString('view'); ?>" />
-		<input type="hidden" name="custom_field" value="<?php echo JRequest::getInt('custom_field'); ?>" />
-		<input type="hidden" name="id" value="<?php echo JRequest::getInt('id'); ?>" />
-		<input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid'); ?>" />
+		
 		
 	</form>
 
