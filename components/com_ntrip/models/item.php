@@ -21,8 +21,8 @@ abstract class AbsNtripModelItem extends JModelItem
 		$query->join('INNER', '#__categories c ON c.id = a.catid');
 		
 		// join gmap info
-		$query->select('g.*');
-		$query->join('LEFT', '#__ntrip_gmap_info g ON a.id = g.item_id AND g.item_type = "'.$type.'"');
+		// $query->select('g.*');
+		// $query->join('LEFT', '#__ntrip_gmap_info g ON a.id = g.item_id AND g.item_type = "'.$type.'"');
 		
 		$db->setQuery($query);
 		
@@ -33,7 +33,65 @@ abstract class AbsNtripModelItem extends JModelItem
 			die($db->getErrorMsg());
 		}
 		
+		$item->gmap = false;
+		
+		$address = $item->address;
+		
+		if (is_object($item))
+		{
+			$category = $this->getCategory($item->catid);
+			
+			$address = $item->address . ', ' . $item->category_title;
+			
+			if ($category->parent_id > 0)
+			{
+				$parent = $category->getParent();
+				$address .= ', ' . $parent->title;
+			}
+			
+			$item->gmap = $this->getGmapInfo($item->id, $type, $address);
+			
+		}
+		
+		$item->address = $address;
+		
+		// var_dump($item);
+		
+		
 		return $item;
+	}
+	
+	public function getGmapInfo($itemId, $type, $address)
+	{
+		// update gmap info
+		NtripFrontHelper::updateGmapInfo($itemId, $type, $address);
+		
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		// join gmap info
+		$query->select('g.*');
+		$query->from('#__ntrip_gmap_info g');
+		$query->where('g.item_id = '. (int) $itemId .' AND g.item_type = "'.$type.'"');
+		
+		$db->setQuery($query);
+		$rec = $db->loadObject();
+		
+		return $rec;
+	}
+	
+	/**
+	 * func to get parent category of $id
+	 */
+	protected function getCategory($id)
+	{
+		jimport('joomla.application.categories');
+		
+		$category = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip', 'table' => '#__ntrip_hotels'));
+		
+		$cat = $category->get($id);
+		
+		return $cat;
 	}
 	
 	protected function getOtherImages($type)

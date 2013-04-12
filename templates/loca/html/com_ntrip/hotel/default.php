@@ -12,9 +12,10 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
 	var ITEM_TYPE = 'hotels';
-	var GMAP_LAT = '<?php echo $item->gmap_lat; ?>';
-	var GMAP_LONG = '<?php echo $item->gmap_long; ?>';
-	var GMAP_ADD = '<?php echo $item->address; ?>';
+	var GMAP_LAT = '<?php echo $item->gmap->gmap_lat; ?>';
+	var GMAP_LONG = '<?php echo $item->gmap->gmap_long; ?>';
+	var GMAP_ADD = '<?php echo $item->address; ?>, Việt Nam';
+	var USER_GUEST = '<?php echo $userGuest ? 'y' : 'n'; ?>';
 </script>
 
 <div id="top-adv">
