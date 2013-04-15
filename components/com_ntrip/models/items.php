@@ -10,8 +10,17 @@ abstract class AbsNtripModelItems extends JModelList
 		$id = JRequest::getInt('id', 0);
 		$this->setState('filter.id', $id);
 		
-		$customField = JRequest::getInt('custom_field', 0);
+		$customField = JRequest::getString('custom_field', 0);
 		$this->setState('filter.custom_field', $customField);
+		
+		$rating = JRequest::getString('rating');
+		$this->setState('filter.rating', $rating);
+		
+		$price = JRequest::getString('price');
+		$this->setState('filter.price', $price);
+		
+		$criteria = JRequest::getString('criteria');
+		$this->setState('filter.criteria', $criteria);
 	}
 
 	protected function _query($type = 'hotels') 
@@ -33,40 +42,39 @@ abstract class AbsNtripModelItems extends JModelList
 		
 		if ($customField)
 		{
-//			switch ($type)
-//			{
-//				case 'restaurants':
-//					$extension = 'com_ntrip.custom_field_restaurant';
-//					break;
-//				
-//				case 'tours':
-//					$extension = 'com_ntrip.custom_field_tour';
-//					break;
-//				
-//				case 'services':
-//					$extension = 'com_ntrip.custom_field_service';
-//					break;
-//				
-//				case 'shoppings':
-//					$extension = 'com_ntrip.custom_field_shopping';
-//					break;
-//				
-//				case 'relaxes':
-//					$extension = 'com_ntrip.custom_field_relax';
-//					break;
-//				
-//				default :
-//					$extension = 'com_ntrip.custom_field_hotel';
-//					break;
-//					
-//			}
-//			
-//			$query->join('INNER', '#__categories c');
-//			$query->where('c.extension = "'.$extension.'"');
+			$customField = explode(',', $customField);
 			
-			$query->where('a.type = ' . $customField);
+			if (end($customField) === '')
+				array_pop($customField);
+			
+			$customField = implode(',', $customField);
+			
+			if (strpos($customField, 'all') === false)
+				$query->where('a.type IN (' . $customField .')');
 			
 		}
+		
+		$rating = $this->getState('filter.rating');
+		
+		if ($rating)
+		{
+			$rating = explode(',', $rating);
+			
+			if (strpos($rating, 'all') === false)
+			{
+				$tmp = array();
+				
+				foreach ($rating as $r)
+				{
+					$tmp[] = '(a.user_rank >= '.(int) $r . ' AND a.user_rank < ' . (int) ($r + 1) .')';
+				}
+				
+				$tmp = implode(' OR ', $tmp);
+				
+				$query->where('('.$tmp.')');
+			}
+		}
+		
 		
 		// Join over the users for the checked out user.
 		$query->select('u.name AS author');
@@ -85,6 +93,8 @@ abstract class AbsNtripModelItems extends JModelList
 		
 		return $query;
 	}
+	
+// 	protected function 
 	
 	protected function _customField($type = 'hotels')
 	{
@@ -140,5 +150,16 @@ abstract class AbsNtripModelItems extends JModelList
 		$rs = $db->loadObjectList();
 		
 		return $rs;
+	}
+	
+	public function getCategory()
+	{
+		$categoryId = JRequest::getInt('id');
+		
+		jimport('joomla.application.categories');
+		
+		$cat = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip', 'table' => ''));
+		
+		return $cat->get($categoryId);
 	}
 }
