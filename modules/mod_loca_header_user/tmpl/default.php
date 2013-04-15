@@ -76,7 +76,7 @@ $loginUrl	= $facebook->getLoginUrl(
 		<?php else: ?>
 			<div class="relative">
 				<script type="text/javascript">
-					jQuery(function(){
+					jQuery(function($){
 						$('#user-function').click(function(){
 							
 							$('.list-user-function').toggleClass('display-none');

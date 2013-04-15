@@ -453,7 +453,8 @@ ul.tab-categories li {
 	padding: 0 24px;
 }
 
-ul.tab-categories li:first-child { padding: 0 27px; }
+ul.tab-categories li:first-child { padding: 0 28px; }
+ul.tab-categories li:nth-child(2) { padding: 0 28px; }
 
 ul.tab-categories li a { color: #FFF; }
 ul.tab-categories li.active{
@@ -647,7 +648,7 @@ ul.questions li .question-info { font-weight: normal; }
 	float: left;
 }
 .star-4 {
-	width: 80px;
+	width: 82px;
 	height: 17px;
 	background: url("../images/full-stars.gif") 0 0;
 	float: left;

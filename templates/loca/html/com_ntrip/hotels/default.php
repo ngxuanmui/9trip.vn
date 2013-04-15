@@ -45,11 +45,33 @@ $arrSearch = array(
 	<div class="clr"></div>
 	
 	<form action="index.php" method="get">
+		<script type="text/javascript">
+			jQuery(function($){
+				$('.custom_field, .rating, .price, .criteria').click(function(){
+					var el_name = $(this).attr('class');
+					var el = $('input[name="'+el_name+'"]');
+					
+					val = '';
+					
+					// duyệt qua toàn bộ checkbox có class $(this).attr(class)
+					$('.' + el_name).each(function(idx, element){
+						if ($(this).attr('checked'))
+							val += $(this).val() + ',';
+					});
+					
+					el.val(val);
+					
+				});
+			});
+		</script>
 		<input type="hidden" name="option" value="<?php echo JRequest::getString('option'); ?>" />
 		<input type="hidden" name="view" value="<?php echo JRequest::getString('view'); ?>" />
-		<input type="hidden" name="custom_field" value="<?php echo JRequest::getInt('custom_field'); ?>" />
 		<input type="hidden" name="id" value="<?php echo JRequest::getInt('id'); ?>" />
 		<input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid'); ?>" />
+		<input type="hidden" name="custom_field" value="" />
+		<input type="hidden" name="rating" value="" />
+		<input type="hidden" name="price" value="" />
+		<input type="hidden" name="criteria" value="" />
 		
 		<div class="search-conditions">
 			<div class="style">
@@ -57,13 +79,13 @@ $arrSearch = array(
 				<div style="float: left; margin-right: 10px;">
 					<ul>
 						<li class="row-input fltlft custom-field-input">
-							<input type="checkbox" name="all" /> Tất cả
+							<input type="checkbox" class="custom_field" value="all" /> Tất cả
 						</li>
 						<?php
 							foreach ($fields as $field):
 						?>
 						<li class="row-input fltlft custom-field-input">
-							<input type="checkbox" name="all" /> <?php echo $field->title; ?>
+							<input type="checkbox" class="custom_field" value="<?php echo $field->id; ?>" /> <?php echo $field->title; ?>
 						</li>
 						<?php endforeach; ?>
 					</ul>
@@ -77,9 +99,9 @@ $arrSearch = array(
 					foreach ($arrSearch['common'] as $key => $val): 
 						if ($key === 'all'):
 					?>
-							<div class="row-input"><input type="checkbox" name="rating_all" value="all" /> Tất cả </div>
+							<div class="row-input"><input class="rating" type="checkbox" value="all" /> Tất cả </div>
 						<?php else: ?>
-							<div class="row-input"><input type="checkbox" name="rating_<?php echo $val; ?>" value="1" /> <div class="star-<?php echo $val; ?>"></div> </div>
+							<div class="row-input"><input class="rating" type="checkbox" value="<?php echo $val; ?>" /> <div class="star-<?php echo $val; ?>"></div> </div>
 					<?php 
 						endif;
 					endforeach; 
@@ -91,9 +113,9 @@ $arrSearch = array(
 					foreach ($arrSearch['price'] as $key => $val): 
 						if ($key === 'all'):
 					?>
-							<div class="row-input"><input type="checkbox" name="price_all" value="all" /> Tất cả </div>
+							<div class="row-input"><input class="price" type="checkbox" value="all" /> Tất cả </div>
 						<?php else: ?>
-							<div class="row-input"><input type="checkbox" name="price_<?php echo $key; ?>" value="1" /> <?php echo $val; ?> </div>
+							<div class="row-input"><input class="price" type="checkbox" value="<?php echo $key; ?>" /> <?php echo $val; ?> </div>
 					<?php 
 						endif;
 					endforeach; 
@@ -106,9 +128,9 @@ $arrSearch = array(
 					foreach ($arrSearch['common'] as $key => $val): 
 						if ($key === 'all'):
 					?>
-							<div class="row-input"><input type="checkbox" name="criteria_all" value="all" /> Tất cả </div>
+							<div class="row-input"><input class="criteria" type="checkbox" value="all" /> Tất cả </div>
 						<?php else: ?>
-							<div class="row-input"><input type="checkbox" name="criteria_<?php echo $val; ?>" value="1" /> <div class="star-yellow<?php echo $val; ?>"></div> </div>
+							<div class="row-input"><input class="criteria" type="checkbox" value="<?php echo $val; ?>" /> <div class="star-yellow<?php echo $val; ?>"></div> </div>
 					<?php 
 						endif;
 					endforeach; 
