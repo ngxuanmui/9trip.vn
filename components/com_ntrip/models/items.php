@@ -54,19 +54,23 @@ abstract class AbsNtripModelItems extends JModelList
 			
 		}
 		
+		// filter by rating
 		$rating = $this->getState('filter.rating');
 		
 		if ($rating)
 		{
-			$rating = explode(',', $rating);
-			
 			if (strpos($rating, 'all') === false)
 			{
+				$rating = explode(',', $rating);
+				
+				if (end($rating) === '')
+					array_pop($rating);
+				
 				$tmp = array();
 				
 				foreach ($rating as $r)
 				{
-					$tmp[] = '(a.user_rank >= '.(int) $r . ' AND a.user_rank < ' . (int) ($r + 1) .')';
+					$tmp[] = '(a.user_rank >= '.(int) $r . ' AND a.user_rank <= ' . (int) ($r + 1) .')';
 				}
 				
 				$tmp = implode(' OR ', $tmp);
@@ -75,6 +79,66 @@ abstract class AbsNtripModelItems extends JModelList
 			}
 		}
 		
+		// filter by price
+		$price = $this->getState('filter.price');
+		
+		if ($price)
+		{
+			if (strpos($price, 'all') === false)
+			{
+				$price = explode(',', $price);
+			
+				if (end($price) === '')
+					array_pop($price);
+			
+				$tmp = array();
+				
+				$arrPrice = array(
+									1 => array(0, 200000),
+									2 => array(200000, 500000),
+									3 => array(500000, 1000000),
+									4 => array(1000000, 2000000),
+									5 => array(2000000, 0)
+								);
+			
+				foreach ($price as $p)
+				{
+					if ($arrPrice[$p][1] > 0)
+						$tmp[] = '(a.price_from >= ' . (int) $arrPrice[$p][0] . ' AND (a.price_to <= ' . (int) $arrPrice[$p][1] . ' OR a.price_to = 0))';
+					else
+						$tmp[] = '(a.price_from >= ' . (int) $arrPrice[$p][0] . ')';
+				}
+			
+				$tmp = implode(' OR ', $tmp);
+			
+				$query->where('('.$tmp.')');
+			}
+		}
+		
+		// filer by hotel_class
+		$criteria = $this->getState('filter.criteria');
+		
+		if ($criteria)
+		{
+			if (strpos($criteria, 'all') === false)
+			{
+				$criteria = explode(',', $criteria);
+					
+				if (end($criteria) === '')
+					array_pop($criteria);
+					
+				$tmp = array();
+					
+				foreach ($criteria as $c)
+				{
+					$tmp[] = '(a.hotel_class >= '.(int) $c . ' AND a.hotel_class <= ' . (int) ($c + 1) .')';
+				}
+					
+				$tmp = implode(' OR ', $tmp);
+					
+				$query->where('('.$tmp.')');
+			}
+		}
 		
 		// Join over the users for the checked out user.
 		$query->select('u.name AS author');
@@ -90,6 +154,8 @@ abstract class AbsNtripModelItems extends JModelList
 		
 //		$query->join('INNER', '#__category_location cl ON a.type = cl.category_id');
 //		$query->where('cl.category_id = ');
+
+// 		echo nl2br(str_replace('#__', 'jos_', $query));
 		
 		return $query;
 	}

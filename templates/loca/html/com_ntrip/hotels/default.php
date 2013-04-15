@@ -20,7 +20,6 @@ $arrSearch = array(
 
 $customField = explode(',', JRequest::getString('custom_field'));
 $rating = explode(',', JRequest::getString('rating'));
-var_dump($rating);
 $price = explode(',', JRequest::getString('price'));
 $criteria = explode(',', JRequest::getString('criteria'));
 ?>
@@ -63,7 +62,7 @@ $criteria = explode(',', JRequest::getString('criteria'));
 
 					if ($(this).val() == 'all')
 					{
-						checkAll($(this));
+						checkAll($(this), true);
 					}
 					else
 					{
@@ -77,12 +76,12 @@ $criteria = explode(',', JRequest::getString('criteria'));
 					}
 				});
 
-				checkAll($('.custom_field'));
-				checkAll($('.rating'));
-				checkAll($('.price'));
-				checkAll($('.criteria'));
+				checkAll($('.custom_field'), false);
+				checkAll($('.rating'), false);
+				checkAll($('.price'), false);
+				checkAll($('.criteria'), false);
 
-				function checkAll(element)
+				function checkAll(element, click)
 				{
 					var el_name = element.attr('class');
 					var el = $('input[name="'+el_name+'"]');
@@ -99,8 +98,11 @@ $criteria = explode(',', JRequest::getString('criteria'));
 						}
 						else
 						{
-							other_el.removeAttr('disabled').removeAttr('checked');
-							el.val('');
+							if (click === true)
+							{
+								other_el.removeAttr('disabled').removeAttr('checked');
+								el.val('');
+							}
 						}
 					}
 				}
