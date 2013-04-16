@@ -21,6 +21,7 @@ $doc->addScript(JURI::base() . 'media/loca/jquery-1.7.2.min.js');
 $doc->addScript(JURI::base() . 'media/loca/main.js');
 $doc->addScript(JURI::base() . 'media/loca/galleria/galleria-1.2.9.min.js');
 $doc->addScript(JURI::base() . 'media/loca/jquery.validate.js');
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" xmlns:fb="http://www.facebook.com/2008/fbml">
