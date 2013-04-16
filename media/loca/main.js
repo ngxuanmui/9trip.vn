@@ -232,7 +232,7 @@ jQuery(function($){
 
 	if (typeof GMAP_LAT !== 'undefined')
 	{
-		// initialize(GMAP_LAT, GMAP_LONG, GMAP_ADD, 'show-map');
+		 initialize(GMAP_LAT, GMAP_LONG, GMAP_ADD, 'show-map');
 	}
 		
 });

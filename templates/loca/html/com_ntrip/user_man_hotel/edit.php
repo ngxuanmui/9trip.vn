@@ -19,15 +19,6 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 <style>
 </style>
 
-<script type="text/javascript">
-	Joomla.submitbutton = function(task)
-	{
-		if (task == 'hotel.cancel' || document.formvalidator.isValid(document.id('hotel-form'))) {
-			Joomla.submitform(task, document.getElementById('hotel-form'));
-		}
-	}
-</script>
-
 <div id="top-adv">
 	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 </div>
