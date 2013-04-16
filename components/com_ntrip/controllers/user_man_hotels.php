@@ -16,7 +16,7 @@ jimport('joomla.application.component.controlleradmin');
  * @subpackage	com_ntrip
  * @since		1.6
  */
-class NtripControllerHotels extends JControllerAdmin
+class NtripControllerUser_Man_Hotels extends JControllerAdmin
 {
 	/**
 	 * @var		string	The prefix to use with controller messages.
@@ -46,42 +46,5 @@ class NtripControllerHotels extends JControllerAdmin
 	{
 		$model = parent::getModel($name, $prefix, $config);
 		return $model;
-	}
-
-	/**
-	 * @since	1.6
-	 */
-	public function sticky_publish()
-	{
-		// Check for request forgeries.
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
-		// Initialise variables.
-		$user	= JFactory::getUser();
-		$ids	= JRequest::getVar('cid', array(), '', 'array');
-		$values	= array('sticky_publish' => 1, 'sticky_unpublish' => 0);
-		$task	= $this->getTask();
-		$value	= JArrayHelper::getValue($values, $task, 0, 'int');
-
-		if (empty($ids)) {
-			JError::raiseWarning(500, JText::_('COM_NTRIP_NO_HOTELS_SELECTED'));
-		} else {
-			// Get the model.
-			$model	= $this->getModel();
-
-			// Change the state of the records.
-			if (!$model->stick($ids, $value)) {
-				JError::raiseWarning(500, $model->getError());
-			} else {
-				if ($value == 1) {
-					$ntext = 'COM_NTRIP_N_HOTELS_STUCK';
-				} else {
-					$ntext = 'COM_NTRIP_N_HOTELS_UNSTUCK';
-				}
-				$this->setMessage(JText::plural($ntext, count($ids)));
-			}
-		}
-
-		$this->setRedirect('index.php?option=com_ntrip&view=hotels');
 	}
 }

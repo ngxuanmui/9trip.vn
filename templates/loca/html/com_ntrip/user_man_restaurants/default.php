@@ -67,7 +67,7 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php foreach ($this->items as $i => $item): ?>
 					<tr class="row<?php echo $i % 2; ?>">
 						<td>
-								<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=restaurant.edit&id='.(int) $item->id); ?>">
+								<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_restaurant.edit&id='.(int) $item->id); ?>">
 									<?php echo $this->escape($item->name); ?>
 								</a>
 								<!--<p class="smallsub">

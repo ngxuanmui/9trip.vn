@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
  * @subpackage	com_ntrip
  * @since		1.5
  */
-class NtripViewService extends JViewLegacy
+class NtripViewUser_Man_Service extends JViewLegacy
 {
 	protected $form;
 	protected $item;

@@ -24,7 +24,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 </div>
 <div class="clear"></div>
 
-<form action="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.apply&id='.(int) $this->item->id); ?>" method="post" name="userForm" id="hotel-form" class="form-validate" enctype="multipart/form-data">
+<form action="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.apply&id='.(int) $this->item->id); ?>" method="post" name="userForm" id="user_man_hotel-form" class="form-validate" enctype="multipart/form-data">
 <div id="left-content">
 	<div class="container-edit-page">
 		<h1>Thêm mới khách sạn</h1>
@@ -43,16 +43,28 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 			<?php echo $this->form->getInput('name'); ?>
 
 			<div class="clear">
-				<label class="title-field">Dịch vụ:</label>
+				<label class="title-field">Tiêu chí:</label>
 				<div class="clear"></div>
-				<?php echo $this->form->getInput('type'); ?>
-			</div>
+				<div style="margin: 5px 0 10px 0;">
+					<?php echo $this->form->getInput('hotel_class'); ?>
+				</div>
+			</div>			
 			<div class="clear"></div>
 
 			<div class="clear">
 				<label class="title-field">Tỉnh thành:</label>
-				<?php echo $this->form->getInput('catid'); ?>
+				<div class="clear"></div>
+				<div style="margin: 5px 0 10px;">
+					<?php echo $this->form->getInput('catid'); ?>
+				</div>
 			</div>			
+			<div class="clear"></div>
+
+			<div class="clear">
+				<label class="title-field">Dịch vụ:</label>
+				<div class="clear"></div>
+				<?php echo $this->form->getInput('type'); ?>
+			</div>
 			<div class="clear"></div>
 
 			<div class="fltlft col">
@@ -71,12 +83,6 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 			</div>
 			<div class="clear"></div>
 
-			<div>
-				<label class="title-field">Mô tả:</label>
-				<span class="fltrt note">(Tối đa 250 ký tự)</span>
-			</div>
-			<div class="clear"><?php echo $this->form->getInput('description'); ?></div>
-
 			<div class="fltlft col">
 				<label class="title-field">Giá từ:</label>
 				<div><?php echo $this->form->getInput('price_from'); ?></div>
@@ -87,21 +93,13 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 			</div>
 			<div class="clear"></div>
 
-			<div class="fltlft col">
-				<label class="title-field">Trạng thái:</label>
-				<div><?php echo $this->form->getInput('state'); ?></div>
-			</div>
-			<div class="clear"></div>
-
 			<div class="col">
-				<label class="title-field">Cơ sở vật chất:</label>
+				<label class="title-field">Ảnh giới thiệu</label>
 			</div>
 			<div class="clear">
-				<div class="fltlft"><?php echo $this->form->getInput('images'); ?></div>
-				<div class="fltright">
-					<a href="#" class="icons loca-button"><span class="txt-btn">Thêm ảnh</span></a>
-				</div>
+				<?php echo $this->form->getInput('images'); ?>
 			</div>
+			
 
 			<?php
 				$introImages = ($this->item->images) ? $this->item->images : false;
@@ -112,14 +110,50 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				<label>Xóa ảnh</label>
 				<?php echo $this->form->getInput('del_image'); ?>
 			</div>
-			<label>Intro image uploaded</label>
+			<label>Ảnh đã uploaded</label>
 			<a href="<?php echo JUri::root() . $introImages; ?>" class="modal">
 				<img src="<?php echo JUri::root() . $introImages; ?>" style="width: 100px;" />
 			</a>
 			<?php endif; ?>
+			
+			<div class="col">
+				<label class="title-field">&nbsp;</label>
+			</div>
 			<div class="clear">
-				<div class="fltlft" style="margin-right: 10px;"><a href="#" class="icons loca-button"><span class="txt-btn">LƯU THÔNG TIN</span></a></div>
-				<div class="fltlft"><a href="#" class="icons loca-button"><span class="txt-btn">TẠO KHÁCH SẠN MỚI</span></a></div>
+				<?php echo $this->form->getInput('uploadfile'); ?>
+			</div>
+			
+			<div id="tmp-uploaded" style="margin-top: 10px;">
+				<?php 
+				$images = $this->item->other_images;
+				
+				$path = JURI::root() . 'images/hotels/' . $this->item->id . '/';
+				
+				if ($images):
+				?>
+				<table width="100%" class="tbl-tmp-upload">
+					    <?php foreach ($images as $img): ?>
+					    <tr>
+						<td width="80" style="background: #FAFAFA;">
+						    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" style="width: 80px;" />
+						    <input type="hidden" name="current_images[<?php echo $img->id; ?>]" value="<?php echo $img->images; ?>" />
+						</td>
+						<td valign="top">
+							<?php echo $img->images . '<br><input type="text" size="40" name="current_desc['.$img->id.']" value="' . $img->description . '" placeholder="Input Description" />'; ?>
+						</td>
+						<td width="50"><a href="javascript:;" class="delete-file">Xóa ảnh</a></td>
+					    </tr>
+					    <?php endforeach; ?>
+					</table>
+				<?php endif; ?>
+		    </div>
+			
+			<div class="clear" style="margin: 10px 0 0;">
+			
+				<input type="hidden" name="task" value="user_man_relax.apply" />
+				<?php echo JHtml::_('form.token'); ?>
+			
+				<?php echo Ntrip_User_Toolbar::buttonEdit('user_man_hotel'); ?>
 			</div>
 		</div>
 

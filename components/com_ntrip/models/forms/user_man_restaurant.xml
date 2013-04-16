@@ -7,9 +7,8 @@
 			readonly="true" class="readonly"
 			label="JGLOBAL_FIELD_ID_LABEL" 	description ="JGLOBAL_FIELD_ID_DESC" />
 
-		<field name="name" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_NAME_LABEL"
-			description="COM_NTRIP_FIELD_NAME_DESC" required="true" />
+		<field name="name" type="textarea" class="inputbox"
+			label="Name" required="true" />
 
 		<field name="alias" type="text" class="inputbox"
 			size="40" label="JFIELD_ALIAS_LABEL"
@@ -20,18 +19,18 @@
 			class="inputbox" required="true"
 			addfieldpath="/administrator/components/com_categories/models/fields"
 		>
-			<option value="">COM_NTRIP_SELECT_LOCATION_LABEL</option>
+			<option value="">- Lựa chọn Tỉnh / Thành</option>
 		</field>
 		
-		<field name="type" type="customfield" class="inputbox"
+		<field name="type" type="front_customfield" class="inputbox"
 			size="40" extension="com_ntrip.custom_field_restaurant"
 			label="COM_NTRIP_FIELD_TYPE_LABEL">
 		</field>
 
-		<field name="images" type="file" class="inputbox"
+		<field name="images" type="file" class="inputbox file-upload"
 			size="40" label="COM_NTRIP_FIELD_IMAGES_LABEL" />
 
-		<field name="del_image" type="checkbox" value="1" label="Delete image" />
+		<field name="del_image" type="checkbox" class="input-checkbox" value="1" label="Delete image" />
 
 		<field name="uploadfile" type="uploadfile" />
 
@@ -44,36 +43,25 @@
 			<option value="-2">JTRASHED</option>
 		</field>
 		
-		<field name="price_from" type="text" class="inputbox"
+		<field name="price_from" type="text" class="inputbox input-text"
 			size="40" label="COM_NTRIP_FIELD_PRICE_FROM_LABEL" />
 
-		<field name="price_to" type="text" class="inputbox"
+		<field name="price_to" type="text" class="inputbox input-text"
 			size="40" label="COM_NTRIP_FIELD_PRICE_TO_LABEL" />
 		
-		<field name="system_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_SYSTEM_RANK_LABEL" />
-		
-		<field name="user_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_USER_RANK_LABEL" />
-		
-		<field name="website" type="text" class="inputbox"
+		<field name="website" type="text" class="inputbox input-text"
 			size="40" label="COM_NTRIP_FIELD_WEBSITE_LABEL" />
 		
-		<field name="email" type="text" class="inputbox"
+		<field name="email" type="text" class="inputbox input-text"
 			size="40" label="COM_NTRIP_FIELD_EMAIL_LABEL" />
 
-		<field name="address" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" />
-		
-		<field name="phone" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_PHONE_LABEL" />
+		<field name="address" type="textarea" class="inputbox"
+			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" required="true" />
 
-		<field name="hotline" type="text" class="inputbox"
+		<field name="hotline" type="text" class="inputbox input-text"
 			size="40" label="COM_NTRIP_FIELD_HOTLINE_LABEL" />
 
-		<field name="description" type="editor" class="inputbox"
-			label="JGLOBAL_DESCRIPTION" 
-			filter="JComponentHelper::filterText" buttons="true" />
+		<field name="description" type="textarea" class="inputbox" rows="10" />
 
 	</fieldset>
 

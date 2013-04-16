@@ -9,7 +9,7 @@
 
 		if (arrFiles instanceof Array && arrFiles.length > 0)
 		{
-			html = '<table width="100%">';
+			html = '<table width="100%" cellspacing="10">';
 
 			Array.each(arrFiles, function(val){
 
@@ -23,7 +23,7 @@
 
 					html += '<td width="80"><img src="' + value.thumbnail_url + '" /></td>';
 					html += '<td valign="top">'+value.name+'<br><input type="text" name="tmp_desc[]" size="40" placeholder="Input Description" />' + hidden + '</td>';
-					html += '<td width="50"><a href="javascript:;" class="delete-file">Del</a></td>';
+					html += '<td width="50"><a href="javascript:;" class="delete-file">Xóa ảnh</a></td>';
 
 					html += '</tr>';
 				}
@@ -31,7 +31,7 @@
 
 			html += '</table>';
 
-			var obj = new Element('table', { html: html, styles: { width: '100%' } })
+			var obj = new Element('table', { html: html, styles: { width: '100%' }, 'class': 'tbl-tmp-upload' })
 
 			obj.inject($('tmp-uploaded'));
 		}
@@ -81,9 +81,9 @@ class JFormFieldUploadFile extends JFormFieldList
 		
 		$html = '<div class="fltlft" style="line-height: 23px;" id="uploaded">';
 		
-		$html .= '<a href="'.$linkUploadFile.'" class="modal" rel="{handler: \'iframe\', closable: 0}" id="uploadfile">Select Image</a>';
+		$html .= '<a href="'.$linkUploadFile.'" class="clear modal button" rel="{handler: \'iframe\', closable: 0}" id="uploadfile">Thêm ảnh</a>';
 				
-		$html .= '</div>';
+		$html .= '</div><div class="clear" style="margin: 10px 0;"></div>';
 		
 		return $html;
 	}

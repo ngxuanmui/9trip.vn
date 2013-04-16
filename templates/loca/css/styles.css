@@ -358,7 +358,7 @@ ul#menu-bottom li a {
 .pagination ul li { float: left; background: #FFF; border-radius: 3px; margin-right: 5px; padding: 3px 10px; cursor: pointer; }
 .pagination ul li.active { cursor: default; background: #CCC; color: #FFF; }
 
-input.invalid { border: 1px #FF0000 solid; }
+input.invalid, textarea.invalid, input.error, textarea.error { border: 1px solid red !important; color: red; }
 
 div.show-custom-field { width: 650px; margin-bottom: 10px; }
 
@@ -1063,3 +1063,16 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .other-album { height: 400px; }
 .map { top: 0; }
 .album { top: 0; }
+
+.tbl-tmp-upload { margin: 0; }
+.tbl-tmp-upload tr td { padding: 5px 10px 0 0; }
+.tbl-tmp-upload tr td img { width: 80px; }
+.tbl-tmp-upload tr td input { padding: 1px 0px 1px 5px; }
+
+/* user form */
+.user-form li { margin: 5px 0; }
+.user-form label { float: left; width: 100%; margin-bottom: 5px; font-weight: bold; }
+.user-form label .note { font-size: 10px; }
+.user-form input, .user-form textarea, .user-form select, .user-form img { float: left; }
+.user-form select, .user-form .file-upload, .user-form .input-checkbox { margin-bottom: 15px; }
+.user-form .input-text { width: 300px !important; }

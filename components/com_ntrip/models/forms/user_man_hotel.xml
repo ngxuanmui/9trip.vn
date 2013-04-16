@@ -19,7 +19,7 @@
 			label="COM_NTRIP_FIELD_LOCATION_LABEL"
 			class="inputbox" required="true"
 		>
-			<option value="">COM_NTRIP_SELECT_LOCATION_LABEL</option>
+			<option value="">Lựa chọn Tỉnh / Thành</option>
 		</field>
 		
 		<field name="type" type="front_customfield" class="inputbox"
@@ -42,9 +42,8 @@
 		<field
 				name="hotel_class"
 				type="list" required="true"
-				label="COM_NTRIP_FIELD_HOTEL_CLASS_LABEL"
-				description="COM_NTRIP_FIELD_HOTEL_CLASS_DESC">
-				<option value="">- Select -</option>
+				label="Tiêu chí khách sạn">
+				<option value="">- Lựa chọn -</option>
 				<option	value="1">1</option>
 				<option value="2">2</option>
 				<option	value="3">3</option>
@@ -59,7 +58,7 @@
 			size="40" label="COM_NTRIP_FIELD_EMAIL_LABEL" />
 
 		<field name="address" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" />
+			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" required="true" />
 		
 		<field name="phone" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_PHONE_LABEL" />
