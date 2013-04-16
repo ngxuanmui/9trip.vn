@@ -19,121 +19,127 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 <style>
 </style>
 
-<script type="text/javascript">
-	Joomla.submitbutton = function(task)
-	{
-		if (task == 'tour.cancel' || document.formvalidator.isValid(document.id('tour-form'))) {
-			Joomla.submitform(task, document.getElementById('tour-form'));
-		}
-	}
-</script>
 <div id="top-adv">
 	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 </div>
 <div class="clear"></div>
 
 
-<form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="tour-form" class="form-validate" enctype="multipart/form-data">
+<form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="userForm" id="tour-form" class="form-validate" enctype="multipart/form-data">
 <div id="left-content">
 	<div class="container-edit-page">
-		<h1>Thêm mới tour</h1>
+		<h1><?php if ($this->item->id) echo 'Sửa thông tin'; else echo 'Thêm mới'; ?> điểm tham quan</h1>
 		<div class="saparate-line-breakcrum"></div>
 		<div style="padding: 10px">
-			<div>
-				<label class="title-field">Tên:</label>
-				<span class="fltrt note">(Tối đa 250 ký tự)</span>
-			</div>
-			<?php echo $this->form->getInput('name'); ?>
-
-			<div>
-				<label class="title-field">Địa chỉ:</label>
-				<span class="fltrt note">(Tối đa 250 ký tự)</span>
-			</div>
-			<?php echo $this->form->getInput('address'); ?>
-
-			<div class="clear">
-				<label class="title-field">Tỉnh thành:</label>
-				<?php echo $this->form->getInput('catid'); ?>
-			</div>
-			<div class="clear"></div>
-
-			<!--<div class="fltlft col">
-				<label class="title-field">Website:</label>
-				<div><?php echo $this->form->getInput('website'); ?></div>
-			</div>
-			<div class="fltlft col">
-				<label class="title-field">Email liên hệ:</label>
-				<div><?php echo $this->form->getInput('email'); ?></div>
-			</div>
-			<div class="clear"></div>-->
-
-			<div class="fltlft col">
-				<label class="title-field">System rank (dont know what it is):</label>
-				<div><?php echo $this->form->getInput('system_rank'); ?></div>
-			</div>
-
-			<div class="fltlft col">
-				<label class="title-field">User rank:</label>
-				<div><?php echo $this->form->getInput('user_rank'); ?></div>
-			</div>
-			<div class="clear"></div>
-
-			<!--<div class="fltlft col">
-				<label class="title-field">Điện thoại:</label>
-				<div><?php echo $this->form->getInput('hotline'); ?></div>
-			</div>
-			<div class="clear"></div>-->
-
-			<div>
-				<label class="title-field">Mô tả:</label>
-				<span class="fltrt note">(Tối đa 250 ký tự)</span>
-			</div>
-			<div class="clear"><?php echo $this->form->getInput('description'); ?></div>
-<!--
-			<div class="fltlft col">
-				<label class="title-field">Giá từ:</label>
-				<div><?php echo $this->form->getInput('price_from'); ?></div>
-			</div>
-			<div class="fltlft col">
-				<label class="title-field">Đến:</label>
-				<div><?php echo $this->form->getInput('price_to'); ?></div>
-			</div>
-			<div class="clear"></div>-->
-
-
-			<div class="col">
-				<label class="title-field">Cơ sở vật chất:</label>
-			</div>
-			<div class="clear">
-				<?php echo $this->form->getInput('images'); ?>
-				<div class="fltright">
-					<a href="#" class="icons loca-button"><span class="txt-btn">Thêm ảnh</span></a>
-				</div>
-			</div>
-			<div class="clear"></div>
-
-			<div class="fltlft col">
-				<label class="title-field">Trạng thái:</label>
-				<div><?php echo $this->form->getInput('state'); ?></div>
-			</div>
-			<div class="clear"></div>
-			<?php
+			<ul class="user-form">
+				<li>
+					<label>
+						Địa chỉ:
+						<span class="fltrt note">(Tối đa 250 ký tự)</span>
+					</label>
+					<?php echo $this->form->getInput('address'); ?>
+				</li>
+				<li>
+					<label>
+						Điểm tham quan:
+						<span class="fltrt note">(Tối đa 250 ký tự)</span>
+					</label>
+					<?php echo $this->form->getInput('name'); ?>
+				</li>
+				<li>
+					<label>
+						Tỉnh / Thành:
+					</label>
+					<?php echo $this->form->getInput('catid'); ?>
+				</li>
+				<li>
+					<label>
+						Website:
+					</label>
+					<?php echo $this->form->getInput('website'); ?>
+				</li>
+				<li>
+					<label>
+						Email liên hệ:
+					</label>
+					<?php echo $this->form->getInput('email'); ?>
+				</li>
+				<li>
+					<label>
+						Điện thoại:
+					</label>
+					<?php echo $this->form->getInput('hotline'); ?>
+				</li>
+				<li>
+					<label>
+						Mô tả:
+						<span class="fltrt note">(Tối đa 250 ký tự)</span>
+					</label>
+					<?php echo $this->form->getInput('description'); ?>
+				</li>
+				<li>
+					<label>
+						Ảnh giới thiệu
+					</label>
+					<?php echo $this->form->getInput('images'); ?>
+				</li>
+				<?php
 				$introImages = ($this->item->images) ? $this->item->images : false;
-			?>
-
-			<?php if ($introImages): ?>
-			<div class="fltlft">
-				<label>Xóa ảnh</label>
-				<?php echo $this->form->getInput('del_image'); ?>
-			</div>
-			<label>Intro image uploaded</label>
-			<a href="<?php echo JUri::root() . $introImages; ?>" class="modal">
-				<img src="<?php echo JUri::root() . $introImages; ?>" style="width: 100px;" />
-			</a>
-			<?php endif; ?>
-			<div class="clear">
-				<div class="fltlft" style="margin-right: 10px;"><a href="#" class="icons loca-button"><span class="txt-btn">LƯU THÔNG TIN</span></a></div>
-				<div class="fltlft"><a href="#" class="icons loca-button"><span class="txt-btn">TẠO NHÀ HÀNG MỚI</span></a></div>
+				
+				if ($introImages):
+				?>
+				<li>
+					<label>Xóa ảnh</label>
+					<?php echo $this->form->getInput('del_image'); ?>
+				</li>
+				<li>
+					<label>Ảnh đã upload</label>
+					<a href="<?php echo JUri::root() . $introImages; ?>" class="modal">
+						<img src="<?php echo JUri::root() . $introImages; ?>" style="width: 100px;" />
+					</a>
+				</li>
+				<?php endif; ?>
+				
+				<li>
+					<label>&nbsp;</label>
+					<?php echo $this->form->getInput('uploadfile'); ?>
+				</li>
+				
+				<li>
+					<div id="tmp-uploaded" style="margin-top: 10px;">
+						<?php 
+						$images = $this->item->other_images;
+						
+						$path = JURI::root() . 'images/tours/' . $this->item->id . '/';
+						
+						if ($images):
+						?>
+						<table width="100%" class="tbl-tmp-upload">
+							    <?php foreach ($images as $img): ?>
+							    <tr>
+								<td width="80" style="background: #FAFAFA;">
+								    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" style="width: 80px;" />
+								    <input type="hidden" name="current_images[<?php echo $img->id; ?>]" value="<?php echo $img->images; ?>" />
+								</td>
+								<td valign="top">
+									<?php echo $img->images . '<br><input type="text" size="40" name="current_desc['.$img->id.']" value="' . $img->description . '" placeholder="Input Description" />'; ?>
+								</td>
+								<td width="50"><a href="javascript:;" class="delete-file">Xóa ảnh</a></td>
+							    </tr>
+							    <?php endforeach; ?>
+							</table>
+						<?php endif; ?>
+				    </div>
+				</li>
+				
+			</ul>
+			
+			<div class="clear" style="margin: 10px 0 0;">
+			
+				<input type="hidden" name="task" value="" />
+				<?php echo JHtml::_('form.token'); ?>
+			
+				<?php echo Ntrip_User_Toolbar::buttonEdit('user_man_tour'); ?>
 			</div>
 		</div>
 

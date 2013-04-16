@@ -56,19 +56,13 @@ $items = $this->items;
 						<td colspan="5">							
 						</td>
 					</tr>
-
-					<!--<tr>
-						<td colspan="10">
-							<input type="hidden" name="task" value="" />
-							<?php echo JHtml::_('form.token'); ?>
-							<?php echo Ntrip_User_Toolbar::buttonList('user_man_hotel'); ?>
-						</td>
-					</tr>-->
 				</table>
 				<div class="clear">
 					<div class="pagination fltleft" style="background: #fff;"><?php echo $this->pagination->getPagesLinks();//$this->pagination->getListFooter(); ?></div>
 					<div class="fltright">
-						<a href="#" class="icons loca-button"><span class="txt-btn">Thêm mới</span></a>
+						<input type="hidden" name="task" value="" />
+						<?php echo JHtml::_('form.token'); ?>
+						<?php echo Ntrip_User_Toolbar::buttonList('user_man_hotel'); ?>
 					</div>
 					<div class="clear"></div>
 				</div>

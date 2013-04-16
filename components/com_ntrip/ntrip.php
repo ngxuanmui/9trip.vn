@@ -27,6 +27,8 @@ require_once JPATH_COMPONENT_SITE . DS . 'models' . DS . 'item.php';
 // get comment helper
 require_once JPATH_SITE . DS . 'components/com_ntrip_comment/helpers/ntrip_comment.php';
 
+// var_dump($_GET); die
+
 $doc = JFactory::getDocument();
 $doc->addScript('http://maps.googleapis.com/maps/api/js?key='.CFG_GOOGLE_MAP_API.'&sensor=true');
 

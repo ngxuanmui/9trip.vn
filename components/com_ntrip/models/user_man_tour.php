@@ -199,7 +199,8 @@ class NtripModelUser_Man_Tour extends JModelAdmin
 
 			// Update images
 			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
-			NtripHelper::updateImages($id, $currentImages, 'tours');
+			$currentDesc = (isset($_POST['current_desc'])) ? $_POST['current_desc'] : array();
+			NtripHelper::updateImages($id, $currentImages, $currentDesc, 'tours');
 
 			// Temp files
 			if (isset($_POST['tmp_other_img']))
@@ -207,7 +208,7 @@ class NtripModelUser_Man_Tour extends JModelAdmin
 				// Copy file 
 				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'tours');
 				// Insert images
-				NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'tours');
+				NtripHelper::insertImages($id, $_POST['tmp_other_img'], $_POST['tmp_desc'], 'tours');
 			}
 
 			if ($id)

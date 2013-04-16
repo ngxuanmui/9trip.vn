@@ -7,14 +7,14 @@ class Ntrip_User_Toolbar
 		$html = array();
 		
 		$html[] = '<div class="user-toolbar">';
-		$html[] = '<button id="btn-apply" rel="'.$controller.'.apply">Apply</button>';
-		$html[] = '<button id="btn-save" rel="'.$controller.'.save">Save</button>';
+		$html[] = '<button id="btn-apply" class="button" rel="'.$controller.'.apply">Cập nhật</button>';
+		$html[] = '<button id="btn-save" class="button" rel="'.$controller.'.save">Lưu thông tin</button>';
 		
 		$id = JRequest::getInt('id');
 		
-		$txtButton = ($id) ? 'Close' : 'Cancel';
+		$txtButton = ($id) ? 'Hủy thay đổi' : 'Hủy bỏ';
 		
-		$html[] = '<button id="btn-cancel" rel="'.$controller.'.cancel">'.$txtButton.'</button>';
+		$html[] = '<button id="btn-cancel" class="button cancel" rel="'.$controller.'.cancel">'.$txtButton.'</button>';
 		
 		$html[] = '</div>';
 		
@@ -28,7 +28,7 @@ class Ntrip_User_Toolbar
 		$html = array();
 		
 		$html[] = '<div class="user-toolbar">';
-		$html[] = '<button id="btn-add" rel="'.$controller.'.add">Add new</button>';		
+		$html[] = '<button id="btn-add" class="button" style="margin-right: 10px;" rel="'.$controller.'.add">Thêm mới</button>';		
 		$html[] = '</div>';
 		
 		return implode("\n", $html);

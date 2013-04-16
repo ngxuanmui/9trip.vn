@@ -70,11 +70,14 @@ class NtripControllerUploadFile extends JController
 
 //		print_r($files);
 
-		foreach ($files as & $file)
+		if (!empty($files))
 		{
-			
-			$file['files'][0]->url = JURI::root() . $file['files'][0]->url;
-			$file['files'][0]->thumbnail_url = JURI::root() . $file['files'][0]->thumbnail_url;
+			foreach ($files as & $file)
+			{
+					
+				$file['files'][0]->url = JURI::root() . $file['files'][0]->url;
+				$file['files'][0]->thumbnail_url = JURI::root() . $file['files'][0]->thumbnail_url;
+			}
 		}
 		
 		echo json_encode($files);

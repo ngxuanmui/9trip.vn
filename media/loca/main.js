@@ -11,17 +11,19 @@ jQuery(function($){
 		
 		var tmp = task.split('.');
 		
-		if (tmp[1] == 'cancel')
+		if (tmp[1] == 'cancel' || tmp[1] == 'add')
 		{
 			// remove validate
-			form.stop();
-			form.submit();
+			$(form).validate().cancelSubmit = true;
+			$(form).submit();
 			
 			return false;
 		}
 		
+		validate = form.validate({ errorPlacement: function(error, element) {} });
+		
 		// submit form
-		if (form.validate())
+		if (validate)
 			form.submit();
 		else
 			return false;

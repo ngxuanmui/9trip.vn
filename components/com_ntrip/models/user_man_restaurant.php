@@ -199,7 +199,8 @@ class NtripModelUser_Man_Restaurant extends JModelAdmin
 
 			// Update images
 			$currentImages = (isset($_POST['current_images'])) ? $_POST['current_images'] : array();
-			NtripHelper::updateImages($id, $currentImages, 'restaurants');
+			$currentDesc = (isset($_POST['current_desc'])) ? $_POST['current_desc'] : array();
+			NtripHelper::updateImages($id, $currentImages, $currentDesc, 'restaurants');
 
 			// Temp files
 			if (isset($_POST['tmp_other_img']))
@@ -207,7 +208,7 @@ class NtripModelUser_Man_Restaurant extends JModelAdmin
 				// Copy file 
 				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'restaurants');
 				// Insert images
-				NtripHelper::insertImages($id, $_POST['tmp_other_img'], 'restaurants');
+				NtripHelper::insertImages($id, $_POST['tmp_other_img'], $_POST['tmp_desc'], 'restaurants');
 			}
 
 			if ($id)
