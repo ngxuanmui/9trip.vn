@@ -7,8 +7,8 @@
 			readonly="true" class="readonly"
 			label="JGLOBAL_FIELD_ID_LABEL" 	description ="JGLOBAL_FIELD_ID_DESC" />
 
-		<field name="name" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_NAME_LABEL"
+		<field name="name" type="textarea" class="inputbox" rows="2"
+			 label="COM_NTRIP_FIELD_NAME_LABEL"
 			description="COM_NTRIP_FIELD_NAME_DESC" required="true" />
 
 		<field name="alias" type="text" class="inputbox"
@@ -45,12 +45,11 @@
 		<field name="user_rank" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_USER_RANK_LABEL" />
 		
-		<field name="address" type="text" class="inputbox"
+		<field name="address" type="textarea" class="inputbox" rows="2"
 			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" />
 
-		<field name="description" type="editor" class="inputbox"
-			label="JGLOBAL_DESCRIPTION" 
-			filter="JComponentHelper::filterText" buttons="true" />
+		<field name="description" type="textarea" class="inputbox"
+			label="JGLOBAL_DESCRIPTION" rows="5" />
 
 	</fieldset>
 

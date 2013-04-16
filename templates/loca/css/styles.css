@@ -1075,4 +1075,5 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .user-form label .note { font-size: 10px; }
 .user-form input, .user-form textarea, .user-form select, .user-form img { float: left; }
 .user-form select, .user-form .file-upload, .user-form .input-checkbox { margin-bottom: 15px; }
-.user-form .input-text { width: 300px !important; }
+.user-form input.input-text, .user-form input.inputbox { width: 300px !important; }
+.user-form input[type="radio"] { float: none}
