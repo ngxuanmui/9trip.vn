@@ -29,7 +29,7 @@
 		<field name="images" type="file" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_IMAGES_LABEL" />
 
-		<field name="del_image" type="checkbox" value="1" label="Delete image" />
+		<field name="del_image" type="checkbox" value="1" class="input-checkbox" label="Delete image" />
 
 		<field name="uploadfile" type="uploadfile" />
 		
@@ -57,11 +57,8 @@
 		<field name="email" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_EMAIL_LABEL" />
 
-		<field name="address" type="text" class="inputbox"
+		<field name="address" type="textarea" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" required="true" />
-		
-		<field name="phone" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_PHONE_LABEL" />
 
 		<field name="hotline" type="text" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_HOTLINE_LABEL" />

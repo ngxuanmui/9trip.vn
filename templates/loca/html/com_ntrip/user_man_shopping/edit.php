@@ -19,23 +19,15 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 <style>
 </style>
 
-<script type="text/javascript">
-	Joomla.submitbutton = function(task)
-	{
-		if (task == 'shopping.cancel' || document.formvalidator.isValid(document.id('shopping-form'))) {
-			Joomla.submitform(task, document.getElementById('shopping-form'));
-		}
-	}
-</script>
 <div id="top-adv">
 	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 </div>
 <div class="clear"></div>
 
-<form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="shopping-form" class="form-validate" enctype="multipart/form-data">
+<form action="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.apply&id='.(int) $this->item->id); ?>" method="post" name="userForm" id="user_man_hotel-form" class="form-validate" enctype="multipart/form-data">
 <div id="left-content">
 	<div class="container-edit-page">
-		<h1><?php if ($this->item->id) echo 'Sửa thông tin'; else echo 'Thêm mới'; ?> mua sắm</h1>
+		<h1><?php if ($this->item->id) echo 'Sửa thông tin'; else echo 'Thêm mới'; ?> khách sạn</h1>
 		<div class="saparate-line-breakcrum"></div>
 		<div style="padding: 10px">
 			<ul class="user-form">
@@ -48,7 +40,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				</li>
 				<li>
 					<label>
-						Tiêu đề:
+						Mua sắm:
 						<span class="fltrt note">(Tối đa 250 ký tự)</span>
 					</label>
 					<?php echo $this->form->getInput('name'); ?>
@@ -61,16 +53,28 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				</li>
 				<li>
 					<label>
-						Tiêu chuẩn:
+						Dịch vụ:
 					</label>
-					<?php echo $this->form->getInput('system_rank'); ?>
+					<?php echo $this->form->getInput('type'); ?>
 				</li>
 				<li>
 					<label>
-						Đánh giá:
+						Website:
 					</label>
-					<?php echo $this->form->getInput('user_rank'); ?>
-				</li>				
+					<?php echo $this->form->getInput('website'); ?>
+				</li>
+				<li>
+					<label>
+						Email liên hệ:
+					</label>
+					<?php echo $this->form->getInput('email'); ?>
+				</li>
+				<li>
+					<label>
+						Điện thoại:
+					</label>
+					<?php echo $this->form->getInput('hotline'); ?>
+				</li>
 				<li>
 					<label>
 						Ảnh giới thiệu
@@ -130,7 +134,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 
 			<div class="clear" style="margin: 10px 0 0;">
 
-				<input type="hidden" name="task" value="user_man_shopping.apply" />
+				<input type="hidden" name="task" value="" />
 				<?php echo JHtml::_('form.token'); ?>
 
 				<?php echo Ntrip_User_Toolbar::buttonEdit('user_man_shopping'); ?>
@@ -153,3 +157,4 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 
 </div>
 <div class="clear"></div>
+

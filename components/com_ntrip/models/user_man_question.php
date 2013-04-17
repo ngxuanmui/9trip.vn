@@ -111,22 +111,10 @@ class NtripModelUser_Man_Question extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_ntrip.question', 'question', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_ntrip.user_man_question', 'user_man_question', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
-		}
-
-		// Determine correct permissions to check.
-		if ($this->getState('question.id'))
-		{
-			// Existing record. Can only edit in selected categories.
-			$form->setFieldAttribute('catid', 'action', 'core.edit');
-		}
-		else
-		{
-			// New record. Can only create in selected categories.
-			$form->setFieldAttribute('catid', 'action', 'core.create');
 		}
 
 		// Modify the form based on access controls.

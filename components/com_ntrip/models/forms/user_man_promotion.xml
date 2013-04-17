@@ -7,8 +7,8 @@
 			readonly="true" class="readonly"
 			label="JGLOBAL_FIELD_ID_LABEL" 	description ="JGLOBAL_FIELD_ID_DESC" />
 
-		<field name="name" type="textarea" class="inputbox" rows="2"
-			 label="COM_NTRIP_FIELD_NAME_LABEL"
+		<field name="name" type="text" class="inputbox"
+			size="40" label="COM_NTRIP_FIELD_NAME_LABEL"
 			description="COM_NTRIP_FIELD_NAME_DESC" required="true" />
 
 		<field name="alias" type="text" class="inputbox"
@@ -20,7 +20,7 @@
 			class="inputbox" required="true"
 			addfieldpath="/administrator/components/com_categories/models/fields"
 		>
-			<option value="">Lựa chọn Tỉnh / Thành</option>
+			<option value="">COM_NTRIP_SELECT_LOCATION_LABEL</option>
 		</field>
 
 		<field name="images" type="file" class="inputbox"
@@ -38,18 +38,36 @@
 			<option value="2">JARCHIVED</option>
 			<option value="-2">JTRASHED</option>
 		</field>
-		
-		<field name="system_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_SYSTEM_RANK_LABEL" />
-		
-		<field name="user_rank" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_USER_RANK_LABEL" />
-		
-		<field name="address" type="textarea" class="inputbox" rows="2"
-			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" />
 
-		<field name="description" type="textarea" class="inputbox"
-			label="JGLOBAL_DESCRIPTION" rows="5" />
+		<field name="item_type" type="list"
+			label="Select Type"
+			class="inputbox" size="1" default="" >
+			<option value="">- Select type -</option>
+			<option value="hotels">Hotels</option>
+			<option value="restaurants">Restaurants</option>
+			<option value="tours">Tours</option>
+			<option value="relaxes">Relaxes</option>
+			<option value="shoppings">Shoppings</option>
+			<option value="services">Services</option>
+		</field>
+
+		<field name="item_id" type="customitem" class="inputbox"
+			size="40" label="Select Item" />
+
+		<field name="description" type="editor" class="inputbox"
+			label="JGLOBAL_DESCRIPTION" 
+			filter="JComponentHelper::filterText" buttons="true" />
+
+	</fieldset>
+
+	<fieldset name="publish"
+		label="COM_NTRIP_GROUP_LABEL_PUBLISHING_DETAILS"
+	>
+
+		<field name="created" type="calendar"
+			label="COM_NTRIP_FIELD_CREATED_LABEL" description="COM_NTRIP_FIELD_CREATED_DESC"
+			class="inputbox" size="22" format="%Y-%m-%d %H:%M:%S"
+			filter="user_utc" />
 
 	</fieldset>
 

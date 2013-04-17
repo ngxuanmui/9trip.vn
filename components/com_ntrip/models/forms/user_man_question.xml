@@ -7,9 +7,9 @@
 			readonly="true" class="readonly"
 			label="JGLOBAL_FIELD_ID_LABEL" 	description ="JGLOBAL_FIELD_ID_DESC" />
 
-		<field name="name" type="textarea" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_NAME_LABEL"
-			description="COM_NTRIP_FIELD_NAME_DESC" required="true" />
+		<field name="title" type="text" class="inputbox"
+			size="40" label="COM_NTRIP_FIELD_TITLE_LABEL"
+			description="COM_NTRIP_FIELD_TITLE_DESC" required="true" />
 
 		<field name="alias" type="text" class="inputbox"
 			size="40" label="JFIELD_ALIAS_LABEL"
@@ -20,30 +20,33 @@
 			class="inputbox" required="true"
 			addfieldpath="/administrator/components/com_categories/models/fields"
 		>
-			<option value="">Lựa chọn Tỉnh / Thành</option>
+			<option value="">COM_NTRIP_SELECT_LOCATION_LABEL</option>
 		</field>
-		
-		<field name="type" type="front_customfield" class="inputbox"
-			size="40" extension="com_ntrip.custom_field_shopping" required="true" />
-
-		<field name="images" type="file" class="inputbox file-upload"
-			size="40" label="COM_NTRIP_FIELD_IMAGES_LABEL" />
-
-		<field name="del_image" type="checkbox" value="1" class="input-checkbox" label="Delete image" />
 
 		<field name="uploadfile" type="uploadfile" />
-			
-		<field name="website" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_WEBSITE_LABEL" />
-		
-		<field name="email" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_EMAIL_LABEL" />
 
-		<field name="address" type="textarea" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_ADDRESS_LABEL" required="true" />
-		
-		<field name="hotline" type="text" class="inputbox"
-			size="40" label="COM_NTRIP_FIELD_HOTLINE_LABEL" />
+		<field name="state" type="list"
+			label="JSTATUS"
+			class="inputbox" size="1" default="1" >
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+			<option value="2">JARCHIVED</option>
+			<option value="-2">JTRASHED</option>
+		</field>
+
+		<field name="content" type="textarea" class="inputbox"
+			label="Content" />
+
+	</fieldset>
+
+	<fieldset name="publish"
+		label="COM_NTRIP_GROUP_LABEL_PUBLISHING_DETAILS"
+	>
+
+		<field name="created" type="calendar"
+			label="COM_NTRIP_FIELD_CREATED_LABEL" description="COM_NTRIP_FIELD_CREATED_DESC"
+			class="inputbox" size="22" format="%Y-%m-%d %H:%M:%S"
+			filter="user_utc" />
 
 	</fieldset>
 
