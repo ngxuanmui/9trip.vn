@@ -57,7 +57,25 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 			
 			
 			<div class="social-info">
-				<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+				<div class="fltlft">
+					<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+					<!-- gplus +1 button to render. -->
+					<div class="fltlft gplus">
+						<div class="g-plusone" data-size="medium" data-href="<?php $server = JRequest::get('server'); echo $server['REQUEST_URI']; ?>"></div>
+						
+						<!-- Place this tag after the last +1 button tag. -->
+						<script type="text/javascript">
+						  window.___gcfg = {lang: 'vi'};
+						
+						  (function() {
+						    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						    po.src = 'https://apis.google.com/js/plusone.js';
+						    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						  })();
+						</script>
+					</div>
+				</div>
+				
 				
 				<div class="social-button fltrgt">
 					<div class="error error-msg fltlft" style="display: none; margin-right: 10px;">Bạn chưa đăng nhập!</div>

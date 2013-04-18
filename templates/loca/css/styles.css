@@ -874,7 +874,7 @@ span.star-yellow5 {
 a.like {
 	display: block;
 	float: left;
-	padding-right: 10px;
+	padding-right: 2px;
 	color: #55555;
 }
 .number-liker {
@@ -883,6 +883,7 @@ a.like {
 	width: 24px;
 	height: 20px;
 	padding-left: 7px;
+	margin-right: 5px;
 }
 .album-quote {
 	font-size: 14px;
@@ -1077,3 +1078,5 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .user-form select, .user-form .file-upload, .user-form .input-checkbox { margin-bottom: 15px; }
 .user-form input.input-text, .user-form input.inputbox { width: 300px !important; }
 .user-form input[type="radio"] { float: none}
+
+.gplus { margin-top: -1px; }
