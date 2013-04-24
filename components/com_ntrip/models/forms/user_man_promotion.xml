@@ -20,7 +20,7 @@
 			class="inputbox" required="true"
 			addfieldpath="/administrator/components/com_categories/models/fields"
 		>
-			<option value="">COM_NTRIP_SELECT_LOCATION_LABEL</option>
+			<option value="">Lựa chọn Tỉnh / Thành</option>
 		</field>
 
 		<field name="images" type="file" class="inputbox"
@@ -56,7 +56,7 @@
 
 		<field name="description" type="editor" class="inputbox"
 			label="JGLOBAL_DESCRIPTION" 
-			filter="JComponentHelper::filterText" buttons="true" />
+			filter="JComponentHelper::filterText" buttons="false" />
 
 	</fieldset>
 

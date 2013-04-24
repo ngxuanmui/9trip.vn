@@ -34,40 +34,7 @@ class NtripViewUser_Man_Album extends JViewLegacy
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
-
-		$this->addToolbar();
+		
 		parent::display($tpl);
-	}
-
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @since	1.6
-	 */
-	protected function addToolbar()
-	{
-		JRequest::setVar('hidemainmenu', true);
-
-		$user		= JFactory::getUser();
-		$userId		= $user->get('id');
-		$isNew		= ($this->item->id == 0);
-		$checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
-		// Since we don't track these assets at the item level, use the category id.
-		$canDo		= NtripHelper::getActions($this->item->catid,0);
-
-		JToolBarHelper::title($isNew ? JText::_('COM_NTRIP_MANAGER_ALBUM_NEW') : JText::_('COM_NTRIP_MANAGER_ALBUM_EDIT'), 'albums.png');
-
-		// If not checked out, can save the item.
-		if (!$checkedOut && ($canDo->get('core.edit') || count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)) {
-			JToolBarHelper::apply('album.apply');
-			JToolBarHelper::save('album.save');
-		}
-
-		if (empty($this->item->id))  {
-			JToolBarHelper::cancel('album.cancel');
-		}
-		else {
-			JToolBarHelper::cancel('album.cancel', 'JTOOLBAR_CLOSE');
-		}
 	}
 }

@@ -154,13 +154,6 @@ class NtripModelUser_Man_Question extends JModelAdmin
 		if (empty($data))
 		{
 			$data = $this->getItem();
-
-			// Prime some default values.
-			if ($this->getState('question.id') == 0)
-			{
-				$app = JFactory::getApplication();
-				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.questions.filter.category_id')));
-			}
 		}
 
 		return $data;

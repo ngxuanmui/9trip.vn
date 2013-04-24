@@ -7,17 +7,18 @@
 			readonly="true" class="readonly"
 			label="JGLOBAL_FIELD_ID_LABEL" 	description ="JGLOBAL_FIELD_ID_DESC" />
 
-		<field name="name" type="text" class="inputbox"
+		<field name="name" type="textarea" class="inputbox"
 			size="40" label="COM_NTRIP_FIELD_NAME_LABEL"
 			description="COM_NTRIP_FIELD_NAME_DESC" required="true" />
 
 		<field name="alias" type="text" class="inputbox"
 			size="40" label="JFIELD_ALIAS_LABEL"
 			description="COM_NTRIP_FIELD_ALIAS_DESC" />
-;
-		<field name="catid" type="category" extension="com_ntrip"
+
+		<field name="catid" type="categoryedit" extension="com_ntrip"
 			label="COM_NTRIP_FIELD_LOCATION_LABEL"
 			class="inputbox" required="true"
+			addfieldpath="/administrator/components/com_categories/models/fields"
 		>
 			<option value="">Lựa chọn Tỉnh / Thành</option>
 		</field>
@@ -38,14 +39,25 @@
 			<option value="-2">JTRASHED</option>
 		</field>
 
-		<field name="address" type="textarea" class="inputbox" rows="2" label="COM_NTRIP_FIELD_ADDRESS_LABEL" />
-
-		<field name="description" type="textarea" class="inputbox" rows="5" />
+		<field name="description" type="editor" class="inputbox"
+			label="JGLOBAL_DESCRIPTION" 
+			filter="JComponentHelper::filterText" buttons="false" />
 
 	</fieldset>
 
 	<fieldset name="publish"
 		label="COM_NTRIP_GROUP_LABEL_PUBLISHING_DETAILS"
+	>
+
+		<field name="created" type="calendar"
+			label="COM_NTRIP_FIELD_CREATED_LABEL" description="COM_NTRIP_FIELD_CREATED_DESC"
+			class="inputbox" size="22" format="%Y-%m-%d %H:%M:%S"
+			filter="user_utc" />
+
+	</fieldset>
+
+	<fieldset name="metadata"
+		label="JGLOBAL_FIELDSET_METADATA_OPTIONS"
 	>
 
 		<field name="metakey" type="textarea" class="inputbox"

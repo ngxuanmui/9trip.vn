@@ -111,22 +111,10 @@ class NtripModelUser_Man_Album extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_ntrip.album', 'album', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_ntrip.user_man_album', 'user_man_album', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
-		}
-
-		// Determine correct permissions to check.
-		if ($this->getState('album.id'))
-		{
-			// Existing record. Can only edit in selected categories.
-			$form->setFieldAttribute('catid', 'action', 'core.edit');
-		}
-		else
-		{
-			// New record. Can only create in selected categories.
-			$form->setFieldAttribute('catid', 'action', 'core.create');
 		}
 
 		// Modify the form based on access controls.
@@ -166,13 +154,6 @@ class NtripModelUser_Man_Album extends JModelAdmin
 		if (empty($data))
 		{
 			$data = $this->getItem();
-
-			// Prime some default values.
-			if ($this->getState('album.id') == 0)
-			{
-				$app = JFactory::getApplication();
-				$data->set('catid', JRequest::getInt('catid', $app->getUserState('com_ntrip.albums.filter.category_id')));
-			}
 		}
 
 		return $data;

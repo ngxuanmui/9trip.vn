@@ -111,7 +111,7 @@ class NtripModelUser_Man_Promotion extends JModelAdmin
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_ntrip.promotion', 'promotion', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_ntrip.user_man_promotion', 'user_man_promotion', array('control' => 'jform', 'load_data' => $loadData));
 		if (empty($form))
 		{
 			return false;
