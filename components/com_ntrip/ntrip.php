@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 
 // Include dependancies
-//require_once JPATH_COMPONENT.'/helpers/route.php';
+require_once JPATH_COMPONENT.'/helpers/route.php';
 
 // get helper from admin
 require_once JPATH_COMPONENT_ADMINISTRATOR . DS . 'helpers' . DS . 'ntrip.php';

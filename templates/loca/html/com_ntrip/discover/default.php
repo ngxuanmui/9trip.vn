@@ -60,8 +60,13 @@ $item = $this->item;
 							<div class="img">
 								<img src="<?php echo $item->images; ?>" />
 							</div>				
+							
+							<?php 
+							$item->slug = $item->id . ':' . $item->alias;
+							$view = $discover;
+							?>
 
-							<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>">
+							<a href="<?php echo ''; //JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid) , false); ?>">
 								<?php echo $item->name; ?>
 							</a>
 							

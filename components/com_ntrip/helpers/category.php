@@ -23,8 +23,8 @@ class NtripCategories extends JCategories
 {
 	public function __construct($options = array())
 	{
-//		$options['table'] = '#__content';
-//		$options['extension'] = 'com_ntrip';
+		$options['table'] = '';
+		$options['extension'] = 'com_ntrip';
 		parent::__construct($options);
 	}
 }

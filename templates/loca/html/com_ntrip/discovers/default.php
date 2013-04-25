@@ -38,10 +38,17 @@ $fields = $this->fields;
 
 		<div class="items">
 			<ul class="list-discovers">
-				<?php foreach ($this->items as $item): ?>
+				<?php 
+				foreach ($this->items as $item): 
+					
+					$item->slug = $item->id . ':' . $item->alias;
+					$view = 'discover';
+					
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view));
+				?>
 				<li>
 					<h2>
-						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>">
+						<a href="<?php echo $link; ?>">
 							<?php echo $item->name; ?>
 						</a>
 					</h2>
@@ -63,7 +70,11 @@ $fields = $this->fields;
 						<span>12 thành viên thích</span>
 					</div>
 					
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $item->id . ':' . $item->alias, false); ?>" class="block icons loca-button fltright">
+					<?php 
+						
+					?>
+							
+					<a href="<?php ; ?>" class="block icons loca-button fltright">
 						<span class="txt-btn">Chi tiết &raquo;</span>
 					</a>
 					<div class="clr"></div>
