@@ -32,13 +32,19 @@ $fields = $this->fields;
 	<div class="list-promotions-container">
 		<div class="items">
 			<ul class="list-promotions">
-				<?php foreach ($this->items as $key => $item): ?>
+				<?php 
+				foreach ($this->items as $key => $item): 
+					$item->slug = $item->id . ':' . $item->alias;
+					$view = 'promotion';
+						
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view));
+				?>
 				<li <?php if (($key + 1) % 3 == 0) echo 'class="last"'; ?>>
 					<div class="image">
 						<img src="<?php echo $item->images; ?>" />
 					</div>
 					
-					<a class='promotion-title' href="<?php echo JRoute::_('index.php?option=com_ntrip&view=promotion&id=' . $item->id, false); ?>">
+					<a class='promotion-title' href="<?php echo $link; ?>">
 						<h3><?php echo $item->name; ?></h3>
 					</a>
 						

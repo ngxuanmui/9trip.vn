@@ -9,6 +9,25 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.categories');
 
+function ntripGetViews()
+{
+	/* use this variable to check views */
+	$arrViews = array(
+						'discover' => 'discovers', 
+						'relax' => 'relaxes', 
+						'promotion' => 'promotions', 
+						'warning' => 'warnings', 
+						'hotel' => 'hotels', 
+						'service' => 'services',
+						'shopping' => 'shoppings',
+						'restaurant' => 'restaurants',
+						'tour' => 'tours',
+						'question' => 'questions'
+			);
+	
+	return $arrViews;
+}
+
 /**
  * Build the route for the com_ntrip component
  *
@@ -18,7 +37,9 @@ jimport('joomla.application.categories');
  */
 function NtripBuildRoute(&$query)
 {
-	$arrMap = array('discover' => 'discovers');
+	$arrViews = ntripGetViews();
+	
+	$arrViewKeys = array_keys($arrViews);
 	
 	$segments	= array();
 
@@ -63,7 +84,7 @@ function NtripBuildRoute(&$query)
 		return $segments;
 	}
 
-	if ($view == 'category' || $view == 'discover')
+	if ($view == 'category' || in_array($view, $arrViewKeys))
 	{
 		if (!$menuItemGiven) {
 			$segments[] = $view;
@@ -71,7 +92,8 @@ function NtripBuildRoute(&$query)
 
 		unset($query['view']);
 
-		if ($view == 'discover') {
+		if (in_array($view, $arrViewKeys)) {
+			
 			if (isset($query['id'])) {
 				
 				// Make sure we have the id and the alias
@@ -79,10 +101,14 @@ function NtripBuildRoute(&$query)
 					$db = JFactory::getDbo();
 					$aquery = $db->setQuery($db->getQuery(true)
 						->select('alias')
-						->from('#__' . $arrMap[$view])
+						->from('#__ntrip_' . $arrViews[$view])
 						->where('id='.(int)$query['id'])
 					);
 					$alias = $db->loadResult();
+					
+					if ($db->getErrorMsg())
+						die ($db->getErrorMsg());
+					
 					$query['id'] = $query['id'].':'.$alias;
 				}
 			} else {
@@ -105,7 +131,7 @@ function NtripBuildRoute(&$query)
 			$mCatid = 0;
 		}
 
-		if ($view == 'discover') {
+		if (in_array($view, $arrViewKeys)) {
 			if ($advanced) {
 				list($tmp, $id) = explode(':', $query['id'], 2);
 			}
@@ -116,22 +142,6 @@ function NtripBuildRoute(&$query)
 		}
 		unset($query['id']);
 		unset($query['catid']);
-	}
-
-	// if the layout is specified and it is the same as the layout in the menu item, we
-	// unset it so it doesn't go into the query string.
-	if (isset($query['layout'])) {
-		if ($menuItemGiven && isset($menuItem->query['layout'])) {
-			if ($query['layout'] == $menuItem->query['layout']) {
-
-				unset($query['layout']);
-			}
-		}
-		else {
-			if ($query['layout'] == 'default') {
-				unset($query['layout']);
-			}
-		}
 	}
 
 	return $segments;
@@ -149,12 +159,30 @@ function NtripBuildRoute(&$query)
  */
 function NtripParseRoute($segments)
 {
+	// get views
+	$arrViews = ntripGetViews();
+	
+	$arrViewKeys = array_keys($arrViews);
+	
+	$arrMapMenuAlias = array(
+			'khuyen-mai' => 'promotion', 
+			'kham-pha' => 'discover', 
+			'khach-san' => 'hotel',
+			'canh-bao' => 'warning',
+			'nha-hang' => 'restaurant',
+			'khach-san' => 'hotel',
+			'giai-tri' => 'relax',
+			'tham-quan' => 'tour',
+			'mua-sam' => 'shopping',
+			'dich-vu' => 'service'
+			);
+	
 	$vars = array();
 
 	//Get the active menu item.
 	$app	= JFactory::getApplication();
 	$menu	= $app->getMenu();
-	$item	= $menu->getActive();
+	$itemMenu = $item	= $menu->getActive();
 	$params = JComponentHelper::getParams('com_ntrip');
 	$advanced = $params->get('sef_advanced_link', 0);
 	$db = JFactory::getDBO();
@@ -170,6 +198,8 @@ function NtripParseRoute($segments)
 
 		return $vars;
 	}
+	
+// 	var_dump($item); die;
 
 	// if there is only one segment, then it points to either an discover or a category
 	// we test it first to see if it is a category.  If the id and alias match a category
@@ -177,15 +207,15 @@ function NtripParseRoute($segments)
 	if ($count == 1) {
 		// we check to see if an alias is given.  If not, we assume it is an discover
 		if (strpos($segments[0], ':') === false) {
-			$vars['view'] = 'discover';
+			$vars['view'] = $arrMapMenuAlias[$item->alias];
 			$vars['id'] = (int)$segments[0];
 			return $vars;
 		}
-
+		
 		list($id, $alias) = explode(':', $segments[0], 2);
 
 		// first we check if it is a category
-		$category = JCategories::getInstance('Content')->get($id);
+		$category = JCategories::getInstance('Ntrip')->get($id);
 
 		if ($category && $category->alias == $alias) {
 			$vars['view'] = 'category';
@@ -193,14 +223,14 @@ function NtripParseRoute($segments)
 
 			return $vars;
 		} else {
-			$query = 'SELECT alias, catid FROM #__content WHERE id = '.(int)$id;
+			$query = 'SELECT alias, catid FROM #__ntrip_'.$arrViews[$vars['view']].' WHERE id = '.(int)$id;
 			$db->setQuery($query);
-			$discover = $db->loadObject();
+			$item = $db->loadObject();
 
-			if ($discover) {
-				if ($discover->alias == $alias) {
-					$vars['view'] = 'discover';
-					$vars['catid'] = (int)$discover->catid;
+			if ($item) {
+				if ($item->alias == $alias) {
+					$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
+					$vars['catid'] = (int)$item->catid;
 					$vars['id'] = (int)$id;
 
 					return $vars;
@@ -215,12 +245,12 @@ function NtripParseRoute($segments)
 	if (!$advanced) {
 		$cat_id = (int)$segments[0];
 
-		$discover_id = (int)$segments[$count - 1];
+		$item_id = (int)$segments[$count - 1];
 
-		if ($discover_id > 0) {
-			$vars['view'] = 'discover';
+		if ($item_id > 0) {
+			$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
 			$vars['catid'] = $cat_id;
-			$vars['id'] = $discover_id;
+			$vars['id'] = $item_id;
 		} else {
 			$vars['view'] = 'category';
 			$vars['id'] = $cat_id;
@@ -231,7 +261,7 @@ function NtripParseRoute($segments)
 
 	// we get the category id from the menu item and search from there
 	$id = $item->query['id'];
-	$category = JCategories::getInstance('Content')->get($id);
+	$category = JCategories::getInstance('Ntrip')->get($id);
 
 	if (!$category) {
 		JError::raiseError(404, JText::_('COM_NTRIP_ERROR_PARENT_CATEGORY_NOT_FOUND'));

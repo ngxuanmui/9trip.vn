@@ -1,7 +1,7 @@
 <?php
 /**
  * @package		Joomla.Site
- * @subpackage	com_content
+ * @subpackage	com_ntrip
  * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -17,7 +17,7 @@ jimport('joomla.application.categories');
  *
  * @static
  * @package		Joomla.Site
- * @subpackage	com_content
+ * @subpackage	com_ntrip
  * @since 1.5
  */
 abstract class NtripHelperRoute
@@ -55,6 +55,22 @@ abstract class NtripHelperRoute
 			$link .= '&Itemid='.$item;
 		}
 
+		return $link;
+	}
+	
+	public static function getItemsRoute($view)
+	{
+		$needles = array('hotels' => rand(), 'relaxes' => rand());
+		
+		$link = 'index.php?option=com_ntrip&view=' . $view;
+		
+		if ($item = self::_findItem($needles)) {
+			$link .= '&Itemid='.$item;
+		}
+		elseif ($item = self::_findItem()) {
+			$link .= '&Itemid='.$item;
+		}
+		
 		return $link;
 	}
 
@@ -113,9 +129,9 @@ abstract class NtripHelperRoute
 	{
 		//Create the link
 		if ($id) {
-			$link = 'index.php?option=com_content&task=article.edit&a_id='. $id;
+			$link = 'index.php?option=com_ntrip&task=article.edit&a_id='. $id;
 		} else {
-			$link = 'index.php?option=com_content&task=article.edit&a_id=0';
+			$link = 'index.php?option=com_ntrip&task=article.edit&a_id=0';
 		}
 
 		return $link;
@@ -131,7 +147,7 @@ abstract class NtripHelperRoute
 		{
 			self::$lookup = array();
 
-			$component	= JComponentHelper::getComponent('com_content');
+			$component	= JComponentHelper::getComponent('com_ntrip');
 			$items		= $menus->getItems('component_id', $component->id);
 			foreach ($items as $item)
 			{
@@ -166,7 +182,7 @@ abstract class NtripHelperRoute
 		else
 		{
 			$active = $menus->getActive();
-			if ($active && $active->component == 'com_content') {
+			if ($active && $active->component == 'com_ntrip') {
 				return $active->id;
 			}
 		}
