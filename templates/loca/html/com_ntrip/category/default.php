@@ -5,6 +5,14 @@ defined('_JEXEC') or die;
 $items = $this->items;
 $firstAlbum = $this->firstAlbum;
 
+if (empty($firstAlbum))
+{
+	$firstAlbum = new stdClass();
+	
+	$firstAlbum->id = 0;
+	$firstAlbum->user_like = 0;
+}
+
 JHtml::_('behavior.modal');
 
 $userGuest = JFactory::getUser()->guest ? true : false;
@@ -13,8 +21,8 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $firstAlbum->id; ?>;
 	var ITEM_TYPE = 'albums';
-	var GMAP_LAT = '<?php echo $items['gmap_info']->gmap_lat; ?>';
-	var GMAP_LONG = '<?php echo $items['gmap_info']->gmap_long; ?>';
+	var GMAP_LAT = '<?php echo @$items['gmap_info']->gmap_lat; ?>';
+	var GMAP_LONG = '<?php echo @$items['gmap_info']->gmap_long; ?>';
 	var GMAP_ADD = '<?php echo $this->category->title; ?>, Việt Nam';
 	var USER_GUEST = '<?php echo $userGuest ? 'y' : 'n'; ?>';
 </script>
@@ -75,17 +83,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 	
 	<div class="show-custom-field fltlft">
-		<?php 
-			$modules = JModuleHelper::getModules('custom-field');
-
-			foreach($modules as $module)
-			{
-				if ($module->showtitle)
-					echo '<div class="module-title">' . $module->title . '</div>';
-
-				echo JModuleHelper::renderModule($module);
-			}
-		?>
+		<?php echo LocaHelper::renderModulesOnPosition('custom-field'); ?>
 	</div>
 	
 	<div class="clr"></div>
@@ -115,7 +113,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 							<img src="<?php echo $image; ?>" />
 						<?php endif; ?>
 					</div>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=category&id=' . $child->id, false); ?>" class="bold">
+					<a href="<?php echo JRoute::_(NtripHelperRoute::getCategoryRoute($child->id)); ?>" class="bold">
 						<?php echo $child->title; ?>
 					</a>					
 				</li>
@@ -236,17 +234,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		<span class="txt-register">ĐĂNG KÝ THÀNH VIÊN</span>
 	</a>
 
-	<?php 
-		$modules = JModuleHelper::getModules('right');
-
-		foreach($modules as $module)
-		{
-//						if ($module->showtitle)
-//							echo '<div class="module-title">' . $module->title . '</div>';
-
-			echo JModuleHelper::renderModule($module);
-		}
-	?>
+	<?php echo LocaHelper::renderModulesOnPosition('right'); ?>
 
 </div>
 <div class="clear"></div>

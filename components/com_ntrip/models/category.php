@@ -24,6 +24,8 @@ class NtripModelCategory extends JModel
 		$rows['warnings']	= $this->_getLatestItems('warnings', $catid);
 		$rows['albums']	= $this->_getLatestItems('albums', $catid);
 		$rows['questions']	= $this->_getLatestItems('questions', $catid);
+		
+// 		var_dump($rows);
 				
 		return $rows;
 	}
@@ -99,7 +101,7 @@ class NtripModelCategory extends JModel
 		
 		$row->other_images = '';
 		
-		if ($row->id)
+		if (isset($row->id))
 		{
 			$query = $db->getQuery(true);
 
@@ -117,8 +119,10 @@ class NtripModelCategory extends JModel
 				die($db->getErrorMsg ());
 
 			$row->other_images = $rs;
+			
+			return $row;
 		}
 		
-		return $row;
+		return null;
 	}
 }

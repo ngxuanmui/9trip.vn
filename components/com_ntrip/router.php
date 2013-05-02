@@ -18,6 +18,12 @@ function ntripGetViews()
 						'promotion' => 'promotions', 
 						'warning' => 'warnings', 
 						'hotel' => 'hotels', 
+						'hotels' => 'hotels',
+						'restaurants' => 'restaurants',
+						'relaxes' => 'relaxes',
+						'tours' => 'tours',
+						'shoppings' => 'shoppings',
+						'services' => 'services',
 						'service' => 'services',
 						'shopping' => 'shoppings',
 						'restaurant' => 'restaurants',
@@ -66,7 +72,12 @@ function NtripBuildRoute(&$query)
 		// we need to have a view in the query or it is an invalid URL
 		return $segments;
 	}
-
+	
+	if (isset($query['custom_field']))
+	{
+		unset($query['custom_field']);
+	}
+	
 	// are we dealing with an discover or category that is attached to a menu item?
 	if (($menuItem instanceof stdClass) && $menuItem->query['view'] == $query['view'] && isset($query['id']) && $menuItem->query['id'] == intval($query['id'])) {
 		unset($query['view']);
@@ -80,7 +91,7 @@ function NtripBuildRoute(&$query)
 		}
 
 		unset($query['id']);
-
+		
 		return $segments;
 	}
 
@@ -140,8 +151,11 @@ function NtripBuildRoute(&$query)
 			}
 			$segments[] = $id;
 		}
+		
 		unset($query['id']);
 		unset($query['catid']);
+		
+		
 	}
 
 	return $segments;
@@ -216,24 +230,27 @@ function NtripParseRoute($segments)
 
 		// first we check if it is a category
 		$category = JCategories::getInstance('Ntrip')->get($id);
-
+		
 		if ($category && $category->alias == $alias) {
 			$vars['view'] = 'category';
 			$vars['id'] = $id;
 
 			return $vars;
 		} else {
-			$query = 'SELECT alias, catid FROM #__ntrip_'.$arrViews[$vars['view']].' WHERE id = '.(int)$id;
-			$db->setQuery($query);
-			$item = $db->loadObject();
-
-			if ($item) {
-				if ($item->alias == $alias) {
-					$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
-					$vars['catid'] = (int)$item->catid;
-					$vars['id'] = (int)$id;
-
-					return $vars;
+			if (isset($vars['view']))
+			{
+				$query = 'SELECT alias, catid FROM #__ntrip_'.$arrViewKeys[$vars['view']].' WHERE id = '.(int)$id;
+				$db->setQuery($query);
+				$item = $db->loadObject();
+				
+				if ($item) {
+					if ($item->alias == $alias) {
+						$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
+						$vars['catid'] = (int)$item->catid;
+						$vars['id'] = (int)$id;
+				
+						return $vars;
+					}
 				}
 			}
 		}

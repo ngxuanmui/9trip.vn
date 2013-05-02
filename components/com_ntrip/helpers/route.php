@@ -30,7 +30,9 @@ abstract class NtripHelperRoute
 	public static function getItemRoute($id, $view, $catid = 0, $language = 0)
 	{
 		$needles = array(
-			'discover'  => array((int) $id)
+			'discovers'  => array((int) $id),
+			'promotion'  => array((int) $id),
+			'warning'  => array((int) $id)
 		);
 		
 		//Create the link
@@ -48,27 +50,64 @@ abstract class NtripHelperRoute
 			}
 		}
 
-		if ($item = self::_findItem($needles)) {
-			$link .= '&Itemid='.$item;
-		}
-		elseif ($item = self::_findItem()) {
-			$link .= '&Itemid='.$item;
+// 		if ($item = self::_findItem($needles)) {
+// 			$link .= '&Itemid='.$item;
+// 		}
+// 		elseif ($item = self::_findItem()) {
+// 			$link .= '&Itemid='.$item;
+// 		}
+
+		$db = JFactory::getDbo();
+		
+		$query = $db->getQuery(true);
+		
+		$query->select('*')->from('#__menu')->where('menutype = "main-top-menu"');
+		$db->setQuery($query);
+		
+		$menus = $db->loadObjectList();
+		
+		foreach ($menus as $menu)
+		{
+			if (strpos($menu->link, $view) !== false)
+			{
+				$link .= '&Itemid=' . $menu->id;
+				break;
+			}
 		}
 
 		return $link;
 	}
 	
-	public static function getItemsRoute($view)
+
+	public static function getItemsRoute($view = 'hotels', $customField = false)
 	{
-		$needles = array('hotels' => rand(), 'relaxes' => rand());
-		
 		$link = 'index.php?option=com_ntrip&view=' . $view;
+// 		var_dump($link.'}}}');
 		
-		if ($item = self::_findItem($needles)) {
-			$link .= '&Itemid='.$item;
-		}
-		elseif ($item = self::_findItem()) {
-			$link .= '&Itemid='.$item;
+		if ($customField)
+			$link .= '&custom_field=' . $customField;
+		
+		$db = JFactory::getDbo();
+		
+		$query = $db->getQuery(true);
+		$query->select('*')->from('#__menu')->where('menutype = "menu-main-items"');
+		$db->setQuery($query);
+		
+		$menus = $db->loadObjectList();
+				
+		foreach ($menus as $menu)
+		{
+// 			var_dump($menu->id, $menu->link, 'custom_field=' . $customField, strpos($menu->link, 'custom_field=' . $customField));
+			
+			if ( 
+					(strpos($menu->link, $view) !== false && !$customField) 
+					|| 
+					(strpos($menu->link, $view) !== false && strpos($menu->link, 'custom_field=' . $customField) !== false && $customField) 
+				)
+			{
+				$link .= '&Itemid=' . $menu->id;
+				break;
+			}
 		}
 		
 		return $link;
@@ -149,6 +188,7 @@ abstract class NtripHelperRoute
 
 			$component	= JComponentHelper::getComponent('com_ntrip');
 			$items		= $menus->getItems('component_id', $component->id);
+			
 			foreach ($items as $item)
 			{
 				if (isset($item->query) && isset($item->query['view']))

@@ -29,12 +29,13 @@ $fields = $this->fields;
 		<div class="clr"></div>
 	</div>
 	
+	<div class="tabs">
+		<?php echo LocaHelper::renderModulesOnPosition('menu-kham-pha'); ?>
+		<div class="clr"></div>
+	</div>
 
 	<div class="list-hotels-container">
-		<div class="tabs">
-			<?php echo NtripFrontHelper::customFieldMenu($fields, JRequest::getInt('custom_field', 0)); ?>
-			<div class="clr"></div>
-		</div>
+		
 
 		<div class="items">
 			<ul class="list-discovers">

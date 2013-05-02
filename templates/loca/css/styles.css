@@ -466,7 +466,7 @@ ul.tab-categories li.active a{
 	color: #676666;
 }
 
-ul.tab-categories li.even {
+ul.tab-categories li:nth-child(2), ul.tab-categories li:nth-child(4), ul.tab-categories li:nth-child(6) {
 	background: #8C8C8C;
 }
 .search-conditions {
@@ -505,7 +505,6 @@ ul.tab-categories li.even {
 }
 .list-hotels-container {
 	background: #fff;
-	margin-top: 15px;
 	padding: 0 7px 10px 7px;
 }
 
