@@ -24,7 +24,7 @@ $linkId = ($id) ? '&id=' . $id : '';
 				<?php 
 				
 				?>
-				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=hotels&custom_field=' . $hotelCustomField->id . $linkId, false); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('hotels', $hotelCustomField->id), false); ?>">
 					<?php echo $hotelCustomField->title; ?> (*)
 				</a>
 			</li>

@@ -27,7 +27,7 @@ class plgSystemLocation extends JPlugin
 		parent::__construct($subject, $config);
 	}
 
-	public function onAfterInitialise()
+	public function onAfterRoute()
 	{
 		$get = JRequest::get('get');	
 		

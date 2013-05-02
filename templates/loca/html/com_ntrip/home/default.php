@@ -48,7 +48,10 @@ defined('_JEXEC') or die;
 				<ul class="slider-<?php echo $item->id; ?>">				
 					<?php foreach ($subCat as $sub): ?>
 					<li>
-						<?php foreach ($sub as $subItem): ?>
+						<?php 
+						foreach ($sub as $subItem): 
+							
+						?>
 						<div class="tour-content">
 							<div class="img-block">
 								<?php
@@ -61,7 +64,9 @@ defined('_JEXEC') or die;
 								<?php endif; ?>
 							</div>
 							<div class="title">
-								<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=category&id='.$subItem->id); ?>"><?php echo $subItem->title; ?></a>
+								<a href="<?php echo JRoute::_(NtripHelperRoute::getCategoryRoute($subItem->id)); ?>">
+									<?php echo $subItem->title; ?>
+								</a>
 							</div>
 							<div class="info">
 								<?php
