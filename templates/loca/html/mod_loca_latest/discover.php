@@ -10,7 +10,11 @@ defined('_JEXEC') or die;
 		<img src="<?php echo $item->images; ?>" />
 		<div class="title">
 			<?php
-			$link = JRoute::_('index.php?option=com_ntrip&view=discover&id='.$item->id.':'.$item->alias);
+			$item->slug = $item->id . ':' . $item->alias;
+			$view = 'discover';
+				
+			$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view));
+			
 			?>
 			<a href="<?php echo $link; ?>">
 				<?php echo $item->name; ?>

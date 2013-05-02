@@ -18,6 +18,12 @@ function ntripGetViews()
 						'promotion' => 'promotions', 
 						'warning' => 'warnings', 
 						'hotel' => 'hotels', 
+						'hotels' => 'hotels',
+						'restaurants' => 'restaurants',
+						'relaxes' => 'relaxes',
+						'tours' => 'tours',
+						'shoppings' => 'shoppings',
+						'services' => 'services',
 						'service' => 'services',
 						'shopping' => 'shoppings',
 						'restaurant' => 'restaurants',
@@ -216,24 +222,27 @@ function NtripParseRoute($segments)
 
 		// first we check if it is a category
 		$category = JCategories::getInstance('Ntrip')->get($id);
-
+		
 		if ($category && $category->alias == $alias) {
 			$vars['view'] = 'category';
 			$vars['id'] = $id;
 
 			return $vars;
 		} else {
-			$query = 'SELECT alias, catid FROM #__ntrip_'.$arrViews[$vars['view']].' WHERE id = '.(int)$id;
-			$db->setQuery($query);
-			$item = $db->loadObject();
-
-			if ($item) {
-				if ($item->alias == $alias) {
-					$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
-					$vars['catid'] = (int)$item->catid;
-					$vars['id'] = (int)$id;
-
-					return $vars;
+			if (isset($vars['view']))
+			{
+				$query = 'SELECT alias, catid FROM #__ntrip_'.$arrViewKeys[$vars['view']].' WHERE id = '.(int)$id;
+				$db->setQuery($query);
+				$item = $db->loadObject();
+				
+				if ($item) {
+					if ($item->alias == $alias) {
+						$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
+						$vars['catid'] = (int)$item->catid;
+						$vars['id'] = (int)$id;
+				
+						return $vars;
+					}
 				}
 			}
 		}
