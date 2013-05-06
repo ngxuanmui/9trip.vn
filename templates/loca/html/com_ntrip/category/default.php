@@ -139,7 +139,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 					<div class="img">
 						<img src="<?php echo $discover->images; ?>" />
 					</div>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $discover->id, false); ?>">
+					<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($discover->id, 'discover')); ?>">
 						<?php echo $discover->name; ?>
 					</a>
 				</li>
