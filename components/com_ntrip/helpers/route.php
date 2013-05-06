@@ -78,6 +78,7 @@ abstract class NtripHelperRoute
 		return $link;
 	}
 	
+
 	public static function getItemsRoute($view = 'hotels', $customField = false)
 	{
 		$link = 'index.php?option=com_ntrip&view=' . $view;
@@ -89,7 +90,6 @@ abstract class NtripHelperRoute
 		$db = JFactory::getDbo();
 		
 		$query = $db->getQuery(true);
-		
 		$query->select('*')->from('#__menu')->where('menutype = "menu-main-items"');
 		$db->setQuery($query);
 		
