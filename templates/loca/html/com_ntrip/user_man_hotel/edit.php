@@ -52,6 +52,10 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php echo $this->form->getInput('catid'); ?>
 				</li>
 				<li>
+					<label>Loại</label>
+					<?php echo $this->form->getInput('type'); ?>
+				</li>
+				<li>
 					<label>
 						Dịch vụ:
 					</label>
