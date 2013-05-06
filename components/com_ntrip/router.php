@@ -213,7 +213,7 @@ function NtripParseRoute($segments)
 		return $vars;
 	}
 	
-// 	var_dump($item); die;
+// 	var_dump($count, $item); die;
 
 	// if there is only one segment, then it points to either an discover or a category
 	// we test it first to see if it is a category.  If the id and alias match a category
@@ -221,7 +221,12 @@ function NtripParseRoute($segments)
 	if ($count == 1) {
 		// we check to see if an alias is given.  If not, we assume it is an discover
 		if (strpos($segments[0], ':') === false) {
-			$vars['view'] = $arrMapMenuAlias[$item->alias];
+			if (isset($arrMapMenuAlias[$item->alias]))
+				$vars['view'] = $arrMapMenuAlias[$item->alias];
+			else
+			{
+				
+			}
 			$vars['id'] = (int)$segments[0];
 			return $vars;
 		}
@@ -265,7 +270,20 @@ function NtripParseRoute($segments)
 		$item_id = (int)$segments[$count - 1];
 
 		if ($item_id > 0) {
-			$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
+			if (isset($arrMapMenuAlias[$itemMenu->alias]))
+				$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
+			else
+			{
+				$query = "SELECT alias FROM #__menu WHERE id = " . $item->parent_id;
+				$db->setQuery($query);
+				
+				$tmp = $db->loadResult();
+				
+				$vars['view'] = $arrMapMenuAlias[$tmp];
+				
+				if (isset($item->custom_field))
+					$vars['custom_field'] = $item->custom_field;
+			}
 			$vars['catid'] = $cat_id;
 			$vars['id'] = $item_id;
 		} else {

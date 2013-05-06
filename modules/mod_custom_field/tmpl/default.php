@@ -21,10 +21,7 @@ $linkId = ($id) ? '&id=' . $id : '';
 		<ul>
 			<?php foreach ($list['hotels'] as $hotelCustomField): ?>
 			<li>
-				<?php 
-				
-				?>
-				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('hotels', $hotelCustomField->id), false); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('hotels', $hotelCustomField->id)); ?>">
 					<?php echo $hotelCustomField->title; ?> (*)
 				</a>
 			</li>
@@ -35,7 +32,7 @@ $linkId = ($id) ? '&id=' . $id : '';
 		<ul>
 			<?php foreach ($list['services'] as $serviceCustomField): ?>
 			<li>				
-				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=services&custom_field=' . $serviceCustomField->id . $linkId, false); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('services', $serviceCustomField->id)); ?>">
 					<?php echo $serviceCustomField->title; ?> (*)
 				</a>
 			</li>
@@ -47,7 +44,7 @@ $linkId = ($id) ? '&id=' . $id : '';
 		<ul>
 			<?php foreach ($list['restaurants'] as $resCustomField): ?>
 			<li>
-				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=restaurants&custom_field=' . $resCustomField->id . $linkId, false); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('restaurants', $resCustomField->id)); ?>">
 					<?php echo $resCustomField->title; ?> (*)
 				</a>				
 			</li>
@@ -58,7 +55,7 @@ $linkId = ($id) ? '&id=' . $id : '';
 		<ul>
 			<?php foreach ($list['shoppings'] as $shoppingCustomField): ?>
 			<li>
-				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=shoppings&custom_field=' . $shoppingCustomField->id . $linkId, false); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('shoppings', $shoppingCustomField->id)); ?>">
 					<?php echo $shoppingCustomField->title; ?> (*)
 				</a>
 			</li>
@@ -70,7 +67,7 @@ $linkId = ($id) ? '&id=' . $id : '';
 		<ul>
 			<?php foreach ($list['tours'] as $tourCustomField): ?>
 			<li>
-				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=tours&custom_field=' . $tourCustomField->id . $linkId, false); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('tours', $tourCustomField->id)); ?>">
 					<?php echo $tourCustomField->title; ?> (*)
 				</a>
 			</li>
@@ -81,7 +78,7 @@ $linkId = ($id) ? '&id=' . $id : '';
 		<ul>
 			<?php foreach ($list['relaxes'] as $relaxCustomField): ?>
 			<li>
-				<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=relaxes&custom_field=' . $relaxCustomField->id . $linkId, false); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('relaxes', $hotelCustomField->id)); ?>">
 					<?php echo $relaxCustomField->title; ?> (*)
 				</a>
 			</li>

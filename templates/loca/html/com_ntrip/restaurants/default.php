@@ -69,16 +69,6 @@ $fields = $this->fields;
 				<div class="row-input"><input type="checkbox" name="all" />TRÊN 2TR VNĐ </div>
 
 			</div>
-			<div class="col">
-				<label class="title">Tiêu chuẩn</label>
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow1"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow2"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow3"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow4"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow5"></div> </div>
-				
-			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>

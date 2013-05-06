@@ -142,4 +142,23 @@ class NtripControllerOther extends JController
 		
 		exit();
 	}
+	
+	function changeLocation()
+	{
+		$tmp = $this->getView('Other', 'html');
+		
+		$model = $this->getModel('Other', 'NtripModel');
+		
+		$tmp->setModel($model, true);
+	
+		$type = JRequest::getString('type');
+		$arrMultiLocation = LocaHelper::getLocationMultiType();	
+	
+		if (in_array($type, $arrMultiLocation))
+			$tmp->display('multilocation');
+		else
+			$tmp->display('location');
+	
+			exit();
+	}
 }

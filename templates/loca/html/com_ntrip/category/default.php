@@ -164,7 +164,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 					<div class="img">
 						<img src="<?php echo $promotion->images; ?>" />
 					</div>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $promotion->id, false); ?>">
+					<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($promotion->id, 'promotion')); ?>">
 						<?php echo $promotion->name; ?>
 					</a>					
 				</li>
@@ -186,7 +186,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 			<ul class="questions">
 				<?php foreach ($items['questions'] as $question): ?>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=question&id=' . $question->id . ':' . $question->alias, false); ?>">
+					<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($question->id, 'question')); ?>">
 						<?php echo $question->title; ?>
 					</a>
 					
@@ -201,6 +201,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		<div class="clr"></div>
 	</div>
 	
+	<?php /*
 	<div class="margin-bottom5">
 		<div class="title-category">
 			Album mới nhất
@@ -225,6 +226,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="clr"></div>
 	</div>
+	*/ ?>
 </div>
 
 <!-- Right content -->

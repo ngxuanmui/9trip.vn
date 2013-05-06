@@ -16,16 +16,9 @@ JHtml::_('behavior.formvalidation');
 $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 ?>
 
-<style>
-</style>
-
 <script type="text/javascript">
-	Joomla.submitbutton = function(task)
-	{
-		if (task == 'restaurant.cancel' || document.formvalidator.isValid(document.id('restaurant-form'))) {
-			Joomla.submitform(task, document.getElementById('restaurant-form'));
-		}
-	}
+	var ITEM_TYPE = 'restaurants';
+	var ITEM_ID = <?php echo ($this->item->id) ? $this->item->id : 0; ?>;
 </script>
 
 <div id="top-adv">
@@ -59,6 +52,12 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 						Tỉnh / Thành:
 					</label>
 					<?php echo $this->form->getInput('catid'); ?>
+				</li>
+				<li>
+					<label>
+						Dịch vụ:
+					</label>
+					<?php echo $this->form->getInput('type'); ?>
 				</li>
 				<li>
 					<label>

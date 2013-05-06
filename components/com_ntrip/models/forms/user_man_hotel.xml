@@ -22,7 +22,7 @@
 			<option value="">Lựa chọn Tỉnh / Thành</option>
 		</field>
 		
-		<field name="type" type="front_customfield" class="inputbox"
+		<field name="type" type="front_customtype" class="inputbox"
 			size="40" extension="com_ntrip.custom_field_hotel"
 			label="COM_NTRIP_FIELD_TYPE_LABEL" required="true" />
 

@@ -63,10 +63,10 @@ $item = $this->item;
 							
 							<?php 
 							$item->slug = $item->id . ':' . $item->alias;
-							$view = $discover;
+							$view = 'discover';
 							?>
 
-							<a href="<?php echo ''; //JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid) , false); ?>">
+							<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view) , false); ?>">
 								<?php echo $item->name; ?>
 							</a>
 							

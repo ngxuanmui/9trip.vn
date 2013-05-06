@@ -236,6 +236,14 @@ jQuery(function($){
 	{
 		 initialize(GMAP_LAT, GMAP_LONG, GMAP_ADD, 'show-map');
 	}
+	
+	/* form */
+	$('#jform_catid').change(function(){
+		changeLoc($(this).val());
+	});
+	
+	if (typeof ITEM_TYPE != 'undefined')
+		changeLoc($('#jform_catid').val());
 		
 });
 
@@ -283,4 +291,17 @@ function initialize(gmaps_latitude, gmaps_longitude, address_title, map_canvas)
 		map.setZoom(16);
 		map.setCenter(marker.getPosition());
 	  });
+}
+
+function changeLoc($loc)
+{
+	jQuery('#custom-type').html('Wating ...');
+	jQuery.post(
+			'index.php?option=com_ntrip&task=other.changeLocation',
+			{ 'location' : $loc, 'tmpl' : 'component', 'type' : ITEM_TYPE, 'item_id' : ITEM_ID, 'extension' : EXTENSION },
+			function(data)
+			{
+				jQuery('#custom-type').html(data);
+			}
+		);
 }
