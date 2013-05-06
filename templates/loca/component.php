@@ -33,6 +33,7 @@ $doc->addScript(JURI::base() . 'media/loca/galleria/galleria-1.2.9.min.js');
 		<div id="main">
 			<jdoc:include type="message" />
 			<jdoc:include type="component" />
+			
 		</div>
 	</div>
 </body>
