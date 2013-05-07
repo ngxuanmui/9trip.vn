@@ -38,20 +38,20 @@
 			<option value="2">JARCHIVED</option>
 			<option value="-2">JTRASHED</option>
 		</field>
-
+		
 		<field name="item_type" type="list"
 			label="Select Type"
 			class="inputbox" size="1" default="" >
-			<option value="">- Select type -</option>
-			<option value="hotels">Hotels</option>
-			<option value="restaurants">Restaurants</option>
-			<option value="tours">Tours</option>
-			<option value="relaxes">Relaxes</option>
-			<option value="shoppings">Shoppings</option>
-			<option value="services">Services</option>
+			<option value="">- Kiểu khuyến mại -</option>
+			<option value="hotels">Khách sạn</option>
+			<option value="restaurants">Nhà hàng</option>
+			<option value="tours">Tham quan</option>
+			<option value="relaxes">Giải trí</option>
+			<option value="shoppings">Mua sắm</option>
+			<option value="services">Dịch vụ</option>
 		</field>
 
-		<field name="item_id" type="customitem" class="inputbox"
+		<field name="item_id" type="front_customitem" class="inputbox"
 			size="40" label="Select Item" />
 
 		<field name="description" type="editor" class="inputbox"

@@ -16,8 +16,36 @@ JHtml::_('behavior.formvalidation');
 $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 ?>
 
-<style>
-</style>
+<script type="text/javascript">
+	
+	var ITEM_ID = <?php echo ($this->item->item_id) ? $this->item->item_id : 0; ?>;
+	
+	jQuery(function($){
+		$('#jform_item_type').change(function(){
+			var val = $(this).val();
+			
+			if (val == '')
+			{
+				$('#show-select-custom-item').css('display', 'none');
+				$('#custom-item').css('display', 'block');
+				return false;
+			}
+			
+			var a = $('a.select-item');
+			var href = a.attr('href').replace(/&item_id=[0-9]+&view=[a-z]+/, '');
+			
+			href += '&item_id=' + <?php echo ($this->item->item_id) ? $this->item->item_id : 0 ; ?>;
+			href += '&view=' + $(this).val();
+			
+			a.attr('href', href);
+			
+			$('#custom-item').css('display', 'none');
+			$('#show-select-custom-item').css('display', 'block');
+		});
+		
+		$('#jform_item_type').change();
+	});
+</script>
 
 <div id="top-adv">
 	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
@@ -33,14 +61,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 			<ul class="user-form">
 				<li>
 					<label>
-						Địa chỉ:
-						<span class="fltrt note">(Tối đa 250 ký tự)</span>
-					</label>
-					<?php echo $this->form->getInput('address'); ?>
-				</li>
-				<li>
-					<label>
-						Cảnh báo:
+						Thông tin khuyến mại:
 						<span class="fltrt note">(Tối đa 250 ký tự)</span>
 					</label>
 					<?php echo $this->form->getInput('name'); ?>
@@ -50,6 +71,22 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 						Tỉnh / Thành:
 					</label>
 					<?php echo $this->form->getInput('catid'); ?>
+				</li>
+				<li><label>Khuyến mại cho</label>
+				    <?php echo $this->form->getInput('item_type'); ?>
+				</li>
+				
+				<li><label>Lựa chọn</label>
+				
+					
+					<div id="custom-item" style="line-height: 23px; float: left; margin: 0 0 10px 0;">
+						Vui lòng lựa chọn kiểu khuyến mại
+					</div>
+					
+					<div id="show-select-custom-item" style="display: none;">
+						<?php echo $this->form->getInput('item_id'); ?>
+					</div>
+				
 				</li>
 				<li>
 					<label>
