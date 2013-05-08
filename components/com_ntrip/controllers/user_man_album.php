@@ -53,6 +53,13 @@ class NtripControllerUser_Man_Album extends JControllerForm
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
+
+		if (isset($data['id']) && (int) $data['id'] > 0)
+		{
+			if (!NtripFrontHelper::checkUserPermissionOnItem($data['id'], '#__ntrip_albums'))
+				return false;
+		}
+		
 		return true;
 	}
 }

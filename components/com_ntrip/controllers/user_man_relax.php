@@ -53,17 +53,24 @@ class NtripControllerUser_Man_Relax extends JControllerForm
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
+
+		if (isset($data['id']) && (int) $data['id'] > 0)
+		{
+			if (!NtripFrontHelper::checkUserPermissionOnItem($data['id'], '#__ntrip_relaxes'))
+				return false;
+		}
+		
 		return true;
 	}
 	
-	public function save($key = null, $urlVar = null) 
-	{
-		parent::save($key, $urlVar);
+// 	public function save($key = null, $urlVar = null) 
+// 	{
+// 		parent::save($key, $urlVar);
 		
-		$url = JRoute::_('index.php?option=com_ntrip&view=user_man_relaxes', false);
-		$this->setRedirect($url);
+// 		$url = JRoute::_('index.php?option=com_ntrip&view=user_man_relaxes', false);
+// 		$this->setRedirect($url);
 		
-		return true;;
-	}
+// 		return true;;
+// 	}
 
 }

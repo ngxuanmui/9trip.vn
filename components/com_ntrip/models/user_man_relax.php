@@ -124,9 +124,15 @@ class NtripModelUser_Man_Relax extends JModelAdmin
 	{
 	    $item = parent::getItem($pk);
 	    
+	    $id = $item->id;
+	    
+	    if (isset($id) && (int) $id > 0)
+	    {
+	    	if (!NtripFrontHelper::checkUserPermissionOnItem($id, '#__ntrip_relaxes'))
+	    		exit();
+	    }
+	    
 	    $item->other_images = NtripHelper::getImages($item->id, 'relaxes');
-		
-		var_dump($item->other_images);
 	    
 	    return $item;
 	}
@@ -150,6 +156,17 @@ class NtripModelUser_Man_Relax extends JModelAdmin
 	
 	public function save($data) 
 	{
+		// always set state is unpublish for each save
+		$data['state'] = 0;
+		
+		$id = $data['id'];
+			
+		if (isset($id) && (int) $id > 0)
+		{
+			if (!NtripFrontHelper::checkUserPermissionOnItem($id, '#__ntrip_relaxes'))
+				exit();
+		}
+		
 	    if (parent::save($data))
 	    {
 			$id = (int) $this->getState($this->getName() . '.id');

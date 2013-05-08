@@ -167,7 +167,15 @@ class NtripModelUser_Man_Question extends JModelAdmin
 	function getItem($pk = null)
 	{
 		$item = parent::getItem($pk);
-		
+	    
+	    $id = $item->id;
+	    
+	    if (isset($id) && (int) $id > 0)
+	    {
+	    	if (!NtripFrontHelper::checkUserPermissionOnItem($id, '#__ntrip_questions'))
+	    		exit();
+	    }
+	    
 		// get answers
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -210,7 +218,19 @@ class NtripModelUser_Man_Question extends JModelAdmin
 	
 	public function save($data) 
 	{
+		// always set state is unpublish for each save
+		$data['state'] = 0;
+		
+		$id = $data['id'];
+			
+		if (isset($id) && (int) $id > 0)
+		{
+			if (!NtripFrontHelper::checkUserPermissionOnItem($id, '#__ntrip_questions'))
+				exit();
+		}
+		
 		$saveResult = parent::save($data);
+		
 	    if ($saveResult)
 	    {
 			$id = (int) $this->getState($this->getName() . '.id');

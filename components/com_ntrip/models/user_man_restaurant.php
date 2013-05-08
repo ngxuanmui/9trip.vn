@@ -169,6 +169,14 @@ class NtripModelUser_Man_Restaurant extends JModelAdmin
 	{
 	    $item = parent::getItem($pk);
 	    
+	    $id = $item->id;
+	    
+	    if (isset($id) && (int) $id > 0)
+	    {
+	    	if (!NtripFrontHelper::checkUserPermissionOnItem($id, '#__ntrip_restaurants'))
+	    		exit();
+	    }
+	    
 	    $item->other_images = NtripHelper::getImages($item->id, 'restaurants');
 	    
 	    return $item;
@@ -193,6 +201,17 @@ class NtripModelUser_Man_Restaurant extends JModelAdmin
 	
 	public function save($data) 
 	{
+		// always set state is unpublish for each save
+		$data['state'] = 0;
+		
+		$id = $data['id'];
+			
+		if (isset($id) && (int) $id > 0)
+		{
+			if (!NtripFrontHelper::checkUserPermissionOnItem($id, '#__ntrip_restaurants'))
+				exit();
+		}
+		
 	    if (parent::save($data))
 	    {
 			$id = (int) $this->getState($this->getName() . '.id');

@@ -149,6 +149,14 @@ class NtripModelUser_Man_Hotel extends JModelAdmin
 	{
 	    $item = parent::getItem($pk);
 	    
+	    $id = $item->id;
+	    
+	    if (isset($id) && (int) $id > 0)
+	    {
+	    	if (!NtripFrontHelper::checkUserPermissionOnItem($id, '#__ntrip_hotels'))
+	    		exit();
+	    }
+	    
 	    $item->other_images = NtripHelper::getImages($item->id, 'hotels');
 	    
 	    return $item;
@@ -175,6 +183,14 @@ class NtripModelUser_Man_Hotel extends JModelAdmin
 	{
 		// always set state is unpublish for each save
 		$data['state'] = 0;
+		
+		$id = $data['id'];
+		 
+		if (isset($id) && (int) $id > 0)
+		{
+			if (!NtripFrontHelper::checkUserPermissionOnItem($id, '#__ntrip_hotels'))
+				exit();
+		}
 		
 	    if (parent::save($data))
 	    {

@@ -64,6 +64,12 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				</li>
 				<li>
 					<label>
+						Tiêu chí:
+					</label>
+					<?php echo $this->form->getInput('hotel_class'); ?>
+				</li>
+				<li>
+					<label>
 						Website:
 					</label>
 					<?php echo $this->form->getInput('website'); ?>

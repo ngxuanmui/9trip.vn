@@ -143,6 +143,11 @@ class NtripModelUser_Man_Promotions extends JModelList
 		if ($language = $this->getState('filter.language')) {
 			$query->where('a.language = ' . $db->quote($language));
 		}
+		
+		// Filter by user
+		$userId = JFactory::getUser()->id;
+		
+		$query->where('a.created_by = ' . (int) $userId);
 
 		// Add the list ordering clause.
 		$orderCol	= $this->state->get('list.ordering', 'ordering');

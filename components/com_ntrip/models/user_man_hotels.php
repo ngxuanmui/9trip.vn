@@ -138,11 +138,11 @@ class NtripModelUser_Man_Hotels extends JModelList
 				$query->where('(a.name LIKE '.$search.' OR a.alias LIKE '.$search.')');
 			}
 		}
-
-		// Filter on the language.
-		if ($language = $this->getState('filter.language')) {
-			$query->where('a.language = ' . $db->quote($language));
-		}
+		
+		// Filter by user
+		$userId = JFactory::getUser()->id;
+		
+		$query->where('a.created_by = ' . (int) $userId);
 
 		// Add the list ordering clause.
 		$orderCol	= $this->state->get('list.ordering', 'ordering');
@@ -154,7 +154,7 @@ class NtripModelUser_Man_Hotels extends JModelList
 			$orderCol = 'cl.name';
 		$query->order($db->escape($orderCol.' '.$orderDirn));
 
-		//echo nl2br(str_replace('#__','jos_',$query));
+// 		echo nl2br(str_replace('#__','jos_',$query));
 		return $query;
 	}
 
