@@ -78,7 +78,7 @@ $linkId = ($id) ? '&id=' . $id : '';
 		<ul>
 			<?php foreach ($list['relaxes'] as $relaxCustomField): ?>
 			<li>
-				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('relaxes', $hotelCustomField->id)); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('relaxes', $relaxCustomField->id)); ?>">
 					<?php echo $relaxCustomField->title; ?> (*)
 				</a>
 			</li>

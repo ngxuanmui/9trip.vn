@@ -21,6 +21,9 @@ abstract class AbsNtripModelItems extends JModelList
 		
 		$criteria = JRequest::getString('criteria');
 		$this->setState('filter.criteria', $criteria);
+		
+		$loc = JFactory::getSession()->get('loca_location');
+		$this->setState('filter.location', $loc);
 	}
 
 	protected function _query($type = 'hotels') 
@@ -143,6 +146,14 @@ abstract class AbsNtripModelItems extends JModelList
 		// Join over the users for the checked out user.
 		$query->select('u.name AS author');
 		$query->join('LEFT', '#__users AS u ON u.id=a.created_by');
+		
+		// Filter by location
+		$loc = $this->getState('filter.location', 0);
+		
+		if ($loc)
+		{
+			$query->where('a.catid = ' . (int) $loc);
+		}
 		
 		// join category
 		$query->select('c.title AS category_title');

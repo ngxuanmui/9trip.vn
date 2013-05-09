@@ -53,29 +53,40 @@ class LocaHelper
 		return $c;
 	}
 	
-	public static function renderModulesOnPosition($position) {
+	public static function renderModulesOnPosition($position, $tmpParams = array()) {
+		
 		jimport('joomla.application.module.helper');
 		$modules = JModuleHelper::getModules($position);
 		
-		return self::renderModules($modules);
+		return self::renderModules($modules, $tmpParams);
 	}
 	
-	public static function renderModules($modules) {
+	public static function renderModules($modules, $tmpParams = array()) {
 		jimport('joomla.application.module.helper');
 		$html = '';
 		if ($modules && count($modules)) {
 			foreach ($modules as $mod) {
-				$html .= self::renderModule($mod);
+				$html .= self::renderModule($mod, $tmpParams);
 			}
 		}
 		return $html;
 	}
 	
-	public static function renderModule($module) 
+	public static function renderModule($module, $tmpParams = array()) 
 	{
 		jimport('joomla.application.module.helper');
 		
 		if (is_object($module) && $module->id) {
+			
+			$tempP = json_decode($module->params, true);
+			
+			if (is_array($tempP))
+				$tempR = array_merge($tempP, $tmpParams);
+			else
+				$tempR = $tmpParams;
+			
+			$module->params = json_encode($tempR);
+			
 			$html[] = '<div class="widget-blocks widget-block">';
 			$html[] = '	<div class="content">';
 			

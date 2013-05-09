@@ -40,40 +40,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 				<?php echo $this->category->title; ?>
 			</div>
 			
-			<div class="item-container">
-				<div class="social-info">
-					<a class="like" href="#" id="like-<?php echo $firstAlbum->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $firstAlbum->user_like; ?></div>
-
-					<div class="social-button fltrgt">
-						<div class="error error-msg fltlft" style="display: none; margin-right: 10px;"></div>
-						<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$firstAlbum->id.'&type=albums'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
-						<button class="icons show-image show-image-focus"></button>
-						<button class="icons show-map"></button>
-					</div>
-
-					<div class="clr"></div>
-				</div>
-
-				<div class="other-album relative">
-					<div class="album absolute" id="show-album">
-						<div id="galleria">
-							<?php
-							if (!empty($firstAlbum->other_images)): 
-								foreach ($firstAlbum->other_images as $other_image):
-							?>
-							<img src="<?php echo JURI::base() . 'images/albums/' . $firstAlbum->id . '/' . $other_image->images; ?>" title="<?php echo $other_image->author ? $other_image->author : 'Anonymous'; ?>" data-description="<?php echo $other_image->description; ?>">
-
-							<?php 
-								endforeach; 
-							endif; 
-							?>
-						</div>						
-					</div>
-					<div class="map absolute" id="show-map" style="visibility: hidden;">
-						map here
-					</div>
-				</div>
-			</div>
+			<?php echo LocaHelper::renderModulesOnPosition('loca-social', array('item' => $firstAlbum)); ?>
 			
 		</div>
 		
