@@ -9,15 +9,6 @@ JHtml::_('behavior.modal');
 $userGuest = JFactory::getUser()->guest ? true : false;
 ?>
 
-<script type="text/javascript">
-	var ITEM_ID = <?php echo $item->id; ?>;
-	var ITEM_TYPE = 'hotels';
-	var GMAP_LAT = '<?php echo $item->gmap->gmap_lat; ?>';
-	var GMAP_LONG = '<?php echo $item->gmap->gmap_long; ?>';
-	var GMAP_ADD = '<?php echo $item->address; ?>, Việt Nam';
-	var USER_GUEST = '<?php echo $userGuest ? 'y' : 'n'; ?>';
-</script>
-
 <div id="top-adv">
 	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 </div>
@@ -35,7 +26,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 			<div class="contact">
 				<span class="item">
 					<span class="icons website"></span>
-					<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->webiste; ?>" target="_blank">
+					<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->website; ?>" target="_blank">
 						Website
 					</a>
 				</span>
@@ -56,60 +47,12 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 			
 			
 			
-			<div class="social-info">
-				<div class="fltlft">
-					<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
-					<!-- gplus +1 button to render. -->
-					<div class="fltlft gplus">
-						<div class="g-plusone" data-size="medium" data-href="<?php $server = JRequest::get('server'); echo $server['REQUEST_URI']; ?>"></div>
-						
-						<!-- Place this tag after the last +1 button tag. -->
-						<script type="text/javascript">
-						  window.___gcfg = {lang: 'vi'};
-						
-						  (function() {
-						    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-						    po.src = 'https://apis.google.com/js/plusone.js';
-						    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-						  })();
-						</script>
-					</div>
-				</div>
-				
-				
-				<div class="social-button fltrgt">
-					<div class="error error-msg fltlft" style="display: none; margin-right: 10px;">Bạn chưa đăng nhập!</div>
-					<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" login="<?php echo ($userGuest) ? 'no' : 'yes'; ?>" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type=hotels'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
-					<button class="icons show-image show-image-focus"></button>
-					<button class="icons show-map"></button>
-				</div>
-				
-				<div class="clr"></div>
-			</div>
+			<!-- mod social -->
 			
 			<div class="clr"></div>
 
 			<div class="info">
-				<div class="other-album relative">
-					<div class="album absolute" id="show-album">
-						<div id="galleria">
-							<?php 
-							if (!empty($this->otherImages)):
-								foreach ($this->otherImages as $img): 
-								?>
-								<img src="images/hotels/<?php echo $item->id; ?>/<?php echo $img->images; ?>" />
-								<?php 
-								endforeach; 
-							endif; 
-							?>
-						</div>
-					</div>
-					
-					<div class="map absolute" id="show-map" style="display: none;">
-						map here
-					</div>
-				</div>
-
+				
 				<div class="content">
 					<p><b>Xếp hạng:</b> Nhà hàng ở Quảng Ninh</p>
 					<p><b>Giá: </b><?php echo number_format((int) $item->price_from); ?> - <?php echo number_format((int) $item->price_to); ?> VNĐ/người</p>

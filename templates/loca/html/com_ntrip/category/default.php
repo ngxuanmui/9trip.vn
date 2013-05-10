@@ -40,7 +40,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 				<?php echo $this->category->title; ?>
 			</div>
 			
-			<?php echo LocaHelper::renderModulesOnPosition('loca-social', array('item' => $firstAlbum)); ?>
+			<?php echo LocaHelper::renderModulesOnPosition('loca-social', array('item' => $firstAlbum, 'item_type' => 'albums')); ?>
 			
 		</div>
 		

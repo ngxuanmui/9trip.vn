@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 require_once dirname(__FILE__).'/helper.php';
 
 $item = $params->get('item');
+$itemType = $params->get('item_type');
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
 require JModuleHelper::getLayoutPath('mod_loca_social', $params->get('layout', 'default'));
