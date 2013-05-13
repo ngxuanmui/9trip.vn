@@ -13,7 +13,7 @@ $fields = $this->fields;
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-main-item">
-			<label>Khách sạn <?php echo $this->items[0]->category_title; ?> </label>
+			<label>Nhà hàng ở <?php echo $this->category->title; ?> </label>
 			<span class="icons quote fltlft"></span>
 			<span class="fltlft hotel-quote">
 				Nếu nhà hàng của bạn chưa có trên Loca.vn, hãy tạo mới ngay
@@ -94,10 +94,8 @@ $fields = $this->fields;
 						<img src="<?php echo $item->images; ?>" />
 					</div>
 					<div class="content">
-						<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
+						<b>Xếp hạng:</b> nhà hàng ở <?php echo $this->category->title; ?> <br/>
 						<b>Giá: </b>120 - 150 000 VNĐ/người <br />
-						<label class="fltlft label-criteria">Tiêu chí:</label>
-						<span class="fltlft full-star-over-yellow"><span class="star-yellow<?php echo str_replace('.', '-', $item->restaurant_class); ?>"></span></span>
 						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 						<div class="clear"></div>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>

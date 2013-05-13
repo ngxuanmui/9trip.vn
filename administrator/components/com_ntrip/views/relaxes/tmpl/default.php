@@ -22,7 +22,7 @@ $canOrder	= $user->authorise('core.edit.state', 'com_ntrip.category');
 $saveOrder	= $listOrder=='ordering';
 $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_ntrip&view=relaxs'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_ntrip&view=relaxes'); ?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
 			<label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
@@ -63,7 +63,7 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ORDERING', 'ordering', $listDirn, $listOrder); ?>
 					<?php if ($canOrder && $saveOrder): ?>
-						<?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'relaxs.saveorder'); ?>
+						<?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'relaxes.saveorder'); ?>
 					<?php endif;?>
 				</th>
 				<th width="5%">
@@ -96,7 +96,7 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				</td>
 				<td>
 					<?php if ($item->checked_out) : ?>
-						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'relaxs.', $canCheckin); ?>
+						<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'relaxes.', $canCheckin); ?>
 					<?php endif; ?>
 					<?php if ($canEdit) : ?>
 						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=relax.edit&id='.(int) $item->id); ?>">
@@ -108,7 +108,7 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 						<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?></p>
 				</td>
 				<td class="center">
-					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'relaxs.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
+					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'relaxes.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 				</td>
 				<td class="center">
 					<?php echo $this->escape($item->category_title); ?>
@@ -117,11 +117,11 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php if ($canChange) : ?>
 						<?php if ($saveOrder) : ?>
 							<?php if ($listDirn == 'asc') : ?>
-								<span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->catid == $item->catid), 'relaxs.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-								<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->catid == $item->catid), 'relaxs.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+								<span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->catid == $item->catid), 'relaxes.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+								<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->catid == $item->catid), 'relaxes.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
 							<?php elseif ($listDirn == 'desc') : ?>
-								<span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->catid == $item->catid), 'relaxs.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-								<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->catid == $item->catid), 'relaxs.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+								<span><?php echo $this->pagination->orderUpIcon($i, (@$this->items[$i-1]->catid == $item->catid), 'relaxes.orderdown', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
+								<span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, (@$this->items[$i+1]->catid == $item->catid), 'relaxes.orderup', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
 							<?php endif; ?>
 						<?php endif; ?>
 						<?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>

@@ -55,7 +55,7 @@ function UsersBuildRoute(&$query)
 			}
 
 			// Check to see if we have found the login menu item.
-			if (empty($login) && !empty($items[$i]->query['view']) && ($items[$i]->query['view'] == 'login')) {
+			if (empty($login) && !empty($items[$i]->query['view']) && ($items[$i]->query['view'] == 'login' || $items[$i]->query['view'] == 'loca_login')) {
 				$login = $items[$i]->id;
 			}
 
@@ -113,7 +113,16 @@ function UsersBuildRoute(&$query)
 					$query['Itemid'] = $default;
 				}
 				break;
-
+				
+			case 'loca_login':
+					if ($query['Itemid'] = $login) {
+						unset ($query['view']);
+					} else {
+						$query['Itemid'] = $default;
+					}
+					break;
+				
+				
 			case 'registration':
 				if ($query['Itemid'] = $registration) {
 					unset ($query['view']);

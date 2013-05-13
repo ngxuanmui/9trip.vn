@@ -66,6 +66,48 @@ class UsersControllerUser extends UsersController
 			$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));
 		}
 	}
+	
+	public function loca_login()
+	{
+		JSession::checkToken('post') or jexit(JText::_('JInvalid_Token'));
+	
+		$app = JFactory::getApplication();
+	
+		// Populate the data array:
+		$data = array();
+		$data['return'] = base64_decode(JRequest::getVar('return', '', 'POST', 'BASE64'));
+		$data['username'] = JRequest::getVar('username', '', 'method', 'username');
+		$data['password'] = JRequest::getString('password', '', 'post', JREQUEST_ALLOWRAW);
+	
+		// Set the return URL if empty.
+		if (empty($data['return'])) {
+			$data['return'] = 'index.php?option=com_users&view=profile';
+		}
+	
+		// Set the return URL in the user state to allow modification by plugins
+		$app->setUserState('users.login.form.return', $data['return']);
+	
+		// Get the log in options.
+		$options = array();
+		$options['remember'] = JRequest::getBool('remember', false);
+		$options['return'] = $data['return'];
+	
+		// Get the log in credentials.
+		$credentials = array();
+		$credentials['username'] = $data['username'];
+		$credentials['password'] = $data['password'];
+	
+		// Perform the log in.
+		if (true === $app->login($credentials, $options)) {
+			// Success
+			echo '<script>window.parent.location.reload(false);</script>';
+		} else {
+			// Login failed !
+			$data['remember'] = (int)$options['remember'];
+			$app->setUserState('users.login.form.data', $data);
+			$app->redirect(JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component&failed=1', false));
+		}
+	}
 
 	/**
 	 * Method to log out a user.

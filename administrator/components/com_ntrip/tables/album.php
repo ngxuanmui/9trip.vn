@@ -157,7 +157,7 @@ class NtripTableAlbum extends JTable
 		}
 
 		// Get an instance of the table
-		$table = JTable::getInstance('Album', 'AlbumsTable');
+		$table = JTable::getInstance('Album', 'NtripTable');
 
 		// For all keys
 		foreach ($pks as $pk)

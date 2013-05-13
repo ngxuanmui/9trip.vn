@@ -15,7 +15,8 @@ class NtripModelOther extends JModel
 		
 		$query->select('*')
 				->from('#__categories')
-				->where('extension = "'.$extension.'"');
+				->where('extension = "'.$extension.'"')
+				->where('published = 1');
 		
 		if (in_array($extension, $arrExt))
 			$query->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$locationId.')');

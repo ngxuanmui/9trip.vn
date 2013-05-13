@@ -76,7 +76,7 @@ class NtripFrontHelper
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		
-		$coordinate = LocaHelper::getGmapCoordinates($address);
+		$coordinate = LocaHelper::getGmapCoordinates($address . ', Việt Nam');
 		
 		$obj = new stdClass();
 		

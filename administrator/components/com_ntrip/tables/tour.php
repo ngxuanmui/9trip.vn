@@ -157,7 +157,7 @@ class NtripTableTour extends JTable
 		}
 
 		// Get an instance of the table
-		$table = JTable::getInstance('Tour', 'ToursTable');
+		$table = JTable::getInstance('Tour', 'NtripTable');
 
 		// For all keys
 		foreach ($pks as $pk)

@@ -93,12 +93,7 @@ $fields = $this->fields;
 						<img src="<?php echo $item->images; ?>" />
 					</div>
 					<div class="content">
-						<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
-						<b>Giá: </b>120 - 150 000 VNĐ/người <br />
-						<label class="fltlft label-criteria">Tiêu chí:</label>
-						<span class="fltlft full-star-over-yellow"><span class="star-yellow<?php echo str_replace('.', '-', $item->service_class); ?>"></span></span>
-						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
-						<div class="clear"></div>
+						<b>Xếp hạng:</b> dịch vụ ở <?php echo $this->category->title; ?> <br/><div class="clear"></div>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
 						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>
 						<div class="clear"></div>

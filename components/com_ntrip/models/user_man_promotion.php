@@ -117,18 +117,6 @@ class NtripModelUser_Man_Promotion extends JModelAdmin
 			return false;
 		}
 
-		// Determine correct permissions to check.
-		if ($this->getState('promotion.id'))
-		{
-			// Existing record. Can only edit in selected categories.
-			$form->setFieldAttribute('catid', 'action', 'core.edit');
-		}
-		else
-		{
-			// New record. Can only create in selected categories.
-			$form->setFieldAttribute('catid', 'action', 'core.create');
-		}
-
 		// Modify the form based on access controls.
 		if (!$this->canEditState((object) $data))
 		{

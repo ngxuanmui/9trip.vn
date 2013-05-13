@@ -18,6 +18,7 @@ JHtml::_('behavior.modal');
 $userGuest = JFactory::getUser()->guest ? true : false;
 ?>
 
+<?php /*
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $firstAlbum->id; ?>;
 	var ITEM_TYPE = 'albums';
@@ -26,6 +27,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 	var GMAP_ADD = '<?php echo $this->category->title; ?>, Việt Nam';
 	var USER_GUEST = '<?php echo $userGuest ? 'y' : 'n'; ?>';
 </script>
+*/ ?>
 
 <div id="top-adv">
 		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
@@ -40,7 +42,19 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 				<?php echo $this->category->title; ?>
 			</div>
 			
-			<?php echo LocaHelper::renderModulesOnPosition('loca-social', array('item' => $firstAlbum, 'item_type' => 'albums')); ?>
+			<?php 
+			
+			echo LocaHelper::renderModulesOnPosition(
+						'loca-social', 
+						array(	'item' => $firstAlbum, 
+								'item_type' => 'albums', 
+								'gmap' => array(	'address' => $this->category->title, 
+													'lat' => @$items['gmap_info']->gmap_lat, 
+													'long' => @$items['gmap_info']->gmap_long
+											)
+						)
+					); 
+			?>
 			
 		</div>
 		

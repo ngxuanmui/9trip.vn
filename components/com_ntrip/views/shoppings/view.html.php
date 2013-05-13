@@ -32,7 +32,7 @@ class NtripViewShoppings extends JViewLegacy
 		$this->_prepareDocument();
 		
 		// update gmap info
-		NtripFrontHelper::updateGmapInfo($this->item->id, 'shoppings', $this->item->address);
+// 		NtripFrontHelper::updateGmapInfo($this->item->id, 'shoppings', $this->item->address);
 
 		parent::display($tpl);
 	}

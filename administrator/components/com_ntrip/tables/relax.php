@@ -157,7 +157,7 @@ class NtripTableRelax extends JTable
 		}
 
 		// Get an instance of the table
-		$table = JTable::getInstance('Relax', 'RelaxsTable');
+		$table = JTable::getInstance('Relax', 'NtripTable');
 
 		// For all keys
 		foreach ($pks as $pk)

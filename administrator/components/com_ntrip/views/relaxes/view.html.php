@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 /**
- * View class for a list of relaxs.
+ * View class for a list of relaxes.
  *
  * @package     Joomla.Administrator
  * @subpackage  com_ntrip
@@ -65,7 +65,7 @@ class NtripViewRelaxes extends JViewLegacy
 
 		$canDo = NtripHelper::getActions($this->state->get('filter.category_id'));
 		$user = JFactory::getUser();
-		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_RELAXS'), 'relaxs.png');
+		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_RELAXS'), 'relaxes.png');
 //		if (count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)
 		if (($canDo->get('core.create')))
 		{
@@ -82,8 +82,8 @@ class NtripViewRelaxes extends JViewLegacy
 			if ($this->state->get('filter.state') != 2)
 			{
 				JToolBarHelper::divider();
-				JToolBarHelper::publish('relaxs.publish', 'JTOOLBAR_PUBLISH', true);
-				JToolBarHelper::unpublish('relaxs.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+				JToolBarHelper::publish('relaxes.publish', 'JTOOLBAR_PUBLISH', true);
+				JToolBarHelper::unpublish('relaxes.unpublish', 'JTOOLBAR_UNPUBLISH', true);
 			}
 
 			if ($this->state->get('filter.state') != -1)
@@ -91,28 +91,28 @@ class NtripViewRelaxes extends JViewLegacy
 				JToolBarHelper::divider();
 				if ($this->state->get('filter.state') != 2)
 				{
-					JToolBarHelper::archiveList('relaxs.archive');
+					JToolBarHelper::archiveList('relaxes.archive');
 				}
 				elseif ($this->state->get('filter.state') == 2)
 				{
-					JToolBarHelper::unarchiveList('relaxs.publish');
+					JToolBarHelper::unarchiveList('relaxes.publish');
 				}
 			}
 		}
 
 		if ($canDo->get('core.edit.state'))
 		{
-			JToolBarHelper::checkin('relaxs.checkin');
+			JToolBarHelper::checkin('relaxes.checkin');
 		}
 
 		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete'))
 		{
-			JToolBarHelper::deleteList('', 'relaxs.delete', 'JTOOLBAR_EMPTY_TRASH');
+			JToolBarHelper::deleteList('', 'relaxes.delete', 'JTOOLBAR_EMPTY_TRASH');
 			JToolBarHelper::divider();
 		}
 		elseif ($canDo->get('core.edit.state'))
 		{
-			JToolBarHelper::trash('relaxs.trash');
+			JToolBarHelper::trash('relaxes.trash');
 			JToolBarHelper::divider();
 		}
 

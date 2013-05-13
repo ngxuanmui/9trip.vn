@@ -5,8 +5,6 @@ defined('_JEXEC') or die;
 $item = $this->item;
 
 JHtml::_('behavior.modal');
-
-$userGuest = JFactory::getUser()->guest ? true : false;
 ?>
 
 <div id="top-adv">
@@ -49,12 +47,26 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 			
 			<!-- mod social -->
 			
+			<?php 
+			
+			echo LocaHelper::renderModulesOnPosition(
+						'loca-social', 
+						array(	'item' => $item, 
+								'item_type' => 'hotels', 
+								'gmap' => array(	'address' => $item->address,
+													'lat' => $item->gmap_lat, 
+													'long' => $item->gmap_long
+											)
+						)
+					); 
+			?>
+			
 			<div class="clr"></div>
 
 			<div class="info">
 				
 				<div class="content">
-					<p><b>Xếp hạng:</b> Nhà hàng ở Quảng Ninh</p>
+					<p><b>Xếp hạng:</b> Nhà hàng ở <?php echo $item->category_title; ?></p>
 					<p><b>Giá: </b><?php echo number_format((int) $item->price_from); ?> - <?php echo number_format((int) $item->price_to); ?> VNĐ/người</p>
 					<div class="rating-content">
 						<span class="fltlft criteria">Tiêu chí: </span>

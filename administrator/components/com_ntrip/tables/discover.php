@@ -157,7 +157,7 @@ class NtripTableDiscover extends JTable
 		}
 
 		// Get an instance of the table
-		$table = JTable::getInstance('Discover', 'DiscoversTable');
+		$table = JTable::getInstance('Discover', 'NtripTable');
 
 		// For all keys
 		foreach ($pks as $pk)

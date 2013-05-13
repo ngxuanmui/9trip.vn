@@ -157,7 +157,7 @@ class NtripTableShopping extends JTable
 		}
 
 		// Get an instance of the table
-		$table = JTable::getInstance('Shopping', 'ShoppingsTable');
+		$table = JTable::getInstance('Shopping', 'NtripTable');
 
 		// For all keys
 		foreach ($pks as $pk)

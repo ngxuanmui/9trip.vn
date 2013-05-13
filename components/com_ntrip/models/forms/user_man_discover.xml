@@ -19,7 +19,7 @@
 			size="40" extension="com_ntrip.custom_field_discover"
 			label="COM_NTRIP_FIELD_TYPE_LABEL" />
 
-		<field name="catid" type="categoryedit" extension="com_ntrip"
+		<field name="catid" type="category" extension="com_ntrip"
 			label="COM_NTRIP_FIELD_LOCATION_LABEL"
 			class="inputbox" required="true"
 			addfieldpath="/administrator/components/com_categories/models/fields"
