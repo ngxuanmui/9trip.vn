@@ -41,24 +41,6 @@ $fields = $this->fields;
 	
 	<div class="clr"></div>
 	<div class="search-conditions">
-		<div class="style">
-			<label class="title">Phong cách</label>
-			<div style="float: left; margin-right: 10px;">
-				<ul>
-					<li class="row-input fltlft custom-field-input">
-						<input type="checkbox" name="all" /> Tất cả
-					</li>
-					<?php
-						foreach ($fields as $field):
-					?>
-					<li class="row-input fltlft custom-field-input">
-						<input type="checkbox" name="all" /> <?php echo $field->title; ?>
-					</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="clr"></div>
-		</div>
 		<div class="other-conditions">
 			<div class="col">
 				<label class="title">Đánh giá</label>
@@ -70,24 +52,24 @@ $fields = $this->fields;
 				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-5"></div> </div>
 			</div>
 			<div class="col">
-				<label class="title">Giá</label>
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> 0 VNĐ - 200N VNĐ </div>
-				<div class="row-input"><input type="checkbox" name="all" /> 200 VNĐ - 500N VNĐ </div>
-				<div class="row-input"><input type="checkbox" name="all" /> 500 VNĐ - 1TR VNĐ </div>
-				<div class="row-input"><input type="checkbox" name="all" /> 1TR VNĐ - 2TR VNĐ </div>
-				<div class="row-input"><input type="checkbox" name="all" />TRÊN 2TR VNĐ </div>
-
-			</div>
-			<div class="col">
-				<label class="title">Tiêu chuẩn</label>
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow1"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow2"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow3"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow4"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-yellow5"></div> </div>
-				
+				<div class="style">
+					<label class="title">Phong cách</label>
+					<div style="float: left; margin-right: 10px;">
+						<ul>
+							<li class="row-input fltlft custom-field-input">
+								<input type="checkbox" name="all" /> Tất cả
+							</li>
+							<?php
+								foreach ($fields as $field):
+							?>
+							<li class="row-input fltlft custom-field-input">
+								<input type="checkbox" name="all" /> <?php echo $field->title; ?>
+							</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+					<div class="clr"></div>
+				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -114,10 +96,7 @@ $fields = $this->fields;
 						<img src="<?php echo $item->images; ?>" />
 					</div>
 					<div class="content">
-						<b>Xếp hạng:</b> 1/35 nhà hàng ở Quảng Ninh <br/>
-						<b>Giá: </b>120 - 150 000 VNĐ/người <br />
-						<label class="fltlft label-criteria">Tiêu chí:</label>
-						<span class="fltlft full-star-over-yellow"><span class="star-yellow<?php echo str_replace('.', '-', $item->relax_class); ?>"></span></span>
+						<b>Xếp hạng:</b> giải trí ở <?php echo $this->category->title; ?> <br/>
 						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 						<div class="clear"></div>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>

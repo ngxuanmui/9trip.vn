@@ -43,11 +43,11 @@ abstract class AbsNtripModelItem extends JModelItem
 			
 			$address = $item->address . ', ' . $item->category_title;
 			
-			if ($category->parent_id > 0)
-			{
-				$parent = $category->getParent();
-				$address .= ', ' . $parent->title;
-			}
+// 			if ($category->parent_id > 0)
+// 			{
+// 				$parent = $category->getParent();
+// 				$address .= ', ' . $parent->title;
+// 			}
 			
 			$item->gmap = $this->getGmapInfo($item->id, $type, $address);
 			

@@ -10,6 +10,8 @@
 defined('_JEXEC') or die;
 
 $userGuest = JFactory::getUser()->guest;
+
+$noGallery = (empty($item->other_images)) ? true : false;
 ?>
 
 <script type="text/javascript">
@@ -45,14 +47,14 @@ $userGuest = JFactory::getUser()->guest;
 	<div class="social-button fltrgt">
 		<div class="error error-msg fltlft" style="display: none; margin-right: 10px;">Bạn chưa đăng nhập!</div>
 		<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" login="<?php echo ($userGuest) ? 'no' : 'yes'; ?>" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type='.$itemType); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
-		<button class="icons show-image show-image-focus"></button>
-		<button class="icons show-map"></button>
+		<button class="icons show-image show-image-focus" <?php if ($noGallery): ?>style="display: none;"<?php endif; ?>></button>
+		<button class="icons show-map <?php if ($noGallery): ?>show-map-focus<?php endif; ?>"></button>
 	</div>
 	
 	<div class="clr"></div>
 	
 	<div class="other-album relative">
-		<div class="album absolute" id="show-album">
+		<div class="album absolute" id="show-album" <?php if ($noGallery): ?>style="visibility: hidden;"<?php endif; ?>>
 			<div id="galleria">
 				<?php 
 				if (!empty($item->other_images)):
@@ -66,7 +68,7 @@ $userGuest = JFactory::getUser()->guest;
 			</div>
 		</div>
 		
-		<div class="map absolute" id="show-map" style="visibility: hidden;">
+		<div class="map absolute" id="show-map" <?php if (!$noGallery): ?>style="visibility: hidden;"<?php endif; ?>>
 			map here
 		</div>
 	</div>

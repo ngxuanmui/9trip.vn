@@ -179,7 +179,7 @@ abstract class AbsNtripModelItems extends JModelList
 		
 		$query = $db->getQuery(true);
 		
-		$id = $this->getState('filter.id');
+		$id = $this->getState('filter.location');
 		
 		$query->select('*')
 				->from('#__categories');				
@@ -222,6 +222,7 @@ abstract class AbsNtripModelItems extends JModelList
 		}
 		
 		$query->where('extension = "'.$extension.'"');
+		$query->where('published = 1');
 		
 		$db->setQuery($query);
 		$rs = $db->loadObjectList();
@@ -231,7 +232,9 @@ abstract class AbsNtripModelItems extends JModelList
 	
 	public function getCategory()
 	{
-		$categoryId = JRequest::getInt('id');
+		$categoryId = $this->getState('filter.location', 0);;
+		
+// 		var_dump($categoryId);
 		
 		jimport('joomla.application.categories');
 		
