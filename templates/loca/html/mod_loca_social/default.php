@@ -57,7 +57,6 @@ $noGallery = (empty($item->other_images)) ? true : false;
 		<?php else: ?>
 		<a class="icons add-image modal" id="btn-add-image" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type='.$itemType); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
 		<?php endif; ?>
-		
 		<button class="icons show-image show-image-focus" <?php if ($noGallery): ?>style="display: none;"<?php endif; ?>></button>
 		<button class="icons show-map <?php if ($noGallery): ?>show-map-focus<?php endif; ?>"></button>
 	</div>
