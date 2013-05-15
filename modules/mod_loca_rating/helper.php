@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
  * @subpackage	mod_stats
  * @since		1.5
  */
-class modLocaSocialHelper
+class modLocaRatingHelper
 {
 	static function &getList(&$params)
 	{

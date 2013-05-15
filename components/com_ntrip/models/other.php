@@ -81,22 +81,43 @@ class NtripModelOther extends JModelLegacy
 	{
 		$db = JFactory::getDbo();
 		
-		$obj = new stdClass();
+		// check user like
+		$userLikeId = NtripFrontHelper::checkUserLike($itemId, $itemType);
 		
-		$obj->item_id	= $itemId;
-		$obj->item_type = $itemType;
-		$obj->like		= 1;
-		$obj->created	= date('Y-m-d H:i:s');
-		$obj->created_by = JFactory::getUser()->id;
-
-		$result = $db->insertObject('#__ntrip_user_like', $obj, 'id');
-
-		if (!$result)
-			return array('error' => 1, 'msg' => $db->getErrorMsg ());
+		$deleteUserLike = false;
+		
+		if ($userLikeId)
+		{
+			// remove it
+			$query = $db->getQuery(true);
+			$query->delete('#__ntrip_user_like')->where('id = ' . (int) $userLikeId);
+			
+			$db->setQuery($query);
+			$db->query();
+			
+			$deleteUserLike = true;
+		}
+		else
+		{
+			$obj = new stdClass();
+			
+			$obj->item_id	= $itemId;
+			$obj->item_type = $itemType;
+			$obj->like		= 1;
+			$obj->created	= date('Y-m-d H:i:s');
+			$obj->created_by = JFactory::getUser()->id;
+			
+			$result = $db->insertObject('#__ntrip_user_like', $obj, 'id');
+			
+			if (!$result)
+				return array('error' => 1, 'msg' => $db->getErrorMsg ());
+		}
+		
+		$operator = $deleteUserLike ? '-' : '+';
 		
 		// Update table $itemType
 		$query = $db->getQuery(true);
-		$query->update('#__ntrip_' . $itemType)->set('user_like = user_like + 1')->where('id = ' . $itemId);
+		$query->update('#__ntrip_' . $itemType)->set('user_like = user_like '.$operator.' 1')->where('id = ' . $itemId);
 		
 		$db->setQuery($query);
 		$db->query();

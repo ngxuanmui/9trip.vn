@@ -91,12 +91,55 @@ jQuery(function($){
 
 		Galleria.run('#galleria');
 	}
+
+	$('.user-like').click(
+		function() {
+			
+			if (USER_GUEST === 'y' )
+			{
+				show_error();
+				return false;
+			}
+			
+			liked = $(this).hasClass('liked');
 		
+			var item_id = $(this).attr('id');
+			var tmp = item_id.split('-');
+			var t = $(this);
+			item_id = tmp[1];
+			jQuery.post(
+				'index.php?option=com_ntrip&task=other.like',
+				{item_id: item_id, item_type: ITEM_TYPE},
+				function(data) {
+					if (data == 'OK') {
+						tmp = $('.number-liker').html();
+						tmp = parseInt(tmp);
+						if (liked)
+						{
+							var current_liker = tmp - 1;
+//							alert('Bạn đã like thành công')
+							t.removeClass('liked');
+						}
+						else
+						{
+							var current_liker = tmp + 1;
+//							alert('Bạn đã like thành công')
+							t.addClass('liked');
+						}
+						$('.number-liker').html(current_liker);
+					}
+				}
+			);
+			
+			return false;
+		}
+	);
+	
 	// Rating
 	var widget = $('.rate_widget');
 //	set_votes(widget);		
 
-	$('.ratings_stars').hover(
+	$('.user-rating').hover(
 		// Handles the mouseover
 		function() {
 			$(this).prevAll().andSelf().addClass('ratings_over');
@@ -115,40 +158,8 @@ jQuery(function($){
 		}
 	);
 
-	$('.user-like').click(
-		function() {
-			
-			if (USER_GUEST === 'y' )
-			{
-				show_error();
-				return false;
-			}
-		
-			var item_id = $(this).attr('id');
-			var tmp = item_id.split('-');
-			var t = $(this);
-			item_id = tmp[1];
-			jQuery.post(
-				'index.php?option=com_ntrip&task=other.like',
-				{item_id: item_id, item_type: ITEM_TYPE},
-				function(data) {
-					if (data == 'OK') {
-						tmp = $('.number-liker').html();
-						tmp = parseInt(tmp);
-						var current_liker = tmp + 1;
-//						alert('Bạn đã like thành công')
-						t.addClass('liked');
-						$('.number-liker').html(current_liker);
-					}
-				}
-			);
-			
-			return false;
-		}
-	);
-
 	// This actually records the vote
-	$('.ratings_stars').bind('click', function() {
+	$('.user-rating').bind('click', function() {
 		
 		jQuery('.total_votes').html('Vui lòng đợi ...');
 		
@@ -167,6 +178,7 @@ jQuery(function($){
 			function(INFO) {
 				if (INFO == 'OK') {
 					set_votes(widget);
+					$('.ratings_stars').unbind('hover');
 				}
 			}
 		);
@@ -270,7 +282,7 @@ function initialize(gmaps_latitude, gmaps_longitude, address_title, map_canvas)
 {
 	var mapOptions = {
 		center: new google.maps.LatLng(gmaps_latitude, gmaps_longitude),
-		zoom: 12,
+		zoom: 17,
 		scrollwheel: false,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};

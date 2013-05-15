@@ -79,7 +79,7 @@ function NtripBuildRoute(&$query)
 	}
 	
 	// are we dealing with an discover or category that is attached to a menu item?
-	if (($menuItem instanceof stdClass) && $menuItem->query['view'] == $query['view'] && isset($query['id']) && $menuItem->query['id'] == intval($query['id'])) {
+	if (($menuItem instanceof stdClass) && $menuItem->query['view'] == $query['view'] && isset($query['id']) && isset($menuItem->query['id']) && $menuItem->query['id'] == intval($query['id'])) {
 		unset($query['view']);
 
 		if (isset($query['catid'])) {

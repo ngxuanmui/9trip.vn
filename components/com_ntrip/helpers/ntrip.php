@@ -107,4 +107,48 @@ class NtripFrontHelper
 		
 		return false;
 	}
+	
+	public static function checkUserLike($itemId, $itemType)
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		$userId = JFactory::getUser()->id;
+		
+		$query->select('id')
+				->from('#__ntrip_user_like')
+				->where('item_id = ' . (int) $itemId)
+				->where('item_type = "' . $itemType . '"')
+				->where('created_by = ' . $userId);
+		
+		$db->setQuery($query);
+		$result = $db->loadResult();
+		
+		if ($result)
+			return $result;
+		
+		return false;
+	}
+	
+	public static function checkUserRating($itemId, $itemType)
+	{
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+	
+		$userId = JFactory::getUser()->id;
+	
+		$query->select('id')
+				->from('#__ntrip_rating')
+				->where('item_id = ' . (int) $itemId)
+				->where('item_type = "' . $itemType . '"')
+				->where('created_by = ' . $userId);
+	
+		$db->setQuery($query);
+		$result = $db->loadResult();
+	
+		if ($result)
+			return $result;
+	
+		return false;
+	}
 }

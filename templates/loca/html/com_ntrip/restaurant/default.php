@@ -58,55 +58,36 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 				
 			</div>
 			
+			<?php 
 			
-			
-			<div class="social-info">
-				<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
-				
-				<div class="social-button fltrgt">
-					<div class="error error-msg fltlft" style="display: none; margin-right: 10px;">Bạn chưa đăng nhập!</div>
-					<a class="icons add-image <?php if (!$userGuest) echo 'modal'; ?>" id="btn-add-image" login="<?php echo ($userGuest) ? 'no' : 'yes'; ?>" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type=restaurants'); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
-					<button class="icons show-image show-image-focus"></button>
-					<button class="icons show-map"></button>
-				</div>
-				
-				<div class="clr"></div>
-			</div>
+			echo LocaHelper::renderModulesOnPosition(
+						'loca-social', 
+						array(	'item' => $item, 
+								'item_type' => 'restaurants', 
+								'gmap' => array(	'address' => $item->address,
+													'lat' => $item->gmap_lat, 
+													'long' => $item->gmap_long
+											)
+						)
+					); 
+			?>
 			
 			<div class="clr"></div>
 
 			<div class="info">
-				<div class="other-album">
-					<div class="album" id="show-album">
-						<div id="galleria">
-							<?php 
-							if (!empty($this->otherImages)):
-								foreach ($this->otherImages as $img): 
-								?>
-								<img src="images/restaurants/<?php echo $item->id; ?>/<?php echo $img->images; ?>" />
-								<?php 
-								endforeach; 
-							endif; 
-							?>
-						</div>
-					</div>
-					
-					<div class="map" id="show-map" style="display: none;">
-						map here
-					</div>
-				</div>
-
 				<div class="content">
 					<p><b>Xếp hạng:</b> Nhà hàng ở Quảng Ninh</p>
 					<p><b>Giá: </b><?php echo number_format((int) $item->price_from); ?> - <?php echo number_format((int) $item->price_to); ?> VNĐ/người</p>
 					
-					<?php $rank = round($item->user_rank); ?>
-					<div id="<?php echo $item->id; ?>" class="rating-content rate_widget" rated="<?php echo $rank; ?>">						
-						<?php for ($i = 1; $i <= 5; $i ++): ?>
-						<div class="star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>
-						<?php endfor; ?>
-						<span class="total_votes"> <?php echo $item->count_rating; ?> đánh giá</span>
-					</div>
+					<?php 
+			
+					echo LocaHelper::renderModulesOnPosition(
+								'loca-rating', 
+								array(	'item' => $item, 
+										'item_type' => 'restaurants'
+								)
+							); 
+					?>
 				</div>
 
 				<div class="clr"></div>

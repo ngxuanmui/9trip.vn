@@ -90,6 +90,8 @@
 		<div class="fltlft error comment-msg" id="comment-msg"></div>
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
+	<?php else: ?>
+	<div class="user-comment-not-login">Vui lòng đăng nhập để gửi bình luận của bạn.</div>
 	<?php endif; ?>
 
 	<div class="clr"></div>

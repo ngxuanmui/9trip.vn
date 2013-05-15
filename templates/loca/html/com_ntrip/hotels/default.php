@@ -214,8 +214,9 @@ $criteria = explode(',', JRequest::getString('criteria'));
 						<img src="<?php echo $item->images; ?>" />
 					</div>
 					<div class="content">
-						<b>Xếp hạng:</b> Khách sạn ở Quảng Ninh <br/>
-						<b>Giá: </b><?php echo (int) $item->price_from; ?> - <?php echo (int) $item->price_to; ?> VNĐ/người <br />
+						<b>Xếp hạng:</b> Khách sạn ở <?php echo $this->category->title; ?><br/>
+						<b>Giá: </b><?php echo (int) number_format((int)$item->price_from); ?> - 
+									<?php echo (int) number_format((int)$item->price_to); ?> VNĐ/người <br />
 						<label class="fltlft label-criteria">Tiêu chí:</label>
 						<span class="fltlft full-star-over-yellow"><span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span></span>
 						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>

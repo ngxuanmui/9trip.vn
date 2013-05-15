@@ -43,10 +43,6 @@ JHtml::_('behavior.modal');
 				
 			</div>
 			
-			
-			
-			<!-- mod social -->
-			
 			<?php 
 			
 			echo LocaHelper::renderModulesOnPosition(
@@ -79,14 +75,30 @@ JHtml::_('behavior.modal');
 						<?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 					</div>
 					 */ ?>
+					 
+					<?php 
+			
+					echo LocaHelper::renderModulesOnPosition(
+								'loca-rating', 
+								array(	'item' => $item, 
+										'item_type' => 'hotels'
+								)
+							); 
+					?>
 
-					<?php $rank = round($item->user_rank); ?>
+					<?php 
+					/*
+					$checkUserRating = NtripFrontHelper::checkUserRating($item->id, 'hotels');
+					
+					$rank = round($item->user_rank); 
+					?>
 					<div id="<?php echo $item->id; ?>" class="rating-content rate_widget" rated="<?php echo $rank; ?>">						
 						<?php for ($i = 1; $i <= 5; $i ++): ?>
-						<div class="star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>
+						<div class="<?php if (!$checkUserRating): ?>user-rating<?php endif;?> star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>
 						<?php endfor; ?>
-						<span class="total_votes"> <?php echo $item->count_rating; ?> đánh giá</span>
+						<span class="total_votes total_votes-detail"> <?php echo $item->count_rating; ?> đánh giá</span>
 					</div>
+					*/ ?>
 				</div>
 
 				<div class="clr"></div>

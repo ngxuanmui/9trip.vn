@@ -9,6 +9,14 @@ class NtripControllerOther extends JController
 		preg_match('/star_([1-5]{1})/', $_POST['clicked_on'], $match);
 		$rating = $match[1];
 		
+		$checkUserRating = NtripFrontHelper::checkUserRating($itemId, $itemType);
+		
+		if ($checkUserRating)
+		{
+			echo 'Rated';
+			exit();
+		}
+		
 		$model = $this->getModel('Other', 'NtripModel');
 		
 		$saveResult = $model->save($itemId, $itemType, $rating);

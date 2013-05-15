@@ -998,7 +998,8 @@ table.list-user-hotels tr.oven, table.list-user-hotels tr.row1{
 .block {display: block;}
 
 .label-criteria { margin-right: 10px; }
-.total_votes { margin-left: 10px; }
+.total_votes { float: left; margin-left: 10px; margin-top: 0px; }
+.total_votes-detail { margin-top: -7px; margin-left: 5px; }
 .hotel-quote, .service-quote, .relax-quote, .tour-quote, .shopping-quote { padding: 15px 15px 0 5px; font-size: 14px; font-style: italic; }
 .tour-quote { width: 405px; }
 .shopping-quote { width: 420px; }
@@ -1081,3 +1082,5 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .gplus { margin-top: -1px; }
 
 #custom-type { margin: 5px 0px 10px 0px; }
+
+.loca-location-container { cursor: pointer; }

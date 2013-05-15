@@ -12,6 +12,8 @@ defined('_JEXEC') or die;
 $userGuest = JFactory::getUser()->guest;
 
 $noGallery = (empty($item->other_images)) ? true : false;
+
+$checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 ?>
 
 <script type="text/javascript">
@@ -28,7 +30,7 @@ $noGallery = (empty($item->other_images)) ? true : false;
 		<?php if ($userGuest): ?>
 		<a class="like modal user-not-login" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component'); ?>" rel="{handler: 'iframe', size: {x: 340, y: 260}, onClose: function() {}}"> Thích</a>
 		<?php else: ?>
-		<a class="like user-like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a>
+		<a class="like user-like <?php if ($checkUserLike) echo 'liked';?>" href="#" id="like-<?php echo $item->id; ?>"> Thích</a>
 		<?php endif; ?>
 		
 		 <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
