@@ -23,8 +23,11 @@ class NtripViewService extends JViewLegacy
 
 	function display($tpl = null)
 	{
-		$this->item = $this->get('Item');
-		$this->otherImages = $this->get('OtherImages');
+		$item = $this->get('Item');
+		$item->other_images = $this->get('OtherImages');
+		
+		$this->item = $item;
+		
 		$this->otherItems = $this->get('OtherItems');
 		
 		$this->_prepareDocument();

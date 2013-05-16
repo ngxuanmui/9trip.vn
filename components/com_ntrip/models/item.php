@@ -4,15 +4,23 @@ jimport('joomla.application.component.modelitem');
 
 abstract class AbsNtripModelItem extends JModelItem
 {
-	protected function getItem($type)
+	public function getItem($type = '', $updateHits = true)
 	{
+		if (!$type)
+			$type = $this->itemType;
+		
 		$id = JRequest::getInt('id', 0);
+		
+		// Update hits 
+		if ($updateHits)
+			$this->updateHits($id, $type);
 		
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		
 		$query->select('a.*')
 				->select('(SELECT COUNT(id) FROM #__ntrip_rating WHERE item_type = "'.$type.'" AND item_id = '.(int) $id.') AS count_rating')
+				->select('(SELECT COUNT(id) FROM #__ntrip_comments WHERE item_type = "'.$type.'" AND item_id = '.(int) $id.') AS count_comment')
 				->from('#__ntrip_'. $type . ' a')
 				->where('a.id = ' . $id);
 		
@@ -94,9 +102,12 @@ abstract class AbsNtripModelItem extends JModelItem
 		return $cat;
 	}
 	
-	protected function getOtherImages($type)
+	public function getOtherImages($type = '')
 	{
-		$item = $this->getItem($type);
+		if (!$type)
+			$type = $this->itemType;
+		
+		$item = $this->getItem($type, false);
 		
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -104,7 +115,8 @@ abstract class AbsNtripModelItem extends JModelItem
 		$query->select('*')
 				->from('#__ntrip_images')
 				->where('item_type = "' . $type . '"')
-				->where('item_id = ' . $item->id);
+				->where('item_id = ' . $item->id)
+				->order('id DESC');
 		
 		$db->setQuery($query);
 		$rs = $db->loadObjectList();
@@ -115,10 +127,16 @@ abstract class AbsNtripModelItem extends JModelItem
 		return $rs;
 	}
 	
-	protected function getOtherItems($type, $item)
+	public function getOtherItems($type = '', $item = null)
 	{
+		if (!$type)
+			$type = $this->itemType;
+		
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
+		
+		if (!is_object($item))
+			$item = $this->getItem($type, false);
 		
 		$query->select('*')
 				->from('#__ntrip_'. $type)
@@ -136,5 +154,23 @@ abstract class AbsNtripModelItem extends JModelItem
 			die($db->getErrorMsg ());
 		
 		return $rs;
+	}
+	
+	protected function updateHits($itemId = 0, $itemType = '')
+	{
+		if (!$itemType)
+			$itemType = $this->itemType;
+		
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		$query->update('#__ntrip_' . $itemType)->set('hits = hits + 1')->where('id = ' . $itemId);
+		
+		$db->setQuery($query);
+		
+		$db->query();
+		
+		if ($db->getErrorMsg())
+			die ($db->getErrorMsg());
 	}
 }

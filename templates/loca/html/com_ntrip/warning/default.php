@@ -14,17 +14,29 @@ $item = $this->item;
 	<div class="margin-bottom5">
 		<div class="title-category">
 			<?php echo $item->name; ?>
+			<div class="clr"></div>
 		</div>
 		
 		<div class="item-container item-detail">
+			
+			<?php
+			echo LocaHelper::renderModulesOnPosition(
+						'loca-article-info', 
+						array(	'item' => $item,
+								'item_type' => 'warnings'
+						)
+					); 
+			?>
+				
+			<div class="clr"></div>
 			<div class="info">
 				<?php echo $item->description; ?>
 				
 				<div class="clr"></div>
 			</div>
+			
+			<?php Ntrip_CommentHelper::showForm($item->id, 'warnings'); ?>
 		</div>
-		
-		<?php Ntrip_CommentHelper::showForm($item->id, 'warnings'); ?>
 		
 		<?php if (!empty($this->otherItems)): ?>	
 		<div class="margin-bottom5">

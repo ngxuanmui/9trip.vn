@@ -5,22 +5,7 @@ defined('_JEXEC') or die;
 $item = $this->item;
 
 JHtml::_('behavior.modal');
-
-$userGuest = JFactory::getUser()->guest ? true : false;
 ?>
-
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=<?php echo CFG_GOOGLE_MAP_API ?>&sensor=true"></script>
-
-<script type="text/javascript">
-	var ITEM_ID = <?php echo $item->id; ?>;
-	var ITEM_TYPE = 'restaurants';
-	var GMAP_LAT = '50.083';
-	var GMAP_LONG = '19.917';
-	var GMAP_ADD = '22 Thành Công, Ba Đình, Hà Nội, Việt Nam';
-	
-	// var UPLOAD_URL = '<?php echo JRoute::_('index.php?option=com_ntrip&task=other.upload'); ?>';
-	
-</script>
 
 <div id="top-adv">
 	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
@@ -76,7 +61,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 
 			<div class="info">
 				<div class="content">
-					<p><b>Xếp hạng:</b> Nhà hàng ở Quảng Ninh</p>
+					<p><b>Xếp hạng:</b> Nhà hàng ở <?php echo $item->category_title; ?></p>
 					<p><b>Giá: </b><?php echo number_format((int) $item->price_from); ?> - <?php echo number_format((int) $item->price_to); ?> VNĐ/người</p>
 					
 					<?php 

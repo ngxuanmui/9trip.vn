@@ -25,7 +25,7 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 	var USER_GUEST = '<?php echo $userGuest ? 'y' : 'n'; ?>';
 </script>
 
-<div class="item-container social-info">
+<div class="xitem-container social-info">
 	<div class="fltlft">
 		<?php if ($userGuest): ?>
 		<a class="like modal user-not-login" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component'); ?>" rel="{handler: 'iframe', size: {x: 340, y: 260}, onClose: function() {}}"> Thích</a>

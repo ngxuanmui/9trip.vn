@@ -135,7 +135,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					    <?php foreach ($images as $img): ?>
 					    <tr>
 						<td width="80" style="background: #FAFAFA;">
-						    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" />
+						    <img src="<?php echo $path . 'thumbnail/' . $img->images; ?>" style="width: 80px;" />
 						    <input type="hidden" name="current_images[<?php echo $img->id; ?>]" value="<?php echo $img->images; ?>" />
 						</td>
 						<td valign="top">

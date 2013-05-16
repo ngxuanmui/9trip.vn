@@ -62,7 +62,7 @@ JHtml::_('behavior.modal');
 			<div class="info">
 				
 				<div class="content">
-					<p><b>Xếp hạng:</b> Nhà hàng ở <?php echo $item->category_title; ?></p>
+					<p><b>Xếp hạng:</b> Khách sạn ở <?php echo $item->category_title; ?></p>
 					<p><b>Giá: </b><?php echo number_format((int) $item->price_from); ?> - <?php echo number_format((int) $item->price_to); ?> VNĐ/người</p>
 					<div class="rating-content">
 						<span class="fltlft criteria">Tiêu chí: </span>

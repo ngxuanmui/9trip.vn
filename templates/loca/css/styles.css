@@ -1084,3 +1084,8 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 #custom-type { margin: 5px 0px 10px 0px; }
 
 .loca-location-container { cursor: pointer; }
+
+.loca-article-info { margin-bottom: 10px; }
+.article-social { margin-top: 10px; }
+
+#left-content img { width: 625px; }

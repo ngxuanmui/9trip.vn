@@ -13,9 +13,19 @@ $userGuest = JFactory::getUser()->guest;
 
 $rank = round($item->user_rank);
 
-$checkUserRating = NtripFrontHelper::checkUserRating($item->id, 'hotels');
+$checkUserRating = NtripFrontHelper::checkUserRating($item->id, $itemType);
 $rank = round($item->user_rank); 
 ?>
+
+<script type="text/javascript">
+<!--
+if (typeof ITEM_ID === 'undefined')
+	var ITEM_ID = <?php echo $item->id ? $item->id : 0; ?>;
+
+if (typeof ITEM_TYPE === 'undefined')
+	var ITEM_TYPE = '<?php echo $itemType; ?>';
+//-->
+</script>
 <div id="<?php echo $item->id; ?>" class="rating-content rate_widget" rated="<?php echo $rank; ?>">						
 	<?php for ($i = 1; $i <= 5; $i ++): ?>
 	<div class="<?php if (!$checkUserRating): ?>user-rating<?php endif;?> star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>

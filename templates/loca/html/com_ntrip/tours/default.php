@@ -13,7 +13,7 @@ $fields = $this->fields;
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-main-item">
-			<label>Khách sạn <?php echo $this->items[0]->category_title; ?> </label>
+			<label>Tham quan <?php echo $this->category->title; ?> </label>
 			<span class="icons quote fltlft"></span>
 			<span class="fltlft tour-quote">
 				Nếu phần tham quan của bạn chưa có trên Loca.vn, hãy tạo mới ngay
@@ -22,20 +22,8 @@ $fields = $this->fields;
 			<div class="clear"></div>
 		</div>
 		
-		<!--<div class="item-container">
-			<span class="icons quote fltlft"></span>
-			<span class="fltlft">
-				Hãy chia sẻ những trải nghiệm của bạn về chuyến đi của mình, 
-				các chia sẻ thực tế của bạn sẽ giúp ích rất nhiều cho các 
-				thành viên khác.
-			</span>
-			
-			<a href="#" class="icons loca-button fltlft">Chia sẻ trải nghiệm</a>
-		</div>-->
-		
 		<div class="clr"></div>
 	</div>
-	<!-- Kết quả tài trợ -->	
 	
 	<?php echo NtripFrontHelper::itemsMenu('tours'); ?>
 	
@@ -98,7 +86,7 @@ $fields = $this->fields;
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
 						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>
 						<div class="clear"></div>
-						<a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a>
+						<?php /* <a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a> */?>
 					</div>
 					<div class="clr"></div>
 				</li>

@@ -178,7 +178,7 @@ jQuery(function($){
 			function(INFO) {
 				if (INFO == 'OK') {
 					set_votes(widget);
-					$('.ratings_stars').unbind('hover');
+					$('.ratings_stars').unbind('hover').unbind('click');
 				}
 			}
 		);

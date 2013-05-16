@@ -13,7 +13,7 @@ $fields = $this->fields;
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="title-category">
-			Trao đổi hỏi đáp du lịch <?php echo $this->items[0]->category_title; ?>
+			Trao đổi hỏi đáp du lịch <?php echo $this->category->title; ?>
 		</div>
 		
 		<div class="item-container">
