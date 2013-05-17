@@ -2,12 +2,14 @@
 
 class Ntrip_CommentModelComment extends JModelLegacy
 {
-	public function getListComments($itemId, $itemType)
+	public function getListComments($itemId, $itemType, $title = '')
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		
 		$query->select('c.*')
+				->select('(SELECT COUNT(id) FROM #__ntrip_rating WHERE item_type = "'.$itemType.'" AND item_id = '.(int) $itemId.') AS count_rating')
+				->select('(SELECT COUNT(id) FROM #__ntrip_comments WHERE item_type = "'.$itemType.'" AND item_id = '.(int) $itemId.') AS count_comment')
 				->from('#__ntrip_comments c')
 				->select('u.username')
 				->join('LEFT', '#__users u ON c.created_by = u.id')
@@ -17,7 +19,7 @@ class Ntrip_CommentModelComment extends JModelLegacy
 				->order('c.id ASC')
 			;
 		
-//		echo str_replace('#__', 'jos_', $query);
+// 		echo str_replace('#__', 'jos_', $query);
 		
 		$db->setQuery($query);
 		$rs = $db->loadObjectList();
@@ -27,7 +29,7 @@ class Ntrip_CommentModelComment extends JModelLegacy
 		{
 			$query = $db->getQuery(true);
 		
-			$query->select('c.*')
+			$query->select('c.*, ' . $db->quote($title) . ' AS item_title')
 					->from('#__ntrip_comments c')
 					->select('u.username')
 					->join('LEFT', '#__users u ON c.created_by = u.id')

@@ -61,7 +61,7 @@ $item = $this->item;
 			</div>
 			*/ ?>
 			
-			<?php Ntrip_CommentHelper::showForm($item->id, 'discovers'); ?>
+			<?php Ntrip_CommentHelper::showForm($item->id, 'discovers', $item->name); ?>
 		</div>
 		
 		

@@ -105,15 +105,13 @@ $item_id = $session->get('item_id');
 					<?php endif; ?>
 					<?php if ($canEdit) : ?>
 						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&task=comment.edit&id='.(int) $item->id); ?>">
-							<?php echo $this->escape($item->title); ?></a>
+							<?php echo $this->escape($item->content); ?></a>
 					<?php else : ?>
-							<?php echo $this->escape($item->title); ?>
+							<?php echo $this->escape($item->content); ?>
 					<?php endif; ?>
-					<p class="smallsub">
-						<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?></p>
 				</td>
 				<td class="center">
-					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'comments.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
+					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'comments.', $canChange, 'cb', null, null); ?>
 				</td>
 				<td class="center">
 					<a href="<?php echo $item->item->link; ?>">
@@ -147,9 +145,6 @@ $item_id = $session->get('item_id');
 			<?php endforeach; ?>
 		</tbody>
 	</table>
-
-	<?php //Load the batch processing form. ?>
-	<?php // echo $this->loadTemplate('batch'); ?>
 
 	<div>
 		<input type="hidden" name="task" value="" />

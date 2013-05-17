@@ -151,4 +151,19 @@ class NtripFrontHelper
 	
 		return false;
 	}
+	
+	public static function getAvatar($userId = 0)
+	{
+		if (!$userId)
+			$userId = JFactory::getUser()->id;
+		
+		$userProfile = JUserHelper::getProfile($userId);
+		
+		if (isset($userProfile->profile['avatar']) && $userProfile->profile['avatar'] != '')
+			$avatar = JURI::base() . 'images/avatars/' . str_replace('\\', '/', $userProfile->profile['avatar']);
+		else
+			$avatar = JURI::base() . 'images/no_avatar_thumb.jpg';
+		
+		return $avatar;
+	}
 }

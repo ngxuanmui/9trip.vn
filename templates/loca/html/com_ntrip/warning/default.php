@@ -35,7 +35,7 @@ $item = $this->item;
 				<div class="clr"></div>
 			</div>
 			
-			<?php Ntrip_CommentHelper::showForm($item->id, 'warnings'); ?>
+			<?php Ntrip_CommentHelper::showForm($item->id, 'warnings', $item->name); ?>
 		</div>
 		
 		<?php if (!empty($this->otherItems)): ?>	

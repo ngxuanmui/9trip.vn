@@ -41,11 +41,11 @@ $fields = $this->fields;
 				<?php foreach ($this->items as $item): ?>
 				<li>
 					<div class="fltlft question-avatar-image">
-						
+						<img src="<?php echo NtripFrontHelper::getAvatar($item->created_by); ?>" />
 					</div>
 					<div class="question-content fltlft">
 
-						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=question&id=' . $item->id, false); ?>">
+						<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($item->id, 'question')); ?>">
 							<h3><?php echo $item->title; ?></h3>
 						</a>
 						<?php echo JHtml::_('string.truncate', $item->content, 130); ?>
@@ -60,7 +60,15 @@ $fields = $this->fields;
 
 					<div class="question-info fltrgt">						
 						<div class="clr">
-							<a class="like" href="#" id="like-<?php echo $item->id; ?>"> Thích</a> <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+							<?php 
+			
+							echo LocaHelper::renderModulesOnPosition(
+										'loca-like', 
+										array(	'item' => $item, 
+												'item_type' => 'questions'
+										)
+									); 
+							?>
 						</div>
 						<div class="clr">Like FB</div>
 						<div class="clr">Like G+</div>

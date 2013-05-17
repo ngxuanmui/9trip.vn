@@ -94,16 +94,19 @@ class NtripModelComments extends JModelList
 		
 		$query->select('*');
 		
-		$table = '';
+		$table = '#__ntrip_hotels';
+		$fieldTitle = 'name';
 		
 		switch ($type)
 		{
 			case 'hotel':
 				$link = JRoute::_('index.php');
-				$fieldTitle = 'name';
 				$table = '#__ntrip_hotels';
 				break;
-			
+			case 'restaurant':
+				$link = JRoute::_('index.php');
+				$table = '#__ntrip_restaurants';
+				break;
 			default: 
 				break;
 		}
@@ -136,18 +139,13 @@ class NtripModelComments extends JModelList
 		$query->select(
 			$this->getState(
 				'list.select',
-				'a.id AS id, a.title AS title, a.alias AS alias,'.
+				'a.id AS id, a.title AS title, a.content AS content,'.
 				'a.checked_out AS checked_out,'.
 				'a.checked_out_time AS checked_out_time,' .
-				'a.state AS state, a.ordering AS ordering,'.
-				'a.publish_up, a.publish_down'
+				'a.state AS state, a.ordering AS ordering'
 			)
 		);
 		$query->from($db->quoteName('#__ntrip_comments').' AS a');
-
-		// Join over the language
-		$query->select('l.title AS language_title');
-		$query->join('LEFT', $db->quoteName('#__languages').' AS l ON l.lang_code = a.language');
 
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS editor');
@@ -281,6 +279,6 @@ class NtripModelComments extends JModelList
 		$session->set('item_id', JRequest::getInt('item_id'));
 
 		// List state information.
-		parent::populateState('a.title', 'asc');
+		parent::populateState('a.id', 'desc');
 	}
 }

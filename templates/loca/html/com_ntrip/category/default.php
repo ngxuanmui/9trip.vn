@@ -42,19 +42,21 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 				<?php echo $this->category->title; ?>
 			</div>
 			
-			<?php 
+			<div class="item-container">
+				<?php 
 			
-			echo LocaHelper::renderModulesOnPosition(
-						'loca-social', 
-						array(	'item' => $firstAlbum, 
-								'item_type' => 'albums', 
-								'gmap' => array(	'address' => $this->category->title, 
-													'lat' => @$items['gmap_info']->gmap_lat, 
-													'long' => @$items['gmap_info']->gmap_long
-											)
-						)
-					); 
-			?>
+				echo LocaHelper::renderModulesOnPosition(
+							'loca-social', 
+							array(	'item' => $firstAlbum, 
+									'item_type' => 'albums', 
+									'gmap' => array(	'address' => $this->category->title, 
+														'lat' => @$items['gmap_info']->gmap_lat, 
+														'long' => @$items['gmap_info']->gmap_long
+												)
+							)
+						); 
+				?>
+			</div>
 			
 		</div>
 		

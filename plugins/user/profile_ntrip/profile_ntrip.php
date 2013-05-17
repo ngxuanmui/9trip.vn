@@ -83,6 +83,8 @@ class plgUserProfile_Ntrip extends JPlugin
 						$data->profile[$k] = $v[1];
 					}
 				}
+				
+				$data->profile['avatar_old'] = @$data->profile['avatar'];
 			}
 
 			if (!JHtml::isRegistered('users.url'))
@@ -97,6 +99,12 @@ class plgUserProfile_Ntrip extends JPlugin
 			{
 				JHtml::register('users.tos', array(__CLASS__, 'tos'));
 			}
+			
+			JHTML::register('users.jform_profile_avatar', function($value){
+				echo '<img
+                    width="100"
+                    src="'.JURI::root().'images/avatars/'.$value.'"/>';
+			});
 		}
 
 		return true;
@@ -276,6 +284,11 @@ class plgUserProfile_Ntrip extends JPlugin
 				{
 					throw new Exception($db->getErrorMsg());
 				}
+				
+				$avatarBaseDir = JPATH_ROOT.DS.'images'.DS.'avatars';
+				if($avatar = $this->upload('profile.avatar', $avatarBaseDir, $userId.DS.'avatar', true, $data['profile']['avatar_old'])) {
+					$data['profile']['avatar'] = $avatar;
+				}
 
 				$tuples = array();
 				$order	= 1;
@@ -301,6 +314,60 @@ class plgUserProfile_Ntrip extends JPlugin
 		}
 
 		return true;
+	}
+	
+	/**
+	 * Upload avatar
+	 * @param unknown_type $field
+	 * @param unknown_type $baseDir
+	 * @param unknown_type $newFileName
+	 * @param unknown_type $deleteOld
+	 * @param unknown_type $oldFilename
+	 * @return boolean|Ambigous <boolean, string, unknown>
+	 * 
+	 * @author TuyenNT
+	 */
+	private function upload($field, $baseDir, $newFileName = false, $deleteOld = false, $oldFilename = '') {
+		$jFileInput = new JInput($_FILES);
+		$fileInput = $jFileInput->get('jform', array(), 'array');
+		if(empty($fileInput)) return false;
+	
+		$field = explode('.', $field);
+	
+		$uploadFileName = $fileInput['name'];
+		$uploadFileTemp = $fileInput['tmp_name'];
+		foreach($field as $f) {
+			if(!empty($uploadFileName[$f]) && !empty($uploadFileTemp[$f])) {
+				$uploadFileName = $uploadFileName[$f];
+				$uploadFileTemp = $uploadFileTemp[$f];
+			} else {
+				$uploadFileName = '';
+				$uploadFileTemp = '';
+				break;
+			}
+		}
+		if(empty($uploadFileName)) {
+			return false;
+		}
+	
+		if($deleteOld && $oldFilename) {
+			$oldFilename = is_array($oldFilename) ? $oldFilename : array($oldFilename);
+			foreach($oldFilename as $key => &$value) {
+				$value = $baseDir.DS.$oldFilename;
+				$oldFilename[$key] = $value;
+			}
+			JFile::delete($oldFilename);
+		}
+	
+		$uploadFileExt = JFile::getExt($uploadFileName);
+		if(!is_dir($baseDir)) {
+			if(!mkdir($baseDir, 0777, true)) return false;
+		}
+	
+		$fileName = ($newFileName) ? $newFileName.'.'.$uploadFileExt : $uploadFileName;
+		$filePath = $baseDir.DS.$fileName;
+	
+		return JFile::upload($uploadFileTemp, $filePath) ? $fileName : false;
 	}
 
 	/**

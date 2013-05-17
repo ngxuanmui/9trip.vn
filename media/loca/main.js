@@ -54,7 +54,7 @@ jQuery(function($){
 		$.post(
 				'index.php?option=com_ntrip_comment&task=comment.post',
 				/* ITEM_ID, ITEM_TYPE was defined in form */
-				{content: comment.val(), item_id: ITEM_ID, item_type: ITEM_TYPE, parent_id: $('#comment-parent-id').val()},
+				{content: comment.val(), item_id: ITEM_ID_COMMENT, item_type: ITEM_TYPE_COMMENT, parent_id: $('#comment-parent-id').val()},
 				function(res)
 				{
 					t.removeClass('processing');
@@ -94,12 +94,6 @@ jQuery(function($){
 
 	$('.user-like').click(
 		function() {
-			
-			if (USER_GUEST === 'y' )
-			{
-				show_error();
-				return false;
-			}
 			
 			liked = $(this).hasClass('liked');
 		

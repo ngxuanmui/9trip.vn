@@ -188,7 +188,8 @@ function NtripParseRoute($segments)
 			'giai-tri' => 'relax',
 			'tham-quan' => 'tour',
 			'mua-sam' => 'shopping',
-			'dich-vu' => 'service'
+			'dich-vu' => 'service',
+			'hoi-dap' => 'question'			
 			);
 	
 	$vars = array();

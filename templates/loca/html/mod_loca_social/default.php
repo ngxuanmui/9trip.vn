@@ -18,7 +18,9 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 
 <script type="text/javascript">
 	var ITEM_ID = <?php echo $item->id; ?>;
+	var ITEM_ID_COMMENT = <?php echo $item->id; ?>;
 	var ITEM_TYPE = '<?php echo $itemType; ?>';
+	var ITEM_TYPE_COMMENT = '<?php echo $itemType; ?>';
 	var GMAP_LAT = '<?php echo $gmapInfo->lat; ?>';
 	var GMAP_LONG = '<?php echo $gmapInfo->long; ?>';
 	var GMAP_ADD = '<?php echo $gmapInfo->address; ?>, Việt Nam';

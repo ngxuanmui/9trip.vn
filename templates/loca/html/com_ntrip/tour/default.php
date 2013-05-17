@@ -85,7 +85,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 			</div>
 		</div>
 
-		<?php Ntrip_CommentHelper::showForm($item->id, 'tours'); ?>
+		<?php Ntrip_CommentHelper::showForm($item->id, 'tours', $item->name); ?>
 
 		<div class="clr"></div>
 	</div>

@@ -22,7 +22,7 @@ $item = $this->item;
 				<div class="clr"></div>
 			</div>
 			
-			<?php Ntrip_CommentHelper::showForm($item->id, 'promotions'); ?>
+			<?php Ntrip_CommentHelper::showForm($item->id, 'promotions', $item->name); ?>
 		</div>
 		
 		

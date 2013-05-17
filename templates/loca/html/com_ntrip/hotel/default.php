@@ -105,7 +105,7 @@ JHtml::_('behavior.modal');
 			</div>
 		</div>
 
-		<?php Ntrip_CommentHelper::showForm($item->id, 'hotels'); ?>
+		<?php Ntrip_CommentHelper::showForm($item->id, 'hotels', $item->name); ?>
 
 		<div class="clr"></div>
 	</div>

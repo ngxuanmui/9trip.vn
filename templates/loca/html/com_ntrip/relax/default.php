@@ -83,7 +83,7 @@ JHtml::_('behavior.modal');
 			</div>
 		</div>
 
-		<?php Ntrip_CommentHelper::showForm($item->id, 'relaxes'); ?>
+		<?php Ntrip_CommentHelper::showForm($item->id, 'relaxes', $item->name); ?>
 
 		<div class="clr"></div>
 	</div>

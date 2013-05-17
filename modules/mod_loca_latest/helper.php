@@ -24,6 +24,8 @@ class modLocaLatestHelper
 		
 		$type = $params->get('type');
 		$limit = $params->get('limit', 10);
+
+		$location = JFactory::getSession()->get('loca_location', 0);
 		
 		$table = '';
 		
@@ -46,6 +48,9 @@ class modLocaLatestHelper
 				->select('c.title AS category_title, c.id AS category_id, c.alias AS category_alias')
 				->join('INNER', '#__categories c ON a.catid = c.id')
 				->order('a.id desc');
+		
+		if ($location)
+			$query->where('catid = ' . (int) $location);
 		
 		$db->setQuery($query, 0, $limit);
 		$rows = $db->loadObjectList();

@@ -32,7 +32,8 @@ abstract class NtripHelperRoute
 		$needles = array(
 			'discovers'  => array((int) $id),
 			'promotion'  => array((int) $id),
-			'warning'  => array((int) $id)
+			'warning'  => array((int) $id),
+			'question'  => array((int) $id)
 		);
 		
 		//Create the link

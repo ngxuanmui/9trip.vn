@@ -42,23 +42,27 @@ abstract class AbsNtripModelItem extends JModelItem
 		}
 		
 		$item->gmap = false;
+		$address = '';
 		
-		$address = $item->address;
+		if (isset($item->address))
+			$address = $item->address;
 		
 		if (is_object($item))
 		{
 			$category = $this->getCategory($item->catid);
 			
-			$address = $item->address . ', ' . $item->category_title;
-			
-// 			if ($category->parent_id > 0)
-// 			{
-// 				$parent = $category->getParent();
-// 				$address .= ', ' . $parent->title;
-// 			}
-			
-			$item->gmap = $this->getGmapInfo($item->id, $type, $address);
-			
+			if ($address)
+			{
+				$address = $item->address . ', ' . $item->category_title;
+					
+				// 			if ($category->parent_id > 0)
+					// 			{
+					// 				$parent = $category->getParent();
+					// 				$address .= ', ' . $parent->title;
+					// 			}
+					
+				$item->gmap = $this->getGmapInfo($item->id, $type, $address);
+			}
 		}
 		
 		$item->address = $address;
