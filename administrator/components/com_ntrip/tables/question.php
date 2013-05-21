@@ -41,9 +41,13 @@ class NtripTableQuestion extends JTable
 		$this->title = htmlspecialchars_decode($this->title, ENT_QUOTES);
 		
 		// Set alias
-		$this->alias = JApplication::stringURLSafe($this->alias);
+		$alias = LocaHelper::convertAlias($this->alias);
+		
+		$this->alias = JApplication::stringURLSafe($alias);
+		
 		if (empty($this->alias)) {
-			$this->alias = JApplication::stringURLSafe($this->title);
+			$alias = LocaHelper::convertAlias($this->title);
+			$this->alias = JApplication::stringURLSafe($alias);
 		}
 
 		// Check the publish down date is not earlier than publish up.

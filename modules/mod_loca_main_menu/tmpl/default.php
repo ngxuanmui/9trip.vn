@@ -7,16 +7,17 @@ defined('_JEXEC') or die;
 <!--
 jQuery(function($){
 
-	$('.loca-location-container').hover(
-	        function () {
-	            //show its submenu
-	            $('ul', this).stop().slideDown(200);
-	        }, 
-	        function () {
-	            //hide its submenu
-	            $('ul', this).stop().slideUp(200);            
-	        }
-	    );
+	$("ul.loca-location-container li").hover(function(){
+	    
+        $(this).addClass("hover");
+        $('ul:first',this).css('visibility', 'visible');
+    
+    }, function(){
+    
+        $(this).removeClass("hover");
+        $('ul:first',this).css('visibility', 'hidden');
+    
+    });
 });
 //-->
 </script>

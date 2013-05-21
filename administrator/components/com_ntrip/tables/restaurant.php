@@ -41,9 +41,13 @@ class NtripTableRestaurant extends JTable
 		$this->name = htmlspecialchars_decode($this->name, ENT_QUOTES);
 
 		// Set alias
-		$this->alias = JApplication::stringURLSafe($this->alias);
+		$alias = LocaHelper::convertAlias($this->alias);
+		
+		$this->alias = JApplication::stringURLSafe($alias);
+		
 		if (empty($this->alias)) {
-			$this->alias = JApplication::stringURLSafe($this->name);
+			$alias = LocaHelper::convertAlias($this->name);
+			$this->alias = JApplication::stringURLSafe($alias);
 		}
 
 		// Check the publish down date is not earlier than publish up.

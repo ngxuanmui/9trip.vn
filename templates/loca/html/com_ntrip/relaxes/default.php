@@ -29,43 +29,7 @@ $fields = $this->fields;
 	<?php echo NtripFrontHelper::itemsMenu('relaxes'); ?>
 	
 	<div class="clr"></div>
-	<div class="search-conditions">
-		<div class="other-conditions">
-			<div class="col">
-				<label class="title">Đánh giá</label>
-				<div class="row-input"><input type="checkbox" name="all" /> Tất cả </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-1"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-2"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-3"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-4"></div> </div>
-				<div class="row-input"><input type="checkbox" name="all" /> <div class="star-5"></div> </div>
-			</div>
-			<div class="col">
-				<div class="style">
-					<label class="title">Phong cách</label>
-					<div style="float: left; margin-right: 10px;">
-						<ul>
-							<li class="row-input fltlft custom-field-input">
-								<input type="checkbox" name="all" /> Tất cả
-							</li>
-							<?php
-								foreach ($fields as $field):
-							?>
-							<li class="row-input fltlft custom-field-input">
-								<input type="checkbox" name="all" /> <?php echo $field->title; ?>
-							</li>
-							<?php endforeach; ?>
-						</ul>
-					</div>
-					<div class="clr"></div>
-				</div>
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="clear"></div>
-	</div>
-
-	<div class="clr"></div>
+	
 	<div class="list-main-items-content">
 		<ul class="tab-list-main">
 			<li class="active">Thích nhiều nhất</li>
@@ -111,7 +75,9 @@ $fields = $this->fields;
 		<span class="icon-reg"></span>
 		<span class="txt-register">ĐĂNG KÝ THÀNH VIÊN</span>
 	</a>
-
+	
+	<?php echo LocaHelper::renderModulesOnPosition('loca-filter', array('fields' => $fields)); ?>
+	
 	<?php echo LocaHelper::renderModulesOnPosition('right'); ?>
 
 </div>
