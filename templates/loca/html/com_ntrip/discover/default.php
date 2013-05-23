@@ -52,51 +52,40 @@ $item = $this->item;
 				</div>
 					
 			</div>
-			<?php /*?>
-			<div class="tags-container">
-				<span class="fltlft tags icons"></span>
-				<span class="fltlft">Dis proin, elementum ac duis, enim magnis, </span>
-
-				<div class="clr"></div>
-			</div>
-			*/ ?>
 			
 			<?php Ntrip_CommentHelper::showForm($item->id, 'discovers', $item->name); ?>
 		</div>
 		
-		
+		<div class="clr"></div>
 		
 		<?php if (!empty($this->otherItems)): ?>	
-		<div class="margin-bottom5">
+		<div class="margin-bottom5 other-item-container">
 			<div class="title-category">
 				Bài viết liên quan
 			</div>
-		
-			<div class="item-container item-detail">
-					
-				<div class="other-items">
-					<ul class="discover-other-items">
-						<?php foreach ($this->otherItems as $other): ?>
-						<li class="fltleft">
-							<div class="img">
-								<img src="<?php echo $item->images; ?>" />
-							</div>				
-							
-							<?php 
-							$item->slug = $item->id . ':' . $item->alias;
-							$view = 'discover';
-							?>
+			
+			<div class="other-items">
+				<ul class="discover-other-items">
+					<?php foreach ($this->otherItems as $other): ?>
+					<li class="fltleft">
+						<div class="img">
+							<img src="<?php echo $other->images; ?>" />
+						</div>				
+						
+						<?php 
+						$other->slug = $other->id . ':' . $other->alias;
+						$view = 'discover';
+						?>
 
-							<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view) , false); ?>">
-								<?php echo $item->name; ?>
-							</a>
-							
-						</li>
-						<?php endforeach; ?>
-					</ul>
-				</div>		
-				<div class="clr"></div>
-			</div>
+						<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($other->slug, $view) , false); ?>">
+							<?php echo $other->name; ?>
+						</a>
+						
+					</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>		
+			<div class="clr"></div>
 		</div>
 		<?php endif; ?>			
 	</div>

@@ -389,7 +389,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .other-items .img { width: 114px; height: 87px; overflow: hidden; border: 1px solid #dfdfdf; margin-bottom: 5px; }
 
 .item-container .img img, 
-.other-items .img img { width: 114px; }
+.other-items .img img { /* width: 114px; */ height: 90px; }
 
 .item-container .album-img { width: 198px; height: 150px; }
 .item-container .album-img img { height: 150px; width: auto; }
@@ -704,7 +704,7 @@ div.star-yellow5 {
 /* Other items */
 .comments { border-top: none; padding: 10px; margin-bottom: 10px; background: #FFF; }
 .tab-comments { margin-top: 20px; }
-.other-items ul { margin-left: 3px; }
+.other-items ul { margin-left: 3px; margin-top: 15px; }
 .other-items ul li { margin-right: 10px; }
 
 /* Comment */
@@ -1103,3 +1103,5 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .article-social, .article-rating-like { margin-top: 10px; }
 
 #left-content .info img { max-width: 625px; }
+
+.other-item-container { margin-top: 10px; }
