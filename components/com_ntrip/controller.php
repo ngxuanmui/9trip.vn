@@ -45,7 +45,32 @@ class NtripController extends JControllerLegacy
 		$user 		= JFactory::getUser();
 		
 		// Check Auth
-		$viewsRequiredSignIn = array('user_man_hotels', 'user_man_hotel');		
+		$viewsRequiredSignIn = array(
+										'user_man_hotels', 
+										'user_man_hotel', 
+										'user_man_services', 
+										'user_man_service',
+										'user_man_albums',
+										'user_man_album',
+										'user_man_discovers', 
+										'user_man_discover', 
+										'user_man_promotions', 
+										'user_man_promotion',
+										'user_man_questions',
+										'user_man_question',
+										'user_man_relaxes', 
+										'user_man_relax', 
+										'user_man_restaurants', 
+										'user_man_restaurant',
+										'user_man_services',
+										'user_man_service',
+										'user_man_shoppings', 
+										'user_man_shopping', 
+										'user_man_tours', 
+										'user_man_tour',
+										'user_man_warnings',
+										'user_man_warning',
+								);		
 		
 		if (in_array($vName, $viewsRequiredSignIn) && !$user->get('id')) {
 			$this->setRedirect($signInUrl, JText::_('Login please!'), 'notice');

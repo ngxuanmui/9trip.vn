@@ -6,18 +6,15 @@ defined('_JEXEC') or die;
 <script type="text/javascript">
 <!--
 jQuery(function($){
-
-$("li.loca-location-container").hover(function(){
-        $(this).addClass("hover");
-        $('ul:first',this).fadeIn('slow');
-    
-    }, function(){
-    
-        $(this).removeClass("hover");
-        $('ul:first',this).fadeOut('slow');
-    
-    });
-});
+	  $('li.loca-location-container').hover(function () {
+	     clearTimeout($.data(this, 'timer'));
+	     $('ul', this).stop(true, true).slideDown(0);
+	  }, function () {
+	    $.data(this, 'timer', setTimeout($.proxy(function() {
+	      $('ul', this).stop(true, true).slideUp(0);
+	    }, this), 200));
+	  });
+	});
 //-->
 </script>
 

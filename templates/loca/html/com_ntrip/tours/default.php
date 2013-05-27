@@ -32,12 +32,11 @@ $fields = $this->fields;
 	<div class="list-main-items-content">
 		<ul class="tab-list-main">
 			<li class="active">Thích nhiều nhất</li>
-			<li>Rẻ nhất</li>
 			<li>Mới nhất</li>
 			<div class="clr"></div>
 		</ul>
 		<!-- List nha hang -->
-		<div class="list-main-items-content">
+		<div class="list-main-items-content list-items">
 			<ul>
 				<?php foreach ($this->items as $item): ?>
 				<li>

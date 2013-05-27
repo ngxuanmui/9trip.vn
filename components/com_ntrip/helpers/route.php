@@ -79,6 +79,28 @@ abstract class NtripHelperRoute
 		return $link;
 	}
 	
+	public static function getFormRoute($view, $task = '', $itemId = 0, $id = 0)	
+	{
+		$needles = array(
+			'user_man_service'  => array(),
+		);
+		
+		if (!$task)
+			$task = $view . '.add';
+		else
+			$task = $view. '.' . $task;
+		
+		$link = 'index.php?option=com_ntrip&view='.$view.'&task='.$task;
+		
+		if ($item = self::_findItem()) {
+			$link .= '&Itemid='.$item;
+		}
+		
+		if ($id)
+			$link .= '&id=' . $id;
+		
+		return $link;		
+	}
 
 	public static function getItemsRoute($view = 'hotels', $customField = false)
 	{
@@ -160,18 +182,6 @@ abstract class NtripHelperRoute
 					}
 				}
 			}
-		}
-
-		return $link;
-	}
-
-	public static function getFormRoute($id)
-	{
-		//Create the link
-		if ($id) {
-			$link = 'index.php?option=com_ntrip&task=article.edit&a_id='. $id;
-		} else {
-			$link = 'index.php?option=com_ntrip&task=article.edit&a_id=0';
 		}
 
 		return $link;

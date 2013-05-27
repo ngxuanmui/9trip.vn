@@ -18,16 +18,9 @@ JHtml::_('behavior.modal');
 $userGuest = JFactory::getUser()->guest ? true : false;
 ?>
 
-<?php /*
 <script type="text/javascript">
-	var ITEM_ID = <?php echo $firstAlbum->id; ?>;
-	var ITEM_TYPE = 'albums';
-	var GMAP_LAT = '<?php echo @$items['gmap_info']->gmap_lat; ?>';
-	var GMAP_LONG = '<?php echo @$items['gmap_info']->gmap_long; ?>';
-	var GMAP_ADD = '<?php echo $this->category->title; ?>, Việt Nam';
-	var USER_GUEST = '<?php echo $userGuest ? 'y' : 'n'; ?>';
+	var zoomOption = 10;
 </script>
-*/ ?>
 
 <div id="top-adv">
 		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />

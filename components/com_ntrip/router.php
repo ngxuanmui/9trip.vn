@@ -94,7 +94,7 @@ function NtripBuildRoute(&$query)
 		
 		return $segments;
 	}
-
+	
 	if ($view == 'category' || in_array($view, $arrViewKeys))
 	{
 		if (!$menuItemGiven) {
@@ -156,6 +156,27 @@ function NtripBuildRoute(&$query)
 		unset($query['catid']);
 		
 		
+	}
+	
+	$arrFormViews = array('user_man_service' => 'quan-ly-dich-vu');
+	
+	$arrFormViewsKey = array_keys($arrFormViews);
+	
+	
+	if (isset($query['view']) && in_array($query['view'], $arrFormViewsKey))
+	{
+		$segments[] = $arrFormViews[$query['view']];
+		
+		unset($query['view']);
+	}
+	
+	$arrTasks = array('user_man_service.add' => 'them-moi', 'user_man_service.edit' => 'sua');
+	
+	if (isset($query['task']) && in_array($query['task'], $arrTasks))
+	{
+		$segments[] = $arrTasks[$query['task']];
+			
+		unset($query['task']);
 	}
 
 	return $segments;

@@ -243,7 +243,10 @@ jQuery(function($){
 
 	if (typeof GMAP_LAT !== 'undefined')
 	{
-		 initialize(GMAP_LAT, GMAP_LONG, GMAP_ADD, 'show-map');
+		if (typeof zoomOption === 'undefined')
+			zoomOption = 17
+		
+		initialize(GMAP_LAT, GMAP_LONG, GMAP_ADD, 'show-map', zoomOption);
 	}
 	
 	/* form */
@@ -272,11 +275,11 @@ function set_votes(widget) {
 	);
 }
 
-function initialize(gmaps_latitude, gmaps_longitude, address_title, map_canvas) 
+function initialize(gmaps_latitude, gmaps_longitude, address_title, map_canvas, zoomOption) 
 {
 	var mapOptions = {
 		center: new google.maps.LatLng(gmaps_latitude, gmaps_longitude),
-		zoom: 17,
+		zoom: zoomOption,
 		scrollwheel: false,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};

@@ -60,7 +60,7 @@ $criteria = explode(',', JRequest::getString('criteria'));
 			<div class="clr"></div>
 		</ul>
 		<!-- List nha hang -->
-		<div class="list-main-items-content">
+		<div class="list-main-items-content list-items">
 			<ul>
 				<?php foreach ($this->items as $item): ?>
 				<li>

@@ -18,7 +18,9 @@ $fields = $this->fields;
 			<span class="fltlft service-quote">
 				Nếu dịch vụ của bạn chưa có trên Loca.vn, hãy tạo mới ngay
 			</span>
-			<input type="button" value="Tạo mới dịch vụ" class="button fltrgt" />
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getFormRoute('user_man_service', 'add')); ?>" class="button fltrgt">
+				Tạo mới dịch vụ
+			</a>
 			<div class="clear"></div>
 		</div>
 		
@@ -33,12 +35,11 @@ $fields = $this->fields;
 	<div class="list-main-items-content">
 		<ul class="tab-list-main">
 			<li class="active">Thích nhiều nhất</li>
-			<li>Rẻ nhất</li>
 			<li>Mới nhất</li>
 			<div class="clr"></div>
 		</ul>
 		<!-- List nha hang -->
-		<div class="list-main-items-content">
+		<div class="list-main-items-content list-items">
 			<ul>
 				<?php foreach ($this->items as $item): ?>
 				<li>

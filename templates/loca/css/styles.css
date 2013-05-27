@@ -234,6 +234,7 @@ ul.main-menu > li > a:hover {
 	padding: 10px 7px 10px 11px;
 	float: left;
 	width: 630px;
+	background: #FFF;
 }
 .tour-content {
     padding-right: 10px;
@@ -544,7 +545,6 @@ ul.tab-list-main li.active {
 }
 .list-main-items-content {
 	padding-top: 20px;
-	padding-left: 10px;
 	line-height: 25px;
 	color: #000;
 }
@@ -552,6 +552,9 @@ ul.tab-list-main li.active {
 	padding-top: 10px;
 	border-bottom: 1px dashed #DBDBDB;
 }
+
+div.list-items ul li { background: #FFF; padding: 0 0 10px 10px; }
+
 .list-main-items-content a.title {
 	color: #006699;
 	font-weight: bold;
@@ -998,8 +1001,23 @@ table.list-user-hotels tr.oven, table.list-user-hotels tr.row1{
 #form-upload-image button { padding: 2px 10px; }
 #form-upload-image textarea { width: 328px; }
 
-.show-locations { background: #FAFAFA; top: 40px; left: -97px; width: 960px; z-index: 10; border: 0px solid #CCC; display: none; }
-.show-locations h3 { border-bottom: 1px solid; }
+.show-locations { 
+	background: #FAFAFA; 
+	top: 40px; 
+	left: -97px; 
+	width: 960px; 
+	z-index: 10; 
+	border: 0px solid #CCC; 
+	display: none; 
+	-moz-box-shadow: 0px 1px 10px #333;
+	-webkit-box-shadow: 0px 1px 10px #333;
+	box-shadow: 0px 1px 10px #333;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+.show-locations h3 { border-bottom: 1px solid #CCC; }
 .show-locations > li { float: left; width: 320px; }
 .show-locations > li ul li { float: left; width: 151px; line-height: 25px; padding: 4px; border: 1px dotted #CCC; border-top: none; border-right: none; }
 #form-upload-image textarea { width: 328px; }

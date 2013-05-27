@@ -39,7 +39,7 @@ $fields = $this->fields;
 			<div class="clr"></div>
 		</ul>
 		<!-- List nha hang -->
-		<div class="list-main-items-content">
+		<div class="list-main-items-content list-items">
 			<ul>
 				<?php foreach ($this->items as $item): ?>
 				<li>
@@ -57,7 +57,7 @@ $fields = $this->fields;
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
 						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>
 						<div class="clear"></div>
-						<a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a>
+						<!-- <a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a> -->
 					</div>
 					<div class="clr"></div>
 				</li>
