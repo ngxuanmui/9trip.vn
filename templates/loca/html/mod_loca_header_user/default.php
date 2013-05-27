@@ -70,7 +70,7 @@ $loginUrl	= $facebook->getLoginUrl(
 		<?php if (!$user->id): ?>
 			<div>
 				<a href="<?php echo $loginUrl; ?>" class="icon-fb"  rel="nofollow">Đăng nhập bằng Facebook</a> | 
-				<a class="modal" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component', false); ?>" rel="{handler: 'iframe', size: {x: 340, y: 260}, onClose: function() {}}">Đăng nhập</a> |
+				<a class="modal" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component', false); ?>" rel="{handler: 'iframe', size: {x: 340, y: 160}, onClose: function() {}}">Đăng nhập</a> |
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration', false); ?>">Đăng ký</a>
 			</div>
 		<?php else: ?>

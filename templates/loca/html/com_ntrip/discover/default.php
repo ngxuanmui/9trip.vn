@@ -16,41 +16,43 @@ $item = $this->item;
 			<?php echo $item->name; ?>
 		</div>
 		
-		<div class="item-container item-detail">
-			<?php
-			echo LocaHelper::renderModulesOnPosition(
-						'loca-article-info', 
-						array(	'item' => $item,
-								'item_type' => 'discovers'
-						)
-					); 
-			?>
-				
-			<div class="clr"></div>
-			
-			<div class="info">
-				<?php echo $item->description; ?>
-				
+		<div class="item-container">
+			<div class="item-detail">
+				<?php
+				echo LocaHelper::renderModulesOnPosition(
+							'loca-article-info', 
+							array(	'item' => $item,
+									'item_type' => 'discovers'
+							)
+						); 
+				?>
+					
 				<div class="clr"></div>
 				
-				<div class="article-social">
-					<div class="fltlft">
-						<?php
-						echo LocaHelper::renderModulesOnPosition(
-									'loca-rating', 
-									array(	'item' => $item, 
-											'item_type' => 'discovers'
-									)
-								); 
-						?>
-					</div>
+				<div class="info">
+					<?php echo $item->description; ?>
 					
-					<div class="fltrgt">
-						
-					</div>
 					<div class="clr"></div>
-				</div>
 					
+					<div class="article-social">
+						<div class="fltlft">
+							<?php
+							echo LocaHelper::renderModulesOnPosition(
+										'loca-rating', 
+										array(	'item' => $item, 
+												'item_type' => 'discovers'
+										)
+									); 
+							?>
+						</div>
+						
+						<div class="fltrgt">
+							
+						</div>
+						<div class="clr"></div>
+					</div>
+						
+				</div>
 			</div>
 			
 			<?php Ntrip_CommentHelper::showForm($item->id, 'discovers', $item->name); ?>

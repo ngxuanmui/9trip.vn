@@ -35,7 +35,7 @@ JHtml::_('behavior.keepalive');
 	<?php endif ; ?>
 
 	<form action="<?php echo JRoute::_('index.php?option=com_users&task=user.loca_login'); ?>" method="post">
-		<fieldset>
+		<div class="login-main">
 			<?php foreach ($this->form->getFieldset('credentials') as $field): ?>
 				<?php if (!$field->hidden): ?>
 					<div class="login-fields"><?php echo $field->label; ?>
@@ -48,9 +48,13 @@ JHtml::_('behavior.keepalive');
 				<input id="remember" type="checkbox" name="remember" class="inputbox" value="yes"  alt="<?php echo JText::_('JGLOBAL_REMEMBER_ME') ?>" />
 			</div>
 			<?php endif; ?>
-			<button type="submit" class="button"><?php echo JText::_('JLOGIN'); ?></button>
-			<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('login_redirect_url', $this->form->getValue('return'))); ?>" />
-			<?php echo JHtml::_('form.token'); ?>
-		</fieldset>
+			<div class="clr"></div>
+			<div class="login-fields">
+				<label>&nbsp;</label>
+				<button type="submit" class="button"><?php echo JText::_('JLOGIN'); ?></button>
+				<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('login_redirect_url', $this->form->getValue('return'))); ?>" />
+				<?php echo JHtml::_('form.token'); ?>
+			</div>
+		</div>
 	</form>
 </div>

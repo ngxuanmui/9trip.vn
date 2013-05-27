@@ -57,7 +57,7 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 	
 	<div class="social-button fltrgt">
 		<?php if ($userGuest): ?>
-		<a class="icons add-image modal user-not-login" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component'); ?>" rel="{handler: 'iframe', size: {x: 340, y: 260}, onClose: function() {}}"></a>
+		<a class="icons add-image modal user-not-login" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component'); ?>" rel="{handler: 'iframe', size: {x: 340, y: 160}, onClose: function() {}}"></a>
 		<?php else: ?>
 		<a class="icons add-image modal" id="btn-add-image" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=upload_image&tmpl=component&id='.$item->id.'&type='.$itemType); ?>" rel="{handler: 'iframe', size: {x: 440, y: 460}, onClose: function() {}}"></a>
 		<?php endif; ?>
