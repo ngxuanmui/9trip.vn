@@ -29,28 +29,36 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 
 <div class="xitem-container social-info">
 	<div class="fltlft">
-		<?php if ($userGuest): ?>
-		<a class="like modal user-not-login" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component'); ?>" rel="{handler: 'iframe', size: {x: 340, y: 260}, onClose: function() {}}"> Thích</a>
-		<?php else: ?>
-		<a class="like user-like <?php if ($checkUserLike) echo 'liked';?>" href="#" id="like-<?php echo $item->id; ?>"> Thích</a>
-		<?php endif; ?>
-		
-		 <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+		<div class="fltlft">
+			<?php if ($userGuest): ?>
+			<a class="like modal user-not-login" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component'); ?>" rel="{handler: 'iframe', size: {x: 340, y: 260}, onClose: function() {}}"> Thích</a>
+			<?php else: ?>
+			<a class="like user-like <?php if ($checkUserLike) echo 'liked';?>" href="#" id="like-<?php echo $item->id; ?>"> Thích</a>
+			<?php endif; ?>
+			
+			 <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
+		</div>
 		 
-		<!-- gplus +1 button to render. -->
-		<div class="fltlft gplus">
-			<div class="g-plusone" data-size="medium" data-href="<?php $server = JRequest::get('server'); echo $server['REQUEST_URI']; ?>"></div>
-			
-			<!-- Place this tag after the last +1 button tag. -->
-			<script type="text/javascript">
-			  window.___gcfg = {lang: 'vi'};
-			
-			  (function() {
-			    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-			    po.src = 'https://apis.google.com/js/plusone.js';
-			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-			  })();
-			</script>
+		<div class="fltlft" style="margin-right: 10px;">
+			<div class="fb-like" data-href="<?php echo CFG_REQUEST_URI; ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+		</div>
+		 
+		<div class="fltlft">
+			<!-- gplus +1 button to render. -->
+			<div class="fltlft gplus">
+				<div class="g-plusone" data-size="medium" data-href="<?php $server = JRequest::get('server'); echo $server['REQUEST_URI']; ?>"></div>
+				
+				<!-- Place this tag after the last +1 button tag. -->
+				<script type="text/javascript">
+				  window.___gcfg = {lang: 'vi'};
+				
+				  (function() {
+				    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+				    po.src = 'https://apis.google.com/js/plusone.js';
+				    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+				  })();
+				</script>
+			</div>
 		</div>
 	</div>
 	

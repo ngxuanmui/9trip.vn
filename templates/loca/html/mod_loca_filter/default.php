@@ -107,12 +107,16 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 							<input type="checkbox" class="custom_field" value="all" <?php if (in_array('all', $customField)) echo 'checked="checked"'?> /> Tất cả
 						</li>
 						<?php
+						if (!empty($fields)):
 							foreach ($fields as $field):
+							?>
+							<li class="row-input fltlft custom-field-input">
+								<input type="checkbox" class="custom_field" value="<?php echo $field->id; ?>" <?php if (in_array($field->id, $customField)) echo 'checked="checked"'?> /> <?php echo $field->title; ?>
+							</li>
+							<?php 
+							endforeach;
+						endif;
 						?>
-						<li class="row-input fltlft custom-field-input">
-							<input type="checkbox" class="custom_field" value="<?php echo $field->id; ?>" <?php if (in_array($field->id, $customField)) echo 'checked="checked"'?> /> <?php echo $field->title; ?>
-						</li>
-						<?php endforeach; ?>
 					</ul>
 				</div>
 				<div class="clr"></div>

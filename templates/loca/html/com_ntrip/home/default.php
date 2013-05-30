@@ -41,7 +41,7 @@ defined('_JEXEC') or die;
 		?>
 		<div class="margin-bottom5">
 			<div class="title-category">
-				Các địa danh du lịch <?php echo $item->title; ?>
+				<?php echo $item->title; ?>
 			</div>
 			
 			<div class="tour-container">
@@ -68,29 +68,12 @@ defined('_JEXEC') or die;
 									<?php echo $subItem->title; ?>
 								</a>
 							</div>
-							<div class="info">
-								<?php
-								$sib = $subItem->getChildren();
-								foreach ($sib as $cat)
-									echo '<span>'.$cat->title.'</span> | ';
-								?>
-							</div>
 
 						</div>
 						<?php endforeach; ?>
 					</li>
 					<?php endforeach; ?>
 				</ul>
-				
-				<div class="pagination paging-slider-<?php echo $item->id; ?>" rel="<?php echo $item->id; ?>">
-					<ul class="">
-						<li class="pager-prev">Trang trước</li>
-						<?php foreach ($subCat as $key => $sub): ?>
-						<li class="pager-item <?php if ($key == 0) echo 'active'; ?>" rel="<?php echo $key; ?>"><?php echo $key + 1; ?></li>
-						<?php endforeach; ?>
-						<li class="pager-next">Trang sau</li>
-					</ul>
-				</div>
 			</div>
 			<div class="clear"></div>
 			
@@ -103,65 +86,15 @@ defined('_JEXEC') or die;
 	
 	<!-- End left -->
 
-			<!-- Right content -->
-			<div id="right-content">
-				<a class="register" href="<?php echo JRoute::_('index.php?option=com_users&view=registration', false); ?>" style="display: block;">
-					<span class="icon-reg"></span>
-					<span class="txt-register">ĐĂNG KÝ THÀNH VIÊN</span>
-				</a>
-				
-				<?php echo LocaHelper::renderModulesOnPosition('right'); ?>
-				
-			</div>
-			<div class="clear"></div>
-			<!-- End right -->
-
-<script src="<?php echo JURI::base() . '/media/loca/jquery.bxslider/jquery.bxslider.js'; ?>"></script>
-
-<script type="text/javascript">
-	jQuery(function($){
-		<?php foreach ($this->items as $item): ?>
-		var slider_<?php echo $item->id; ?> = $('.slider-<?php echo $item->id; ?>').bxSlider({
-			auto: false,
-			infiniteLoop: false,
-			autoControls: false,
-			controls: false,
-			pager: false
-		});
+	<!-- Right content -->
+	<div id="right-content">
+		<a class="register" href="<?php echo JRoute::_('index.php?option=com_users&view=registration', false); ?>" style="display: block;">
+			<span class="icon-reg"></span>
+			<span class="txt-register">ĐĂNG KÝ THÀNH VIÊN</span>
+		</a>
 		
-		$('.paging-slider-<?php echo $item->id; ?> .pager-item').click(function(){
-			$('.paging-slider-<?php echo $item->id; ?> .pager-item').removeClass('active');
-			$(this).addClass('active');
-			var slide = slider_<?php echo $item->id; ?>;
-			slide.goToSlide($(this).attr('rel'));
-		});
+		<?php echo LocaHelper::renderModulesOnPosition('right'); ?>
 		
-		$('.paging-slider-<?php echo $item->id; ?> .pager-prev').click(function(){
-			var slide = slider_<?php echo $item->id; ?>;
-			var currentSlide = parseInt(slide.getCurrentSlide());
-			var prevSlide = currentSlide - 1;
-			
-			if (prevSlide < 0)
-				return false;
-			
-			$('.paging-slider-<?php echo $item->id; ?> .pager-item').removeClass('active');			
-			$('.paging-slider-<?php echo $item->id; ?> .pager-item[rel='+prevSlide+']').addClass('active');
-			slide.goToSlide(prevSlide);
-		});
-		
-		$('.paging-slider-<?php echo $item->id; ?> .pager-next').click(function(){
-			
-			var slide = slider_<?php echo $item->id; ?>;
-			var currentSlide = parseInt(slide.getCurrentSlide());
-			var nextSlide = currentSlide + 1;
-			
-			if (nextSlide > slide.getSlideCount() - 1)
-				return false;
-			
-			$('.paging-slider-<?php echo $item->id; ?> .pager-item').removeClass('active');			
-			$('.paging-slider-<?php echo $item->id; ?> .pager-item[rel='+nextSlide+']').addClass('active');
-			slide.goToSlide(nextSlide);
-		});
-		<?php endforeach; ?>
-	});
-</script>
+	</div>
+	<div class="clear"></div>
+	<!-- End right -->

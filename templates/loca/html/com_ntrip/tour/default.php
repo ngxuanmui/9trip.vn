@@ -88,6 +88,10 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		<?php Ntrip_CommentHelper::showForm($item->id, 'tours', $item->name); ?>
 
 		<div class="clr"></div>
+		
+		<div class="fb-comments-container">
+			<div class="fb-comments" data-href="<?php echo CFG_REQUEST_URI; ?>" data-width="650" data-num-posts="10"></div>
+		</div>
 	</div>
 </div>
 

@@ -17,25 +17,34 @@ $item = $this->item;
 			<div class="clr"></div>
 		</div>
 		
-		<div class="item-container item-detail">
+		<div class="item-container">
 			
-			<?php
-			echo LocaHelper::renderModulesOnPosition(
-						'loca-article-info', 
-						array(	'item' => $item,
-								'item_type' => 'warnings'
-						)
-					); 
-			?>
-				
-			<div class="clr"></div>
-			<div class="info">
-				<?php echo $item->description; ?>
-				
+			<div class="item-detail">
+				<?php
+				echo LocaHelper::renderModulesOnPosition(
+							'loca-article-info', 
+							array(	'item' => $item,
+									'item_type' => 'warnings'
+							)
+						); 
+				?>
+					
 				<div class="clr"></div>
+				<div class="info">
+					<?php echo $item->description; ?>
+					
+					<div class="clr"></div>
+				</div>
 			</div>
 			
 			<?php Ntrip_CommentHelper::showForm($item->id, 'warnings', $item->name); ?>
+			
+			<div class="clr"></div>
+		
+			<div class="fb-comments-container">
+				<div class="fb-comments" data-href="<?php echo CFG_REQUEST_URI; ?>" data-width="630" data-num-posts="10"></div>
+			</div>
+			
 		</div>
 		
 		<div class="clr"></div>

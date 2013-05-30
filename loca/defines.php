@@ -9,3 +9,7 @@ define('CFG_FACEBOOK_ONLINE_CAMPAIGN_FB_LIKE', 'utm_source=fb-like-share&utm_med
 define('CFG_DEFAULT_NUMBER_OF_OTHER_ITEMS', 5);
 
 define('CFG_GOOGLE_MAP_API', 	'AIzaSyDG9QTLb37UFy2pxXyo5k6gz5eOt6ohrko');
+
+$server = JRequest::get('server');
+
+define('CFG_REQUEST_URI', 'http://' . $server['HTTP_HOST'].$server['REQUEST_URI']);

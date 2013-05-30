@@ -89,6 +89,13 @@ class NtripTablePromotion extends JTable
 				$this->created_by = $user->get('id');
 			}
 			
+			// Verify that the alias is unique
+			$table = JTable::getInstance('Promotion', 'NtripTable');
+			if ($table->load(array('alias'=>$this->alias, 'catid'=>$this->catid)) && ($table->id != $this->id || $this->id==0)) {
+				$this->setError(JText::_('COM_NTRIP_ERROR_UNIQUE_ALIAS'));
+				return false;
+			}
+			
 			// Store the row
 			parent::store($updateNulls);
 		}
@@ -108,7 +115,7 @@ class NtripTablePromotion extends JTable
 			// Verify that the alias is unique
 			$table = JTable::getInstance('Promotion', 'NtripTable');
 			if ($table->load(array('alias'=>$this->alias, 'catid'=>$this->catid)) && ($table->id != $this->id || $this->id==0)) {
-				$this->setError(JText::_('COM_BANNERS_ERROR_UNIQUE_ALIAS'));
+				$this->setError(JText::_('COM_NTRIP_ERROR_UNIQUE_ALIAS'));
 				return false;
 			}
 

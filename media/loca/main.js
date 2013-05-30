@@ -86,7 +86,8 @@ jQuery(function($){
 				idleMode: 'hover',
 				idleSpeed: 500,
 				fullscreenTransition: false,
-				trueFullscreen: false
+				trueFullscreen: false,
+				_showFullscreen: false
 			});
 
 		Galleria.run('#galleria');

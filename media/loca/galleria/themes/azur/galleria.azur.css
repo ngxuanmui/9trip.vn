@@ -336,3 +336,5 @@ body .galleria-tooltip {
     left: 28px;
 }
 
+.galleria-fullscreen { display: none; }
+.galleria-play { border-right: none; outline: none; }
