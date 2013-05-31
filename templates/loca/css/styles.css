@@ -1141,3 +1141,5 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .fb-like { z-index: 1000; }
 
 .breadcrumbs { padding: 10px 0 0; }
+
+#menu-holder { display: block; width: 960px; height: 200px; }

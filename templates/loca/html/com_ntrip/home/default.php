@@ -3,6 +3,8 @@
 defined('_JEXEC') or die;
 ?>
 
+<div id="menu-holder"></div>
+
 
 	<div id="top-adv">
 		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
@@ -25,16 +27,19 @@ defined('_JEXEC') or die;
 			// rebuild array to display as slider
 			foreach ($children as $child)
 			{
-				$sub[] = $child;
-
-				if ( (( ($i + 1) % $numberOfSlide == 0) && $i > 0) || ($i == count($children) - 1) )
+				if ($child->featured == 1)
+					$subCat[] = $child;
+				else
 				{
-					$subCat[] = $sub;
-					$sub = array();
+					$sib = $child->getChildren();
+					
+					// loop over sib
+					foreach ($sib as $sibItem)
+					{
+						if ($sibItem->featured == 1)
+							$subCat[] = $sibItem;
+					}
 				}
-
-				$i ++;
-
 			}
 
 		//	var_dump($subCat);
@@ -45,11 +50,10 @@ defined('_JEXEC') or die;
 			</div>
 			
 			<div class="tour-container">
-				<ul class="slider-<?php echo $item->id; ?>">				
-					<?php foreach ($subCat as $sub): ?>
+				<ul class="slider-<?php echo $item->id; ?>">	
 					<li>
 						<?php 
-						foreach ($sub as $subItem): 
+						foreach ($subCat as $subItem): 
 							
 						?>
 						<div class="tour-content">
@@ -72,7 +76,6 @@ defined('_JEXEC') or die;
 						</div>
 						<?php endforeach; ?>
 					</li>
-					<?php endforeach; ?>
 				</ul>
 			</div>
 			<div class="clear"></div>

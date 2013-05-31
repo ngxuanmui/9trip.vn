@@ -68,6 +68,9 @@ $saveOrder 	= ($listOrder == 'a.lft' && $listDirn == 'asc');
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.published', $listDirn, $listOrder); ?>
 				</th>
+				<th width="5%">
+					<?php echo JHtml::_('grid.sort', 'JFEATURED', 'a.featured', $listDirn, $listOrder, NULL, 'desc'); ?>
+				</th>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ORDERING', 'a.lft', $listDirn, $listOrder); ?>
 					<?php if ($saveOrder) :?>
@@ -127,6 +130,9 @@ $saveOrder 	= ($listOrder == 'a.lft' && $listDirn == 'asc');
 					</td>
 					<td class="center">
 						<?php echo JHtml::_('jgrid.published', $item->published, $i, 'categories.', $canChange);?>
+					</td>
+					<td class="center">
+					    <?php echo JHtml::_('categoryadministrator.featured', $item->featured, $i, $canChange); ?>
 					</td>
 					<td class="order">
 						<?php if ($canChange) : ?>

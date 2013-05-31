@@ -24,6 +24,12 @@ abstract class AbsNtripModelItems extends JModelList
 		
 		$loc = JFactory::getSession()->get('loca_location');
 		$this->setState('filter.location', $loc);
+		
+		$value = JRequest::getUInt('limit', 10);
+		$this->setState('list.limit', $value);
+		
+		$value = JRequest::getUInt('limitstart', 0);
+		$this->setState('list.start', $value);
 	}
 
 	protected function _query($type = 'hotels') 

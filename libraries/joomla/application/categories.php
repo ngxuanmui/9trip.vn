@@ -471,6 +471,14 @@ class JCategoryNode extends JObject
 	 * @since  11.1
 	 */
 	public $published = null;
+	
+	/**
+	 * The featured status of the category
+	 *
+	 * @var    boolean
+	 * @since  11.1
+	 */
+	public $featured = null;
 
 	/**
 	 * Whether the category is or is not checked out
@@ -768,6 +776,7 @@ class JCategoryNode extends JObject
 		if (!$this->_allChildrenloaded)
 		{
 			$temp = $this->_constructor->get($this->id, true);
+			
 			if ($temp)
 			{
 				$this->_children = $temp->getChildren();

@@ -1,10 +1,21 @@
 <?php
 // No direct access.
 defined('_JEXEC') or die;
+
+$homePage = false;
+
+$app = JFactory::getApplication();
+
+$menu = $app->getMenu();
+
+if ($menu->getActive() == $menu->getDefault()) 
+	$homePage = true;
 ?>
 
+<?php if (!$homePage): ?>
 <script type="text/javascript">
 <!--
+
 jQuery(function($){
 	  $('li.loca-location-container').hover(function () {
 	     clearTimeout($.data(this, 'timer'));
@@ -17,6 +28,7 @@ jQuery(function($){
 	});
 //-->
 </script>
+<?php endif; ?>
 
 <div class="menu-container">
 	<ul class="main-menu">
@@ -32,7 +44,7 @@ jQuery(function($){
 				
 			</a>
 
-			<ul class='show-locations absolute'>
+			<ul class='show-locations absolute' <?php if ($homePage):?>style="display: block;"<?php endif; ?>>
 				<li>
 					<?php echo LocaHelper::renderModulesOnPosition('dia-danh-mien-bac'); ?>
 				</li>

@@ -48,6 +48,7 @@ function NtripBuildRoute(&$query)
 	$arrViewKeys = array_keys($arrViews);
 	
 	$segments	= array();
+	
 
 	// get a menu item based on Itemid or currently active
 	$app		= JFactory::getApplication();
@@ -63,6 +64,17 @@ function NtripBuildRoute(&$query)
 	else {
 		$menuItem = $menu->getItem($query['Itemid']);
 		$menuItemGiven = true;
+	}
+	
+	if (isset($query['limitstart']))
+		unset($query['limitstart']);
+	
+	if (isset($query['start']))
+	{
+		$limit = JRequest::getInt('limit');
+		
+		$segments[] = 'page-'.$limit.$query['start'];
+		unset($query['start']);
 	}
 
 	if (isset($query['view'])) {
