@@ -13,3 +13,6 @@ define('CFG_GOOGLE_MAP_API', 	'AIzaSyDG9QTLb37UFy2pxXyo5k6gz5eOt6ohrko');
 $server = JRequest::get('server');
 
 define('CFG_REQUEST_URI', 'http://' . $server['HTTP_HOST'].$server['REQUEST_URI']);
+
+/* config limit for each type */
+define('CFG_LIMIT_DISCOVERY', 5);

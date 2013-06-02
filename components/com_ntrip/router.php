@@ -73,12 +73,16 @@ function NtripBuildRoute(&$query)
 	{
 		$limit = JRequest::getInt('limit');
 		
-		$segments[] = 'page-'.$limit.$query['start'];
+		$page = $limit > 0 ? round($query['start'] / $limit) + 1 : 1;
+		
+		$segments[] = 'page-'.$page;
+		
 		unset($query['start']);
 	}
 
 	if (isset($query['view'])) {
 		$view = $query['view'];
+		unset($query['view']);
 	}
 	else {
 		// we need to have a view in the query or it is an invalid URL
@@ -213,7 +217,7 @@ function NtripParseRoute($segments)
 	
 	$arrMapMenuAlias = array(
 			'khuyen-mai' => 'promotion', 
-			'kham-pha' => 'discover', 
+			'kham-pha' => array('item' => 'discover', 'items' => 'discovers', 'limit' => CFG_LIMIT_DISCOVERY),
 			'khach-san' => 'hotel',
 			'canh-bao' => 'warning',
 			'nha-hang' => 'restaurant',
@@ -247,7 +251,7 @@ function NtripParseRoute($segments)
 		return $vars;
 	}
 	
-// 	var_dump($count, $item); die;
+// 	var_dump($count, $segments, $item); die;
 
 	// if there is only one segment, then it points to either an discover or a category
 	// we test it first to see if it is a category.  If the id and alias match a category
@@ -266,7 +270,7 @@ function NtripParseRoute($segments)
 		}
 		
 		list($id, $alias) = explode(':', $segments[0], 2);
-
+		
 		// first we check if it is a category
 		$category = JCategories::getInstance('Ntrip')->get($id);
 		
@@ -302,27 +306,48 @@ function NtripParseRoute($segments)
 		$cat_id = (int)$segments[0];
 
 		$item_id = (int)$segments[$count - 1];
+		
+		$urlParam = getParams($itemMenu->link);
+		
+// 		var_dump($urlParam); die;
 
+		$vars['view'] = $urlParam['view'];
+		
 		if ($item_id > 0) {
-			if (isset($arrMapMenuAlias[$itemMenu->alias]))
-				$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
-			else
-			{
-				$query = "SELECT alias FROM #__menu WHERE id = " . $item->parent_id;
-				$db->setQuery($query);
+// 			if (isset($arrMapMenuAlias[$itemMenu->alias]['item']))
+// 				$vars['view'] = $arrMapMenuAlias[$itemMenu->alias]['item'];
+// 			else
+// 			{
+// 				$query = "SELECT alias FROM #__menu WHERE id = " . $item->parent_id;
+// 				$db->setQuery($query);
 				
-				$tmp = $db->loadResult();
+// 				$tmp = $db->loadResult();
 				
-				$vars['view'] = $arrMapMenuAlias[$tmp];
+// 				$vars['view'] = $arrMapMenuAlias[$tmp];
 				
-				if (isset($item->custom_field))
-					$vars['custom_field'] = $item->custom_field;
-			}
+				
+// 			}
+
+			
+			if (isset($item->custom_field))
+				$vars['custom_field'] = $item->custom_field;
+			
 			$vars['catid'] = $cat_id;
 			$vars['id'] = $item_id;
 		} else {
-			$vars['view'] = 'category';
-			$vars['id'] = $cat_id;
+			if (strpos($segments[0], 'page') !== false)
+			{
+				list($page, $pageVal) = explode(':', $segments[0]);
+				
+				$vars['limitstart'] = $arrMapMenuAlias[$itemMenu->alias]['limit'] * ($pageVal - 1);
+				
+// 				$vars['view'] = $arrMapMenuAlias[$itemMenu->alias]['items'];
+			}
+			else
+			{
+// 				$vars['view'] = 'category';
+				$vars['id'] = $cat_id;
+			}
 		}
 
 		return $vars;
@@ -384,4 +409,24 @@ function NtripParseRoute($segments)
 	}
 
 	return $vars;
+}
+
+function getParams($str)
+{
+	$tmp = explode('?', $str);
+	
+	$tmp = explode('&', $tmp[1]);
+	
+	$param = array();
+	
+	foreach ($tmp as $var)
+	{
+		$tmp_1 = explode('=', $var);
+		
+		$varName = $tmp_1[0];
+		
+		$param[$varName] = $tmp_1[1];
+	}
+	
+	return $param;
 }
