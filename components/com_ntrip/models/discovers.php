@@ -20,8 +20,10 @@ class NtripModelDiscovers extends AbsNtripModelItems
 	{
 		parent::populateState($ordering, $direction);
 		
-		$this->setState('list.limit', 5);
+		$limit = CFG_LIMIT_DISCOVERS;
 		
-		JRequest::setVar('limit', 5);
+		$this->setState('list.limit', $limit);
+		
+		JRequest::setVar('limit', $limit);
 	}
 }

@@ -15,4 +15,15 @@ class NtripModelRestaurants extends AbsNtripModelItems
 		
 		return $rs;
 	}
+	
+	protected function populateState($ordering = null, $direction = null)
+	{
+		parent::populateState($ordering, $direction);
+	
+		$limit = CFG_LIMIT_RESTAURANTS;
+	
+		$this->setState('list.limit', $limit);
+	
+		JRequest::setVar('limit', $limit);
+	}
 }

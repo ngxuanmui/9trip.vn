@@ -20,6 +20,10 @@ class NtripModelPromotions extends AbsNtripModelItems
 	{
 		parent::populateState($ordering, $direction);
 		
-		$this->setState('list.limit', 12);
+		$limit = CFG_LIMIT_PROMOTIONS;
+		
+		$this->setState('list.limit', $limit);
+		
+		JRequest::setVar('limit', $limit);
 	}
 }

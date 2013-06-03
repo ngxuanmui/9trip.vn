@@ -20,6 +20,10 @@ class NtripModelRelaxes extends AbsNtripModelItems
 	{
 		parent::populateState($ordering, $direction);
 		
-		$this->setState('list.limit', 5);
+		$limit = CFG_LIMIT_RELAXES;
+		
+		$this->setState('list.limit', $limit);
+		
+		JRequest::setVar('limit', $limit);
 	}
 }

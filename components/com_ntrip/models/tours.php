@@ -16,10 +16,14 @@ class NtripModelTours extends AbsNtripModelItems
 		return $rs;
 	}
 	
-	protected function populateState($ordering = null, $direction = null) 
+	protected function populateState($ordering = null, $direction = null)
 	{
 		parent::populateState($ordering, $direction);
-		
-		$this->setState('list.limit', 5);
+	
+		$limit = CFG_LIMIT_TOURS;
+	
+		$this->setState('list.limit', $limit);
+	
+		JRequest::setVar('limit', $limit);
 	}
 }

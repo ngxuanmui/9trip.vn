@@ -13,7 +13,7 @@ $fields = $this->fields;
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-main-item">
-			<label>Tham quan <?php echo $this->category->title; ?> </label>
+			<label>Tham quan <?php echo $this->category->title != 'ROOT' ? $this->category->title : ''; ?> </label>
 			<span class="icons quote fltlft"></span>
 			<span class="fltlft tour-quote">
 				Nếu phần tham quan của bạn chưa có trên Loca.vn, hãy tạo mới ngay
@@ -47,7 +47,7 @@ $fields = $this->fields;
 						<img src="<?php echo $item->images; ?>" />
 					</div>
 					<div class="content">
-						<b>Xếp hạng:</b> tham quan ở <?php echo $this->category->title; ?> <br/>
+						<b>Xếp hạng:</b> tham quan <?php echo $this->category->title != 'ROOT' ? $this->category->title : ''; ?> <br/>
 						<div class="clear"></div>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
 						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>

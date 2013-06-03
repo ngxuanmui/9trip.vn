@@ -313,6 +313,56 @@ function NtripParseRoute($segments)
 
 		$vars['view'] = $urlParam['view'];
 		
+		$viewItem = '';
+		
+		switch ($vars['view'])
+		{
+			case 'discovers':
+				$limit = CFG_LIMIT_DISCOVERS;
+				$viewItem = 'discover';
+				break;
+			case 'hotels':
+				$limit = CFG_LIMIT_HOTELS;
+				$viewItem = 'hotel';
+				break;
+			case 'restaurants':
+				$limit = CFG_LIMIT_RESTAURANTS;
+				$viewItem = 'restaurant';
+				break;
+			case 'relaxes':
+				$limit = CFG_LIMIT_RELAXES;
+				$viewItem = 'relax';
+				break;
+			case 'tours':
+				$limit = CFG_LIMIT_TOURS;
+				$viewItem = 'tour';
+				break;
+			case 'shoppings':
+				$limit = CFG_LIMIT_SHOPPINGS;
+				$viewItem = 'shopping';
+				break;
+			case 'services':
+				$limit = CFG_LIMIT_SERVICES;
+				$viewItem = 'service';
+				break;
+			case 'promotions':
+				$limit = CFG_LIMIT_PROMOTIONS;
+				$viewItem = 'promotion';
+				break;
+			case 'questions':
+				$limit = CFG_LIMIT_QUESTIONS;
+				$viewItem = 'question';
+				break;
+			case 'warnings':
+				$limit = CFG_LIMIT_WARNINGS;
+				$viewItem = 'warning';
+				break;
+			case 'albums':
+				$limit = CFG_LIMIT_ALBUMS;
+				$viewItem = 'album';
+				break;
+		}
+		
 		if ($item_id > 0) {
 // 			if (isset($arrMapMenuAlias[$itemMenu->alias]['item']))
 // 				$vars['view'] = $arrMapMenuAlias[$itemMenu->alias]['item'];
@@ -328,6 +378,8 @@ function NtripParseRoute($segments)
 				
 // 			}
 
+			$vars['view'] = $viewItem;
+
 			
 			if (isset($item->custom_field))
 				$vars['custom_field'] = $item->custom_field;
@@ -339,7 +391,7 @@ function NtripParseRoute($segments)
 			{
 				list($page, $pageVal) = explode(':', $segments[0]);
 				
-				$vars['limitstart'] = $arrMapMenuAlias[$itemMenu->alias]['limit'] * ($pageVal - 1);
+				$vars['limitstart'] = $limit * ($pageVal - 1);
 				
 // 				$vars['view'] = $arrMapMenuAlias[$itemMenu->alias]['items'];
 			}
