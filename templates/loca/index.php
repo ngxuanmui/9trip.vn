@@ -133,7 +133,14 @@ $this->setGenerator('Loca.vn');
 					Số điện thoại: 09123456789 / Fax: 043 216 363 <br />
 					Email: local-travel@gmail.com
 				</div>
-				<div class="bottom-logo"></div>
+				<div class="bottom-logo">
+					<a
+						href="http://www.dmca.com/Protection/Status.aspx?ID=fb933b64-9581-43aa-b455-16a03df750da"
+						title="DMCA"> <img
+						src="http://images.dmca.com/Badges/DMCA_logo-green150w.png?ID=fb933b64-9581-43aa-b455-16a03df750da"
+						alt="DMCA.com" />
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
