@@ -32,7 +32,7 @@ class NtripViewWarnings extends JViewLegacy
 		$this->_prepareDocument();
 		
 		// update gmap info
-		NtripFrontHelper::updateGmapInfo($this->item->id, 'warnings', $this->item->address);
+// 		NtripFrontHelper::updateGmapInfo($this->item->id, 'warnings', $this->item->address);
 
 		parent::display($tpl);
 	}

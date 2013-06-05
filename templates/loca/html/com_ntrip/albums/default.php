@@ -38,7 +38,14 @@ $fields = $this->fields;
 	
 		<div class="items">
 			<ul class="list-albums">
-				<?php foreach ($this->items as $key => $item): ?>
+				<?php 
+				foreach ($this->items as $key => $item):
+					
+					$item->slug = $item->id . ':' . $item->alias;
+					$view = 'album';
+					
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view));
+				?>
 				<li <?php if (($key + 1) % 3 == 0) echo 'class="last-item"'; ?>>
 					<div class="img">
 						<img src="<?php echo $item->images; ?>" />
@@ -46,7 +53,7 @@ $fields = $this->fields;
 					</div>
 
 					<h2 class="title-album">
-						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=album&id=' . $item->id . ':' . $item->alias, false); ?>">
+						<a href="<?php echo $link; ?>">
 							<?php echo $item->name; ?>
 						</a>
 					</h2>

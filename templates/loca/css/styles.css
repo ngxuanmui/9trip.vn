@@ -359,7 +359,7 @@ ul#menu-bottom li a {
 }
 .bottom-logo {
 	float: right;
-	background: url("../images/logo.png") bottom left no-repeat;
+	/* background: url("../images/logo.png") bottom left no-repeat; */
 	width: 194px;
 	height: 81px;
 }
@@ -1143,3 +1143,5 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .breadcrumbs { padding: 10px 0 0; }
 
 #menu-holder { display: block; width: 960px; height: 200px; }
+
+.loca-social-tourist li { padding: 5px 0; }
