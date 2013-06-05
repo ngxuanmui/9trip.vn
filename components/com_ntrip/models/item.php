@@ -119,7 +119,7 @@ abstract class AbsNtripModelItem extends JModelItem
 		$query->select('*')
 				->from('#__ntrip_images')
 				->where('item_type = "' . $type . '"')
-				->where('item_id = ' . $item->id)
+				->where('item_id = ' . (int) $item->id)
 				->order('id DESC');
 		
 		$db->setQuery($query);
@@ -144,9 +144,9 @@ abstract class AbsNtripModelItem extends JModelItem
 		
 		$query->select('*')
 				->from('#__ntrip_'. $type)
-				->where('id != ' . $item->id)
+				->where('id != ' . (int) $item->id)
 				->where('state = 1')
-				->where('catid = ' . $item->catid);
+				->where('catid = ' . (int) $item->catid);
 				
 		if (isset($item->type))
 				$query->where('type = "' . $item->type . '"');
