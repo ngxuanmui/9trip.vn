@@ -447,4 +447,49 @@ class NtripHelper
 			}
 		}
 	}
+	
+	public static function copyFilesOnSave($content = '', $type = 'hotels', $itemId = 0)
+	{
+		if(!$content || !$itemId)
+			return false;
+	
+		$date = date('Y') . DS . date('m') . DS . date('d');
+	
+		$dest = JPATH_ROOT . DS . 'images' . DS . 'loca_items' . DS . $type . DS . $itemId . DS;
+		@mkdir($dest, 0777, true);
+	
+		$doc=new DOMDocument();
+	
+		$doc->loadHTML($content);
+	
+		// just to make xpath more simple
+		$xml=simplexml_import_dom($doc);
+	
+		$images=$xml->xpath('//img');
+	
+		$tmpSearch = array();
+		$tmpReplace = array();
+	
+		foreach ($images as $img)
+		{
+			// Explode src to get file name
+			$imgSrc = explode('/', $img['src']);
+			
+			if($imgSrc[0] == 'tmp')
+			{
+				// Search & Replace
+				$tmpSearch[] = $img['src'];
+				$tmpReplace[] = 'images/loca_items/'.$type.'/' . $itemId . '/' . end($imgSrc);
+				
+				$src = str_replace('/', DS, JPATH_ROOT.'/'.$img['src']);
+				
+				JFile::copy($src, $dest.end($imgSrc));
+			}
+				
+		}
+	
+		$content = str_replace($tmpSearch, $tmpReplace, $content);
+	
+		return $content;
+	}
 }

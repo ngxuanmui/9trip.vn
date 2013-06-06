@@ -242,6 +242,12 @@ class NtripModelDiscover extends JModelAdmin
 			
 			$data['gmap_lat'] = $coordinates['lat'];
 			$data['gmap_long'] = $coordinates['long'];
+			
+			// update content
+			$content = NtripHelper::copyFilesOnSave($data['description'], 'discovers', $id);
+				
+			if ($content)
+				$data['description'] = $content;
 
 			return parent::save($data);
 	    }
