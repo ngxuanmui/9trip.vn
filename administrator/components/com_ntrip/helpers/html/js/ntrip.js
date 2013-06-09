@@ -5,7 +5,7 @@ jQuery(function($){
 		changeLoc($(this).val());
 	});
 	
-	if (typeof ITEM_TYPE != 'undefined')
+	if (typeof ITEM_TYPE != 'undefined' && typeof EXTENSION != 'undefined')
 		changeLoc($('#jform_catid').val());
 	
 //	$('#jform_select_type').change(function(){

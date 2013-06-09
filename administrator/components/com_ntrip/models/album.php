@@ -243,6 +243,12 @@ class NtripModelAlbum extends JModelAdmin
 			$data['gmap_lat'] = $coordinates['lat'];
 			$data['gmap_long'] = $coordinates['long'];
 			
+			// update content
+			$content = NtripHelper::copyFilesOnSave($data['description'], 'albums', $id);
+				
+			if ($content)
+				$data['description'] = $content;
+			
 			//TODO: Update count location
 //			NtripHelper::updateCountLocations('albums');
 			
