@@ -29,7 +29,6 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 
 <div class="xitem-container social-info">
 	<div class="fltlft">
-		<?php /*
 		<div class="fltlft">
 			<?php if ($userGuest): ?>
 			<a class="like modal user-not-login" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component'); ?>" rel="{handler: 'iframe', size: {x: 340, y: 260}, onClose: function() {}}"> Thích</a>
@@ -39,9 +38,8 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 			
 			 <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
 		</div>
-		*/ ?>
 		 
-		<div class="fltlft" style="margin-right: 10px;">
+		<div class="fltlft" style="margin-right: 10px; height: 20px; width: 75px; display: block; border: 0px solid;">
 			<div class="fb-like" data-href="<?php echo CFG_REQUEST_URI; ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 		</div>
 		 

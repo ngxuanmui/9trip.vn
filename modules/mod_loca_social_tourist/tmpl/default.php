@@ -14,13 +14,7 @@ defined('_JEXEC') or die;
 	<div class="promotion-bar">Mạng xã hội du lịch Loca</div>
 	
 	<ul class="loca-social-tourist">
-		<li>
-			<iframe
-				src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Floca.vn&amp;send=false&amp;layout=standard&amp;width=280&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=80&amp;appId=168811933136502"
-				scrolling="no" frameborder="0"
-				style="border: none; overflow: hidden; width: 280px; height: 80px;"
-				allowTransparency="true"></iframe>
-		</li>
+		
 		<li>
 			<!-- Place this tag where you want the +1 button to render. -->
 			<div class="g-plusone" data-annotation="inline" data-width="280" data-href="loca.vn"></div>
@@ -36,14 +30,16 @@ defined('_JEXEC') or die;
 			  })();
 			</script>
 		</li>
+		<?php /*
 		<li>
 			<iframe
-				src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Floca.vn&amp;send=false&amp;layout=standard&amp;width=280&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=80&amp;appId=168811933136502"
+				src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Floca.vn&amp;send=false&amp;layout=standard&amp;width=280&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=80&amp;appId=168811933136502"
 				scrolling="no" frameborder="0"
-				style="border: none; overflow: hidden; width: 280px; height: 80px;"
+				style="border: none; overflow: hidden; width: 280px; height: 30px;"
 				allowTransparency="true"></iframe>
 		</li>
-		<li>
+		*/ ?>
+		<li class="no-padding">
 			<!-- Place this tag where you want the badge to render. -->
 			<div class="g-plus" data-height="69" data-href="https://plus.google.com/101777000034848428737" data-rel="publisher"></div>
 			
@@ -57,6 +53,13 @@ defined('_JEXEC') or die;
 			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 			  })();
 			</script>
+		</li>
+		<li>
+			<iframe
+				src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2Floca.vn&amp;send=false&amp;layout=standard&amp;width=280&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=80&amp;appId=168811933136502"
+				scrolling="no" frameborder="0"
+				style="border: none; overflow: hidden; width: 280px; height: 70px;"
+				allowTransparency="true"></iframe>
 		</li>
 	</ul>
 		

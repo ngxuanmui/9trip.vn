@@ -148,8 +148,8 @@ ul.main-menu > li > a:hover {
     padding: 10px 0;
 }
 #right-content {
-    width: 295px;
-    margin-left: 15px;
+    width: 300px;
+    margin-left: 10px;
     float: right;
 }
 #left-content {
@@ -1009,7 +1009,7 @@ table.list-user-hotels tr.oven, table.list-user-hotels tr.row1{
 	top: 40px; 
 	left: -97px; 
 	width: 960px; 
-	z-index: 10; 
+	z-index: 10000; 
 	border: 0px solid #CCC; 
 	display: none; 
 	-moz-box-shadow: 0px 1px 10px #333;
@@ -1142,6 +1142,7 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 
 .breadcrumbs { padding: 10px 0 0; }
 
-#menu-holder { display: block; width: 960px; height: 200px; }
+#menu-holder { display: block; width: 960px; height: 185px; }
 
-.loca-social-tourist li { padding: 5px 0; }
+.loca-social-tourist li { padding: 5px 10px; }
+.loca-social-tourist li.no-padding { padding: 5px 0; }

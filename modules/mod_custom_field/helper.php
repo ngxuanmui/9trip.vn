@@ -58,7 +58,8 @@ class modCustomFieldHelper
 				->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$location.')')
 //				->where('parent_id IN (SELECT category_id FROM #__category_location WHERE locations = '.$location.')', 'OR')
 				->where('extension = "com_ntrip.'.$type.'"')
-				->where('published = 1');
+				->where('published = 1')
+				->order('ordering');
 		
 //		echo str_replace('#__', 'jos_', $query);
 		
