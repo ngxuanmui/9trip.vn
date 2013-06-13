@@ -20,6 +20,10 @@ class NtripControllerUploadFile extends JController
 		$tmpImagesDir = JPATH_ROOT . DS . 'tmp' . DS . $userId . DS . $sessionId . DS;
 		$tmpUrl = 'tmp/'.$userId.'/'.$sessionId.'/';
 
+		// unlink before create
+		@unlink($tmpImagesDir);
+		
+		// create folder
 		@mkdir($tmpImagesDir, 0777, true);
 
 		$uploadOptions = array(	'upload_dir' => $tmpImagesDir, 
