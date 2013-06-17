@@ -41,7 +41,9 @@ $fields = $this->fields;
 				?>
 				<li <?php if (($key + 1) % 3 == 0) echo 'class="last"'; ?>>
 					<div class="image">
-						<img src="<?php echo $item->images; ?>" />
+						<a class='promotion-title' href="<?php echo $link; ?>">
+							<img alt="<?php echo $item->alias; ?>" src="<?php echo $item->images; ?>" />
+						</a>
 					</div>
 					
 					<a class='promotion-title' href="<?php echo $link; ?>">

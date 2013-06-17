@@ -17,7 +17,11 @@ $linkId = ($id) ? '&id=' . $id : '';
 
 <ul class="custom-field">
 	<li>
-		<h1>Khách sạn</h1>
+		<h1>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('hotels')); ?>">
+				Khách sạn
+			</a>
+		</h1>
 		<ul>
 			<?php foreach ($list['hotels'] as $hotelCustomField): ?>
 			<li>

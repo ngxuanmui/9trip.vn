@@ -62,7 +62,9 @@ $fields = $this->fields;
 					</div>
 
 					<div class="img">
-						<img src="<?php echo $item->images; ?>" />
+						<a href="<?php echo $link; ?>">
+							<img src="<?php echo $item->images; ?>" />
+						</a>
 					</div>
 
 					<div class="description"><?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?></div>

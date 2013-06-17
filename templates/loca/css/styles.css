@@ -1146,3 +1146,9 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 
 .loca-social-tourist li { padding: 5px 10px; }
 .loca-social-tourist li.no-padding { padding: 5px 0; }
+
+.bottom-links > li { float: left; width: 150px; margin-right: 10px; }
+.bottom-links > li:last-child { margin-right: 0; }
+.bottom-links li > span { font-weight: bold; }
+.bottom-links li ul { list-style: circle; padding: 0; list-style-position:inside; }
+.bottom-links li ul li { margin: 5px 0; }

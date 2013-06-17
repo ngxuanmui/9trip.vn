@@ -77,7 +77,10 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="item-container">
 			<ul class="album-container">
-				<?php foreach ($subChild as $key => $child): ?>
+				<?php 
+				foreach ($subChild as $key => $child): 
+					$link = JRoute::_(NtripHelperRoute::getCategoryRoute($child->id));
+				?>
 				<li <?php if ( ($key + 1) % 3 == 0 ) echo 'class="last-item"' ?>>
 					<div class="img album-img">
 						<?php
@@ -86,10 +89,12 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 
 							if ($image):
 						?>
-							<img src="<?php echo $image; ?>" />
+							<a href="<?php echo $link; ?>" class="bold">
+								<img src="<?php echo $image; ?>" />
+							</a>
 						<?php endif; ?>
 					</div>
-					<a href="<?php echo JRoute::_(NtripHelperRoute::getCategoryRoute($child->id)); ?>" class="bold">
+					<a href="<?php echo $link; ?>" class="bold">
 						<?php echo $child->title; ?>
 					</a>					
 				</li>
@@ -110,12 +115,17 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="item-container">
 			<ul>
-				<?php foreach ($items['discovers'] as $discover): ?>
+				<?php 
+				foreach ($items['discovers'] as $discover): 
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($discover->id, 'discover'));
+				?>
 				<li>
 					<div class="img">
-						<img src="<?php echo $discover->images; ?>" />
+						<a href="<?php echo $link; ?>">
+							<img src="<?php echo $discover->images; ?>" />
+						</a>
 					</div>
-					<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($discover->id, 'discover')); ?>">
+					<a href="<?php echo $link; ?>">
 						<?php echo $discover->name; ?>
 					</a>
 				</li>
@@ -135,12 +145,17 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="item-container">
 			<ul>
-				<?php foreach ($items['promotions'] as $promotion): ?>
+				<?php 
+				foreach ($items['promotions'] as $promotion): 
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($promotion->id, 'promotion'));
+				?>
 				<li>
 					<div class="img">
-						<img src="<?php echo $promotion->images; ?>" />
+						<a href="<?php echo $link; ?>">
+							<img src="<?php echo $promotion->images; ?>" />
+						</a>
 					</div>
-					<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($promotion->id, 'promotion')); ?>">
+					<a href="<?php echo $link; ?>">
 						<?php echo $promotion->name; ?>
 					</a>					
 				</li>

@@ -39,13 +39,18 @@ $fields = $this->fields;
 		<!-- List nha hang -->
 		<div class="list-main-items-content list-items">
 			<ul>
-				<?php foreach ($this->items as $item): ?>
+				<?php 
+				foreach ($this->items as $item): 
+					$link = JRoute::_('index.php?option=com_ntrip&view=relax&id=' . $item->id . ':' . $item->alias, false);
+				?>
 				<li>
-					<a class="title" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=relax&id=' . $item->id . ':' . $item->alias, false); ?>">
+					<a class="title" href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
 						<?php echo $item->name; ?>
 					</a>
 					<div class="img-container">
-						<img src="<?php echo $item->images; ?>" />
+						<a class="title" href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
+							<img alt="<?php echo $item->alias; ?>" src="<?php echo $item->images; ?>" />
+						</a>
 					</div>
 					<div class="content">
 						<b>Xếp hạng:</b> giải trí ở <?php echo $this->category->title; ?> <br/>

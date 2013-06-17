@@ -32,13 +32,19 @@ class plgSystemLocation extends JPlugin
 		$get = JRequest::get('get');	
 		
 		if (isset($get['option']) && $get['option'] == 'com_ntrip' && isset($get['view']) && $get['view'] == 'category' && $get['id'] > 0)
+		{
 			JFactory::getSession()->set('loca_location', $get['id']);
+		}
 		
 		$app = JFactory::getApplication();
 		
 		$menu = $app->getMenu();
 		
-		if ($menu->getActive() == $menu->getDefault())
+//		var_dump($menu->getActive()->id == $menu->getDefault()->id);
+		
+		if ($menu->getActive()->id === $menu->getDefault()->id)
+		{
 			JFactory::getSession()->set('loca_location', null);
+		}
 	}
 }

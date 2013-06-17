@@ -73,6 +73,10 @@ $this->setGenerator('Loca.vn');
 		<!-- footer -->
 		<div id="footer">
 			<div class="main-footer">
+				<jdoc:include type="modules" name="bottom-links" />
+				<?php 
+				
+				/*
 				<div class="tab">
 					<div class="title">Chuẩn bị</div>
 					<div class="list-content">
@@ -84,35 +88,13 @@ $this->setGenerator('Loca.vn');
 						<a href="">An toàn thực phẩm</a>
 					</div>
 				</div>
-				<div class="tab">
-					<div class="title">Trải nghiệm</div>
-					<div class="list-content">
-						<a href="">Chuẩn bị trước chuyến đi</a>
-						<a href="">Chăm sóc sức khỏe</a>
-						<a href="">Du lịch an toàn</a>
-						<a href="">Thiết bị hỗ trợ</a>
-						<a href="">Phương tiện di chuyển</a>
-						<a href="">An toàn thực phẩm</a>
-					</div>
-				</div>
-				<div class="tab" style="padding-right: 0;">
-					<div class="title">Chia sẻ</div>
-					<div class="list-content">
-						<a href="">Chuẩn bị trước chuyến đi</a>
-						<a href="">Chăm sóc sức khỏe</a>
-						<a href="">Du lịch an toàn</a>
-						<a href="">Thiết bị hỗ trợ</a>
-						<a href="">Phương tiện di chuyển</a>
-						<a href="">An toàn thực phẩm</a>
-					</div>
-				</div>
+				 */ ?>
 				<div class="clear"></div>
 			</div>
 		</div>
 
 		<!-- bottom -->
 		<div id="bottom">
-			<div class="display-all">Hiển thị toàn bộ</div>
 			<div class="separate-bottom"></div>
 			<div class="menu-bottom-containter">
 				<ul id="menu-bottom">

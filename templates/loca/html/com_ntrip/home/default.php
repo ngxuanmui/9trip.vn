@@ -54,7 +54,7 @@ defined('_JEXEC') or die;
 					<li>
 						<?php 
 						foreach ($subCat as $subItem): 
-							
+							$link = JRoute::_(NtripHelperRoute::getCategoryRoute($subItem->id));
 						?>
 						<div class="tour-content">
 							<div class="img-block">
@@ -64,11 +64,13 @@ defined('_JEXEC') or die;
 
 									if ($image):
 								?>
-									<img src="<?php echo $image; ?>" />
+									<a href="<?php echo $link; ?>">
+										<img src="<?php echo $image; ?>" />
+									</a>
 								<?php endif; ?>
 							</div>
 							<div class="title">
-								<a href="<?php echo JRoute::_(NtripHelperRoute::getCategoryRoute($subItem->id)); ?>">
+								<a href="<?php echo $link; ?>">
 									<?php echo $subItem->title; ?>
 								</a>
 							</div>

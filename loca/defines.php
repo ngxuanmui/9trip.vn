@@ -26,3 +26,4 @@ define('CFG_LIMIT_PROMOTIONS', 12);
 define('CFG_LIMIT_QUESTIONS', 5);
 define('CFG_LIMIT_WARNINGS', 5);
 define('CFG_LIMIT_ALBUMS', 5);
+define('CFG_LIMIT_DISCOVERY' , 5);

@@ -62,13 +62,18 @@ $criteria = explode(',', JRequest::getString('criteria'));
 		<!-- List nha hang -->
 		<div class="list-main-items-content list-items">
 			<ul>
-				<?php foreach ($this->items as $item): ?>
+				<?php 
+				foreach ($this->items as $item): 
+					$link = JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false);
+				?>
 				<li>
-					<a class="title" href="<?php echo JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false); ?>">
+					<a class="title" href="<?php echo $link; ?>">
 						<?php echo $item->name; ?>
 					</a>
 					<div class="img-container">
-						<img src="<?php echo $item->images; ?>" />
+						<a class="title" href="<?php echo $link; ?>">
+							<img src="<?php echo $item->images; ?>" />
+						</a>
 					</div>
 					<div class="content">
 						<b>Xếp hạng:</b> Khách sạn ở <?php echo $this->category->title; ?><br/>

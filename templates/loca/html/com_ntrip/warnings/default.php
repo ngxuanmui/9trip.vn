@@ -41,10 +41,13 @@ $fields = $this->fields;
 		
 		<div class="items">
 			<ul class="list-warnings list-items">
-				<?php foreach ($this->items as $item): ?>
+				<?php 
+				foreach ($this->items as $item): 
+					$link = JRoute::_('index.php?option=com_ntrip&view=warning&id=' . $item->id . ':' . $item->alias, false);
+				?>
 				<li>
 					<h2>
-						<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=warning&id=' . $item->id . ':' . $item->alias, false); ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
 							<?php echo $item->name; ?>
 						</a>
 					</h2>
@@ -57,7 +60,9 @@ $fields = $this->fields;
 					</div>
 
 					<div class="img">
-						<img src="<?php echo $item->images; ?>" />
+						<a href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
+							<img src="<?php echo $item->images; ?>" alt="<?php echo $item->alias; ?>" />
+						</a>
 					</div>
 
 					<div class="description"><?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?></div>
