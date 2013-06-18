@@ -169,8 +169,6 @@ class NtripFrontHelper
 	
 	public function getMetaData($item, $field = 'name')
 	{
-		var_dump($item);
-		
 		$app	= JFactory::getApplication();
 		
 		//get current location
