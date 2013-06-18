@@ -42,9 +42,9 @@ class plgSystemLocation extends JPlugin
 		
 //		var_dump($menu->getActive()->id == $menu->getDefault()->id);
 		
-		if ($menu->getActive()->id === $menu->getDefault()->id)
-		{
-			JFactory::getSession()->set('loca_location', null);
-		}
+		//if ($menu->getActive()->id === $menu->getDefault()->id)
+		//{
+//			JFactory::getSession()->set('loca_location', null);
+		//}
 	}
 }

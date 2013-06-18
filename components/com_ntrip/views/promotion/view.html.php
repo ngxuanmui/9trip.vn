@@ -30,7 +30,9 @@ class NtripViewPromotion extends JViewLegacy
 		$this->_prepareDocument();
 		
 		// update gmap info
-		NtripFrontHelper::updateGmapInfo($this->item->id, 'promotions', $this->item->address);
+//		NtripFrontHelper::updateGmapInfo($this->item->id, 'promotions', $this->item->address);
+		
+		$this->_prepareDocument();
 
 		parent::display($tpl);
 	}
@@ -40,6 +42,8 @@ class NtripViewPromotion extends JViewLegacy
 	 */
 	protected function _prepareDocument()
 	{
+		$item = $this->item;
 		
+		NtripFrontHelper::getMetaData($item);
 	}
 }

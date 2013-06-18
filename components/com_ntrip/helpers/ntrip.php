@@ -166,4 +166,28 @@ class NtripFrontHelper
 		
 		return $avatar;
 	}
+	
+	public function getMetaData($item, $field = 'name')
+	{
+		var_dump($item);
+		
+		$app	= JFactory::getApplication();
+		
+		//get current location
+		$loc = JFactory::getSession()->get('loca_location');
+		
+		$cat = JCategories::getInstance('ntrip', array('extension' => 'com_ntrip', 'table' => ''));
+		
+		$doc = JFactory::getDocument();
+		
+		$moreTitle = ' | Du lịch ' . $cat->get($item->catid)->title . ' | Mạng xã hội du lịch Loca';
+		
+		$doc->setTitle($item->$field . $moreTitle);
+		
+		if ($item->metakey)
+			$doc->setMetaData ('Keywords', $item->metakey);
+		
+		if ($item->metadesc)
+			$doc->setDescription ($item->metadesc);
+	}
 }

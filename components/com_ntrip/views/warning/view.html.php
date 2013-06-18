@@ -37,6 +37,8 @@ class NtripViewWarning extends JViewLegacy
 	 */
 	protected function _prepareDocument()
 	{
+		$item = $this->item;
 		
+		NtripFrontHelper::getMetaData($item);
 	}
 }

@@ -40,6 +40,8 @@ class NtripViewTour extends JViewLegacy
 	 */
 	protected function _prepareDocument()
 	{
+		$item = $this->item;
 		
+		NtripFrontHelper::getMetaData($item);
 	}
 }

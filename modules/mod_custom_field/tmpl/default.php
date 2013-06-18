@@ -32,7 +32,11 @@ $linkId = ($id) ? '&id=' . $id : '';
 			<?php endforeach; ?>
 		</ul>
 		<div class="clr"></div>
-		<h1>Dịch vụ</h1>
+		<h1>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('services')); ?>">
+				Dịch vụ
+			</a>
+		</h1>
 		<ul>
 			<?php foreach ($list['services'] as $serviceCustomField): ?>
 			<li>				
@@ -44,7 +48,11 @@ $linkId = ($id) ? '&id=' . $id : '';
 		</ul>
 	</li>
 	<li>
-		<h1>Nhà hàng</h1>
+		<h1>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('restaurants')); ?>">
+				Nhà hàng
+			</a>
+		</h1>
 		<ul>
 			<?php foreach ($list['restaurants'] as $resCustomField): ?>
 			<li>
@@ -55,7 +63,11 @@ $linkId = ($id) ? '&id=' . $id : '';
 			<?php endforeach; ?>
 		</ul>
 		<div class="clr"></div>
-		<h1>Mua sắm</h1>
+		<h1>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('shoppings')); ?>">
+				Mua sắm
+			</a>
+		</h1>
 		<ul>
 			<?php foreach ($list['shoppings'] as $shoppingCustomField): ?>
 			<li>
@@ -67,7 +79,11 @@ $linkId = ($id) ? '&id=' . $id : '';
 		</ul>
 	</li>
 	<li>
-		<h1>Tham quan</h1>
+		<h1>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('tours')); ?>">
+				Tham quan
+			</a>
+		</h1>
 		<ul>
 			<?php foreach ($list['tours'] as $tourCustomField): ?>
 			<li>
@@ -78,7 +94,11 @@ $linkId = ($id) ? '&id=' . $id : '';
 			<?php endforeach; ?>
 		</ul>
 		<div class="clr"></div>
-		<h1>Giải trí</h1>
+		<h1>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('relaxes')); ?>">
+				Giải trí
+			</a>
+		</h1>
 		<ul>
 			<?php foreach ($list['relaxes'] as $relaxCustomField): ?>
 			<li>

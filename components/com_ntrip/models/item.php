@@ -22,7 +22,8 @@ abstract class AbsNtripModelItem extends JModelItem
 				->select('(SELECT COUNT(id) FROM #__ntrip_rating WHERE item_type = "'.$type.'" AND item_id = '.(int) $id.') AS count_rating')
 				->select('(SELECT COUNT(id) FROM #__ntrip_comments WHERE item_type = "'.$type.'" AND item_id = '.(int) $id.') AS count_comment')
 				->from('#__ntrip_'. $type . ' a')
-				->where('a.id = ' . $id);
+				->where('a.id = ' . $id)
+				->where('a.state = 1');
 		
 		// join category
 		$query->select('c.title AS category_title');
