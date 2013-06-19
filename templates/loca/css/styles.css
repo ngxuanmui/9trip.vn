@@ -1152,3 +1152,16 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .bottom-links li > span { font-weight: bold; }
 .bottom-links li ul { list-style: circle; padding: 0; list-style-position:inside; }
 .bottom-links li ul li { margin: 5px 0; }
+
+a.feedback-btn:hover {
+	background-position: top right;
+}
+
+a.feedback-btn {
+	background: url(../images/feedback.png) top left no-repeat;
+	width: 42px;
+	height: 137px;
+	position: fixed;
+	left: 0;
+	top: 40%;
+}
