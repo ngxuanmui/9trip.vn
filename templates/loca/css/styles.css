@@ -710,8 +710,8 @@ div.star-yellow5 {
 /* Other items */
 .comments { border-top: none; padding: 10px; margin-bottom: 10px; background: #FFF; }
 .tab-comments { margin-top: 20px; }
-.other-items ul { margin-left: 3px; margin-top: 15px; }
-.other-items ul li { margin-right: 10px; }
+.other-items ul { margin-left: 3px; margin-top: 15px; float: left; width: 647px; }
+.other-items ul li { margin-right: 10px; float: left; width: 115px; }
 
 /* Comment */
 .comments .social { margin-bottom: 10px; }
