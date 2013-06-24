@@ -29,7 +29,8 @@ function ntripGetViews()
 						'restaurant' => 'restaurants',
 						'tour' => 'tours',
 						'question' => 'questions',
-						'album' => 'albums'
+						'album' => 'albums',
+						'feedback' => 'feedback'
 			);
 	
 	return $arrViews;

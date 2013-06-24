@@ -4,7 +4,6 @@
 
 	<div id="feedback" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="width: 420px; display: block;">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 class="acenter">Góp ý - Báo lỗi</h3>
 		</div>
 		<div class="modal-body">
