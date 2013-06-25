@@ -1165,3 +1165,66 @@ a.feedback-btn {
 	left: 0;
 	top: 40%;
 }
+
+.modal-header h3 { margin-bottom: 10px; }
+.form-item label { display: block; margin: 0 0 3px 0; }
+
+.form-actions .blue-btn {
+padding: 5px 15px;
+font-size: 12px;
+font-weight: bold;
+}
+
+.blue-btn, a.blue-btn, input.blue-btn {
+-moz-box-shadow: 1px 1px 3px 0 #BBB;
+-webkit-box-shadow: 1px 1px 3px 0 #BBBBBB;
+box-shadow: 1px 1px 3px 0 #BBBBBB;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #41aae3), color-stop(1, #3a9fd5));
+background: -moz-linear-gradient(top, #41aae3 5%, #3a9fd5 100%);
+background: -webkit-linear-gradient(top, #41aae3 5%, #3a9fd5 100%);
+background: -o-linear-gradient(top, #41aae3 5%, #3a9fd5 100%);
+background: -ms-linear-gradient(top, #41aae3 5%, #3a9fd5 100%);
+background: linear-gradient(to bottom, #41aae3 5%, #3a9fd5 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#41aae3', endColorstr='#3a9fd5',GradientType=0);
+background-color: #41aae3;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+border: 1px solid #76c3ec;
+border-bottom: #3181ab 1px solid;
+border-right: #3181ab 1px solid;
+display: inline-block;
+color: #ffffff;
+font: normal 16px 'Conv_dgxtitle', Arial, Helvetica, sans-serif;
+padding: 2px 11px;
+text-decoration: none;
+text-shadow: 1px 1px 0 #2394cd;
+text-transform: uppercase;
+}
+
+button, input {
+line-height: normal;
+}
+
+label, button, input, select, textarea {
+vertical-align: middle;
+font: normal 12px/18px Arial, sans-serif;
+color: #666666;
+}
+
+.blue-btn i.arr-next {
+background: url(../images/white_arr.png) top left no-repeat;
+width: 10px;
+height: 9px;
+display: inline-block;
+vertical-align: middle;
+margin-left: 10px;
+position: relative;
+top: -2px;
+}
+
+.form-item input[type="text"] { width: 400px; margin-bottom: 5px; }
+.form-item textarea { height: 100px; width: 402px; margin-bottom: 5px; }
+
+#guestComment { margin: 5px 0; }
+#error_comment_msg { color: red; margin: 5px 0; }

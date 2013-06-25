@@ -2,7 +2,7 @@
 
 ?>
 
-	<div id="feedback" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="width: 420px; display: block;">
+	<div id="feedback" tabindex="-1" style="width: 420px; display: block;">
 		<div class="modal-header">
 			<h3 class="acenter">Góp ý - Báo lỗi</h3>
 		</div>
@@ -37,7 +37,7 @@
 						// specifying a submitHandler prevents the default submit, good for the demo
 						submitHandler: function() {
 
-							var url = "ajax/guest_comment.php";
+							var url = "<?php echo JRoute::_('index.php?option=com_ntrip&task=feedback.send'); ?>";
 
 							var data_post = "input_msg=" + fixedEncodeURIComponent($('#input_msg').val()) + "&input_email=" + escape($('#input_email').val()) + "&urlreturn=" + escape($('#urlreturn').val());
 							$.ajax({
@@ -71,9 +71,8 @@
 									  $("#guestComment").show();
 								  }
 							   }
-							});	
-
-
+							});
+							
 							return false;
 						},
 						success: function(label) {
@@ -83,10 +82,14 @@
 
 
 				}); // end document.ready
-
-
-							// ]]>
+				
+				var fixedEncodeURIComponent = function(str) {
+					return encodeURIComponent(str).replace(/[!'()]/g, escape).replace(/\*/g, "%2A").replace(/\"/g, "%22");
+				};
+				
+				// ]]>
 				</script>
+				
 				<form accept-charset="UTF-8" method="post" action="#" class="user-feedback-form" id="user-feedback-form" novalidate="novalidate">
 					<div class="form-items">
 						<div id="error_comment_msg" style="display:none">
@@ -101,9 +104,12 @@
 					</div>
 					<div class="form-actions acenter clearfix">
 						<div id="btn-comment">
+							<input type="hidden" name="option" value="com_ntrip" />
+							<input type="hidden" name="task" value="feedback.send" />
+							<input type="hidden" name="tmpl" value="component" />
 						<button class="blue-btn" name="" type="submit">Góp ý <i class="arr-next"></i></button>
 						</div>
-						<div style="display:none;text-align:right;color:#36C;text-align:center" id="guestComment"><img src="http://www.danhgiaxe.com/images/ajax_loading_black.gif" width="16" height="16" align="absmiddle"> Đang gởi ...</div>
+						<div style="display:none;text-align:right;color:#36C;text-align:center" id="guestComment"><img src="http://www.danhgiaxe.com/images/ajax_loading_black.gif" width="16" height="16" align="absmiddle"> Đang gửi ...</div>
 
 					</div>
 				</form>
