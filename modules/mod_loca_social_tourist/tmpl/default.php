@@ -17,7 +17,7 @@ defined('_JEXEC') or die;
 		
 		<li>
 			<!-- Place this tag where you want the +1 button to render. -->
-			<div class="g-plusone" data-annotation="inline" data-width="280" data-href="loca.vn"></div>
+			<div class="g-plusone" data-size="large" data-href="<?php $server = JRequest::get('server'); echo $server['REQUEST_URI']; ?>"></div>
 			
 			<!-- Place this tag after the last +1 button tag. -->
 			<script type="text/javascript">

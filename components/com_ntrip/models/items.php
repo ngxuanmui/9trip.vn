@@ -233,7 +233,9 @@ abstract class AbsNtripModelItems extends JModelList
 		
 		$query->where('extension = "'.$extension.'"');
 		$query->where('published = 1');
-		$query->order('ordering ASC, id DESC');
+		$query->order('lft ASC, id DESC');
+		
+//		echo $query;
 		
 		$db->setQuery($query);
 		$rs = $db->loadObjectList();

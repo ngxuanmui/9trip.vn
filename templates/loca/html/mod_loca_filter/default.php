@@ -31,7 +31,7 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 <div class="left-module-content">
 	<div class="promotion-bar">Tìm kiếm</div>
 	
-	<form action="index.php" method="get">
+	<form action="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute(JRequest::getString('view'))); ?>" method="get">
 		<script type="text/javascript">
 			jQuery(function($){
 				$('.custom_field, .rating, .price, .criteria').click(function(){
@@ -89,10 +89,11 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 
 			});
 		</script>
+		<?php /*
 		<input type="hidden" name="option" value="<?php echo JRequest::getString('option'); ?>" />
 		<input type="hidden" name="view" value="<?php echo JRequest::getString('view'); ?>" />
 		<input type="hidden" name="id" value="<?php echo JRequest::getInt('id'); ?>" />
-		<input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid'); ?>" />
+		<input type="hidden" name="Itemid" value="<?php echo JRequest::getInt('Itemid'); ?>" /> */ ?>
 		<input type="hidden" name="custom_field" value="<?php echo JRequest::getString('custom_field'); ?>" />
 		<input type="hidden" name="rating" value="<?php echo JRequest::getString('rating'); ?>" />
 		<input type="hidden" name="price" value="<?php echo JRequest::getString('price'); ?>" />
