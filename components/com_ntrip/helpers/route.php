@@ -79,6 +79,31 @@ abstract class NtripHelperRoute
 		return $link;
 	}
 	
+	/**
+	 * @param	int	The route of the newsfeed
+	 */
+	public static function getOtherRoute($view = 'feedback', $tmpl = '')
+	{
+		$needles = null;
+		
+		//Create the link
+		$link = 'index.php?option=com_ntrip&view='.$view;
+		
+		if ($tmpl)
+			$link .= '&tmpl=' . $tmpl;
+		
+		if ($item = self::_findItem($needles)) {
+			$link .= '&Itemid='.$item;
+		}
+		elseif ($item = self::_findItem()) {
+			$link .= '&Itemid='.$item;
+		}
+		
+		echo $link;
+		
+		return $link;
+	}
+	
 	public static function getFormRoute($view, $task = '', $itemId = 0, $id = 0)	
 	{
 		$needles = array(

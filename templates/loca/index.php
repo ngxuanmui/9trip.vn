@@ -141,7 +141,7 @@ $this->setGenerator('Loca.vn');
 	
 	</script>
 	
-	<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=feedback&tmpl=component'); ?>" class="feedback-btn modal" rel="{handler: 'iframe', size: {x: 420, y: 290}, onClose: function() {}}"></a>
+	<a href="<?php echo JRoute::_(NtripHelperRoute::getOtherRoute('feedback', true)); ?>" class="feedback-btn modal" rel="{handler: 'iframe', size: {x: 420, y: 290}, onClose: function() {}}"></a>
 	
 	<jdoc:include type="modules" name="debug" />
 </body>

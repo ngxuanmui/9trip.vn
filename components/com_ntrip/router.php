@@ -228,7 +228,8 @@ function NtripParseRoute($segments)
 			'tham-quan' => 'tour',
 			'mua-sam' => 'shopping',
 			'dich-vu' => 'service',
-			'hoi-dap' => 'question'			
+			'hoi-dap' => 'question',
+			'feedback' => 'feedback'
 			);
 	
 	$vars = array();

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Feedback">
+		<message>
+			<![CDATA[Feedback page]]>
+		</message>
+	</layout>
+
+	<!-- Add fields to the request variables for the layout. -->
+	<fields name="request">
+		<fieldset name="request"
+		>
+
+			<field name="tmpl" type="text"
+				label="Tmpl"
+				required="true"
+				default="component"
+			/>
+		</fieldset>
+	</fields>
+</metadata>
