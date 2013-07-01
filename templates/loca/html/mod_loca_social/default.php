@@ -71,6 +71,9 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 		<?php endif; ?>
 		<button class="icons show-image show-image-focus" <?php if ($noGallery): ?>style="display: none;"<?php endif; ?>></button>
 		<button class="icons show-map <?php if ($noGallery): ?>show-map-focus<?php endif; ?>"></button>
+		<?php if (JRequest::getString('view', '') != 'category'): ?>
+		<button class="icons show-map-direction"></button>
+		<?php endif; ?>
 	</div>
 	
 	<div class="clr"></div>
