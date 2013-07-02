@@ -17,6 +17,7 @@ $doc->addStyleSheet($this->baseurl.'/templates/system/css/system.css');
 $doc->addStyleSheet($this->baseurl.'/templates/'.$this->template.'/css/grid.css', $type = 'text/css', $media = 'screen,projection');
 $doc->addStyleSheet($this->baseurl.'/templates/'.$this->template.'/css/styles.css', $type = 'text/css', $media = 'screen,projection');
 
+// $doc->addScript('//maps.google.com/maps/api/js?sensor=true');
 $doc->addScript(JURI::base() . 'media/loca/jquery-1.7.2.min.js');
 $doc->addScript(JURI::base() . 'media/loca/main.js');
 $doc->addScript(JURI::base() . 'media/loca/galleria/galleria-1.2.9.min.js');

@@ -1100,7 +1100,7 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 }
 
 .other-album { height: 400px; }
-.map { top: 0; }
+.map { top: 0; width: 628px; height: 400px; }
 .album { top: 0; }
 
 .tbl-tmp-upload { margin: 0; }

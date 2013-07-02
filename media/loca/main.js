@@ -221,6 +221,8 @@ jQuery(function($){
 
 		$('#show-album').css('visibility', 'visible');
 		$('#show-map').css('visibility', 'hidden');
+		$('#show-map-direction').css('visibility', 'hidden');
+		
 		$('div.galleria-thumbnails-container').css('display', 'block');
 		
 		$('button.show-map').removeClass('show-map-focus');
@@ -232,22 +234,38 @@ jQuery(function($){
 		
 		$('#show-album').css('visibility', 'hidden');
 		$('#show-map').css('visibility', 'visible');
+		$('#show-map-direction').css('visibility', 'hidden');
+		
 		$('div.galleria-thumbnails-container').css('display', 'none');
 		
 		$('button.show-image').removeClass('show-image-focus');
 		$('button.show-map-direction').removeClass('show-map-direction-focus');
 	});
 	
-	$('button.show-map-direction').click(function(){
+	$('button.show-map-direction').click(function(event){
 		$(this).addClass('show-map-direction-focus');
 		
 		$('#show-album').css('visibility', 'hidden');
-		$('#show-map').css('visibility', 'visible');
+		$('#show-map').css('visibility', 'hidden');
+		$('#show-map-direction').css('visibility', 'visible');
+		
 		$('div.galleria-thumbnails-container').css('display', 'none');
 		
 		$('button.show-image').removeClass('show-image-focus');
 		$('button.show-map').removeClass('show-map-focus');
+		
+		// assign val for #from
+		getCurrentLocation(event, 'from');
+		
+		// set val for #to
+		$('#to').val(GMAP_ADD);
+		
+		// calculate map
+		calculateRoute($("#from").val(), $("#to").val());
+		
 	});
+	
+	$('button.show-map-direction').click();
 
 	// LOAD MAP
 	jQuery('#show-map').css({'height':'400', 'width':'628'});
@@ -274,39 +292,31 @@ jQuery(function($){
       return;
     }
     
-
-    $("#from-link, #to-link").click(
-		function(event) {
-			event.preventDefault();
-			var addressId = this.id.substring(0, this.id.indexOf("-"));
-			navigator.geolocation.getCurrentPosition(function(position) {
-				var geocoder = new google.maps.Geocoder();
-				geocoder.geocode({
-					"location" : new google.maps.LatLng(
-							position.coords.latitude,
-							position.coords.longitude)
-				}, function(results, status) {
-					if (status == google.maps.GeocoderStatus.OK)
-						$("#" + addressId)
-								.val(results[0].formatted_address);
-					else
-						$("#error").append(
-								"Unable to retrieve your address<br />");
-				});
-			}, function(positionError) {
-				$("#error").append(
-						"Error: " + positionError.message + "<br />");
-			}, {
-				enableHighAccuracy : true,
-				timeout : 10 * 1000
-			// 10 seconds
-			});
-		});
-    
-	$("#calculate-route").submit(function(event) {
+	function getCurrentLocation(event, addressId) {
 		event.preventDefault();
-		calculateRoute($("#from").val(), $("#to").val());
-	});
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode({
+				"location" : new google.maps.LatLng(
+						position.coords.latitude,
+						position.coords.longitude)
+			}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK)
+					$("#" + addressId)
+							.val(results[0].formatted_address);
+				else
+					$("#error").append(
+							"Unable to retrieve your address<br />");
+			});
+		}, function(positionError) {
+			$("#error").append(
+					"Error: " + positionError.message + "<br />");
+		}, {
+			enableHighAccuracy : true,
+			timeout : 10 * 1000
+		// 10 seconds
+		});
+	};
 		
 });
 
@@ -330,6 +340,7 @@ function calculateRoute(from, to) {
       directionsRequest,
       function(response, status)
       {
+    	  console.log(response, status);
         if (status == google.maps.DirectionsStatus.OK)
         {
           new google.maps.DirectionsRenderer({
@@ -338,7 +349,7 @@ function calculateRoute(from, to) {
           });
         }
         else
-          $("#error").append("Unable to retrieve your route<br />");
+          jQuery("#error").append("Unable to retrieve your route<br />");
       }
     );
   }

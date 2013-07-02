@@ -39,7 +39,7 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 			 <div class="number-liker icons"><?php echo (int) $item->user_like; ?></div>
 		</div>
 		 
-		<div class="fltlft" style="margin-right: 10px; height: 20px; width: 75px; display: block; border: 0px solid;">
+		<div class="fltlft" style="margin-right: 5px; height: 20px; width: 75px; display: block; border: 0px solid;">
 			<div class="fb-like" data-href="<?php echo CFG_REQUEST_URI; ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 		</div>
 		 
@@ -79,7 +79,7 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 	<div class="clr"></div>
 	
 	<div class="other-album relative">
-		<div class="album absolute" id="show-album" <?php if ($noGallery): ?>style="visibility: hidden;"<?php endif; ?>>
+		<div class="album absolute" id="show-album" <?php if ($noGallery or true): ?>style="visibility: hidden;"<?php endif; ?>>
 			<div id="galleria">
 				<?php 
 				if (!empty($item->other_images)):
@@ -96,6 +96,14 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 		<div class="map absolute" id="show-map" <?php if (!$noGallery): ?>style="visibility: hidden;"<?php endif; ?>>
 			map here
 		</div>
+		
+		<div class="map absolute" id="show-map-direction" style="visibility: visible;">
+			<div class="map" id="map"></div>
+			<input type="text" id="from" name="from" size="30" />
+			<input type="text" id="to" name="to" size="30" />
+    		<p id="error"></p>
+		</div>
+		
 	</div>
 	
 	<div class="clr"></div>
