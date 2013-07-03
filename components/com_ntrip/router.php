@@ -91,10 +91,10 @@ function NtripBuildRoute(&$query)
 		return $segments;
 	}
 	
-	if (isset($query['custom_field']))
-	{
-		unset($query['custom_field']);
-	}
+// 	if (isset($query['custom_field']))
+// 	{
+// 		unset($query['custom_field']);
+// 	}
 	
 	// are we dealing with an discover or category that is attached to a menu item?
 	if (($menuItem instanceof stdClass) && $menuItem->query['view'] == @$query['view'] && isset($query['id']) && isset($menuItem->query['id']) && $menuItem->query['id'] == intval($query['id'])) {
@@ -141,6 +141,9 @@ function NtripBuildRoute(&$query)
 					$query['id'] = $query['id'].':'.$alias;
 				}
 			} else {
+				// if exist query catid, unset it
+				unset($query['catid']);
+				
 				// we should have these two set for this view.  If we don't, it is an error
 				return $segments;
 			}
@@ -172,8 +175,6 @@ function NtripBuildRoute(&$query)
 		
 		unset($query['id']);
 		unset($query['catid']);
-		
-		
 	}
 	
 	$arrFormViews = array('user_man_service' => 'quan-ly-dich-vu');

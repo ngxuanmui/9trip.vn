@@ -242,6 +242,15 @@ jQuery(function($){
 		$('button.show-map-direction').removeClass('show-map-direction-focus');
 	});
 	
+	// gmap direction
+	
+	// assign val for #from
+	getCurrentLocation(event, 'from');
+		
+	// set val for #to
+	$('#to').val(GMAP_ADD);
+	
+	
 	$('button.show-map-direction').click(function(event){
 		$(this).addClass('show-map-direction-focus');
 		
@@ -254,18 +263,10 @@ jQuery(function($){
 		$('button.show-image').removeClass('show-image-focus');
 		$('button.show-map').removeClass('show-map-focus');
 		
-		// assign val for #from
-		getCurrentLocation(event, 'from');
-		
-		// set val for #to
-		$('#to').val(GMAP_ADD);
-		
 		// calculate map
 		calculateRoute($("#from").val(), $("#to").val());
 		
 	});
-	
-	$('button.show-map-direction').click();
 
 	// LOAD MAP
 	jQuery('#show-map').css({'height':'400', 'width':'628'});
@@ -323,7 +324,8 @@ jQuery(function($){
 function calculateRoute(from, to) {
     // Center initialized to Naples, Italy
     var myOptions = {
-      zoom: 10,
+      zoom: 12,
+      scrollwheel: false,
       center: new google.maps.LatLng(40.84, 14.25),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -340,7 +342,6 @@ function calculateRoute(from, to) {
       directionsRequest,
       function(response, status)
       {
-    	  console.log(response, status);
         if (status == google.maps.DirectionsStatus.OK)
         {
           new google.maps.DirectionsRenderer({

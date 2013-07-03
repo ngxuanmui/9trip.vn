@@ -104,6 +104,33 @@ abstract class NtripHelperRoute
 		return $link;
 	}
 	
+	/**
+	 * @param	int	The route of the newsfeed
+	 */
+	public static function getMainItemsRoute($view = 'hotels', $catid = 0, $customField = false)
+	{
+		$needles = array(
+			$view => array($catid)
+		);
+	
+		//Create the link
+		$link = 'index.php?option=com_ntrip&view='.$view;
+	
+		if ($catid)
+			$link .= '&catid=' . $catid;
+		
+		if ($customField)
+			$link .= '&custom_field=' . $customField;
+		
+// 		echo $link; die;
+	
+		if ($item = self::_findItem($needles)) {
+			$link .= '&Itemid='.$item;
+		}
+		
+		return $link;
+	}
+	
 	public static function getFormRoute($view, $task = '', $itemId = 0, $id = 0)	
 	{
 		$needles = array(
@@ -235,6 +262,9 @@ abstract class NtripHelperRoute
 					}
 					if (isset($item->query['id'])) {
 						self::$lookup[$view][$item->query['id']] = $item->id;
+					}
+					elseif (isset($item->query['catid'])) {
+						self::$lookup[$view][$item->query['catid']] = $item->id;
 					}
 				}
 			}

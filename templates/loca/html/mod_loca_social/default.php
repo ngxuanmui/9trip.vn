@@ -79,7 +79,7 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 	<div class="clr"></div>
 	
 	<div class="other-album relative">
-		<div class="album absolute" id="show-album" <?php if ($noGallery or true): ?>style="visibility: hidden;"<?php endif; ?>>
+		<div class="album absolute" id="show-album" <?php if ($noGallery): ?>style="visibility: hidden;"<?php endif; ?>>
 			<div id="galleria">
 				<?php 
 				if (!empty($item->other_images)):
@@ -97,10 +97,10 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 			map here
 		</div>
 		
-		<div class="map absolute" id="show-map-direction" style="visibility: visible;">
+		<div class="map absolute" id="show-map-direction" style="visibility: hidden;">
 			<div class="map" id="map"></div>
-			<input type="text" id="from" name="from" size="30" />
-			<input type="text" id="to" name="to" size="30" />
+			<input type="text" id="from" name="from" size="0" style="display: none;" />
+			<input type="text" id="to" name="to" size="0" style="display: none;" />
     		<p id="error"></p>
 		</div>
 		
