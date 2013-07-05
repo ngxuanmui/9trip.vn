@@ -13,7 +13,7 @@
 
 			<field name="custom_field" type="category"
 				description="JGLOBAL_CHOOSE_CATEGORY_DESC"
-				extension="com_ntrip.custom_field_shopping"
+				extension="com_ntrip"
 				label="JGLOBAL_CHOOSE_CATEGORY_LABEL"
 			>
 				<option value="">All</option>

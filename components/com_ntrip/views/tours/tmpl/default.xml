@@ -11,10 +11,10 @@
 		<fieldset name="request"
 		>
 
-			<field name="custom_field" type="category"
+			<field name="catid" type="category"
 				description="JGLOBAL_CHOOSE_CATEGORY_DESC"
-				extension="com_ntrip.custom_field_tour"
-				label="JGLOBAL_CHOOSE_CATEGORY_LABEL"
+				extension="com_ntrip"
+				label="Location"
 			>
 				<option value="">All</option>
 			</field>

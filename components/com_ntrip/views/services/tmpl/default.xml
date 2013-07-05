@@ -11,9 +11,9 @@
 		<fieldset name="request"
 		>
 
-			<field name="custom_field" type="category"
+			<field name="catid" type="category"
 				description="JGLOBAL_CHOOSE_CATEGORY_DESC"
-				extension="com_ntrip.custom_field_service"
+				extension="com_ntrip"
 				label="JGLOBAL_CHOOSE_CATEGORY_LABEL"
 			>
 				<option value="">All</option>

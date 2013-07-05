@@ -22,7 +22,11 @@ abstract class AbsNtripModelItems extends JModelList
 		$criteria = JRequest::getString('criteria');
 		$this->setState('filter.criteria', $criteria);
 		
-		$loc = JFactory::getSession()->get('loca_location');
+		$loc = JRequest::getInt('catid');
+		
+		if (!$loc)
+			$loc = JFactory::getSession()->get('loca_location');
+		
 		$this->setState('filter.location', $loc);
 		
 		$value = JRequest::getUInt('limit', 10);

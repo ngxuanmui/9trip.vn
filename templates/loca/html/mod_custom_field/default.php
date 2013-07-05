@@ -33,14 +33,14 @@ $linkId = ($id) ? '&id=' . $id : '';
 		</ul>
 		<div class="clr"></div>
 		<h1>
-			<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('services')); ?>">
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('services', $id)); ?>">
 				Dịch vụ
 			</a>
 		</h1>
 		<ul>
 			<?php foreach ($list['services'] as $serviceCustomField): ?>
 			<li>				
-				<a href="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute('services', $serviceCustomField->id)); ?>">
+				<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('services', $id, $serviceCustomField->id)); ?>">
 					<?php echo $serviceCustomField->title; ?> (*)
 				</a>
 			</li>
