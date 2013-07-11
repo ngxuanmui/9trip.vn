@@ -244,14 +244,14 @@ jQuery(function($){
 	
 	// gmap direction
 	
-	// assign val for #from
-	getCurrentLocation(event, 'from');
-		
 	// set val for #to
-	$('#to').val(GMAP_ADD);
+	if (typeof GMAP_ADD != 'undefined')
+		$('#to').val(GMAP_ADD);
 	
-	
-	$('button.show-map-direction').click(function(event){
+	$('button.show-map-direction').click(function(event)
+	{
+		$('#map').html('');
+		
 		$(this).addClass('show-map-direction-focus');
 		
 		$('#show-album').css('visibility', 'hidden');
@@ -264,8 +264,7 @@ jQuery(function($){
 		$('button.show-map').removeClass('show-map-focus');
 		
 		// calculate map
-		calculateRoute($("#from").val(), $("#to").val());
-		
+		getLocation();
 	});
 
 	// LOAD MAP
@@ -292,9 +291,11 @@ jQuery(function($){
       $("#error").text("Your browser doesn't support the Geolocation API");
       return;
     }
-    
-	function getCurrentLocation(event, addressId) {
-		event.preventDefault();
+});
+
+function getLocation() {
+	//event.preventDefault();
+	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var geocoder = new google.maps.Geocoder();
 			geocoder.geocode({
@@ -303,25 +304,26 @@ jQuery(function($){
 						position.coords.longitude)
 			}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK)
-					$("#" + addressId)
-							.val(results[0].formatted_address);
+				{
+					jQuery("#from").val(results[0].formatted_address);
+					
+					calculateRoute(jQuery("#from").val(), jQuery("#to").val())
+				}
 				else
-					$("#error").append(
-							"Unable to retrieve your address<br />");
+					jQuery("#error").append("Unable to retrieve your address<br />");
 			});
 		}, function(positionError) {
-			$("#error").append(
+			jQuery("#error").append(
 					"Error: " + positionError.message + "<br />");
 		}, {
 			enableHighAccuracy : true,
 			timeout : 10 * 1000
 		// 10 seconds
 		});
-	};
-		
-});
+	}
+};
 
-function calculateRoute(from, to) {
+function calculateRoute(from, to) {	
     // Center initialized to Naples, Italy
     var myOptions = {
       zoom: 12,
