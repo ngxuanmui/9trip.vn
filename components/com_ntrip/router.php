@@ -139,6 +139,8 @@ function NtripBuildRoute(&$query)
 						die ($db->getErrorMsg());
 					
 					$query['id'] = $query['id'].':'.$alias;
+					
+					
 				}
 			} else {
 				// if exist query catid, unset it
@@ -176,7 +178,7 @@ function NtripBuildRoute(&$query)
 		unset($query['id']);
 		unset($query['catid']);
 	}
-	
+		
 	$arrFormViews = array('user_man_service' => 'quan-ly-dich-vu');
 	
 	$arrFormViewsKey = array_keys($arrFormViews);
@@ -196,6 +198,10 @@ function NtripBuildRoute(&$query)
 		$segments[] = $arrTasks[$query['task']];
 			
 		unset($query['task']);
+	}
+	
+	if (isset($query['catid'])) {
+		unset($query['catid']);
 	}
 
 	return $segments;

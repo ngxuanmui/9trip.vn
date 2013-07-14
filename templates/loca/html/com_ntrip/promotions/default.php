@@ -37,7 +37,7 @@ $fields = $this->fields;
 					$item->slug = $item->id . ':' . $item->alias;
 					$view = 'promotion';
 						
-					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view));
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid));
 				?>
 				<li <?php if (($key + 1) % 3 == 0) echo 'class="last"'; ?>>
 					<div class="image">

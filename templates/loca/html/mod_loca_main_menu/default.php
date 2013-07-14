@@ -10,6 +10,8 @@ $menu = $app->getMenu();
 
 if ($menu->getActive() == $menu->getDefault()) 
 	$homePage = true;
+
+$id = JRequest::getInt('id');
 ?>
 
 <?php if (!$homePage): ?>
@@ -58,16 +60,38 @@ jQuery(function($){
 		</li>		
 	</ul>
 	
-	<?php echo LocaHelper::renderModulesOnPosition('main-top-menu'); ?>
+	<?php 
+	//if (!JRequest::getInt('id') || !JRequest::getInt('catid')):
+		//echo LocaHelper::renderModulesOnPosition('main-top-menu'); 
+	//else:
+	?>
 	
-	<?php /*
 	<ul class="main-menu">
-		<li><a href="#">Khám phá</a></li>
-		<li><a href="#">Khuyến mại</a></li>
-		<li><a href="#">Hỏi đáp - Tư vấn</a></li>
-		<li><a href="#">Cảnh báo</a></li>
-		<li><a href="#">Album</a></li>
-		<li><a href="#">Diễn đàn</a></li>
+		<li>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('discovers', $id)); ?>">
+				Khám phá du lịch
+			</a>
+		</li>
+		<li>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('questions', $id)); ?>">
+				Tour du lịch
+			</a>
+		</li>
+		<li>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('warnings', $id)); ?>">
+				Cần lưu ý
+			</a>
+		</li>
+		<li>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('promotions', $id)); ?>">
+				Khuyến mãi
+			</a>
+		</li>
+		<li>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('albums', $id)); ?>">
+				Album ảnh
+			</a>
+		</li>
 	</ul>
-	 */ ?>
+	<?php //endif; ?>
 </div>

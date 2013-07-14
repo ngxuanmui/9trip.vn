@@ -221,51 +221,22 @@ jQuery(function($){
 
 		$('#show-album').css('visibility', 'visible');
 		$('#show-map').css('visibility', 'hidden');
-		$('#show-map-direction').css('visibility', 'hidden');
-		
 		$('div.galleria-thumbnails-container').css('display', 'block');
 		
 		$('button.show-map').removeClass('show-map-focus');
-		$('button.show-map-direction').removeClass('show-map-direction-focus');
 	});
 
 	$('button.show-map').click(function(){
 		$(this).addClass('show-map-focus');
 		
+//		$('#show-album').css('display', 'none');
+//		$('#show-map').css('display', 'block');
+		
 		$('#show-album').css('visibility', 'hidden');
 		$('#show-map').css('visibility', 'visible');
-		$('#show-map-direction').css('visibility', 'hidden');
-		
 		$('div.galleria-thumbnails-container').css('display', 'none');
 		
 		$('button.show-image').removeClass('show-image-focus');
-		$('button.show-map-direction').removeClass('show-map-direction-focus');
-	});
-	
-	// gmap direction
-	
-	// assign val for #from
-	getCurrentLocation(event, 'from');
-		
-	// set val for #to
-	$('#to').val(GMAP_ADD);
-	
-	
-	$('button.show-map-direction').click(function(event){
-		$(this).addClass('show-map-direction-focus');
-		
-		$('#show-album').css('visibility', 'hidden');
-		$('#show-map').css('visibility', 'hidden');
-		$('#show-map-direction').css('visibility', 'visible');
-		
-		$('div.galleria-thumbnails-container').css('display', 'none');
-		
-		$('button.show-image').removeClass('show-image-focus');
-		$('button.show-map').removeClass('show-map-focus');
-		
-		// calculate map
-		calculateRoute($("#from").val(), $("#to").val());
-		
 	});
 
 	// LOAD MAP
@@ -286,74 +257,8 @@ jQuery(function($){
 	
 	if (typeof ITEM_TYPE != 'undefined' && typeof EXTENSION != 'undefined')
 		changeLoc($('#jform_catid').val());
-
-	// If the browser supports the Geolocation API
-    if (typeof navigator.geolocation == "undefined") {
-      $("#error").text("Your browser doesn't support the Geolocation API");
-      return;
-    }
-    
-	function getCurrentLocation(event, addressId) {
-		event.preventDefault();
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var geocoder = new google.maps.Geocoder();
-			geocoder.geocode({
-				"location" : new google.maps.LatLng(
-						position.coords.latitude,
-						position.coords.longitude)
-			}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK)
-					$("#" + addressId)
-							.val(results[0].formatted_address);
-				else
-					$("#error").append(
-							"Unable to retrieve your address<br />");
-			});
-		}, function(positionError) {
-			$("#error").append(
-					"Error: " + positionError.message + "<br />");
-		}, {
-			enableHighAccuracy : true,
-			timeout : 10 * 1000
-		// 10 seconds
-		});
-	};
 		
 });
-
-function calculateRoute(from, to) {
-    // Center initialized to Naples, Italy
-    var myOptions = {
-      zoom: 12,
-      scrollwheel: false,
-      center: new google.maps.LatLng(40.84, 14.25),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    // Draw the map
-    var mapObject = new google.maps.Map(document.getElementById("map"), myOptions);
-    var directionsService = new google.maps.DirectionsService();
-    var directionsRequest = {
-      origin: from,
-      destination: to,
-      travelMode: google.maps.DirectionsTravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC
-    };
-    directionsService.route(
-      directionsRequest,
-      function(response, status)
-      {
-        if (status == google.maps.DirectionsStatus.OK)
-        {
-          new google.maps.DirectionsRenderer({
-            map: mapObject,
-            directions: response
-          });
-        }
-        else
-          jQuery("#error").append("Unable to retrieve your route<br />");
-      }
-    );
-  }
 
 function set_votes(widget) {
 	var item_id = widget.attr('id');

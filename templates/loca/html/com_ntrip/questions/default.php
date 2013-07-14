@@ -45,7 +45,7 @@ $fields = $this->fields;
 					</div>
 					<div class="question-content fltlft">
 
-						<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($item->id, 'question')); ?>">
+						<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($item->id, 'question', $item->catid)); ?>">
 							<h3><?php echo $item->title; ?></h3>
 						</a>
 						<?php echo JHtml::_('string.truncate', $item->content, 130); ?>

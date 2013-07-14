@@ -11,12 +11,11 @@
 		<fieldset name="request"
 		>
 
-			<field name="custom_field" type="category"
-				description="JGLOBAL_CHOOSE_CATEGORY_DESC"
-				extension="com_ntrip.custom_field_promotion"
-				label="JGLOBAL_CHOOSE_CATEGORY_LABEL"
+			<field name="catid" type="category"
+				extension="com_ntrip"
+				label="Location"
 			>
-				<option value="">All</option>
+				<option value="">Chọn Tỉnh / Thành</option>
 			</field>
 		</fieldset>
 	</fields>

@@ -43,7 +43,12 @@ $fields = $this->fields;
 			<ul class="list-warnings list-items">
 				<?php 
 				foreach ($this->items as $item): 
-					$link = JRoute::_('index.php?option=com_ntrip&view=warning&id=' . $item->id . ':' . $item->alias, false);
+					//$link = JRoute::_('index.php?option=com_ntrip&view=warning&id=' . $item->id . ':' . $item->alias, false);
+					
+					$item->slug = $item->id . ':' . $item->alias;
+					$view = 'warning';
+						
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid));
 				?>
 				<li>
 					<h2>

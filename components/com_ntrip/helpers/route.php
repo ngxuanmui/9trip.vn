@@ -30,10 +30,10 @@ abstract class NtripHelperRoute
 	public static function getItemRoute($id, $view, $catid = 0, $language = 0)
 	{
 		$needles = array(
-			'discovers'  => array((int) $id),
-			'promotion'  => array((int) $id),
-			'warning'  => array((int) $id),
-			'question'  => array((int) $id)
+			'discovers'  => array((int) $catid),
+			'promotion'  => array((int) $catid),
+			'warning'  => array((int) $catid),
+			'question'  => array((int) $catid)
 		);
 		
 		//Create the link
@@ -51,30 +51,30 @@ abstract class NtripHelperRoute
 			}
 		}
 
-// 		if ($item = self::_findItem($needles)) {
-// 			$link .= '&Itemid='.$item;
-// 		}
-// 		elseif ($item = self::_findItem()) {
-// 			$link .= '&Itemid='.$item;
-// 		}
-
-		$db = JFactory::getDbo();
-		
-		$query = $db->getQuery(true);
-		
-		$query->select('*')->from('#__menu')->where('menutype = "main-top-menu"');
-		$db->setQuery($query);
-		
-		$menus = $db->loadObjectList();
-		
-		foreach ($menus as $menu)
-		{
-			if (strpos($menu->link, $view) !== false)
-			{
-				$link .= '&Itemid=' . $menu->id;
-				break;
-			}
+		if ($item = self::_findItem($needles)) {
+			$link .= '&Itemid='.$item;
 		}
+		elseif ($item = self::_findItem()) {
+			$link .= '&Itemid='.$item;
+		}
+
+// 		$db = JFactory::getDbo();
+		
+// 		$query = $db->getQuery(true);
+		
+// 		$query->select('*')->from('#__menu')->where('menutype = "main-top-menu"');
+// 		$db->setQuery($query);
+		
+// 		$menus = $db->loadObjectList();
+		
+// 		foreach ($menus as $menu)
+// 		{
+// 			if (strpos($menu->link, $view) !== false)
+// 			{
+// 				$link .= '&Itemid=' . $menu->id;
+// 				break;
+// 			}
+// 		}
 
 		return $link;
 	}
@@ -99,7 +99,7 @@ abstract class NtripHelperRoute
 			$link .= '&Itemid='.$item;
 		}
 		
-		echo $link;
+// 		echo $link;
 		
 		return $link;
 	}
@@ -127,6 +127,10 @@ abstract class NtripHelperRoute
 		if ($item = self::_findItem($needles)) {
 			$link .= '&Itemid='.$item;
 		}
+		
+		
+// 		if ($view == 'discovers')
+// 			var_dump($link);
 		
 		return $link;
 	}

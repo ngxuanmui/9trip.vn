@@ -5,18 +5,18 @@
 			<![CDATA[Albums]]>
 		</message>
 	</layout>
-
+	
 	<!-- Add fields to the request variables for the layout. -->
 	<fields name="request">
 		<fieldset name="request"
 		>
 
-			<field name="id" type="category"
-				description="JGLOBAL_CHOOSE_CATEGORY_DESC"
+			<field name="catid" type="category"
 				extension="com_ntrip"
-				label="JGLOBAL_CHOOSE_CATEGORY_LABEL"
-				required="true"
-			/>
+				label="Location"
+			>
+				<option value="">Chọn Tỉnh / Thành</option>
+			</field>
 		</fieldset>
 	</fields>
 
