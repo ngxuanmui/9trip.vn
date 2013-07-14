@@ -18,14 +18,6 @@
 			>
 				<option value="">All</option>
 			</field>
-			
-			<field name="custom_field" type="category"
-				description="JGLOBAL_CHOOSE_CATEGORY_DESC"
-				extension="com_ntrip.custom_field_hotel"
-				label="More Location"
-			>
-				<option value="">- None -</option>
-			</field>
 		</fieldset>
 	</fields>
 </metadata>
