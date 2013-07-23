@@ -48,12 +48,13 @@ $fields = $this->fields;
 				?>
 				<li <?php if (($key + 1) % 3 == 0) echo 'class="last-item"'; ?>>
 					<div class="img">
-						<img src="<?php echo $item->images; ?>" />
-
+						<a href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
+							<img src="<?php echo $item->images; ?>" />
+						</a>
 					</div>
 
 					<h2 class="title-album">
-						<a href="<?php echo $link; ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
 							<?php echo $item->name; ?>
 						</a>
 					</h2>

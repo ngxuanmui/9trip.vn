@@ -26,8 +26,8 @@ $fields = $this->fields;
 	</div>
 	<!-- Kết quả tài trợ -->	
 	
-	<?php # echo NtripFrontHelper::itemsMenu('restaurants'); ?>
-	<?php echo LocaHelper::renderModulesOnPosition('menu-main-items'); ?>
+	<?php echo NtripFrontHelper::itemsMenu('restaurants'); ?>
+	<?php # echo LocaHelper::renderModulesOnPosition('menu-main-items'); ?>
 	
 	<div class="clr"></div>
 	

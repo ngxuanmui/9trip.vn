@@ -17,12 +17,15 @@ class NtripFrontHelper
 		
 		$idx = 0;
 		
+		$catid = JRequest::getInt('catid');
+		
 		foreach ($arr as $itemKey => $itemMenu)
 		{
 			$classMenu = ($idx % 2 == 0) ? '' : 'even';
 			$classActive = ($itemType == $itemKey) ? ' active' : '';
 			
-			$link = JRoute::_( NtripHelperRoute::getItemsRoute($itemKey) );
+			//$link = JRoute::_( NtripHelperRoute::getItemsRoute($itemKey) );
+			$link = JRoute::_( NtripHelperRoute::getMainItemsRoute($itemKey, $catid) );
 			
 			if (JRequest::getInt('id'))
 				$link .= '&id=' . JRequest::getInt ('id');

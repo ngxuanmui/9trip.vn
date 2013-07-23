@@ -47,8 +47,8 @@ $criteria = explode(',', JRequest::getString('criteria'));
 	</div>
 	<!-- Kết quả tài trợ -->	
 	
-	<?php # echo NtripFrontHelper::itemsMenu('hotels'); ?>
-	<?php echo LocaHelper::renderModulesOnPosition('menu-main-items'); ?>
+	<?php echo NtripFrontHelper::itemsMenu('hotels'); ?>
+	<?php # echo LocaHelper::renderModulesOnPosition('menu-main-items'); ?>
 	
 	<div class="clr"></div>
 	

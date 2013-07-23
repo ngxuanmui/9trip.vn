@@ -373,28 +373,20 @@ function NtripParseRoute($segments)
 				break;
 		}
 		
-		if ($item_id > 0) {
-// 			if (isset($arrMapMenuAlias[$itemMenu->alias]['item']))
-// 				$vars['view'] = $arrMapMenuAlias[$itemMenu->alias]['item'];
-// 			else
-// 			{
-// 				$query = "SELECT alias FROM #__menu WHERE id = " . $item->parent_id;
-// 				$db->setQuery($query);
-				
-// 				$tmp = $db->loadResult();
-				
-// 				$vars['view'] = $arrMapMenuAlias[$tmp];
-				
-				
-// 			}
+		if ($item_id > 0) 
+		{
+
+			$query = "SELECT id, catid FROM #__ntrip_".$vars['view']." WHERE id = " . $item_id;
+			$db->setQuery($query);
+			
+			$tmp = $db->loadObject();
 
 			$vars['view'] = $viewItem;
-
 			
 			if (isset($item->custom_field))
 				$vars['custom_field'] = $item->custom_field;
 			
-			$vars['catid'] = $cat_id;
+			$vars['catid'] = $tmp->catid;
 			$vars['id'] = $item_id;
 		} else {
 			if (strpos($segments[0], 'page') !== false)

@@ -29,12 +29,22 @@ abstract class NtripHelperRoute
 	 */
 	public static function getItemRoute($id, $view, $catid = 0, $language = 0)
 	{
-		$needles = array(
-			'discovers'  => array((int) $catid),
-			'promotion'  => array((int) $catid),
-			'warning'  => array((int) $catid),
-			'question'  => array((int) $catid)
-		);
+		$needles = array();
+		
+		if ($view == 'discover')
+			$needles['discovers'] = array((int) $catid);
+		
+		if ($view == 'album')
+			$needles['albums'] = array((int) $catid);
+		
+		if ($view == 'warning')
+			$needles['warnings'] = array((int) $catid);
+		
+		if ($view == 'question')
+			$needles['questions'] = array((int) $catid);
+		
+		if ($view == 'promotion')
+			$needles['promotions'] = array((int) $catid);
 		
 		//Create the link
 		$link = 'index.php?option=com_ntrip&view='.$view.'&id='. $id;
@@ -57,6 +67,8 @@ abstract class NtripHelperRoute
 		elseif ($item = self::_findItem()) {
 			$link .= '&Itemid='.$item;
 		}
+		
+// 		var_dump($link);
 
 // 		$db = JFactory::getDbo();
 		

@@ -412,11 +412,11 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .list-items .img { width: 640px; height: 440px; margin-bottom: 5px; overflow: hidden; }
 .list-items .img img { width: 630px; }
 
-.list-albums { margin-left: 10px; }
+.list-albums { margin-left: 10px; margin-top: 10px; }
 .list-albums li { float: left; width: 200px; margin-right: 10px; margin-bottom: 10px; }
 
 .list-albums li .img { height: 150px; overflow: hidden;  border: 1px solid #dbdbdb; margin-bottom: 5px; }
-.list-albums li .img img { width: 198px; }
+.list-albums li .img img { height: 150px; }
 
 .list-albums li h2 { font-size: 12px; }
 
