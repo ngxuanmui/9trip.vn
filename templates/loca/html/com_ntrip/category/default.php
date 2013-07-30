@@ -36,18 +36,18 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 			</div>
 			
 			<div class="item-container">
-				<?php 
+				<?php
 			
 				echo LocaHelper::renderModulesOnPosition(
-							'loca-social', 
-							array(	'item' => $firstAlbum, 
-									'item_type' => 'albums', 
-									'gmap' => array(	'address' => $this->category->title, 
-														'lat' => @$items['gmap_info']->gmap_lat, 
+							'loca-social',
+							array(	'item' => $firstAlbum,
+									'item_type' => 'albums',
+									'gmap' => array(	'address' => $this->category->title,
+														'lat' => @$items['gmap_info']->gmap_lat,
 														'long' => @$items['gmap_info']->gmap_long
 												)
 							)
-						); 
+						);
 				?>
 			</div>
 			
@@ -64,9 +64,9 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 	
 	<div class="clr"></div>
 	
-	<?php 
+	<?php
 	$subChild = $this->category->getChildren();
-	if (!empty($subChild)): 
+	if (!empty($subChild)):
 	?>
 	<div class="margin-bottom5">
 		<div class="title-category">
@@ -77,8 +77,8 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="item-container">
 			<ul class="album-container">
-				<?php 
-				foreach ($subChild as $key => $child): 
+				<?php
+				foreach ($subChild as $key => $child):
 					$link = JRoute::_(NtripHelperRoute::getCategoryRoute($child->id));
 				?>
 				<li <?php if ( ($key + 1) % 3 == 0 ) echo 'class="last-item"' ?>>
@@ -96,7 +96,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 					</div>
 					<a href="<?php echo $link; ?>" class="bold">
 						<?php echo $child->title; ?>
-					</a>					
+					</a>
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -115,9 +115,9 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="item-container">
 			<ul>
-				<?php 
-				foreach ($items['discovers'] as $discover): 
-					$link = JRoute::_(NtripHelperRoute::getItemRoute($discover->id, 'discover'));
+				<?php
+				foreach ($items['discovers'] as $discover):
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($discover->id, 'discover', $discover->catid));
 				?>
 				<li>
 					<div class="img">
@@ -145,9 +145,9 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="item-container">
 			<ul>
-				<?php 
-				foreach ($items['promotions'] as $promotion): 
-					$link = JRoute::_(NtripHelperRoute::getItemRoute($promotion->id, 'promotion'));
+				<?php
+				foreach ($items['promotions'] as $promotion):
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($promotion->id, 'promotion', $promotion->catid));
 				?>
 				<li>
 					<div class="img">
@@ -157,7 +157,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 					</div>
 					<a href="<?php echo $link; ?>">
 						<?php echo $promotion->name; ?>
-					</a>					
+					</a>
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -177,7 +177,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 			<ul class="questions">
 				<?php foreach ($items['questions'] as $question): ?>
 				<li>
-					<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($question->id, 'question')); ?>">
+					<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($question->id, 'question', $question->catid)); ?>">
 						<?php echo $question->title; ?>
 					</a>
 					
@@ -209,7 +209,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 					</div>
 					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $album->id, false); ?>" class="bold">
 						<?php echo $album->name; ?>
-					</a>					
+					</a>
 				</li>
 				<?php endforeach; ?>
 			</ul>

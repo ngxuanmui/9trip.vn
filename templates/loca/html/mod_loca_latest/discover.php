@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 			$item->slug = $item->id . ':' . $item->alias;
 			$view = 'discover';
 				
-			$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view));
+			$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid));
 			
 			?>
 			<a href="<?php echo $link; ?>">
