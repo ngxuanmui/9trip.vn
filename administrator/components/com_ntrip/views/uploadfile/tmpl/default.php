@@ -2,6 +2,7 @@
 defined('_JEXEC') or die;
 
 $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
+$jQueryLocaPath = JURI::root() . 'media/loca/';
 ?>
 
 <!-- jQuery UI styles -->
@@ -117,8 +118,8 @@ $jqueryUploadFilePath = JURI::root() . 'media/jquery-ui-upload/';
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
-<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+<script src="<?php echo $jQueryLocaPath; ?>/js-templates/js/tmpl.min.js"></script>
+<script src="<?php echo $jQueryLocaPath; ?>/js-load-image/js/load-image.min.js"></script>
 <script type="text/javascript" src="http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"></script>
 <script type="text/javascript" src="<?php echo $jqueryUploadFilePath; ?>js/jquery.iframe-transport.js"></script>
 <script type="text/javascript" src="<?php echo $jqueryUploadFilePath; ?>js/jquery.fileupload.js"></script>
