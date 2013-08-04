@@ -29,6 +29,9 @@ class plgSystemLocation extends JPlugin
 
 	public function onAfterRoute()
 	{
+		if (JFactory::getApplication()->isAdmin())
+			return 1;
+		
 		$get = JRequest::get('get');	
 		
 		if (isset($get['option']) && $get['option'] == 'com_ntrip' && isset($get['view']) && $get['view'] == 'category' && $get['id'] > 0)
@@ -42,9 +45,9 @@ class plgSystemLocation extends JPlugin
 		
 //		var_dump($menu->getActive()->id == $menu->getDefault()->id);
 		
-		//if ($menu->getActive()->id === $menu->getDefault()->id)
-		//{
-//			JFactory::getSession()->set('loca_location', null);
-		//}
+		if ($menu->getActive() === $menu->getDefault())
+		{
+			JFactory::getSession()->set('loca_location', null);
+		}
 	}
 }

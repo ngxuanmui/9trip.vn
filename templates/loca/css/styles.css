@@ -1231,3 +1231,6 @@ top: -2px;
 
 #guestComment { margin: 5px 0; }
 #error_comment_msg { color: red; margin: 5px 0; }
+
+/* register */
+#member-registration dt, #member-registration dd { float: left; }
