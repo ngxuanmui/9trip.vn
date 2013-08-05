@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
-JHtml::_('behavior.tooltip');
+// JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.noframes');
 ?>
@@ -37,7 +37,7 @@ JHtml::_('behavior.noframes');
 				<dt>
 					<?php if (strtolower($field->type) != 'captcha') echo $field->label; ?>
 					<?php if (!$field->required && $field->type!='Spacer'): ?>
-						<span class="optional"><?php echo JText::_('COM_USERS_OPTIONAL'); ?></span>
+						<span class="optional"><?php echo '<small>(Tùy chọn)</small>'; #JText::_('COM_USERS_OPTIONAL'); ?></span>
 					<?php endif; ?>
 				</dt>
 				<dd><?php echo ($field->type!='Spacer') ? $field->input : "&#160;"; ?></dd>
@@ -47,10 +47,10 @@ JHtml::_('behavior.noframes');
 		</fieldset>
 	<?php endif;?>
 <?php endforeach;?>
-		<div>
-			<button type="submit" class="validate"><?php echo JText::_('JREGISTER');?></button>
-			<?php echo JText::_('COM_USERS_OR');?>
-			<a href="<?php echo JRoute::_('');?>" title="<?php echo JText::_('JCANCEL');?>"><?php echo JText::_('JCANCEL');?></a>
+		<div class="btn-reg-container">
+			<button type="submit" class="validate"><?php echo 'Đăng ký'; # JText::_('JREGISTER');?></button>
+			<?php echo 'hoặc'; # JText::_('COM_USERS_OR');?>
+			<a href="<?php echo JRoute::_('');?>" title="<?php echo JText::_('JCANCEL');?>"><?php echo 'Bỏ qua'; # JText::_('JCANCEL');?></a>
 			<input type="hidden" name="option" value="com_users" />
 			<input type="hidden" name="task" value="registration.register" />
 			<?php echo JHtml::_('form.token');?>

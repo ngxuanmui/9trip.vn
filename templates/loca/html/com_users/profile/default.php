@@ -22,14 +22,16 @@ JHtml::_('behavior.tooltip');
 </h1>
 <?php endif; ?>
 
-<?php echo $this->loadTemplate('core'); ?>
-
-<?php echo $this->loadTemplate('params'); ?>
-
-<?php echo $this->loadTemplate('custom'); ?>
+<div id="member-registration">
+	<?php echo $this->loadTemplate('core'); ?>
+	
+	<?php echo $this->loadTemplate('params'); ?>
+	
+	<?php echo $this->loadTemplate('custom'); ?>
+</div>
 
 <?php if (JFactory::getUser()->id == $this->data->id) : ?>
-<a href="<?php echo JRoute::_('index.php?option=com_users&task=profile.edit&user_id='.(int) $this->data->id);?>">
+<a class="a-edit-profile" href="<?php echo JRoute::_('index.php?option=com_users&task=profile.edit&user_id='.(int) $this->data->id);?>">
 	<?php echo JText::_('COM_USERS_Edit_Profile'); ?></a>
 <?php endif; ?>
 </div>

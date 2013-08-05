@@ -1044,7 +1044,7 @@ ul.third-menu li:nth-child(2n) { border-right: 1px dotted #CCC; width: 150px;}
 
 .left-module-content { margin-top: 15px; background-color: #FFF; }
 
-.list-user-function { top: 20px; right: 0; border: 1px solid #CCC; background: #FFF; }
+.list-user-function { top: 20px; right: 0; border: 1px solid #CCC; background: #FFF; z-index: 20000; }
 .list-user-function ul { float: left; width: 290px; list-style: square; margin: 10px 0px 10px 30px; }
 .list-user-function li { float: left; width: 135px; margin-right: 10px; text-align: left; padding: 4px 0; }
 .list-user-function li a { padding: 0 !important; }
@@ -1233,4 +1233,15 @@ top: -2px;
 #error_comment_msg { color: red; margin: 5px 0; }
 
 /* register */
-#member-registration dt, #member-registration dd { float: left; }
+#member-registration fieldset, 
+#users-profile-core fieldset { padding: 10px; }
+#member-registration fieldset legend { font-weight: bold; padding: 3px 5px; }
+#member-registration dt, #member-registration dd { float: left; width: 200px; margin: 5px 0; }
+#member-registration dd { width: 600px; }
+#member-registration dt label { font-weight: bold !important; }
+#member-registration button { padding: 3px 10px; font-weight: bold; }
+#member-registration .btn-reg-container { padding: 20px 0; }
+
+.registration h1 { padding: 10px 0; }
+
+.a-edit-profile { padding: 10px 0; display: block; }

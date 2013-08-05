@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
 	<fields name="captcha">
-		<fieldset name="captcha" label="Captcha">
+		<fieldset name="captcha" label="Mã xác nhận">
 			<field name="spacer" type="spacer" class="text"
-				label="Required enter captcha"
+				label="Nhập vào mã xác nhận"
 			/>
 			<field
 				name="captcha"
