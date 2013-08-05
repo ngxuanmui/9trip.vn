@@ -6,7 +6,7 @@ class NtripFrontHelper
 	{
 		$arr = array(
 						'hotels'		=> 'Khách sạn'	, 
-						'restaurants'	=> 'Nhà hàng'	, 
+						'restaurants'	=> 'Ẩm thực'	, 
 						'relaxes'		=> 'Giải trí'	, 
 						'tours'			=> 'Tham quan'	, 
 						'shoppings'		=> 'Mua sắm'	, 
