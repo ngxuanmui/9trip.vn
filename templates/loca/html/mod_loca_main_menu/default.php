@@ -71,6 +71,7 @@ jQuery(function($){
 	//else:
 	?>
 	
+	<?php if ($catId > 0): ?>
 	<ul class="main-menu">
 		<li>
 			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('discovers', $catId)); ?>">
@@ -98,5 +99,5 @@ jQuery(function($){
 			</a>
 		</li>
 	</ul>
-	<?php //endif; ?>
+	<?php endif; ?>
 </div>

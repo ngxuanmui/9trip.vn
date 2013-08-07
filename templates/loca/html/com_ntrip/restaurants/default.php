@@ -56,7 +56,7 @@ $fields = $this->fields;
 					</div>
 					<div class="content">
 						<b>Xếp hạng:</b> nhà hàng ở <?php echo $this->category->title; ?> <br/>
-						<b>Giá: </b><?php echo $item->price_from; ?> - <?php echo $item->price_to; ?> VNĐ/người <br />
+						<b>Giá: </b><?php echo number_format((float) $item->price_from); ?> - <?php echo number_format((float) $item->price_to); ?> VNĐ/người <br />
 						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 						<div class="clear"></div>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>

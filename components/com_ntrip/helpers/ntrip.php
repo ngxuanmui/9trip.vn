@@ -88,7 +88,23 @@ class NtripFrontHelper
 		$obj->gmap_lat = $coordinate['lat'];
 		$obj->gmap_long = $coordinate['long'];
 		
+		// delete before insert
+		$query->delete('#__ntrip_gmap_info')
+				->where('item_id = ' . $itemId)
+				->where('item_type = ' . $db->quote($itemType))
+		;
+		
+		$db->setQuery($query);
+		$db->query();
+		
+		if ($db->getErrorMsg())
+			die ($db->getErrorMsg());
+		
+		// insert
 		$db->insertObject('#__ntrip_gmap_info', $obj);
+		
+		if ($db->getErrorMsg())
+			die ($db->getErrorMsg());
 		
 		return true;
 	}

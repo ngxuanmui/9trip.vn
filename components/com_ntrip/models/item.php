@@ -4,6 +4,8 @@ jimport('joomla.application.component.modelitem');
 
 abstract class AbsNtripModelItem extends JModelItem
 {
+	public $itemType;
+	
 	public function getItem($type = '', $updateHits = true)
 	{
 		if (!$type)
@@ -63,6 +65,9 @@ abstract class AbsNtripModelItem extends JModelItem
 					// 			}
 					
 				$item->gmap = $this->getGmapInfo($item->id, $type, $address);
+				
+				$item->gmap_lat = $item->gmap->gmap_lat;
+				$item->gmap_long = $item->gmap->gmap_long;
 			}
 		}
 		

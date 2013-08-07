@@ -23,27 +23,33 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		<div class="item-container">
 			<div class="address"><?php echo $item->address; ?></div>
 			
+			<?php if ($item->website || $item->email || $item->phone): ?>
 			<div class="contact">
+				<?php if ($item->website): ?>
 				<span class="item">
 					<span class="icons website"></span>
 					<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->webiste; ?>" target="_blank">
 						Website
 					</a>
 				</span>
+				<?php endif; ?>
+				<?php if ($item->email): ?>
 				<span class="item">
 					<span class="email icons"></span>
 					<a href="mailto:<?php echo $item->email; ?>">
 						Email
 					</a>
 				</span>
-				<span class="item">
+				<?php endif; ?>
+				<?php if ($item->phone): ?>
+				<span class="item phone">
 					<span class="phone icons"></span>
 					<?php echo $item->phone; ?>
 				</span>
-				
+				<?php endif; ?>
 				<div class="clr"></div>
-				
 			</div>
+			<?php endif; ?>
 			
 			<?php 
 			
@@ -63,7 +69,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 
 			<div class="info">
 				
-				<div class="content">
+				<div class="content item-detail">
 					<div>
 						<?php echo $item->description; ?>
 						<div class="clr"></div>

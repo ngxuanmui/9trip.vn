@@ -22,7 +22,7 @@ JHtml::_('behavior.modal');
 			<div class="address"><?php echo $item->address; ?></div>
 			
 			<div class="contact">
-				<span class="item">
+				<span class="item contact-website">
 					<span class="icons website"></span>
 					<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->website; ?>" target="_blank">
 						Website
@@ -34,7 +34,7 @@ JHtml::_('behavior.modal');
 						Email
 					</a>
 				</span>
-				<span class="item">
+				<span class="item contact-phone">
 					<span class="phone icons"></span>
 					<?php echo $item->phone; ?>
 				</span>

@@ -633,7 +633,7 @@ div.list-items ul li { background: #FFF; padding: 0 0 10px 10px; }
 	padding: 5px 0;
 }
 
-.contact { margin: 10px 0 20px 0; }
+.contact { margin: 0; }
 
 div.content p { margin: 5px 0; }
 div.rating-content .criteria { margin: -6px 5px 0 0; }
@@ -972,7 +972,9 @@ table.list-user-hotels tr.oven, table.list-user-hotels tr.row1{
 	border: 1px solid #DEDEDE;
 }
 
-.contact > span { float: left; width: 120px; height: 20px; }
+.contact > span { float: left; width: 75px; height: 20px; }
+.contact > span.contact-phone { width: 110px; }
+.contact > span.contact-website { width: 90px; }
 .contact > span > span { float: left; width: 18px; height: 22px; margin-right: 10px; }
 .contact > span > span.phone { margin-right: 5px; }
 .contact > span > a { line-height: 21px; }
@@ -1245,3 +1247,8 @@ top: -2px;
 .registration h1 { padding: 10px 0; }
 
 .a-edit-profile { padding: 10px 0; display: block; }
+
+.title-category label { font-weight: bold; font-size: 16px; float: left; margin-top: 10px; }
+
+.item-container .address { float: left; font-weight: bold; margin-bottom: 15px; }
+.item-container .contact { float: right; width: 275px; margin-bottom: 15px; }
