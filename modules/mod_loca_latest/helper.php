@@ -25,7 +25,11 @@ class modLocaLatestHelper
 		$type = $params->get('type');
 		$limit = $params->get('limit', 10);
 
-		$location = JFactory::getSession()->get('loca_location', 0);
+		//$location = JFactory::getSession()->get('loca_location', 0);
+		$location = JRequest::getInt('catid');
+		
+		if (!$location && JRequest::getString('view') == 'category')
+			$location = JRequest::getInt('id');
 		
 		$table = '';
 		

@@ -301,7 +301,7 @@ function NtripParseRoute($segments)
 						$vars['view'] = $arrMapMenuAlias[$itemMenu->alias];
 						$vars['catid'] = (int)$item->catid;
 						$vars['id'] = (int)$id;
-				
+						
 						return $vars;
 					}
 				}
@@ -394,6 +394,7 @@ function NtripParseRoute($segments)
 				list($page, $pageVal) = explode(':', $segments[0]);
 				
 				$vars['limitstart'] = $limit * ($pageVal - 1);
+				$vars['catid'] = $urlParam['catid'];
 				
 // 				$vars['view'] = $arrMapMenuAlias[$itemMenu->alias]['items'];
 			}

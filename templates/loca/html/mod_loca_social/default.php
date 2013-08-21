@@ -27,6 +27,8 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 	var USER_GUEST = '<?php echo $userGuest ? 'y' : 'n'; ?>';
 </script>
 
+<div class="clr"></div>
+
 <div class="xitem-container social-info">
 	<div class="fltlft">
 		<div class="fltlft">

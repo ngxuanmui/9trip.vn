@@ -17,8 +17,6 @@ $itemType = $params->get('item_type');
 $otherImages = $params->get('other_images');
 $gmapInfo = $params->get('gmap');
 
-// var_dump($gmapInfo);
-
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
 require JModuleHelper::getLayoutPath('mod_loca_social', $params->get('layout', 'default'));
