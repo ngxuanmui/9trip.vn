@@ -54,9 +54,21 @@ $criteria = explode(',', JRequest::getString('criteria'));
 	
 	<div class="list-main-items-content">
 		<ul class="tab-list-main">
-			<li class="active">Thích nhiều nhất</li>
-			<li>Rẻ nhất</li>
-			<li>Mới nhất</li>
+			<li class="active">
+				<a href="#">
+					Thích nhiều nhất
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					Rẻ nhất
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					Mới nhất
+				</a>
+			</li>
 			<div class="clr"></div>
 		</ul>
 		<!-- List nha hang -->
