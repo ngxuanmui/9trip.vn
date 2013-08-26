@@ -19,7 +19,7 @@ if (!$catId)
 	$catId = $id;
 ?>
 
-<?php if (!$homePage): ?>
+<?php if (!$homePage || JRequest::getCmd('view', '') == 'not_found'): ?>
 <script type="text/javascript">
 <!--
 
@@ -51,7 +51,7 @@ jQuery(function($){
 				
 			</a>
 
-			<ul class='show-locations absolute' <?php if ($homePage):?>style="display: block;"<?php endif; ?>>
+			<ul class='show-locations absolute' <?php if ($homePage && JRequest::getCmd('view', '') != 'not_found'):?>style="display: block;"<?php endif; ?>>
 				<li>
 					<?php echo LocaHelper::renderModulesOnPosition('dia-danh-mien-bac'); ?>
 				</li>

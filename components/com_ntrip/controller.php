@@ -17,6 +17,8 @@ defined('_JEXEC') or die;
  */
 class NtripController extends JControllerLegacy
 {
+	protected $default_view = 'not_found';
+	
 	function __construct($config = array())
 	{
 		parent::__construct($config);
@@ -38,7 +40,7 @@ class NtripController extends JControllerLegacy
 		$safeurlparams = array('catid'=>'INT', 'id'=>'INT', 'cid'=>'ARRAY', 'year'=>'INT', 'month'=>'INT', 'limit'=>'UINT', 'limitstart'=>'UINT',
 			'showall'=>'INT', 'return'=>'BASE64', 'filter'=>'STRING', 'filter_order'=>'CMD', 'filter_order_Dir'=>'CMD', 'filter-search'=>'STRING', 'print'=>'BOOLEAN', 'lang'=>'CMD');
 
-		$vName	= JRequest::getCmd('view', 'account');
+		$vName	= JRequest::getCmd('view', 'not_found');
 		JRequest::setVar('view', $vName);
 		
 		$signInUrl	= JRoute::_('index.php?option=com_users&view=login', false);

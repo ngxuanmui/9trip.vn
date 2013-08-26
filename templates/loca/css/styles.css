@@ -1252,3 +1252,8 @@ top: -2px;
 
 .item-container .address { float: left; font-weight: bold; margin-bottom: 15px; }
 .item-container .contact { float: right; width: 275px; margin-bottom: 15px; }
+
+.not-found h1 { font-size: 14px; margin: 20px 0; }
+.not-found .error { color: red; margin-bottom: 20px; }
+.not-found .error .comment { margin: 10px 0; }
+.not-found .links { margin: 10px 0; display: block;  }
