@@ -3,9 +3,6 @@
 defined('_JEXEC') or die;
 ?>
 
-<div id="menu-holder"></div>
-
-
 	<div id="top-adv">
 		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 	</div>
@@ -53,10 +50,10 @@ defined('_JEXEC') or die;
 				<ul class="slider-<?php echo $item->id; ?>">	
 					<li>
 						<?php 
-						foreach ($subCat as $subItem): 
+						foreach ($subCat as $key => $subItem): 
 							$link = JRoute::_(NtripHelperRoute::getCategoryRoute($subItem->id));
 						?>
-						<div class="tour-content">
+						<div class="tour-content <?php if ( ($key + 1) % 3 == 0 ) echo 'tour-content-last'?>">
 							<div class="img-block">
 								<?php
 									$params = $subItem->getParams();

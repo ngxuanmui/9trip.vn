@@ -12,26 +12,28 @@ jimport('joomla.application.categories');
 function ntripGetViews()
 {
 	/* use this variable to check views */
-	$arrViews = array(
-						'discover' => 'discovers', 
-						'relax' => 'relaxes', 
-						'promotion' => 'promotions', 
-						'warning' => 'warnings', 
-						'hotel' => 'hotels', 
-						'hotels' => 'hotels',
-						'restaurants' => 'restaurants',
-						'relaxes' => 'relaxes',
-						'tours' => 'tours',
-						'shoppings' => 'shoppings',
-						'services' => 'services',
-						'service' => 'services',
-						'shopping' => 'shoppings',
-						'restaurant' => 'restaurants',
-						'tour' => 'tours',
-						'question' => 'questions',
-						'album' => 'albums',
-						'feedback' => 'feedback'
-			);
+// 	$arrViews = array(
+// 						'discover' => 'discovers', 
+// 						'relax' => 'relaxes', 
+// 						'promotion' => 'promotions', 
+// 						'warning' => 'warnings', 
+// 						'hotel' => 'hotels', 
+// 						'hotels' => 'hotels',
+// 						'restaurants' => 'restaurants',
+// 						'relaxes' => 'relaxes',
+// 						'tours' => 'tours',
+// 						'shoppings' => 'shoppings',
+// 						'services' => 'services',
+// 						'service' => 'services',
+// 						'shopping' => 'shoppings',
+// 						'restaurant' => 'restaurants',
+// 						'tour' => 'tours',
+// 						'question' => 'questions',
+// 						'album' => 'albums',
+// 						'feedback' => 'feedback'
+// 			);
+	
+	$arrViews = array();
 	
 	return $arrViews;
 }
@@ -224,20 +226,22 @@ function NtripParseRoute($segments)
 	
 	$arrViewKeys = array_keys($arrViews);
 	
-	$arrMapMenuAlias = array(
-			'khuyen-mai' => 'promotion', 
-			'kham-pha' => array('item' => 'discover', 'items' => 'discovers', 'limit' => CFG_LIMIT_DISCOVERY),
-			'khach-san' => 'hotel',
-			'canh-bao' => 'warning',
-			'nha-hang' => 'restaurant',
-			'khach-san' => 'hotel',
-			'giai-tri' => 'relax',
-			'tham-quan' => 'tour',
-			'mua-sam' => 'shopping',
-			'dich-vu' => 'service',
-			'hoi-dap' => 'question',
-			'feedback' => 'feedback'
-			);
+// 	$arrMapMenuAlias = array(
+// 			'khuyen-mai' => 'promotion', 
+// 			'kham-pha' => array('item' => 'discover', 'items' => 'discovers', 'limit' => CFG_LIMIT_DISCOVERY),
+// 			'khach-san' => 'hotel',
+// 			'canh-bao' => 'warning',
+// 			'nha-hang' => 'restaurant',
+// 			'khach-san' => 'hotel',
+// 			'giai-tri' => 'relax',
+// 			'tham-quan' => 'tour',
+// 			'mua-sam' => 'shopping',
+// 			'dich-vu' => 'service',
+// 			'hoi-dap' => 'question',
+// 			'feedback' => 'feedback'
+// 			);
+	
+	$arrMapMenuAlias = array();
 	
 	$vars = array();
 
@@ -260,6 +264,9 @@ function NtripParseRoute($segments)
 
 		return $vars;
 	}
+	
+	if ($menu->getActive() == $menu->getDefault())
+		return $vars;
 	
 // 	var_dump($count, $segments, $item); die;
 

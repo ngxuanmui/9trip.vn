@@ -97,18 +97,6 @@ $this->setGenerator('Loca.vn');
 		<!-- bottom -->
 		<div id="bottom">
 			<div class="separate-bottom"></div>
-			<div class="menu-bottom-containter">
-				<ul id="menu-bottom">
-					<li><a href="#">Trang chủ</a></li>
-					<li><a href="#">Địa danh</a></li>
-					<li><a href="#">Khám phá</a></li>
-					<li><a href="#">Khuyến mại</a></li>
-					<li><a href="#">Hỏi đáp - tư vấn</a></li>
-					<li><a href="#">Cảnh báo</a></li>
-					<li><a href="#">Album ảnh</a></li>
-					<li><a href="#">Diễn đàn</a></li>
-				</ul>
-			</div>
 			<div id="copyright-info">
 				<div class="copyright-text">
 					&copy; Copyright 2013 Loca Co.,Ltd <br />

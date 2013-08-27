@@ -19,7 +19,7 @@ if (!$catId)
 	$catId = $id;
 ?>
 
-<?php if (!$homePage || JRequest::getCmd('view', '') == 'not_found'): ?>
+<?php #if (!$homePage || JRequest::getCmd('view', '') == 'not_found'): ?>
 <script type="text/javascript">
 <!--
 
@@ -35,7 +35,7 @@ jQuery(function($){
 	});
 //-->
 </script>
-<?php endif; ?>
+<?php #endif; ?>
 
 <div class="menu-container">
 	<ul class="main-menu">
@@ -51,7 +51,7 @@ jQuery(function($){
 				
 			</a>
 
-			<ul class='show-locations absolute' <?php if ($homePage && JRequest::getCmd('view', '') != 'not_found'):?>style="display: block;"<?php endif; ?>>
+			<ul class='show-locations absolute' <?php /*if ($homePage && JRequest::getCmd('view', '') != 'not_found'):?>style="display: block;"<?php endif; */ ?>>
 				<li>
 					<?php echo LocaHelper::renderModulesOnPosition('dia-danh-mien-bac'); ?>
 				</li>

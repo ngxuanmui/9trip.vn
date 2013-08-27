@@ -238,11 +238,12 @@ ul.main-menu > li > a:hover {
 	background: #FFF;
 }
 .tour-content {
-    padding-right: 10px;
+    padding-right: 13px;
     float: left;
     width: 200px;
     padding-bottom: 10px;
 }
+.tour-content-last { padding-right: 0; }
 .tour-content .img-block {
     width: 198px;
     height: 150px;
@@ -1025,7 +1026,7 @@ table.list-user-hotels tr.oven, table.list-user-hotels tr.row1{
 	/* For IE 5.5 - 7 */
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
-.show-locations h3 { border-bottom: 1px solid #CCC; }
+.show-locations h3 { border-bottom: 1px solid #CCC; text-align: center; }
 .show-locations > li { float: left; width: 320px; }
 .show-locations > li ul li { float: left; width: 151px; line-height: 25px; padding: 4px; border: 1px dotted #CCC; border-top: none; border-right: none; }
 #form-upload-image textarea { width: 328px; }
@@ -1152,7 +1153,7 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 .loca-social-tourist li { padding: 5px 10px; }
 .loca-social-tourist li.no-padding { padding: 5px 0; }
 
-.bottom-links > li { float: left; width: 150px; margin-right: 8px; }
+.bottom-links > li { float: left; width: 150px; margin-right: 6px; }
 .bottom-links > li:last-child { margin-right: 0; }
 .bottom-links li > span { font-weight: bold; }
 .bottom-links li ul { list-style: circle; padding: 0; list-style-position:inside; }
