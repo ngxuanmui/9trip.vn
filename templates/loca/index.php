@@ -111,10 +111,10 @@ $this->setGenerator('Loca.vn');
 			</div>
 			<div id="copyright-info">
 				<div class="copyright-text">
-					&copy; Copyright 2013 Loca Co.,Ltd <br />
-					Địa chỉ liên hệ: Đại Kim - Hoàng Mai - Hà Nội <br />
-					Số điện thoại: 09123456789 / Fax: 043 216 363 <br />
-					Email: local-travel@gmail.com
+					&copy; <?php echo date('Y'); ?> - Loca.vn <br />
+					Thông tin liên hệ <br />
+					Mobile: 0915.019.790 – Mr.Nam<br />
+					Email: namtroi@gmail.com
 				</div>
 				<div class="bottom-logo">
 					<a

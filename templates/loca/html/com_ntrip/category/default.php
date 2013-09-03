@@ -110,7 +110,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 	
 	<div class="margin-bottom5">
 		<div class="title-category">
-			Khám phá mới nhất
+			Khám phá du lịch mới nhất
 		</div>
 		
 		<div class="item-container">
@@ -135,7 +135,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="clr"></div>
 	</div>
-	
+	<?php /*
 	<div class="margin-bottom5">
 		<div class="title-category">
 			Khuyến mãi mới nhất
@@ -192,7 +192,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		<div class="clr"></div>
 	</div>
 	
-	<?php /*
+	*/ ?>
 	<div class="margin-bottom5">
 		<div class="title-category">
 			Album mới nhất
@@ -217,7 +217,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="clr"></div>
 	</div>
-	*/ ?>
+	
 </div>
 
 <!-- Right content -->

@@ -20,8 +20,15 @@ class modCustomFieldHelper
 	{
 		$rows = array();
 		
+		/* get id */
+		$loc = JRequest::getInt('id');
+		
 		// import categories
 		jimport('joomla.application.categories');
+		
+		$catObject = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip', 'table' => ''));
+		
+		$rows['category'] = $catObject->get($loc);
 		
 		// get tour custom field
 		$tourCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_tour', 'table'=>'#__ntrip_tours'));
@@ -40,7 +47,7 @@ class modCustomFieldHelper
 		
 		$rows['relaxes'] = $relaxCustomField->get()->getChildren();
 		
-		$loc = JRequest::getInt('id');
+		
 		$rows['hotels'] = modCustomFieldHelper::_getCustomField('custom_field_hotel', $loc);
 		
 		$rows['restaurants'] = modCustomFieldHelper::_getCustomField('custom_field_restaurant', $loc);

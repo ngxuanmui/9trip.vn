@@ -52,6 +52,7 @@ $criteria = explode(',', JRequest::getString('criteria'));
 	
 	<div class="clr"></div>
 	
+	<?php /*
 	<div class="list-main-items-content">
 		<ul class="tab-list-main">
 			<li class="active">
@@ -71,7 +72,8 @@ $criteria = explode(',', JRequest::getString('criteria'));
 			</li>
 			<div class="clr"></div>
 		</ul>
-		<!-- List nha hang -->
+		*/ ?>
+		<!-- List khach san -->
 		<div class="list-main-items-content list-items">
 			<ul>
 				<?php 

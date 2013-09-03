@@ -13,7 +13,7 @@ $id = JRequest::getInt('id');
 $linkId = ($id) ? '&id=' . $id : '';
 ?>
 
-<p class="custom-field-title">Nhà cung cấp dịch vụ - Khám phá - Du ngoạn</p>
+<p class="custom-field-title">Du lịch <?php echo $list['category']->title; ?></p>
 
 <ul class="custom-field">
 	<li>
