@@ -23,6 +23,13 @@ class NtripViewHome extends JViewLegacy
 	{
 		$this->items = $this->get('Items');
 		
+		if (empty($this->items))
+		{
+			JError::raiseWarning(500, implode("\n", $errors));
+			
+			return false;
+		}
+		
 		$this->_prepareDocument();
 
 		parent::display($tpl);
