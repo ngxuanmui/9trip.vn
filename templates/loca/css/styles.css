@@ -135,11 +135,12 @@ ul.main-menu > li > a {
 
 ul.main-top-menu li { background: url('../images/bg-menu-seperator.png') top left no-repeat; }
 
-li#menu-home-page { background: url('../images/bg-menu-seperator.png') top right no-repeat; }
+li#menu-home-page { /* background: url('../images/bg-menu-seperator.png') top right no-repeat; */ }
 
 ul.main-menu > li > a:hover {
-    background: url("../images/bg-main-menu-hover.png") repeat-x !important;
+    background: url("../images/bg-main-menu-hover.png") repeat-x;
 }
+
 #top-adv {
     width: 100%;
     margin: 0 auto;
@@ -433,7 +434,6 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .intro-list-main-item label {
 	font-size: 18px;
 	font-weight: bold;
-	text-indent: 15px;
 	display: block;
 	color: #000;
 	height: 40px;
@@ -467,6 +467,7 @@ ul.tab-categories li {
 
 ul.tab-categories li:first-child { padding: 0 28px; }
 ul.tab-categories li:nth-child(2) { padding: 0 28px; }
+ul.tab-categories li:nth-child(3) { padding: 0 28px; }
 
 ul.tab-categories li a { color: #FFF; }
 ul.tab-categories li.active{
@@ -548,7 +549,6 @@ ul.tab-list-main li.active {
 	color: #555555;
 }
 .list-main-items-content {
-	padding-top: 20px;
 	line-height: 25px;
 	color: #000;
 }
@@ -557,7 +557,7 @@ ul.tab-list-main li.active {
 	border-bottom: 1px dashed #DBDBDB;
 }
 
-div.list-items ul li { background: #FFF; padding: 0 0 10px 10px; }
+div.list-items ul li { background: #FFF; padding: 10px 0 10px 10px; }
 
 .list-main-items-content a.title {
 	color: #006699;
@@ -1013,7 +1013,7 @@ table.list-user-hotels tr.oven, table.list-user-hotels tr.row1{
 .show-locations { 
 	background: #FAFAFA; 
 	top: 40px; 
-	left: -97px; 
+	left: -39px; 
 	width: 960px; 
 	z-index: 10000; 
 	border: 0px solid #CCC; 
@@ -1258,3 +1258,6 @@ top: -2px;
 .not-found .error { color: red; margin-bottom: 20px; }
 .not-found .error .comment { margin: 10px 0; }
 .not-found .links { margin: 10px 0; display: block;  }
+
+.home { background: url('../images/home.png') no-repeat; background-position: center; }
+li#menu-home-page > a:hover { background: url('../images/home-hover.png') no-repeat; background-position: center; }

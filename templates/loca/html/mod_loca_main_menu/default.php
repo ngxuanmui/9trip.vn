@@ -39,7 +39,7 @@ jQuery(function($){
 
 <div class="menu-container">
 	<ul class="main-menu">
-		<li id="menu-home-page"><a href="<?php echo JURI::base(); ?>">Trang chủ</a></li>
+		<li id="menu-home-page"><a href="<?php echo JURI::base(); ?>" class='home'></a></li>
 		<li class='loca-location-container relative'>
 			<a id='loca-location'>
 				<?php 

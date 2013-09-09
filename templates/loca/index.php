@@ -102,7 +102,7 @@ $this->setGenerator('Loca.vn');
 					&copy; <?php echo date('Y'); ?> - Loca.vn <br />
 					Thông tin liên hệ <br />
 					Mobile: 0915.019.790 – Mr.Nam<br />
-					Email: namtroi@gmail.com
+					Email: <a href="mailto:namtroi@gmail.com">namtroi@gmail.com</a>
 				</div>
 				<div class="bottom-logo">
 					<a

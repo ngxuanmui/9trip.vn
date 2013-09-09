@@ -71,7 +71,7 @@ JHtml::_('behavior.modal');
 						<?php endif; ?>
 					</p>
 					<div class="rating-content">
-						<span class="fltlft criteria">Tiêu chí: </span>
+						<span class="fltlft criteria">Tiêu chuẩn khách sạn: </span>
 						<span class="fltlft full-star-over-yellow">
 							<span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span>
 						</span>
