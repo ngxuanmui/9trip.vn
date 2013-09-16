@@ -5,12 +5,6 @@ defined('_JEXEC') or die;
 $fields = $this->fields;
 ?>
 
-<div id="top-adv">
-	<img
-		src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-</div>
-<div class="clear"></div>
-
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="title-category">Khám phá</div>
@@ -19,9 +13,13 @@ $fields = $this->fields;
 			<span class="icons quote fltlft"></span> <span
 				class="fltlft album-quote"> Hãy chia sẻ những trải nghiệm của bạn về
 				chuyến đi của mình, các chia sẻ thực tế của bạn sẽ giúp ích rất
-				nhiều cho các thành viên khác. </span> <a href="#"
+				nhiều cho các thành viên khác. </span> 
+				<?php /*
+			<a href="#"
 				class="block icons loca-button fltlft"><span class="txt-btn">Chia sẻ
 					trải nghiệm</span></a>
+				 * 
+				 */ ?>
 		</div>
 
 		<div class="clr"></div>

@@ -47,11 +47,6 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 	});
 </script>
 
-<div id="top-adv">
-	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-</div>
-<div class="clear"></div>
-
 <form action="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.apply&id='.(int) $this->item->id); ?>" method="post" name="userForm" id="user_man_hotel-form" class="form-validate" enctype="multipart/form-data">
 <div id="left-content">
 	<div class="container-edit-page">

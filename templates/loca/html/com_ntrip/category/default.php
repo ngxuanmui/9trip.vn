@@ -22,11 +22,6 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 	var zoomOption = 10;
 </script>
 
-<div id="top-adv">
-		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-	</div>
-	<div class="clear"></div>
-
 <div id="left-content">
 	
 	<div class="margin-bottom5">

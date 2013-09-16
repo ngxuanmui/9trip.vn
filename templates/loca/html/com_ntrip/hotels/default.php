@@ -24,11 +24,6 @@ $price = explode(',', JRequest::getString('price'));
 $criteria = explode(',', JRequest::getString('criteria'));
 ?>
 
-<div id="top-adv">
-		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-	</div>
-	<div class="clear"></div>
-
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-main-item">
@@ -37,9 +32,12 @@ $criteria = explode(',', JRequest::getString('criteria'));
 			<span class="fltlft hotel-quote">
 				Nếu khách sạn của bạn chưa có trên Loca.vn, hãy tạo mới ngay
 			</span>
+			<?php /*
 			<a class="button fltlft" href="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.add'); ?>">
 				Tạo mới khách sạn
 			</a>
+			 * 
+			 */ ?>
 			<div class="clear"></div>
 		</div>
 		

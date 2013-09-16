@@ -15,12 +15,6 @@ $doc->addStyleSheet(JURI::base() . 'media/loca/lightbox/css/lightbox.css');
 
 <script src="<?php echo JURI::base(); ?>media/loca/lightbox/js/lightbox.js"></script>
 
-<div id="top-adv">
-	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-</div>
-
-<div class="clear"></div>
-
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="title-category">

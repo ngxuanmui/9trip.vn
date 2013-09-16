@@ -5,11 +5,6 @@ defined('_JEXEC') or die;
 $fields = $this->fields;
 ?>
 
-<div id="top-adv">
-		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-	</div>
-	<div class="clear"></div>
-
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="title-category">
@@ -21,7 +16,10 @@ $fields = $this->fields;
 			<span class="fltlft album-quote">
 				Hãy chia sẻ những thắc mắc, những lo lắng của mình trước chuyến du lịch, các chuyên gia và thành viên Loca.vn sẽ cùng thảo luận với bạn.
 			</span>
+			<?php /*
 			<a href="#" class="block icons loca-button fltlft"><span class="txt-btn">Đặt câu hỏi</span></a>
+			 * 
+			 */?>
 		</div>
 		
 		<div class="clr"></div>

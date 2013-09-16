@@ -16,9 +16,6 @@ JHtml::_('behavior.formvalidation');
 $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 ?>
 
-<style>
-</style>
-
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
@@ -27,11 +24,6 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 		}
 	}
 </script>
-
-<div id="top-adv">
-	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-</div>
-<div class="clear"></div>
 
 <form action="<?php echo JRoute::_('index.php?option=com_ntrip&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="relax-form" class="form-validate" enctype="multipart/form-data">
 <div id="left-content">

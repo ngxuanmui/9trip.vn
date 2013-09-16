@@ -5,11 +5,6 @@ defined('_JEXEC') or die;
 $fields = $this->fields;
 ?>
 
-<div id="top-adv">
-		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-	</div>
-	<div class="clear"></div>
-
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-main-item">
@@ -18,7 +13,9 @@ $fields = $this->fields;
 			<span class="fltlft shopping-quote">
 				Nếu thông tin mua sắm của bạn chưa có trên Loca.vn, hãy tạo mới ngay
 			</span>
+			<?php /*
 			<input type="button" value="Tạo mới mua sắm" class="fltlft" />
+			 */ ?>
 			<div class="clear"></div>
 		</div>
 		

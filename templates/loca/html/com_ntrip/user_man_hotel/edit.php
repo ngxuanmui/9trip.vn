@@ -16,18 +16,10 @@ JHtml::_('behavior.formvalidation');
 $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 ?>
 
-<style>
-</style>
-
 <script type="text/javascript">
 	var ITEM_TYPE = 'hotels';
 	var ITEM_ID = <?php echo ($this->item->id) ? $this->item->id : 0; ?>;
 </script>
-
-<div id="top-adv">
-	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-</div>
-<div class="clear"></div>
 
 <form action="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.apply&id='.(int) $this->item->id); ?>" method="post" name="userForm" id="user_man_hotel-form" class="form-validate" enctype="multipart/form-data">
 <div id="left-content">

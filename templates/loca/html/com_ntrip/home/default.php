@@ -3,10 +3,6 @@
 defined('_JEXEC') or die;
 ?>
 
-	<div id="top-adv">
-		<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-	</div>
-	<div class="clear"></div>
 	<!-- Left content -->
 	<div id="left-content">
 		<?php 
