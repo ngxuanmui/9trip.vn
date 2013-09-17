@@ -14,6 +14,13 @@ class NtripModelCategory extends JModel
 		
 		$catid = $this->getState('filter.catid', 0);
 		
+		$sess = JFactory::getSession();
+		
+		if ($catid)
+			$sess->set('loca-location', $catid);
+		else
+			$sess->set('loca-location', null);
+		
 		// get gmap info
 		$rows['gmap_info'] = $this->getGmapInfo($catid);
 		

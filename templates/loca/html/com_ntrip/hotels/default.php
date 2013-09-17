@@ -50,8 +50,9 @@ $criteria = explode(',', JRequest::getString('criteria'));
 	
 	<div class="clr"></div>
 	
-	<?php /*
+	
 	<div class="list-main-items-content">
+	<?php /*
 		<ul class="tab-list-main">
 			<li class="active">
 				<a href="#">

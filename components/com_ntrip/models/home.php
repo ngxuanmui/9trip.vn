@@ -10,6 +10,10 @@ class NtripModelHome extends JModelLegacy
 		$categories = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip', 'table' => '#__hotels'));
 	
 		$allCategories = $categories->get()->getChildren();
+		
+		$sess = JFactory::getSession();
+		
+		$sess->set('loca-location', null);
 	
 		return $allCategories;
     }

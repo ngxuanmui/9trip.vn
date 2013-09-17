@@ -31,7 +31,7 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 <div class="left-module-content">
 	<div class="promotion-bar">Tìm kiếm</div>
 	
-	<form action="<?php echo JRoute::_(NtripHelperRoute::getItemsRoute(JRequest::getString('view'))); ?>" method="get">
+	<form action="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute(JRequest::getString('view'), JRequest::getInt('catid'))); ?>" method="get">
 		<script type="text/javascript">
 			jQuery(function($){
 				$('.custom_field, .rating, .price, .criteria').click(function(){

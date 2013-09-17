@@ -15,8 +15,16 @@ $id = JRequest::getInt('id');
 
 $catId = JRequest::getInt('catid', 0);
 
-if (!$catId)
+// var_dump($_GET);
+
+if (!$catId && $_GET['option'] == 'com_ntrip')
 	$catId = $id;
+
+if ($_GET['option'] != 'com_ntrip')
+{
+	$sess = JFactory::getSession();
+	$catId = $sess->get('loca-location', null);
+}
 ?>
 
 <?php #if (!$homePage || JRequest::getCmd('view', '') == 'not_found'): ?>
@@ -78,6 +86,7 @@ jQuery(function($){
 				Khám phá du lịch
 			</a>
 		</li>
+		<?php /*
 		<li>
 			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('questions', $catId)); ?>">
 				Tour du lịch
@@ -93,6 +102,7 @@ jQuery(function($){
 				Khuyến mãi
 			</a>
 		</li>
+		*/ ?>
 		<li>
 			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('albums', $catId)); ?>">
 				Album ảnh

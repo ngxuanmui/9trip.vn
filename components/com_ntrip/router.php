@@ -12,28 +12,28 @@ jimport('joomla.application.categories');
 function ntripGetViews()
 {
 	/* use this variable to check views */
-// 	$arrViews = array(
-// 						'discover' => 'discovers', 
-// 						'relax' => 'relaxes', 
-// 						'promotion' => 'promotions', 
-// 						'warning' => 'warnings', 
-// 						'hotel' => 'hotels', 
-// 						'hotels' => 'hotels',
-// 						'restaurants' => 'restaurants',
-// 						'relaxes' => 'relaxes',
-// 						'tours' => 'tours',
-// 						'shoppings' => 'shoppings',
-// 						'services' => 'services',
-// 						'service' => 'services',
-// 						'shopping' => 'shoppings',
-// 						'restaurant' => 'restaurants',
-// 						'tour' => 'tours',
-// 						'question' => 'questions',
-// 						'album' => 'albums',
-// 						'feedback' => 'feedback'
-// 			);
+	$arrViews = array(
+						'discover' => 'discovers', 
+						'relax' => 'relaxes', 
+						'promotion' => 'promotions', 
+						'warning' => 'warnings', 
+						'hotel' => 'hotels', 
+						'hotels' => 'hotels',
+						'restaurants' => 'restaurants',
+						'relaxes' => 'relaxes',
+						'tours' => 'tours',
+						'shoppings' => 'shoppings',
+						'services' => 'services',
+						'service' => 'services',
+						'shopping' => 'shoppings',
+						'restaurant' => 'restaurants',
+						'tour' => 'tours',
+						'question' => 'questions',
+						'album' => 'albums',
+						'feedback' => 'feedback'
+			);
 	
-	$arrViews = array();
+// 	$arrViews = array();
 	
 	return $arrViews;
 }
