@@ -22,6 +22,12 @@ $doc->addStyleSheet(JURI::base() . 'media/loca/lightbox/css/lightbox.css');
 		</div>
 		
 		<div class="item-container item-detail">
+		
+			<div class="info">
+				<?php echo $item->description; ?>
+				
+				<div class="clr"></div>
+			</div>
 			
 			<?php if (!empty($this->otherImages)): ?>
 			<div class="other-images">

@@ -197,12 +197,17 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="item-container">
 			<ul class="album-container">
-				<?php foreach ($items['albums'] as $key => $album): ?>
+				<?php 
+				foreach ($items['albums'] as $key => $album): 
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($album->id, 'album', $album->catid));
+				?>
 				<li <?php if ( ($key + 1) % 3 == 0 ) echo 'class="last-item"' ?>>
 					<div class="img album-img">
-						<img src="<?php echo $album->images; ?>" />
+						<a href="<?php echo $link; ?>" title="<?php echo $album->name; ?>" class="bold">
+							<img src="<?php echo $album->images; ?>" />
+						</a>
 					</div>
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=discover&id=' . $album->id, false); ?>" class="bold">
+					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=album&id=' . $album->id, false); ?>" title="<?php echo $album->name; ?>" class="bold">
 						<?php echo $album->name; ?>
 					</a>
 				</li>

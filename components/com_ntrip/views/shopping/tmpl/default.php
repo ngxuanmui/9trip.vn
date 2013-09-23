@@ -5,11 +5,6 @@ defined('_JEXEC') or die;
 $item = $this->item;
 ?>
 
-<div id="top-adv">
-	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-</div>
-<div class="clear"></div>
-
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="title-category">

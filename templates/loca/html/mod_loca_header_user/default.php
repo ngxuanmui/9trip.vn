@@ -182,8 +182,8 @@ $loginUrl	= $facebook->getLoginUrl(
 			</div>
 		<?php endif; ?>
 		
-		<form>
-			<input type="text" name="search" value="" placeholder="Nhập thông tin cần tìm" />
+		<form method="get" action="<?php $searchUrl = NtripHelperRoute::getOtherRoute('search', '', 1); echo JRoute::_($searchUrl, false); ?>">
+			<input type="text" name="q" value="<?php echo JRequest::getString('q'); ?>" placeholder="Nhập thông tin cần tìm" />
 			<button class="btn-search"></button>
 		</form>
 	</div>

@@ -30,7 +30,8 @@ function ntripGetViews()
 						'tour' => 'tours',
 						'question' => 'questions',
 						'album' => 'albums',
-						'feedback' => 'feedback'
+						'feedback' => 'feedback',
+						'search' => 'search'
 			);
 	
 // 	$arrViews = array();

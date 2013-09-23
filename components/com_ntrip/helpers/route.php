@@ -94,15 +94,20 @@ abstract class NtripHelperRoute
 	/**
 	 * @param	int	The route of the newsfeed
 	 */
-	public static function getOtherRoute($view = 'feedback', $tmpl = '')
+	public static function getOtherRoute($view = 'feedback', $tmpl = '', $id = 0)
 	{
-		$needles = null;
+		$needles = array(
+			$view => array($id)
+		);
 		
 		//Create the link
 		$link = 'index.php?option=com_ntrip&view='.$view;
 		
 		if ($tmpl)
 			$link .= '&tmpl=' . $tmpl;
+		
+// 		if ($id)
+// 			$link .= '&id=' . $id;
 		
 		if ($item = self::_findItem($needles)) {
 			$link .= '&Itemid='.$item;

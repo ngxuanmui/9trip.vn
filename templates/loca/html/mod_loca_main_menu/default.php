@@ -17,7 +17,7 @@ $catId = JRequest::getInt('catid', 0);
 
 // var_dump($_GET);
 
-if (!$catId && $_GET['option'] == 'com_ntrip')
+if (!$catId && $_GET['option'] == 'com_ntrip' && $_GET['view'] != 'search')
 	$catId = $id;
 
 if ($_GET['option'] != 'com_ntrip')

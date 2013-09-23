@@ -60,13 +60,16 @@ $this->setGenerator('Loca.vn');
 		<div class="component">
 				
 			<div class="main-content">
-				<div id="breadcrumbs">
-				 	<jdoc:include type="modules" name="position-2" />
-				 </div>
 				
 				<div id="top-adv">
 					<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 				</div>
+				
+				<div class="clear"></div>
+				
+				<div id="breadcrumbs">
+				 	<jdoc:include type="modules" name="position-2" />
+				 </div>
 
 				<div class="clear"></div>
 				 

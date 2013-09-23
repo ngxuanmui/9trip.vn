@@ -15,12 +15,6 @@ $doc->addStyleSheet(JURI::base() . 'media/loca/lightbox/css/lightbox.css');
 
 <script src="<?php echo JURI::base(); ?>media/loca/lightbox/js/lightbox.js"></script>
 
-<div id="top-adv">
-	<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
-</div>
-
-<div class="clear"></div>
-
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="title-category">
@@ -28,6 +22,41 @@ $doc->addStyleSheet(JURI::base() . 'media/loca/lightbox/css/lightbox.css');
 		</div>
 		
 		<div class="item-container item-detail">
+		
+			<?php
+			echo LocaHelper::renderModulesOnPosition(
+						'loca-article-info', 
+						array(	'item' => $item,
+								'item_type' => 'albums'
+						)
+					); 
+			?>
+				
+			<div class="clr"></div>
+				
+			<div class="info">
+				<?php echo $item->description; ?>
+				
+				<div class="clr"></div>
+				
+				<div class="article-social">
+						<div class="fltlft">
+							<?php
+							echo LocaHelper::renderModulesOnPosition(
+										'loca-rating', 
+										array(	'item' => $item, 
+												'item_type' => 'albums'
+										)
+									); 
+							?>
+						</div>
+						
+						<div class="fltrgt">
+							
+						</div>
+						<div class="clr"></div>
+					</div>
+			</div>
 			
 			<?php if (!empty($this->otherImages)): ?>
 			<div class="other-images">
