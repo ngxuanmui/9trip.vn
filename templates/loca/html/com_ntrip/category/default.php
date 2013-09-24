@@ -117,7 +117,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 				<li>
 					<div class="img">
 						<a href="<?php echo $link; ?>">
-							<img src="<?php echo $discover->images; ?>" />
+							<img src="<?php echo $discover->thumb; ?>" />
 						</a>
 					</div>
 					<a href="<?php echo $link; ?>">
@@ -204,7 +204,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 				<li <?php if ( ($key + 1) % 3 == 0 ) echo 'class="last-item"' ?>>
 					<div class="img album-img">
 						<a href="<?php echo $link; ?>" title="<?php echo $album->name; ?>" class="bold">
-							<img src="<?php echo $album->images; ?>" />
+							<img src="<?php echo $album->thumb; ?>" />
 						</a>
 					</div>
 					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=album&id=' . $album->id, false); ?>" title="<?php echo $album->name; ?>" class="bold">

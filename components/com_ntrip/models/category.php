@@ -25,11 +25,11 @@ class NtripModelCategory extends JModel
 		$rows['gmap_info'] = $this->getGmapInfo($catid);
 		
 //		$rows['hotels']		= $this->_getLatestItems('hotels', $catid);
-		$rows['discovers'] = $this->_getLatestItems('discovers', $catid);
+		$rows['discovers'] = $this->_getLatestItems('discovers', $catid, 5, true, 0, 90);
 		$rows['promotions'] = $this->_getLatestItems('promotions', $catid);
 //		$rows['suggests']	= $this->_getLatestItems('suggests', $catid);
 		$rows['warnings']	= $this->_getLatestItems('warnings', $catid);
-		$rows['albums']	= $this->_getLatestItems('albums', $catid);
+		$rows['albums']	= $this->_getLatestItems('albums', $catid, 5, true, 0, 150);
 		$rows['questions']	= $this->_getLatestItems('questions', $catid);
 		
 // 		var_dump($rows);
@@ -37,7 +37,7 @@ class NtripModelCategory extends JModel
 		return $rows;
 	}
 	
-	public function _getLatestItems($type = 'hotels', $catid = 0, $limit = 5)
+	public function _getLatestItems($type = 'hotels', $catid = 0, $limit = 5, $thumb = false, $thumbW = 200, $thumbH = 90)
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -54,6 +54,42 @@ class NtripModelCategory extends JModel
 		
 		$db->setQuery($query, 0, $limit);
 		$rs = $db->loadObjectList();
+		
+		$item->thumb = '';
+		
+		if ($thumb)
+		{
+			foreach ($rs as & $item)
+			{
+				$tmp = explode('/', $item->images);
+
+				$image_name = end($tmp);
+
+				$imagePath = JPATH_ROOT . DS . 'images';
+
+				// shift an el (image folder) in $tmp
+				array_shift($tmp);
+
+				// remove last el (file name) in $tmp
+				array_pop($tmp);
+				
+				$image_path = $imagePath . DS . implode('/', $tmp);
+
+				$thumb_path = $imagePath . '/thumbs/' . implode('/', $tmp);
+				
+				$thumb_image_path = $thumb_path . DS . $image_name;
+				
+				@JFolder::create($thumb_path);
+
+				// create thumb if not exist
+				if (!file_exists($thumb_image_path) && file_exists($image_path . DS . $image_name))
+					LocaHelper::thumbnail($image_path, $thumb_path, $image_name, $thumbW, $thumbH);
+
+				$item->thumb = JURI::root() . 'images/thumbs/' . implode('/', $tmp) . '/' . 't-' . $thumbW . 'x' . $thumbH . '-' . $image_name;
+			}
+		}
+		
+//		var_dump($rs);
 		
 		return $rs;
 	}

@@ -2,6 +2,79 @@
 
 class LocaHelper 
 {
+//	public static function thumbnail($image_path, $thumb_path, $image_name, $thumb_width)
+//	{
+//		$src_img = imagecreatefromjpeg("$image_path/$image_name");
+//		$origw = imagesx($src_img);
+//		$origh = imagesy($src_img);
+//		$new_w = $thumb_width;
+//		$diff = $origw / $new_w;
+//		$new_h = $new_w;
+//		$dst_img = imagecreate($new_w, $new_h);
+//		imagecopyresized ($dst_img, $src_img, 0, 0, 0, 0, $new_w, $new_h, imagesx($src_img), imagesy($src_img));
+//
+//		imagejpeg($dst_img, "$thumb_path/$image_name", 100);
+//		
+//		return true;
+//	}
+	
+	public static function thumbnail($image_path, $thumb_path, $image_name, $thumbnail_width = 0, $thumbnail_height = 0)
+	{
+		require_once(JPATH_ROOT . '/loca/phpthumb/phpthumb.class.php');
+		
+		// create phpThumb object
+		$phpThumb = new phpThumb();
+
+		// this is very important when using a single object to process multiple images
+		$phpThumb->resetObject();
+
+		// set data source 
+		$phpThumb->setSourceFilename($image_path . DS . $image_name); 
+		
+		// set parameters (see "URL Parameters" in phpthumb.readme.txt)
+		if ($thumbnail_width)
+			$phpThumb->setParameter('w', $thumbnail_width);
+		
+		if ($thumbnail_height)
+			$phpThumb->setParameter('h', $thumbnail_height);
+		
+		// set parameters
+		$phpThumb->setParameter('config_output_format', 'jpeg');
+		$phpThumb->setParameter('config_imagemagick_path', '/usr/local/bin/convert');
+		
+		// generate & output thumbnail
+		$output_filename = str_replace('/', DS, $thumb_path) . DS . 't-' . $thumbnail_width . 'x' . $thumbnail_height . '-' . $image_name; # .'_'.$thumbnail_width.'.'.$phpThumb->config_output_format;
+		
+		$capture_raw_data = false;
+		
+		if ($phpThumb->GenerateThumbnail()) { 
+//			$output_size_x = ImageSX($phpThumb->gdimg_output);
+//			$output_size_y = ImageSY($phpThumb->gdimg_output);
+//			if ($output_filename || $capture_raw_data) {
+////				if ($capture_raw_data && $phpThumb->RenderOutput()) {
+////					// RenderOutput renders the thumbnail data to $phpThumb->outputImageData, not to a file or the browser
+////					mysql_query("INSERT INTO `table` (`thumbnail`) VALUES ('".mysql_escape_string($phpThumb->outputImageData)."') WHERE (`id` = '".$id."')");
+////				} elseif ($phpThumb->RenderToFile($output_filename)) {
+////					// do something on success
+////					echo 'Successfully rendered:<br><img src="'.$output_filename.'">';
+////				} else {
+////					// do something with debug/error messages
+////					echo 'Failed (size='.$thumbnail_width.'):<pre>'.implode("\n\n", $phpThumb->debugmessages).'</pre>';
+////				}
+//				$phpThumb->purgeTempFiles();
+//			} else {
+				$phpThumb->RenderToFile($output_filename);
+//			}
+		} else {
+			// do something with debug/error messages
+//			echo 'Failed (size='.$thumbnail_width.').<br>';
+//			echo '<div style="background-color:#FFEEDD; font-weight: bold; padding: 10px;">'.$phpThumb->fatalerror.'</div>';
+//			echo '<form><textarea rows="10" cols="60" wrap="off">'.htmlentities(implode("\n* ", $phpThumb->debugmessages)).'</textarea></form><hr>';
+		}
+		
+		return $output_filename;
+	}
+
 	/**
 	 * Function to get coordinates for gmap
 	 * 

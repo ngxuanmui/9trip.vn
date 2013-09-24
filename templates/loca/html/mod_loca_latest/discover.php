@@ -7,7 +7,7 @@ defined('_JEXEC') or die;
 	<div class="promotion-bar">Khám phá mới nhất</div>
 	<?php foreach ($list as $key => $item): ?>
 	<div class="promotion-item <?php if ($key == 0) echo 'discover-featured'; ?>">
-		<img src="<?php echo $item->images; ?>" />
+		<img src="<?php echo $item->thumb; ?>" />
 		<div class="title">
 			<?php
 			$item->slug = $item->id . ':' . $item->alias;
