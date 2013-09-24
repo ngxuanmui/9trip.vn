@@ -43,7 +43,7 @@ $fields = $this->fields;
 				?>
 				<li>
 					<a class="title" href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
-						<?php echo $item->name; ?>
+						<?php echo $item->thumb; ?>
 					</a>
 					<div class="img-container">
 						<a class="title" href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">

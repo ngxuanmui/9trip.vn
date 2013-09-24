@@ -45,7 +45,7 @@ $fields = $this->fields;
 					</a>
 					<div class="img-container">
 						<a class="title" href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
-							<img src="<?php echo $item->images; ?>" alt="<?php echo $item->alias; ?>" />
+							<img src="<?php echo $item->thumb; ?>" alt="<?php echo $item->alias; ?>" />
 						</a>
 					</div>
 					<div class="content">

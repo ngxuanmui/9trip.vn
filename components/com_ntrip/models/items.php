@@ -185,6 +185,48 @@ abstract class AbsNtripModelItems extends JModelList
 		return $query;
 	}
 	
+	public function getItems()
+	{
+		$items = parent::getItems();
+		
+		foreach ($items as & $item)
+		{
+			$item->thumb = '';
+			
+			if (!empty($item->images))
+			{
+				$tmp = explode('/', $item->images);
+
+				$image_name = end($tmp);
+
+				$imagePath = JPATH_ROOT . DS . 'images';
+
+				// shift an el (image folder) in $tmp
+				array_shift($tmp);
+
+				// remove last el (file name) in $tmp
+				array_pop($tmp);
+
+				$image_path = $imagePath . DS . implode('/', $tmp);
+
+				$thumb_path = $imagePath . '/thumbs/' . implode('/', $tmp);
+
+				$thumb_image_path = $thumb_path . DS . $image_name;
+
+				@JFolder::create($thumb_path);
+
+				// create thumb if not exist
+				if (!file_exists($thumb_image_path) && file_exists($image_path . DS . $image_name))
+					LocaHelper::thumbnail($image_path, $thumb_path, $image_name, $thumbW, $thumbH);
+
+				$item->thumb = JURI::root() . 'images/thumbs/' . implode('/', $tmp) . '/' . 't-' . $thumbW . 'x' . $thumbH . '-' . $image_name;
+			}
+		}
+		
+		return $items;
+	}
+
+
 // 	protected function 
 	
 	protected function _customField($type = 'hotels')

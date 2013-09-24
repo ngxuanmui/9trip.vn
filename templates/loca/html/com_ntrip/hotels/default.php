@@ -85,7 +85,7 @@ $criteria = explode(',', JRequest::getString('criteria'));
 					</a>
 					<div class="img-container">
 						<a class="title" href="<?php echo $link; ?>">
-							<img src="<?php echo $item->images; ?>" />
+							<img src="<?php echo $item->thumb; ?>" />
 						</a>
 					</div>
 					<div class="content">
