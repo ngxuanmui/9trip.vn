@@ -5,6 +5,9 @@ defined('_JEXEC') or die;
 
 class NtripModelHotels extends AbsNtripModelItems
 {
+	protected $thumbWidth = 200;
+	protected $thumbHeight = 0;
+	
 	public function getListQuery() {
 		return $this->_query('hotels');
 	}
