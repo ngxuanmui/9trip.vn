@@ -67,6 +67,10 @@ class NtripViewHotels extends JViewLegacy
 		$user = JFactory::getUser();
 		JToolBarHelper::title(JText::_('COM_NTRIP_MANAGER_HOTELS'), 'hotels.png');
 //		if (count($user->getAuthorisedCategories('com_ntrip', 'core.create')) > 0)
+		
+		JToolBarHelper::custom('hotels.update_counter', 'stats', '', 'Update Counter', false);
+		JToolBarHelper::divider();
+		
 		if (($canDo->get('core.create')))
 		{
 			JToolBarHelper::addNew('hotel.add');

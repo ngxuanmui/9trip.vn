@@ -31,38 +31,44 @@ class modCustomFieldHelper
 		$rows['category'] = $catObject->get($loc);
 		
 		// get tour custom field
-		$tourCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_tour', 'table'=>'#__ntrip_tours'));
+//		$tourCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_tour', 'table'=>'#__ntrip_tours'));
+//		
+//		$rows['tours'] = $tourCustomField->get()->getChildren();
 		
-		$rows['tours'] = $tourCustomField->get()->getChildren();
+//		$serviceCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_service', 'table'=>'#__ntrip_services'));
+//		
+//		$rows['services'] = $serviceCustomField->get()->getChildren();
 		
-		$serviceCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_service', 'table'=>'#__ntrip_services'));
+//		$shoppingCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_shopping', 'table'=>'#__ntrip_shoppings'));
+//		
+//		$rows['shoppings'] = $shoppingCustomField->get()->getChildren();
 		
-		$rows['services'] = $serviceCustomField->get()->getChildren();
+//		$relaxCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_relax', 'table'=>'#__ntrip_relaxes'));
+//		
+//		$rows['relaxes'] = $relaxCustomField->get()->getChildren();
 		
-		$shoppingCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_shopping', 'table'=>'#__ntrip_shoppings'));
+		$rows['tours'] = modCustomFieldHelper::_getCustomField('custom_field_tour', $loc, 'tours');
 		
-		$rows['shoppings'] = $shoppingCustomField->get()->getChildren();
+		$rows['shoppings'] = modCustomFieldHelper::_getCustomField('custom_field_shopping', $loc, 'shoppings');
 		
-		$relaxCustomField = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_relax', 'table'=>'#__ntrip_relaxes'));
+		$rows['relaxes'] = modCustomFieldHelper::_getCustomField('custom_field_relax', $loc, 'relaxes');
+				
+		$rows['services'] = modCustomFieldHelper::_getCustomField('custom_field_service', $loc, 'services');
 		
-		$rows['relaxes'] = $relaxCustomField->get()->getChildren();
+		$rows['hotels'] = modCustomFieldHelper::_getCustomField('custom_field_hotel', $loc, 'hotels');
 		
-		
-		$rows['hotels'] = modCustomFieldHelper::_getCustomField('custom_field_hotel', $loc);
-		
-		$rows['restaurants'] = modCustomFieldHelper::_getCustomField('custom_field_restaurant', $loc);
+		$rows['restaurants'] = modCustomFieldHelper::_getCustomField('custom_field_restaurant', $loc, 'restaurants');
 		
 		return $rows;
 	}
 	
-	private function _getCustomField($type='custom_field_hotel', $location = 0)
+	private function _getCustomField($type='custom_field_hotel', $location = 0, $field = '')
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		
 		$query->select('*')
 				->from('#__categories')
-				->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$location.')')
 //				->where('parent_id IN (SELECT category_id FROM #__category_location WHERE locations = '.$location.')', 'OR')
 				->where('extension = "com_ntrip.'.$type.'"')
 				->where('published = 1')
@@ -70,9 +76,55 @@ class modCustomFieldHelper
 		
 //		echo str_replace('#__', 'jos_', $query);
 		
+		if ($type == 'custom_field_hotel' || $type == 'custom_field_restaurant')
+			$query->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$location.')');
+		
 		$db->setQuery($query);
 		$rs = $db->loadObjectList();
 		
+		foreach ($rs as & $item)
+		{
+			$item->counter = 0;
+			
+			if ($field)
+				$item->counter = modCustomFieldHelper::getCategoryCounter($location, $item->id, $field);
+		}
+		
 		return $rs;
+	}
+	
+	public function getCategoryCounter($catId = 0, $customFieldId = 0, $field = 'hotels')
+	{
+		if (!$catId)
+			return false;
+		
+		$xmlFile = JPATH_ROOT . DS . 'loca' . DS . 'xml' . DS . 'category.counter.xml';
+		
+		$xml = simplexml_load_file($xmlFile); 
+		
+		$val = 0;
+				
+		foreach ($xml->category as $category)
+		{
+			$break = false;
+			
+			if ($category['id'] == $catId)
+			{
+				foreach ($xml->category->$field->custom_field as $f)
+				{
+					if ($f['id'] == $customFieldId)
+					{
+						$val = $f['value'];
+						$break = true;
+					}
+				}
+			}
+			
+			if ($break)
+				break;
+		}
+				
+//		die;
+		return $val;
 	}
 }

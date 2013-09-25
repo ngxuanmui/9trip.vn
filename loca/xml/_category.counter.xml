@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<categories>
+	<category id="18">
+		<hotels>
+			<custom_field id="146" value="10"/>
+			<custom_field id="145" value="15"/>
+		</hotels>
+		<services>
+			<custom_field id="122" value="4"/>
+			<custom_field id="123" value="6"/>
+		</services>
+		<restaurants>
+			<custom_field id="112" value="4"/>
+			<custom_field id="116" value="6"/>
+		</restaurants>
+		<shoppings>
+			<custom_field id="87" value="13"/>
+		</shoppings>
+		<tours>
+			<custom_field id="118" value="9"/>
+		</tours>
+		<relaxes>
+			<custom_field id="132" value="11"/>
+		</relaxes>		
+	</category>
+	<category id="20">
+		<hotels>
+			<custom_field id="146" value="10"/>
+		</hotels>
+	</category>
+</categories>

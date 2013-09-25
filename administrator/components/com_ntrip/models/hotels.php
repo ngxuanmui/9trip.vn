@@ -230,4 +230,74 @@ class NtripModelHotels extends JModelList
 		// List state information.
 		parent::populateState('a.name', 'asc');
 	}
+	
+	public function updateCategoriesCounter()
+	{
+		$db = JFactory::getDbo();
+		
+		$query = $db->getQuery(true);
+		
+		$query->select('*')
+				->from('#__categories')
+				->where('extension = "com_ntrip"')
+				->where('published = 1')
+				->where('level > 1')
+				->order('lft');
+		
+		$db->setQuery($query);
+		$categories = $db->loadObjectList('id');
+		
+		if ($db->getErrorMsg())
+			die ($db->getErrorMsg ());
+		
+		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><categories></categories>");
+		
+		$customFields = array(
+								'tours' => 'com_ntrip.custom_field_tour',
+								'services' => 'com_ntrip.custom_field_service',
+								'shoppings' => 'com_ntrip.custom_field_shopping',
+								'relaxes' => 'com_ntrip.custom_field_relax',
+								'hotels' => 'custom_field_hotel',
+								'restaurants' => 'custom_field_restaurant'
+						);
+		
+		foreach ($categories as $id => $category)
+		{
+			//if ($category->level == 1)
+			//{
+				$catNode = $xml->addChild ('category'); 
+				$catNode->addAttribute('id', $id);
+			//}
+			
+			foreach ($customFields as $key => $field)
+			{
+				$fieldNode = $catNode->addChild ($key);
+				
+				$query->clear()
+						->select('c.*')
+						->select('(SELECT COUNT(id) FROM #__ntrip_'.$key.' WHERE type = c.id) AS count_custom_field')
+						->from('#__categories c')
+						->where('extension = "com_ntrip.'.$field.'"')
+						->where('c.published = 1')
+						->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$id.')')
+						->order('lft');
+
+				$db->setQuery($query);
+				$subCategories = $db->loadObjectList('id');
+				
+				foreach ($subCategories as $subId => $sub)
+				{
+					$customNode = $fieldNode->addChild('custom_field');
+					$customNode->addAttribute('id', $subId);
+					$customNode->addAttribute('value', $sub->count_custom_field);
+				}
+			}
+		}
+		
+		$xmlFile = JPATH_ROOT . DS . 'loca' . DS . 'xml' . DS . 'category.counter.xml';
+		
+		$xml->asXML($xmlFile);
+		
+		return true;
+	}
 }
