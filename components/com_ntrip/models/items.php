@@ -4,6 +4,9 @@ jimport('joomla.application.component.modellist');
 
 abstract class AbsNtripModelItems extends JModelList
 {
+	protected $thumbWidth = 200;
+	protected $thumbHeight = 0;
+	
 	protected function populateState($ordering = null, $direction = null)
 	{
 		// location id
@@ -212,6 +215,11 @@ abstract class AbsNtripModelItems extends JModelList
 				$thumb_path = $imagePath . '/thumbs/' . implode('/', $tmp);
 
 				$thumb_image_path = $thumb_path . DS . $image_name;
+				
+				$thumbSize = $this->getThumbSize();
+				
+				$thumbW = $thumbSize['w'];
+				$thumbH = $thumbSize['h'];
 
 				@JFolder::create($thumb_path);
 
@@ -225,9 +233,11 @@ abstract class AbsNtripModelItems extends JModelList
 		
 		return $items;
 	}
-
-
-// 	protected function 
+	
+	protected function getThumbSize()
+	{
+		return array('w' => $this->thumbWidth, 'h' => $this->thumbHeight);
+	}
 	
 	protected function _customField($type = 'hotels')
 	{
