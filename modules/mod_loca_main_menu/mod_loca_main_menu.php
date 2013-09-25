@@ -15,10 +15,19 @@ require_once dirname(__FILE__).'/helper.php';
 $session = JFactory::getSession();
 $location = $session->get('loca_location');
 
+$id = JRequest::getInt('id');
+
+$catId = JRequest::getInt('catid', 0);
+
+// var_dump($_GET);
+
+if (!$catId && $_GET['option'] == 'com_ntrip' && $_GET['view'] != 'search')
+	$catId = $id;
+
 jimport('joomla.application.categories');
 
 $tmpCat = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip', 'table' => ''));
-$locaCategory = $tmpCat->get($location);
+$locaCategory = $tmpCat->get($catId);
 
 //var_dump($locaCategory);
 
