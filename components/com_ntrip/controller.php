@@ -40,39 +40,47 @@ class NtripController extends JControllerLegacy
 		$safeurlparams = array('catid'=>'INT', 'id'=>'INT', 'cid'=>'ARRAY', 'year'=>'INT', 'month'=>'INT', 'limit'=>'UINT', 'limitstart'=>'UINT',
 			'showall'=>'INT', 'return'=>'BASE64', 'filter'=>'STRING', 'filter_order'=>'CMD', 'filter_order_Dir'=>'CMD', 'filter-search'=>'STRING', 'print'=>'BOOLEAN', 'lang'=>'CMD');
 
+		$viewNotAvailables = array('warnings', 'warning', 'promotions', 'promotion');
+		
+		// Check Auth
+		$viewsRequiredSignIn = array(
+				'user_man_hotels',
+				'user_man_hotel',
+				'user_man_services',
+				'user_man_service',
+				'user_man_albums',
+				'user_man_album',
+				'user_man_discovers',
+				'user_man_discover',
+				'user_man_promotions',
+				'user_man_promotion',
+				'user_man_questions',
+				'user_man_question',
+				'user_man_relaxes',
+				'user_man_relax',
+				'user_man_restaurants',
+				'user_man_restaurant',
+				'user_man_services',
+				'user_man_service',
+				'user_man_shoppings',
+				'user_man_shopping',
+				'user_man_tours',
+				'user_man_tour',
+				'user_man_warnings',
+				'user_man_warning',
+		);
+		
 		$vName	= JRequest::getCmd('view', 'not_found');
+		
+		if (in_array($vName, $viewNotAvailables) || in_array($vName, $viewsRequiredSignIn))
+			$vName = 'not_found';
+		
 		JRequest::setVar('view', $vName);
 		
 		$signInUrl	= JRoute::_('index.php?option=com_users&view=login', false);
 		$user 		= JFactory::getUser();
 		
-		// Check Auth
-		$viewsRequiredSignIn = array(
-										'user_man_hotels', 
-										'user_man_hotel', 
-										'user_man_services', 
-										'user_man_service',
-										'user_man_albums',
-										'user_man_album',
-										'user_man_discovers', 
-										'user_man_discover', 
-										'user_man_promotions', 
-										'user_man_promotion',
-										'user_man_questions',
-										'user_man_question',
-										'user_man_relaxes', 
-										'user_man_relax', 
-										'user_man_restaurants', 
-										'user_man_restaurant',
-										'user_man_services',
-										'user_man_service',
-										'user_man_shoppings', 
-										'user_man_shopping', 
-										'user_man_tours', 
-										'user_man_tour',
-										'user_man_warnings',
-										'user_man_warning',
-								);		
+		
 		
 		if (in_array($vName, $viewsRequiredSignIn) && !$user->get('id')) {
 			$this->setRedirect($signInUrl, JText::_('Login please!'), 'notice');

@@ -24,6 +24,9 @@ class NtripViewWarnings extends JViewLegacy
 
 	function display($tpl = null)
 	{
+		JError::raiseWarning($code, $msg);
+		return 1;
+		
 		$this->items = $this->get('Items');
 		$this->fields = $this->get('CustomField');
 		$this->pagination = $this->get('Pagination');

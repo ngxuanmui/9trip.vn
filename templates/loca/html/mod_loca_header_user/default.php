@@ -2,6 +2,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
+/*
 $facebook = new Facebook(array(
 	'appId'  => CFG_FACEBOOK_API_ID,
   	'secret' => CFG_FACEBOOK_API_SECRET,
@@ -46,8 +47,11 @@ $loginUrl	= $facebook->getLoginUrl(
   			'redirect_uri' => JRoute::_(JURI::root() . 'index.php?option=com_profile&task=customer.fbregistration', false)
   		)
 	);
+	
+*/
 ?>
 
+<?php /*
 <div id="fb-root"></div>
 
 <script>
@@ -62,12 +66,16 @@ $loginUrl	= $facebook->getLoginUrl(
 
 </script>
 
+*/ ?>
 <div id="main-header">
 	<div class="logo">
 		<a href="<?php echo JURI::base(); ?>" title="Loca.vn"></a>
 		<span>(Phiên bản Beta)</span>
 	</div>
+	
+	
 	<div class="right">
+		<?php /*?>
 		<?php if (!$user->id): ?>
 			<div>
 				<a href="<?php echo $loginUrl; ?>" class="icon-fb"  rel="nofollow">Đăng nhập bằng Facebook</a> | 
@@ -181,6 +189,8 @@ $loginUrl	= $facebook->getLoginUrl(
 				
 			</div>
 		<?php endif; ?>
+		
+		*/ ?>
 		
 		<form method="get" action="<?php $searchUrl = NtripHelperRoute::getOtherRoute('search', '', 1); echo JRoute::_($searchUrl, false); ?>">
 			<input type="text" name="q" value="<?php echo JRequest::getString('q'); ?>" placeholder="Nhập thông tin cần tìm" />

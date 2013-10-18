@@ -168,6 +168,7 @@ ul.main-menu > li > a:hover {
     font-size: 14px;
 	border-radius: 5px;
 	position: relative;
+	display: none !important;
 }
 .icon-reg {
     width: 51px;
@@ -1046,7 +1047,7 @@ ul.third-menu li:nth-child(2n) { border-right: 1px dotted #CCC; width: 150px;}
 .tour-quote { width: 405px; }
 .shopping-quote { width: 420px; }
 
-.left-module-content { margin-top: 15px; background-color: #FFF; }
+.left-module-content { margin-top: 0px; background-color: #FFF; }
 
 .list-user-function { top: 20px; right: 0; border: 1px solid #CCC; background: #FFF; z-index: 20000; }
 .list-user-function ul { float: left; width: 290px; list-style: square; margin: 10px 0px 10px 30px; }
