@@ -257,8 +257,8 @@ class NtripModelHotels extends JModelList
 								'services' => 'com_ntrip.custom_field_service',
 								'shoppings' => 'com_ntrip.custom_field_shopping',
 								'relaxes' => 'com_ntrip.custom_field_relax',
-								'hotels' => 'custom_field_hotel',
-								'restaurants' => 'custom_field_restaurant'
+								'hotels' => 'com_ntrip.custom_field_hotel',
+								'restaurants' => 'com_ntrip.custom_field_restaurant'
 						);
 		
 		foreach ($categories as $id => $category)
