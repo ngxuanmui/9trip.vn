@@ -253,12 +253,12 @@ class NtripModelHotels extends JModelList
 		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><categories></categories>");
 		
 		$customFields = array(
-								'tours' => 'com_ntrip.custom_field_tour',
-								'services' => 'com_ntrip.custom_field_service',
-								'shoppings' => 'com_ntrip.custom_field_shopping',
-								'relaxes' => 'com_ntrip.custom_field_relax',
-								'hotels' => 'com_ntrip.custom_field_hotel',
-								'restaurants' => 'com_ntrip.custom_field_restaurant'
+								'tours' 		=> 'custom_field_tour',
+								'services' 		=> 'custom_field_service',
+								'shoppings' 	=> 'custom_field_shopping',
+								'relaxes' 		=> 'custom_field_relax',
+								'hotels' 		=> 'custom_field_hotel',
+								'restaurants' 	=> 'custom_field_restaurant'
 						);
 		
 		foreach ($categories as $id => $category)
@@ -274,13 +274,18 @@ class NtripModelHotels extends JModelList
 				$fieldNode = $catNode->addChild ($key);
 				
 				$query->clear()
-						->select('c.*')
-						->select('(SELECT COUNT(id) FROM #__ntrip_'.$key.' WHERE type = c.id) AS count_custom_field')
+						->select('c.id')
+						->select('(SELECT COUNT(id) FROM #__ntrip_'.$key.' WHERE type = c.id AND state = 1 AND catid = ' . $id . ') AS count_custom_field')
 						->from('#__categories c')
 						->where('extension = "com_ntrip.'.$field.'"')
 						->where('c.published = 1')
-						->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$id.')')
+// 						->where('c.id = ' . $id)
 						->order('lft');
+				
+				if ($key == 'hotels' || $key == 'restaurants')
+					$query->where('id IN (SELECT category_id FROM #__category_location WHERE locations = '.$id.')');
+				
+// 				echo $query->dump();
 
 				$db->setQuery($query);
 				$subCategories = $db->loadObjectList('id');
@@ -293,6 +298,8 @@ class NtripModelHotels extends JModelList
 				}
 			}
 		}
+		
+// 		die;
 		
 		$xmlFile = JPATH_ROOT . DS . 'loca' . DS . 'xml' . DS . 'category.counter.xml';
 		
