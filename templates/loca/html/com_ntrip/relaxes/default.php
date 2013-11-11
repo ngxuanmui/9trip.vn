@@ -51,12 +51,14 @@ $fields = $this->fields;
 						</a>
 					</div>
 					<div class="content">
+						<?php /*?>
 						<b>Xếp hạng:</b> giải trí ở <?php echo $this->category->title; ?> <br/>
 						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 						<div class="clear"></div>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
 						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>
 						<div class="clear"></div>
+						*/ ?>
 					</div>
 					<div class="clr"></div>
 				</li>

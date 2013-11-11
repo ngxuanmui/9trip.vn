@@ -89,17 +89,21 @@ $criteria = explode(',', JRequest::getString('criteria'));
 						</a>
 					</div>
 					<div class="content">
+						<?php /*?>
 						<b>Xếp hạng:</b> Khách sạn ở <?php echo $this->category->title; ?><br/>
 						<b>Giá: </b><?php echo number_format((float)$item->price_from); ?> - 
 									<?php echo number_format((float)$item->price_to); ?> VNĐ/người <br />
+						*/ ?>
 						<label class="fltlft label-criteria">Tiêu chuẩn khách sạn:</label>
 						<span class="fltlft full-star-over-yellow"><span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span></span>
 						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
 						<div class="clear"></div>
+						<?php /*?>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
 						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>
 						<div class="clear"></div>
 						<a class="promotion-link" href="#"></a>
+						*/ ?>
 					</div>
 					<div class="clr"></div>
 				</li>

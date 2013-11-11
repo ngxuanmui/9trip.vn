@@ -62,8 +62,9 @@ $fields = $this->fields;
 					<div class="discover-info">
 						<span class="user"><?php echo $item->author; ?></span> <span
 							class="datetime"><?php echo date("D, d/m/Y", strtotime('item->created')); ?></span>
+						<?php /*?>
 						<span class="counter"><?php echo $item->hits; ?> lượt</span> <span
-							class="no-reply">0 trả lời</span>
+							class="no-reply">0 trả lời</span> */ ?>
 					</div>
 
 					<div class="img">
@@ -74,12 +75,14 @@ $fields = $this->fields;
 
 					<div class="description"><?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?></div>
 					<div class="clr" style="padding-top: 10px;"></div>
-					<div class="social-info fltlft">
-						<span>12 thành viên thích</span>
-					</div>
 					
 					<?php 
-						
+					/*
+					 * 
+					 * <div class="social-info fltlft">
+						<span>12 thành viên thích</span>
+					</div>
+					 */
 					?>
 							
 					<a href="<?php ; ?>" class="block icons loca-button fltright"> <span

@@ -827,6 +827,7 @@ span.full-star-over-yellow {
 	width: 94px;
 	height: 20px;
 	background: url('../images/full-over-star-yellow.png') 0 0;
+	margin: 7px 0 0 20px;
 }
 span.star-yellow1 {
 	display: block;
@@ -975,13 +976,14 @@ table.list-user-hotels tr.oven, table.list-user-hotels tr.row1{
 	border: 1px solid #DEDEDE;
 }
 
-.contact > span { float: left; width: 75px; height: 20px; }
-.contact > span.contact-phone { width: 110px; }
-.contact > span.contact-website { width: 90px; }
+.contact > span { /* float: left; width: 75px; height: 20px; */ display: block; }
+.contact > span.contact-phone { /* width: 110px; */ }
+.contact > span.contact-website { /* width: 90px; */ }
 .contact > span > span { float: left; width: 18px; height: 22px; margin-right: 10px; }
-.contact > span > span.phone { margin-right: 5px; }
-.contact > span > a { line-height: 21px; }
-.contact .website { background-position: 0 -123px; }
+.contact > span > span.phone {  }
+.contact > span > a { line-height: 19px; }
+.contact .address { background-position: -57px -127px; }
+.contact .website { background-position: 0 -125px; }
 .contact .email { background-position: -21px -123px; }
 .contact .phone { background-position: -40px -127px; }
 
@@ -1104,7 +1106,7 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 	display: block;
 }
 
-.other-album { height: 400px; }
+.other-album { height: 400px; margin-top: 5px; }
 .map { top: 0; width: 628px; height: 400px; }
 .album { top: 0; }
 
@@ -1253,8 +1255,8 @@ top: -2px;
 
 .title-category label { font-weight: bold; font-size: 16px; float: left; margin-top: 10px; }
 
-.item-container .address { float: left; font-weight: bold; margin-bottom: 15px; }
-.item-container .contact { float: right; width: 275px; margin-bottom: 15px; }
+.item-container .address { float: left; font-weight: bold; /* margin-bottom: 15px; */ }
+.item-container .contact { /* float: right; width: 275px; margin-bottom: 15px; */ }
 
 .not-found h1 { font-size: 14px; margin: 20px 0; }
 .not-found .error { color: red; margin-bottom: 20px; }
@@ -1263,3 +1265,13 @@ top: -2px;
 
 .home { background: url('../images/home.png') no-repeat; background-position: center; }
 li#menu-home-page > a:hover { background: url('../images/home-hover.png') no-repeat; background-position: center; }
+
+.notice-info { width: 24px; height: 24px; background: url('../images/info.gif') no-repeat; margin: 7px 5px 0 0; }
+
+ul.hotel-other-items li { float: left; margin-right: 0; width: 115px; }
+
+.others { margin-top: 10px; }
+
+.contact-address { font-weight: bold; }
+
+.item-description { margin: 10px 5px; }

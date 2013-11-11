@@ -32,24 +32,48 @@ if ($_GET['option'] != 'com_ntrip')
 <!--
 
 jQuery(function($){
-	  $('li.loca-location-container').hover(function () {
+	$('li.loca-location-container').hover(function () {
 	     clearTimeout($.data(this, 'timer'));
 	     $('ul', this).stop(true, true).slideDown(0);
 	  }, function () {
 	    $.data(this, 'timer', setTimeout($.proxy(function() {
 	      $('ul', this).stop(true, true).slideUp(0);
 	    }, this), 200));
-	  });
 	});
+
+	// grab the initial top offset of the navigation 
+    var sticky_navigation_offset_top = $('.menu-container').offset().top;
+     
+    // our function that decides weather the navigation bar should have "fixed" css position or not.
+    var sticky_navigation = function(){
+        var scroll_top = $(window).scrollTop(); // our current vertical position from the top
+         
+        // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+        // otherwise change it back to relative
+        if (scroll_top > sticky_navigation_offset_top) { 
+            $('.menu-container').css({ 'position': 'fixed', 'top':0, 'left':0, 'z-index': 100 });
+        } else {
+            $('.menu-container').css({ 'position': 'relative' }); 
+        }   
+    };
+     
+    // run our function on load
+    sticky_navigation();
+     
+    // and run it again every time you scroll
+    $(window).scroll(function() {
+         sticky_navigation();
+    });
+});
 //-->
 </script>
 <?php #endif; ?>
 
 <div class="menu-container">
 	<ul class="main-menu">
-		<li id="menu-home-page"><a href="<?php echo JURI::base(); ?>" class='home'></a></li>
-		<li class='loca-location-container relative'>
-			<a id='loca-location'>
+		<li id="menu-home-page"><a href="<?php echo JURI::base(); ?>"
+			class='home'></a></li>
+		<li class='loca-location-container relative'><a id='loca-location'>
 				<?php 
 				if ($locaCategory->title != 'ROOT')
 					echo $locaCategory->title;
@@ -59,7 +83,8 @@ jQuery(function($){
 				
 			</a>
 
-			<ul class='show-locations absolute' <?php /*if ($homePage && JRequest::getCmd('view', '') != 'not_found'):?>style="display: block;"<?php endif; */ ?>>
+			<ul class='show-locations absolute'
+				<?php /*if ($homePage && JRequest::getCmd('view', '') != 'not_found'):?>style="display: block;"<?php endif; */ ?>>
 				<li>
 					<?php echo LocaHelper::renderModulesOnPosition('dia-danh-mien-bac'); ?>
 				</li>
@@ -69,8 +94,7 @@ jQuery(function($){
 				<li>
 					<?php echo LocaHelper::renderModulesOnPosition('dia-danh-mien-nam'); ?>
 				</li>
-			</ul>
-		</li>		
+			</ul></li>
 	</ul>
 	
 	<?php 
@@ -81,11 +105,9 @@ jQuery(function($){
 	
 	<?php if ($catId > 0): ?>
 	<ul class="main-menu">
-		<li>
-			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('discovers', $catId)); ?>">
-				Khám phá du lịch
-			</a>
-		</li>
+		<li><a
+			href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('discovers', $catId)); ?>">
+				Khám phá du lịch </a></li>
 		<?php /*
 		<li>
 			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('questions', $catId)); ?>">
@@ -103,11 +125,9 @@ jQuery(function($){
 			</a>
 		</li>
 		*/ ?>
-		<li>
-			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('albums', $catId)); ?>">
-				Album ảnh
-			</a>
-		</li>
+		<li><a
+			href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('albums', $catId)); ?>">
+				Album ảnh </a></li>
 	</ul>
 	<?php endif; ?>
 </div>

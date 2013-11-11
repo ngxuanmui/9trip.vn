@@ -157,6 +157,8 @@ abstract class AbsNtripModelItem extends JModelItem
 		if (isset($item->type))
 				$query->where('type = "' . $item->type . '"');
 		
+		$query->order('id DESC');
+		
 		$db->setQuery($query, 0, CFG_DEFAULT_NUMBER_OF_OTHER_ITEMS);
 		$rs = $db->loadObjectList();
 		

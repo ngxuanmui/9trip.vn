@@ -9,6 +9,8 @@ class Ntrip_CommentHelper
 
 	public static function showForm($itemId, $itemType, $title = '')
 	{
+		return false;
+		
 		JModelLegacy::addIncludePath(JPATH_ROOT.'/components/com_ntrip_comment/models', 'Ntrip_CommentModel');
 		
 		$model = JModel::getInstance('Comment', 'Ntrip_CommentModel');

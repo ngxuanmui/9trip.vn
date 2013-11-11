@@ -129,6 +129,11 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 			
 			<div class="clr"> </div>
 			
+			<?php echo $this->form->getLabel('content'); ?>
+			<?php echo $this->form->getInput('content'); ?>
+			
+			<div class="clr"> </div>
+			
 		</fieldset>
 	</div>
 
