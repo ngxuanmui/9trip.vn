@@ -80,23 +80,40 @@ $criteria = explode(',', JRequest::getString('criteria'));
 					$link = JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false);
 				?>
 				<li>
-					<a class="title" href="<?php echo $link; ?>">
-						<?php echo $item->name; ?>
-					</a>
+					<h1>
+						<a class="title" href="<?php echo $link; ?>">
+							<?php echo $item->name; ?>
+						</a>
+						
+						<span class="fltlft full-star-over-yellow">
+							<span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span>
+						</span>
+						
+						
+					</h1>
+					
+					<div class="clr"></div>
+					
 					<div class="img-container">
 						<a class="title" href="<?php echo $link; ?>">
 							<img src="<?php echo $item->thumb; ?>" />
 						</a>
 					</div>
 					<div class="content">
+						<div class="item-address bold"><?php echo $item->address; ?></div>
 						<?php /*?>
 						<b>Xếp hạng:</b> Khách sạn ở <?php echo $this->category->title; ?><br/>
 						<b>Giá: </b><?php echo number_format((float)$item->price_from); ?> - 
 									<?php echo number_format((float)$item->price_to); ?> VNĐ/người <br />
-						*/ ?>
-						<label class="fltlft label-criteria">Tiêu chuẩn khách sạn:</label>
-						<span class="fltlft full-star-over-yellow"><span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span></span>
-						<?php // echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?>
+						*/ ?>						
+						<?php 
+							// echo JHtml::_('string.truncate', strip_tags($item->description), 100); 
+							
+							$string 	= strip_tags($item->description);
+							$maxLength 	= 100;
+							
+							echo LocaHelper::mbCutWord($string, $maxLength);
+						?>
 						<div class="clear"></div>
 						<?php /*?>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>

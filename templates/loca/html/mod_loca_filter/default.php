@@ -122,7 +122,9 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 				</div>
 				<div class="clr"></div>
 			</div>
+			
 			<div class="other-conditions">
+				<?php /*?>
 				<div class="col">
 					<label class="title">Đánh giá</label>
 					<?php 
@@ -137,7 +139,8 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 					endforeach; 
 					?>
 				</div>
-				<?php if (isset($show->price) && $show->price === true): ?>
+				*/ ?>
+				<?php /* if (isset($show->price) && $show->price === true): ?>
 				<div class="col">
 					<label class="title">Giá</label>
 					<?php 
@@ -153,7 +156,7 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 					?>
 
 				</div>
-				<?php endif; ?>
+				<?php endif; */ ?>
 				<?php if (isset($show->criteria) && $show->criteria === true): ?>
 				<div class="col">
 					<label class="title">Tiêu chuẩn</label>

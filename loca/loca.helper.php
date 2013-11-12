@@ -18,6 +18,22 @@ class LocaHelper
 //		return true;
 //	}
 	
+	public static function mbCutWord ($string, $max_length)
+	{
+	    if (strlen($string) > $max_length)
+	    {
+	        $string = mb_substr($string, 0, $max_length);
+	        $pos = strrpos($string, " ");
+	        if($pos === false)
+	        {
+	        	return substr($string, 0, $max_length)."...";
+	        }
+	        return substr($string, 0, $pos)."...";
+	    }else{
+	    	return $string;
+	    }
+	}
+	
 	public static function thumbnail($image_path, $thumb_path, $image_name, $thumbnail_width = 0, $thumbnail_height = 0)
 	{
 		require_once(JPATH_ROOT . '/loca/phpthumb/phpthumb.class.php');

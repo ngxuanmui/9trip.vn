@@ -565,27 +565,30 @@ div.list-items ul li { background: #FFF; padding: 10px 0 10px 10px; }
 	color: #006699;
 	font-weight: bold;
 	font-size: 14px;
-	display: block;
+	/* display: block; */
 	height: 30px;
+	float: left;
+	line-height: 36px;
+	margin-bottom: 5px;
 }
 .list-main-items-content a.promotion-link {
 	color: #006699;
 	display: block;
 }
 .list-main-items-content .img-container {
-	width: 200px;
-	height: 152px;
+	width: 150px;
+	height: 122px;
 	float: left;
 	margin-right: 10px;
 	overflow: hidden;
 }
 .list-main-items-content .content {
 	float: right;
-	width: 410px;
+	width: 480px;
 }
 .list-main-items-content .img-container img {
 	overflow: hidden;
-	max-width: 200px;
+	max-width: 150px;
 	/* border: 1px solid #B8B9B7; */
 }
 .rating-content {
@@ -1275,3 +1278,7 @@ ul.hotel-other-items li { float: left; margin-right: 0; width: 115px; }
 .contact-address { font-weight: bold; }
 
 .item-description { margin: 10px 5px; }
+
+.fb-comments-container { margin: 10px 0; }
+
+.bold { font-weight: bold; }
