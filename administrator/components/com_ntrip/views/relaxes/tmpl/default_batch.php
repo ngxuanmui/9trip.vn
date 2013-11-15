@@ -20,7 +20,7 @@ $published = $this->state->get('filter.published');
 		<?php echo JHtml::_('batch.item', 'com_ntrip');?>
 	<?php endif; ?>
 
-	<button type="submit" onclick="Joomla.submitbutton('shopping.batch');">
+	<button type="submit" onclick="Joomla.submitbutton('relax.batch');">
 		<?php echo JText::_('JGLOBAL_BATCH_PROCESS'); ?>
 	</button>
 	<button type="button" onclick="document.id('batch-category-id').value='';">

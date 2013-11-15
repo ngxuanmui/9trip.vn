@@ -108,7 +108,7 @@ class NtripControllerRelax extends JControllerForm
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Set the model
-		$model	= $this->getModel('Relax', '', array());
+		$model	= $this->getModel('Relax', 'NtripModel', array());
 
 		// Preset the redirect
 		$this->setRedirect(JRoute::_('index.php?option=com_ntrip&view=relaxes' . $this->getRedirectToListAppend(), false));

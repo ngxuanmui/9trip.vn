@@ -108,7 +108,7 @@ class NtripControllerShopping extends JControllerForm
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Set the model
-		$model	= $this->getModel('Shopping', '', array());
+		$model	= $this->getModel('Shopping', 'NtripModel', array());
 
 		// Preset the redirect
 		$this->setRedirect(JRoute::_('index.php?option=com_ntrip&view=shoppings' . $this->getRedirectToListAppend(), false));

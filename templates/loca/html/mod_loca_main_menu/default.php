@@ -105,10 +105,18 @@ jQuery(function($){
 	
 	<?php if ($catId > 0): ?>
 	<ul class="main-menu">
+		<?php foreach ($customFieldDiscover as $c): ?>
+		<li>
+			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('discovers', $catId, $c->id)); ?>">
+				<?php echo $c->title; ?>
+			</a>
+		</li>
+		<?php endforeach; ?>
+		<?php /*
 		<li><a
 			href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('discovers', $catId)); ?>">
-				Khám phá du lịch </a></li>
-		<?php /*
+				Khám phá du lịch </a>
+		</li>
 		<li>
 			<a href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('questions', $catId)); ?>">
 				Tour du lịch

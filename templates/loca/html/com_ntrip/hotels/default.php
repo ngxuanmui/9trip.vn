@@ -80,17 +80,6 @@ $criteria = explode(',', JRequest::getString('criteria'));
 					$link = JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false);
 				?>
 				<li>
-					<h1>
-						<a class="title" href="<?php echo $link; ?>">
-							<?php echo $item->name; ?>
-						</a>
-						
-						<span class="fltlft full-star-over-yellow">
-							<span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span>
-						</span>
-						
-						
-					</h1>
 					
 					<div class="clr"></div>
 					
@@ -100,7 +89,19 @@ $criteria = explode(',', JRequest::getString('criteria'));
 						</a>
 					</div>
 					<div class="content">
-						<div class="item-address bold"><?php echo $item->address; ?></div>
+						<h1>
+							<a class="title" href="<?php echo $link; ?>">
+								<?php echo $item->name; ?>
+							</a>
+							
+							<span class="fltlft full-star-over-yellow">
+								<span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span>
+							</span>
+							
+							
+						</h1>
+						
+						<div class="clr item-address bold"><?php echo $item->address; ?></div>
 						<?php /*?>
 						<b>Xếp hạng:</b> Khách sạn ở <?php echo $this->category->title; ?><br/>
 						<b>Giá: </b><?php echo number_format((float)$item->price_from); ?> - 

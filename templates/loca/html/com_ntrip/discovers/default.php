@@ -25,6 +25,7 @@ $fields = $this->fields;
 		<div class="clr"></div>
 	</div>
 
+	<?php /*?>
 	<div class="tabs">
 		<?php //echo LocaHelper::renderModulesOnPosition('menu-kham-pha'); ?>
 		
@@ -38,6 +39,7 @@ $fields = $this->fields;
 
 		<div class="clr"></div>
 	</div>
+	*/ ?>
 
 	<div class="list-hotels-container">
 
@@ -50,7 +52,7 @@ $fields = $this->fields;
 					$item->slug = $item->id . ':' . $item->alias;
 					$view = 'discover';
 					
-					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid));
+					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid, $item->type));
 				?>
 				<li>
 					<h2>
@@ -85,7 +87,7 @@ $fields = $this->fields;
 					 */
 					?>
 							
-					<a href="<?php ; ?>" class="block icons loca-button fltright"> <span
+					<a href="<?php echo $link ; ?>" class="block icons loca-button fltright"> <span
 						class="txt-btn">Chi tiết &raquo;</span>
 				</a>
 					<div class="clr"></div>

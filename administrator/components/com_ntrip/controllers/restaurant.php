@@ -108,7 +108,7 @@ class NtripControllerRestaurant extends JControllerForm
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Set the model
-		$model	= $this->getModel('Restaurant', '', array());
+		$model	= $this->getModel('Restaurant', 'NtripModel', array());
 
 		// Preset the redirect
 		$this->setRedirect(JRoute::_('index.php?option=com_ntrip&view=restaurants' . $this->getRedirectToListAppend(), false));

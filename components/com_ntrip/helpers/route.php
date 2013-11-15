@@ -27,12 +27,12 @@ abstract class NtripHelperRoute
 	/**
 	 * @param	int	The route of the content item
 	 */
-	public static function getItemRoute($id, $view, $catid = 0, $language = 0)
+	public static function getItemRoute($id, $view, $catid = 0, $customField = 0)
 	{
 		$needles = array();
 		
 		if ($view == 'discover')
-			$needles['discovers'] = array((int) $catid);
+			$needles['custom_field'] = array((int) $customField);
 		
 		if ($view == 'album')
 			$needles['albums'] = array((int) $catid);
@@ -124,12 +124,13 @@ abstract class NtripHelperRoute
 	/**
 	 * @param	int	The route of the newsfeed
 	 */
-	public static function getMainItemsRoute($view = 'hotels', $catid = 0, $customField = false)
+	public static function getMainItemsRoute($view = 'hotels', $catid = 0, $customField = 0)
 	{
 		$needles = array(
+			'custom_field' => array($customField),
 			$view => array($catid)
 		);
-	
+		
 		//Create the link
 		$link = 'index.php?option=com_ntrip&view='.$view;
 	
@@ -275,9 +276,21 @@ abstract class NtripHelperRoute
 			
 			foreach ($items as $item)
 			{
+				if (isset($item->query) && isset($item->query['custom_field']))
+				{
+					if (!isset(self::$lookup['custom_field'])) {
+						self::$lookup['custom_field'] = array();
+					}
+					if (isset($item->query['custom_field']))
+					{
+						self::$lookup['custom_field'][$item->query['custom_field']] = $item->id;
+					}
+				}
+				
 				if (isset($item->query) && isset($item->query['view']))
 				{
 					$view = $item->query['view'];
+					
 					if (!isset(self::$lookup[$view])) {
 						self::$lookup[$view] = array();
 					}
@@ -290,13 +303,27 @@ abstract class NtripHelperRoute
 				}
 			}
 		}
-
+		
 		if ($needles)
 		{
 			foreach ($needles as $view => $ids)
 			{
-				if (isset(self::$lookup[$view]))
+				if ($view == 'discovers')
 				{
+					if (isset(self::$lookup['custom_field']))
+					{
+						if (!empty($needles['custom_field']))
+							foreach($needles['custom_field'] as $id)
+							{
+								if (isset(self::$lookup['custom_field'][(int)$id])) {
+									return self::$lookup['custom_field'][(int)$id];
+								}
+							}
+					}
+				}
+				
+				if (isset(self::$lookup[$view]))
+				{					
 					foreach($ids as $id)
 					{
 						if (isset(self::$lookup[$view][(int)$id])) {

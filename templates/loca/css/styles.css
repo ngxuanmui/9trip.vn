@@ -943,6 +943,8 @@ ul.list-discovers h2 {
 	padding: 5px 0;
 	border-bottom: 1px dashed #DBDBDB;
 }
+.discover-info { margin-left: 5px; }
+
 .discover-info, .item-info {
 	line-height: 25px;
 	font-weight: normal;

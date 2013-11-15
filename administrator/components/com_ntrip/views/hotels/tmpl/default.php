@@ -57,6 +57,9 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 				</th>
+				<th width="5%">
+					<?php echo JHtml::_('grid.sort', 'JFEATURED', 'a.featured', $listDirn, $listOrder, NULL, 'desc'); ?>
+				</th>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort', 'COM_NTRIP_HEADING_LOCATION', 'category_title', $listDirn, $listOrder); ?>
 				</th>
@@ -65,9 +68,6 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php if ($canOrder && $saveOrder): ?>
 						<?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'hotels.saveorder'); ?>
 					<?php endif;?>
-				</th>
-				<th width="5%">
-					<?php echo JText::_('COM_NTRIP_HEADING_COMMENT'); ?>
 				</th>
 				<th width="1%" class="nowrap">
 					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
@@ -111,6 +111,9 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'hotels.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 				</td>
 				<td class="center">
+					<?php echo JHtml::_('ntripadministrator.featured', $item->featured, $i, $canChange); ?>
+				</td>
+				<td class="center">
 					<?php echo $this->escape($item->category_title); ?>
 				</td>
 				<td class="order">
@@ -131,11 +134,6 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php endif; ?>
 				</td>
 				<td class="center">
-					<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=comments&type=hotel&item_id='.$item->id); ?>">
-						<?php echo JText::_('COM_NTRIP_HEADING_COMMENT'); ?>
-					</a>
-				</td>
-				<td class="center">
 					<?php echo $item->id; ?>
 				</td>
 			</tr>
@@ -143,6 +141,9 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 		</tbody>
 	</table>
 
+	<?php //Load the batch processing form. ?>
+	<?php echo $this->loadTemplate('batch'); ?>
+	
 	<div>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />

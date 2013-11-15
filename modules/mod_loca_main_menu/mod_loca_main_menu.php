@@ -31,7 +31,8 @@ $locaCategory = $tmpCat->get($catId);
 
 //var_dump($locaCategory);
 
-// $list = modLocaLocationsHelper::getList($params);
+$customFieldDiscover = LocaHelper::getCategories('com_ntrip.custom_field_discover');
+
 // $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
 require JModuleHelper::getLayoutPath('mod_loca_main_menu', $params->get('layout', 'default'));

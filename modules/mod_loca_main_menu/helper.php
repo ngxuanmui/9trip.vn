@@ -14,13 +14,7 @@ defined('_JEXEC') or die;
  * @subpackage	mod_loca_locations
  * @since		1.5
  */
-class modLocaLocationHelper
+class modLocaMainMenuHelper
 {
-	static function &getList(&$params)
-	{
-		$db		= JFactory::getDbo();
-		$query	= $db->getQuery(true);
-
-		return true;
-	}
+	
 }

@@ -108,7 +108,7 @@ class NtripControllerAlbum extends JControllerForm
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Set the model
-		$model	= $this->getModel('Album', '', array());
+		$model	= $this->getModel('Album', 'NtripModel', array());
 
 		// Preset the redirect
 		$this->setRedirect(JRoute::_('index.php?option=com_ntrip&view=albums' . $this->getRedirectToListAppend(), false));

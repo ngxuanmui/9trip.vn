@@ -43,5 +43,14 @@ class NtripViewDiscover extends JViewLegacy
 		$item = $this->item;
 		
 		NtripFrontHelper::getMetaData($item);
+		
+		$app	= JFactory::getApplication();
+		$pathway = $app->getPathway();
+		$pathway->addItem($item->name, '');
+		
+		$title = $item->name;
+		
+		// Set title
+		$this->document->setTitle($title);
 	}
 }

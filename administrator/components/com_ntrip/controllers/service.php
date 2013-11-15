@@ -108,7 +108,7 @@ class NtripControllerService extends JControllerForm
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
 		// Set the model
-		$model	= $this->getModel('Service', '', array());
+		$model	= $this->getModel('Service', 'NtripModel', array());
 
 		// Preset the redirect
 		$this->setRedirect(JRoute::_('index.php?option=com_ntrip&view=services' . $this->getRedirectToListAppend(), false));

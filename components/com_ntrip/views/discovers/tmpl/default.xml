@@ -17,6 +17,13 @@
 			>
 				<option value="">Chọn Tỉnh / Thành</option>
 			</field>
+			
+			<field name="custom_field" type="category"
+				extension="com_ntrip.custom_field_discover"
+				label="Custom Field"
+			>
+				<option value="">- Lựa chọn -</option>
+			</field>
 		</fieldset>
 	</fields>
 </metadata>

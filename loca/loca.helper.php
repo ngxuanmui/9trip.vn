@@ -34,6 +34,21 @@ class LocaHelper
 	    }
 	}
 	
+	static function getCategories($extension = 'com_ntrip')
+	{
+		jimport( 'joomla.application.categories' );
+	
+		$options = array();
+	
+		$options['extension'] = $extension;
+	
+		$catObjs = JCategories::getInstance('Ntrip', $options);
+	
+		$categories = $catObjs->get('root')->getChildren();
+	
+		return $categories;
+	}
+	
 	public static function thumbnail($image_path, $thumb_path, $image_name, $thumbnail_width = 0, $thumbnail_height = 0)
 	{
 		require_once(JPATH_ROOT . '/loca/phpthumb/phpthumb.class.php');
