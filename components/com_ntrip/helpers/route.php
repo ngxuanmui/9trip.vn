@@ -127,8 +127,7 @@ abstract class NtripHelperRoute
 	public static function getMainItemsRoute($view = 'hotels', $catid = 0, $customField = 0)
 	{
 		$needles = array(
-			'custom_field' => array($customField),
-			$view => array($catid)
+			$view => array($catid, 'custom_field' => array('custom_field' => $customField, 'catid' => $catid))
 		);
 		
 		//Create the link
@@ -144,8 +143,7 @@ abstract class NtripHelperRoute
 	
 		if ($item = self::_findItem($needles)) {
 			$link .= '&Itemid='.$item;
-		}
-		
+		}		
 		
 // 		if ($view == 'discovers')
 // 			var_dump($link);
@@ -276,14 +274,19 @@ abstract class NtripHelperRoute
 			
 			foreach ($items as $item)
 			{
+				$intergratedId = null;
+				
 				if (isset($item->query) && isset($item->query['custom_field']))
 				{
 					if (!isset(self::$lookup['custom_field'])) {
 						self::$lookup['custom_field'] = array();
 					}
+					
 					if (isset($item->query['custom_field']))
 					{
-						self::$lookup['custom_field'][$item->query['custom_field']] = $item->id;
+						$customFieldId = $item->query['custom_field'];
+						$catId = $item->query['catid'];
+						self::$lookup['custom-field'][$catId][$customFieldId] = $item->id;
 					}
 				}
 				
@@ -304,6 +307,8 @@ abstract class NtripHelperRoute
 			}
 		}
 		
+// 		var_dump (self::$lookup['custom-field']['18'], $needles['discovers']);
+		
 		if ($needles)
 		{
 			foreach ($needles as $view => $ids)
@@ -312,22 +317,32 @@ abstract class NtripHelperRoute
 				{
 					if (isset(self::$lookup['custom_field']))
 					{
-						if (!empty($needles['custom_field']))
-							foreach($needles['custom_field'] as $id)
+						
+						if (!empty($view['custom_field']))
+						{
+							$customField = $needles[$view]['custom_field'];
+							
+							$catId = isset($customField['catid']) ? $customField['catid'] : 0;
+							$customFieldId = isset($customField['custom_field']) ? $customField['custom_field'] : 0;
+							
+							if (isset(self::$lookup['custom-field'][$catId][$customFieldId])) 
 							{
-								if (isset(self::$lookup['custom_field'][(int)$id])) {
-									return self::$lookup['custom_field'][(int)$id];
-								}
+								$itemId = self::$lookup['custom-field'][$catId][$customFieldId];
+								
+								return $itemId;
 							}
+						}
 					}
 				}
-				
-				if (isset(self::$lookup[$view]))
-				{					
-					foreach($ids as $id)
-					{
-						if (isset(self::$lookup[$view][(int)$id])) {
-							return self::$lookup[$view][(int)$id];
+				else 
+				{
+					if (isset(self::$lookup[$view]))
+					{					
+						foreach($ids as $id)
+						{
+							if (isset(self::$lookup[$view][(int)$id])) {
+								return self::$lookup[$view][(int)$id];
+							}
 						}
 					}
 				}

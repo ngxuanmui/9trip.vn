@@ -2,6 +2,7 @@
 // no direct access
 defined('_JEXEC') or die;
 
+/*
 $facebook = new Facebook(array(
 	'appId'  => CFG_FACEBOOK_API_ID,
   	'secret' => CFG_FACEBOOK_API_SECRET,
@@ -46,8 +47,10 @@ $loginUrl	= $facebook->getLoginUrl(
   			'redirect_uri' => JRoute::_(JURI::root() . 'index.php?option=com_profile&task=customer.fbregistration', false)
   		)
 	);
+	*/
 ?>
 
+<?php /*?>
 <div id="fb-root"></div>
 
 <script>
@@ -61,13 +64,13 @@ $loginUrl	= $facebook->getLoginUrl(
 }(document, 'script', 'facebook-jssdk'));
 
 </script>
-
+*/ ?>
 <div id="main-header">
 	<div class="logo">
 		<a href="<?php echo JURI::base(); ?>" title="Loca.vn"></a>
 	</div>
 	<div class="right">
-		<?php if (!$user->id): ?>
+		<?php /*if (!$user->id): ?>
 			<div>
 				<a href="<?php echo $loginUrl; ?>" class="icon-fb"  rel="nofollow">Đăng nhập bằng Facebook</a> | 
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=login', false); ?>">Đăng nhập</a> |
@@ -184,7 +187,7 @@ $loginUrl	= $facebook->getLoginUrl(
 				</form>
 				
 			</div>
-		<?php endif; ?>
+		<?php endif; */?>
 		
 		<form>
 			<input type="text" name="search" value="" placeholder="Nhập thông tin cần tìm" />
