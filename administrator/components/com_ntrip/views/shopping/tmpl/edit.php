@@ -86,8 +86,8 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php echo $this->form->getInput('images'); ?>
 				</li>
 				
-				<?php 
-				$introImages = ($this->item->images) ? $this->item->images : false; 
+				<?php
+				$introImages = ($this->item->images) ? $this->item->images : false;
 				?>
 
 				<?php if ($introImages): ?>
@@ -115,6 +115,12 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 			
 			<div class="clr"> </div>
 			<?php echo $this->form->getInput('images2content'); ?>
+			<div class="clr"> </div>
+			
+			<?php echo $this->form->getLabel('content'); ?>
+			<div class="clr"> </div>
+			<?php echo $this->form->getInput('content'); ?>
+			
 			<div class="clr"> </div>
 			
 		</fieldset>
@@ -151,7 +157,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				</li>
 				<li>
 				    <div id="tmp-uploaded">
-					<?php 
+					<?php
 					$images = $this->item->other_images;
 					
 					$path = JURI::root() . 'images/shoppings/' . $this->item->id . '/';

@@ -32,7 +32,11 @@ abstract class NtripHelperRoute
 		$needles = array();
 		
 		if ($view == 'discover')
-			$needles['custom_field'] = array((int) $customField);
+		{
+			$needles = array(
+				'discovers' => array($catid, 'custom_field' => array('custom_field' => $customField, 'catid' => $catid))
+			);
+		}
 		
 		if ($view == 'album')
 			$needles['albums'] = array((int) $catid);

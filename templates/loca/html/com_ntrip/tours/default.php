@@ -35,28 +35,37 @@ $fields = $this->fields;
 		<!-- List nha hang -->
 		<div class="list-main-items-content list-items">
 			<ul>
-				<?php 
-				foreach ($this->items as $item): 
+				<?php
+				foreach ($this->items as $item):
 					$link = JRoute::_('index.php?option=com_ntrip&view=tour&id=' . $item->id . ':' . $item->alias, false);
 				?>
 				<li>
-					<a class="title" href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
-						<?php echo $item->name; ?>
-					</a>
 					<div class="img-container">
-						<a class="title" href="<?php echo $link; ?>" title="<?php echo $item->name; ?>">
-							<img src="<?php echo $item->thumb; ?>" alt="<?php echo $item->alias; ?>" />
+						<a class="title" href="<?php echo $link; ?>">
+							<img src="<?php echo $item->thumb; ?>" />
 						</a>
 					</div>
 					<div class="content">
-						<b>Xếp hạng:</b> tham quan <?php echo $this->category->title != 'ROOT' ? $this->category->title : ''; ?> <br/>
+						<h1>
+							<a class="title" href="<?php echo $link; ?>">
+								<?php echo $item->name; ?>
+							</a>
+							
+						</h1>
+						
+						<div class="clr item-address bold"><?php echo $item->address; ?></div>
+						
+						<?php
+							// echo JHtml::_('string.truncate', strip_tags($item->description), 100);
+							
+							$string 	= strip_tags($item->description);
+							$maxLength 	= 100;
+							
+							echo LocaHelper::mbCutWord($string, $maxLength);
+						?>
 						<div class="clear"></div>
-						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
-						<span class="fltlft total_votes"> <?php echo (int) $item->count_rating; ?> lượt đánh giá </span>
-						<div class="clear"></div>
-						<?php /* <a class="promotion-link" href="#">KHuyến mại đặt 2 tặng 1 chỉ có tai nhà hàng Hạ Long</a> */?>
 					</div>
-					<div class="clr"></div>
+					<div class="clear"></div>
 				</li>
 				<?php endforeach; ?>
 			</ul>

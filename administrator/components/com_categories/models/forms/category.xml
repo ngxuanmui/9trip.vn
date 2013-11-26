@@ -85,6 +85,15 @@
 		hide="readmore,pagebreak"/>
 
 	<field
+		name="content"
+		type="editor"
+		label="Content"
+		class="inputbox"
+		filter="JComponentHelper::filterText"
+		buttons="true"
+		hide="readmore,pagebreak"/>
+
+	<field
 		name="published"
 		type="list"
 		class="inputbox"

@@ -52,8 +52,8 @@ $arrExt = LocaHelper::getExtensionLocation();
 				<li><?php echo $this->form->getLabel('published'); ?>
 				<?php echo $this->form->getInput('published'); ?></li>
 				
-				<?php 
-//				if (JRequest::getString('extension') != 'com_ntrip'): 
+				<?php
+//				if (JRequest::getString('extension') != 'com_ntrip'):
 				if (in_array(JRequest::getString('extension'), $arrExt)):
 				?>
 				<li><?php echo $this->form->getLabel('locations'); ?>
@@ -82,6 +82,16 @@ $arrExt = LocaHelper::getExtensionLocation();
 			<?php echo $this->form->getLabel('description'); ?>
 			<div class="clr"></div>
 			<?php echo $this->form->getInput('description'); ?>
+			<?php
+			$ext = JRequest::getString('extension');
+			
+			if ($ext === 'com_ntrip'):
+			?>
+			<div class="clr"></div>
+			<?php echo $this->form->getLabel('content'); ?>
+			<div class="clr"></div>
+			<?php echo $this->form->getInput('content'); ?>
+			<?php endif; ?>
 		</fieldset>
 	</div>
 

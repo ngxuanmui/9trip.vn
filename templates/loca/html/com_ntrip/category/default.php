@@ -44,6 +44,18 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 							)
 						);
 				?>
+				
+				<?php
+				$checkDesc = trim(strip_tags($this->category->description));
+				
+				if (!empty($checkDesc)):
+				?>
+				<div class="clr"></div>
+				
+				<div class="category-description">
+					<?php echo $this->category->description; ?>
+				</div>
+				<?php endif; ?>
 			</div>
 			
 		</div>
@@ -197,8 +209,8 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="item-container">
 			<ul class="album-container">
-				<?php 
-				foreach ($items['albums'] as $key => $album): 
+				<?php
+				foreach ($items['albums'] as $key => $album):
 					$link = JRoute::_(NtripHelperRoute::getItemRoute($album->id, 'album', $album->catid));
 				?>
 				<li <?php if ( ($key + 1) % 3 == 0 ) echo 'class="last-item"' ?>>
@@ -218,6 +230,17 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		<div class="clr"></div>
 	</div>
 	
+	<?php
+	$checkContent = trim(strip_tags($this->category->content));
+	
+	if (!empty($checkContent)):
+	?>
+	<div class="margin-bottom5">
+		<div class="item-container" style="border-top: 1px solid #E6E6E6;">
+			<?php echo $this->category->content; ?>
+		</div>
+	</div>
+	<?php endif; ?>
 </div>
 
 <!-- Right content -->

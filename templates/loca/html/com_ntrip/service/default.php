@@ -14,83 +14,130 @@ JHtml::_('behavior.modal');
 		</div>
 
 		<div class="item-container">
-			<div class="address"><?php echo $item->address; ?></div>
-			
-			<?php if ($item->website || $item->email || $item->phone): ?>
-			<div class="contact">
-				<?php if ($item->website): ?>
-				<span class="item">
-					<span class="icons website"></span>
-					<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->webiste; ?>" target="_blank">
-						Website
-					</a>
-				</span>
-				<?php endif; ?>
-				<?php if ($item->email): ?>
-				<span class="item">
-					<span class="email icons"></span>
-					<a href="mailto:<?php echo $item->email; ?>">
-						Email
-					</a>
-				</span>
-				<?php endif; ?>
-				<?php if ($item->phone): ?>
-				<span class="item phone">
-					<span class="phone icons"></span>
-					<?php echo $item->phone; ?>
-				</span>
-				<?php endif; ?>
-				<div class="clr"></div>
-			</div>
-			<?php endif; ?>
-			
-			<?php 
+			<?php
 			
 			echo LocaHelper::renderModulesOnPosition(
-						'loca-social', 
-						array(	'item' => $item, 
-								'item_type' => 'services', 
+						'loca-social',
+						array(	'item' => $item,
+								'item_type' => 'services',
 								'gmap' => array(	'address' => $item->address,
-													'lat' => $item->gmap_lat, 
+													'lat' => $item->gmap_lat,
 													'long' => $item->gmap_long
 											)
 						)
-					); 
+					);
 			?>
 			
 			<div class="clr"></div>
 
 			<div class="info">
 				<div class="content">
+					<div class="contact fltlft">
+						<?php if (!empty($item->address)): ?>
+						<span class="item contact-address">
+							<span class="icons address"></span>
+							<?php echo $item->address; ?>
+						</span>
+						<?php endif; ?>
+						<?php if (!empty($item->website)): ?>
+						<span class="item clr contact-website">
+							<span class="icons website"></span>
+							<a href="<?php echo strpos($item->website, 'http://') === false ? 'http://' .$item->website : $item->website; ?>" target="_blank">
+								<?php echo $item->website; ?>
+							</a>
+						</span>
+						<?php endif; ?>
+						<?php if (!empty($item->email)): ?>
+						<span class="item clr">
+							<span class="email icons"></span>
+							<a href="mailto:<?php echo $item->email; ?>">
+								<?php echo $item->email; ?>
+							</a>
+						</span>
+						<?php endif; ?>
+						<?php if (!empty($item->phone)): ?>
+						<span class="item clr contact-phone">
+							<span class="phone icons"></span>
+							<?php echo $item->phone; ?>
+						</span>
+						<?php endif; ?>
+						<div class="clr"></div>
+						
+					</div>
+					
+					<div class="clr"></div>
+					
 					<div>
 						<?php echo $item->description; ?>
 						<div class="clr"></div>
 					</div>
 					
-					<p><b>Xếp hạng:</b> Dịch vụ ở <?php echo $item->category_title; ?></p>
-					
-					<?php 
+					<?php
 			
 					echo LocaHelper::renderModulesOnPosition(
-								'loca-rating', 
-								array(	'item' => $item, 
+								'loca-rating',
+								array(	'item' => $item,
 										'item_type' => 'services'
 								)
-							); 
+							);
 					?>
 				</div>
 
 				<div class="clr"></div>
 			</div>
+			
+			<div class="clr"></div>
+			
+			<div class="fb-comments-container">
+				<div class="fb-comments" data-href="<?php echo CFG_REQUEST_URI; ?>" data-width="625" data-num-posts="10"></div>
+			</div>
 		</div>
 
 		<?php Ntrip_CommentHelper::showForm($item->id, 'services', $item->name); ?>
 
+		<?php if (!empty($this->otherItems)): ?>
+		<div class="others margin-bottom5">
+			<div class="title-category">
+				Các thông tin Mua - Sắm khác
+			</div>
+		
+			<div class="item-container item-detail">
+					
+				<div class="other-items">
+					<ul class="hotel-other-items">
+						<?php foreach ($this->otherItems as $other): ?>
+						<li class="fltleft">
+							<div class="img">
+								<img src="<?php echo $other->images; ?>" />
+							</div>
+
+							<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $other->id . ':' . $other->alias, false); ?>">
+								<?php echo $other->name; ?>
+							</a>
+							
+						</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+		<?php endif; ?>
+		
 		<div class="clr"></div>
 		
-		<div class="fb-comments-container">
-			<div class="fb-comments" data-href="<?php echo CFG_REQUEST_URI; ?>" data-width="650" data-num-posts="10"></div>
+		<?php if (!empty($item->content)): ?>
+		<div class="others margin-bottom5">
+			<div class="title-category">
+				Thông tin thêm
+			</div>
+			<div class="item-container item-content">
+				<?php echo $item->content; ?>
+			</div>
 		</div>
+		
+		<div class="clr"></div>
+		<?php endif; ?>
 	</div>
 </div>
 

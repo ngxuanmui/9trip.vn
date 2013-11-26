@@ -12,18 +12,18 @@ define('CFG_GOOGLE_MAP_API', 	'AIzaSyDG9QTLb37UFy2pxXyo5k6gz5eOt6ohrko');
 
 $server = JRequest::get('server');
 
-define('CFG_REQUEST_URI', 'http://' . $server['HTTP_HOST'].$server['REQUEST_URI']);
+define('CFG_REQUEST_URI', JURI::current());
 
 /* config limit for each type */
-define('CFG_LIMIT_HOTELS', 5);
-define('CFG_LIMIT_RESTAURANTS', 5);
-define('CFG_LIMIT_TOURS', 5);
-define('CFG_LIMIT_RELAXES', 5);
-define('CFG_LIMIT_SHOPPINGS', 5);
-define('CFG_LIMIT_SERVICES', 5);
-define('CFG_LIMIT_DISCOVERS', 5);
-define('CFG_LIMIT_PROMOTIONS', 12);
-define('CFG_LIMIT_QUESTIONS', 5);
-define('CFG_LIMIT_WARNINGS', 5);
-define('CFG_LIMIT_ALBUMS', 5);
-define('CFG_LIMIT_DISCOVERY' , 5);
+define('CFG_LIMIT_HOTELS', 10);
+define('CFG_LIMIT_RESTAURANTS', 10);
+define('CFG_LIMIT_TOURS', 10);
+define('CFG_LIMIT_RELAXES', 10);
+define('CFG_LIMIT_SHOPPINGS', 10);
+define('CFG_LIMIT_SERVICES', 10);
+define('CFG_LIMIT_DISCOVERS', 10);
+define('CFG_LIMIT_PROMOTIONS', 10);
+define('CFG_LIMIT_QUESTIONS', 10);
+define('CFG_LIMIT_WARNINGS', 10);
+define('CFG_LIMIT_ALBUMS', 10);
+define('CFG_LIMIT_DISCOVERY' , 10);

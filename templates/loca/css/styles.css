@@ -566,9 +566,9 @@ div.list-items ul li { background: #FFF; padding: 10px 0 10px 10px; }
 	font-weight: bold;
 	font-size: 14px;
 	/* display: block; */
-	height: 30px;
+	/* height: 30px; */
 	float: left;
-	line-height: 36px;
+	line-height: 20px;
 	margin-bottom: 5px;
 }
 .list-main-items-content a.promotion-link {
@@ -577,7 +577,7 @@ div.list-items ul li { background: #FFF; padding: 10px 0 10px 10px; }
 }
 .list-main-items-content .img-container {
 	width: 150px;
-	height: 122px;
+	/* height: 122px; */
 	float: left;
 	margin-right: 10px;
 	overflow: hidden;
@@ -1273,7 +1273,9 @@ li#menu-home-page > a:hover { background: url('../images/home-hover.png') no-rep
 
 .notice-info { width: 24px; height: 24px; background: url('../images/info.gif') no-repeat; margin: 7px 5px 0 0; }
 
-ul.hotel-other-items li { float: left; margin-right: 0; width: 115px; }
+.other-items ul { margin: 10px 0 5px 0px; width: 625px; list-style: none; }
+.other-items ul li { float: left; margin-right: 12px; width: 115px; }
+.other-items ul li:last-child { margin-right: 0; }
 
 .others { margin-top: 10px; }
 

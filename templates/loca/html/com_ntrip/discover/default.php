@@ -15,11 +15,11 @@ $item = $this->item;
 			<div class="item-detail">
 				<?php
 				echo LocaHelper::renderModulesOnPosition(
-							'loca-article-info', 
+							'loca-article-info',
 							array(	'item' => $item,
 									'item_type' => 'discovers'
 							)
-						); 
+						);
 				?>
 					
 				<div class="clr"></div>
@@ -33,11 +33,11 @@ $item = $this->item;
 						<div class="fltlft">
 							<?php
 							echo LocaHelper::renderModulesOnPosition(
-										'loca-rating', 
-										array(	'item' => $item, 
+										'loca-rating',
+										array(	'item' => $item,
 												'item_type' => 'discovers'
 										)
-									); 
+									);
 							?>
 						</div>
 						
@@ -50,7 +50,7 @@ $item = $this->item;
 				</div>
 			</div>
 			
-			<?php Ntrip_CommentHelper::showForm($item->id, 'discovers', $item->name); ?>
+			<?php //Ntrip_CommentHelper::showForm($item->id, 'discovers', $item->name); ?>
 			
 			<div class="clr"></div>
 			
@@ -61,36 +61,38 @@ $item = $this->item;
 		
 		<div class="clr"></div>
 		
-		<?php if (!empty($this->otherItems)): ?>	
+		<?php if (!empty($this->otherItems)): ?>
 		<div class="margin-bottom5 other-item-container">
 			<div class="title-category">
 				Bài viết liên quan
 			</div>
 			
-			<div class="other-items">
-				<ul class="discover-other-items">
-					<?php foreach ($this->otherItems as $other): ?>
-					<li class="fltleft">
-						<div class="img">
-							<img src="<?php echo $other->images; ?>" />
-						</div>				
-						
-						<?php 
-						$other->slug = $other->id . ':' . $other->alias;
-						$view = 'discover';
-						?>
-
-						<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($other->slug, $view) , false); ?>">
-							<?php echo $other->name; ?>
-						</a>
-						
-					</li>
-					<?php endforeach; ?>
-				</ul>
-			</div>		
+			<div class="item-container item-detail">
+				<div class="other-items">
+					<ul class="discover-other-items">
+						<?php foreach ($this->otherItems as $other): ?>
+						<li class="fltleft">
+							<div class="img">
+								<img src="<?php echo $other->images; ?>" />
+							</div>
+							
+							<?php
+							$other->slug = $other->id . ':' . $other->alias;
+							$view = 'discover';
+							?>
+	
+							<a href="<?php echo JRoute::_(NtripHelperRoute::getItemRoute($other->slug, $view) , false); ?>">
+								<?php echo $other->name; ?>
+							</a>
+							
+						</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</div>
 			<div class="clr"></div>
 		</div>
-		<?php endif; ?>			
+		<?php endif; ?>
 	</div>
 </div>
 

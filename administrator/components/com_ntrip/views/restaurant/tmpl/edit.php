@@ -49,7 +49,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				<?php echo $this->form->getInput('catid'); ?></li>
 
 				<li><?php echo $this->form->getLabel('type'); ?>
-				<?php echo $this->form->getInput('type'); ?></li>				
+				<?php echo $this->form->getInput('type'); ?></li>
 				
 				<li><?php echo $this->form->getLabel('phone'); ?>
 				<?php echo $this->form->getInput('phone'); ?></li>
@@ -101,8 +101,8 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php echo $this->form->getInput('images'); ?>
 				</li>
 				
-				<?php 
-				$introImages = ($this->item->images) ? $this->item->images : false; 
+				<?php
+				$introImages = ($this->item->images) ? $this->item->images : false;
 				?>
 
 				<?php if ($introImages): ?>
@@ -126,6 +126,11 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 			
 			<?php echo $this->form->getLabel('description'); ?>
 			<?php echo $this->form->getInput('description'); ?>
+			
+			<div class="clr"> </div>
+			
+			<?php echo $this->form->getLabel('content'); ?>
+			<?php echo $this->form->getInput('content'); ?>
 			
 			<div class="clr"> </div>
 			
@@ -163,7 +168,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				</li>
 				<li>
 				    <div id="tmp-uploaded">
-					<?php 
+					<?php
 					$images = $this->item->other_images;
 					
 					$path = JURI::root() . 'images/restaurants/' . $this->item->id . '/';

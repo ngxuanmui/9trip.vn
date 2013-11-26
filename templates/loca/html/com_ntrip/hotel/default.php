@@ -25,18 +25,18 @@ JHtml::_('behavior.modal');
 
 		<div class="item-container">
 			
-			<?php 
+			<?php
 			
 			echo LocaHelper::renderModulesOnPosition(
-						'loca-social', 
-						array(	'item' => $item, 
-								'item_type' => 'hotels', 
+						'loca-social',
+						array(	'item' => $item,
+								'item_type' => 'hotels',
 								'gmap' => array(	'address' => $item->address,
-													'lat' => $item->gmap_lat, 
+													'lat' => $item->gmap_lat,
 													'long' => $item->gmap_long
 											)
 						)
-					); 
+					);
 			?>
 			
 			<div class="clr"></div>
@@ -97,23 +97,23 @@ JHtml::_('behavior.modal');
 					</div>
 					 */ ?>
 					 
-					<?php 
+					<?php
 			
 					echo LocaHelper::renderModulesOnPosition(
-								'loca-rating', 
-								array(	'item' => $item, 
+								'loca-rating',
+								array(	'item' => $item,
 										'item_type' => 'hotels'
 								)
-							); 
+							);
 					?>
 
-					<?php 
+					<?php
 					/*
 					$checkUserRating = NtripFrontHelper::checkUserRating($item->id, 'hotels');
 					
-					$rank = round($item->user_rank); 
+					$rank = round($item->user_rank);
 					?>
-					<div id="<?php echo $item->id; ?>" class="rating-content rate_widget" rated="<?php echo $rank; ?>">						
+					<div id="<?php echo $item->id; ?>" class="rating-content rate_widget" rated="<?php echo $rank; ?>">
 						<?php for ($i = 1; $i <= 5; $i ++): ?>
 						<div class="<?php if (!$checkUserRating): ?>user-rating<?php endif;?> star_<?php echo $i; ?> ratings_stars <?php if ($i <= $rank) echo 'ratings_vote'; ?>"></div>
 						<?php endfor; ?>
@@ -145,7 +145,7 @@ JHtml::_('behavior.modal');
 
 		<div class="clr"></div>
 		
-		<?php if (!empty($this->otherItems)): ?>	
+		<?php if (!empty($this->otherItems)): ?>
 		<div class="others margin-bottom5">
 			<div class="title-category">
 				Khách sạn khác
@@ -159,7 +159,7 @@ JHtml::_('behavior.modal');
 						<li class="fltleft">
 							<div class="img">
 								<img src="<?php echo $other->images; ?>" />
-							</div>				
+							</div>
 
 							<a href="<?php echo JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $other->id . ':' . $other->alias, false); ?>">
 								<?php echo $other->name; ?>
@@ -168,11 +168,11 @@ JHtml::_('behavior.modal');
 						</li>
 						<?php endforeach; ?>
 					</ul>
-				</div>		
+				</div>
 				<div class="clr"></div>
 			</div>
 		</div>
-		<?php endif; ?>	
+		<?php endif; ?>
 		
 		<div class="clr"></div>
 		

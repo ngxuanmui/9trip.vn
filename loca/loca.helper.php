@@ -1,6 +1,6 @@
 <?php
 
-class LocaHelper 
+class LocaHelper
 {
 //	public static function thumbnail($image_path, $thumb_path, $image_name, $thumb_width)
 //	{
@@ -14,7 +14,7 @@ class LocaHelper
 //		imagecopyresized ($dst_img, $src_img, 0, 0, 0, 0, $new_w, $new_h, imagesx($src_img), imagesy($src_img));
 //
 //		imagejpeg($dst_img, "$thumb_path/$image_name", 100);
-//		
+//
 //		return true;
 //	}
 	
@@ -26,9 +26,9 @@ class LocaHelper
 	        $pos = strrpos($string, " ");
 	        if($pos === false)
 	        {
-	        	return substr($string, 0, $max_length)."...";
+	        	return mb_substr($string, 0, $max_length)."...";
 	        }
-	        return substr($string, 0, $pos)."...";
+	        return mb_substr($string, 0, $pos)."...";
 	    }else{
 	    	return $string;
 	    }
@@ -59,8 +59,8 @@ class LocaHelper
 		// this is very important when using a single object to process multiple images
 		$phpThumb->resetObject();
 
-		// set data source 
-		$phpThumb->setSourceFilename($image_path . DS . $image_name); 
+		// set data source
+		$phpThumb->setSourceFilename($image_path . DS . $image_name);
 		
 		// set parameters (see "URL Parameters" in phpthumb.readme.txt)
 		if ($thumbnail_width)
@@ -78,7 +78,7 @@ class LocaHelper
 		
 		$capture_raw_data = false;
 		
-		if ($phpThumb->GenerateThumbnail()) { 
+		if ($phpThumb->GenerateThumbnail()) {
 //			$output_size_x = ImageSX($phpThumb->gdimg_output);
 //			$output_size_y = ImageSY($phpThumb->gdimg_output);
 //			if ($output_filename || $capture_raw_data) {
@@ -108,11 +108,11 @@ class LocaHelper
 
 	/**
 	 * Function to get coordinates for gmap
-	 * 
+	 *
 	 * @param String $address	Gmap address
 	 * @param String $region	Region
 	 * @param Boolean $useCurl	Use CURL or Use file_get_contents
-	 * 
+	 *
 	 * @return Array
 	 */
 	public function getGmapCoordinates($address, $useCurl = true, $region = 'VN')
@@ -124,7 +124,7 @@ class LocaHelper
 		
 		if (!$useCurl)
 		{
-			$json = file_get_contents($url);			
+			$json = file_get_contents($url);
 		}
 		else
 		{
@@ -176,7 +176,7 @@ class LocaHelper
 		return $html;
 	}
 	
-	public static function renderModule($module, $tmpParams = array()) 
+	public static function renderModule($module, $tmpParams = array())
 	{
 		jimport('joomla.application.module.helper');
 		
@@ -208,7 +208,7 @@ class LocaHelper
 	}
 	
 	/**
-	 * Function to get extension (customfield) related to location (category) 
+	 * Function to get extension (customfield) related to location (category)
 	 */
 	public static function getExtensionLocation()
 	{
