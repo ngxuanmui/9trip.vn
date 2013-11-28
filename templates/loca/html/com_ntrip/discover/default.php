@@ -50,7 +50,7 @@ $item = $this->item;
 				</div>
 			</div>
 			
-			<?php //Ntrip_CommentHelper::showForm($item->id, 'discovers', $item->name); ?>
+			<?php Ntrip_CommentHelper::showForm($item->id, 'discovers', $item->name); ?>
 			
 			<div class="clr"></div>
 			

@@ -67,10 +67,6 @@
 			class="inputbox"
 		/>
 
-		<field name="content" type="editor" class="inputbox"
-			label="Content" 
-			filter="JComponentHelper::filterText" buttons="false" />
-
 	</fieldset>
 
 	<fieldset name="publish"
