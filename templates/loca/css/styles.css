@@ -1288,3 +1288,9 @@ li#menu-home-page > a:hover { background: url('../images/home-hover.png') no-rep
 .bold { font-weight: bold; }
 
 ol { margin-left: 40px; }
+
+div.description { margin-left: 5px; }
+div.description h2 { text-indent: 0; }
+
+.external-block .contact { font-size: .9em; }
+.external-block a.title { margin: 0px 0px 5px 5px; font-weight: bold; display: block; font-size: 12px !important; }
