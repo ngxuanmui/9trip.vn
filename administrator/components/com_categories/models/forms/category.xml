@@ -114,6 +114,18 @@
 			value="-2">
 			JTRASHED</option>
 	</field>
+	
+	<!-- muinx -->
+	
+	<field name="images" type="file" class="inputbox"
+		size="40" label="Images" />
+
+	<field name="del_image" type="checkbox" value="1" label="Delete image" />
+
+	<field name="uploadfile" type="uploadfile" />
+	<!-- end -->
+	
+	
 	<field
 		name="buttonspacer"
 		label="JGLOBAL_ACTION_PERMISSIONS_LABEL"

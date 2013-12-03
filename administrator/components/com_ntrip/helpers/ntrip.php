@@ -338,7 +338,7 @@ class NtripHelper
 	    return $rs;
 	}
 
-	static function uploadImages($field, $item, $delImage = 0, $itemType = 'hotels')
+	static function uploadImages($field, $item, $delImage = 0, $itemType = 'hotels', $dest = '')
 	{
 		$jFileInput = new JInput($_FILES);
 		$file = $jFileInput->get('jform', array(), 'array');
@@ -375,14 +375,17 @@ class NtripHelper
 		
 		$date = date('Y') . DS . date('m') . DS . date('d');
 		
-		$dest = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $date . DS . $item->id . DS;
+		if ($dest == '')
+			$destination = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $date . DS . $item->id . DS;
+		else 
+			$destination = JPATH_ROOT . DS . 'images' . DS . $dest . DS;
 		
 		// Make directory
 		@mkdir($dest, 0777, true);
 		
 		if (isset($fileName) && $fileName) {
 			
-			$filepath = JPath::clean($dest.$fileName);
+			$filepath = JPath::clean($destination.$fileName);
 
 			/*
 			if (JFile::exists($filepath)) {
@@ -400,12 +403,15 @@ class NtripHelper
 			}
 
 			// set value to return
-			$image = 'images/'.$itemType.'/' . str_replace(DS, '/', $date) . '/' . $item->id . '/' . $fileName;
+			if ($dest == '')
+				$image = 'images/'.$itemType.'/' . str_replace(DS, '/', $date) . '/' . $item->id . '/' . $fileName;
+			else 
+				$image = 'images/'.$dest.'/' . $fileName;
 		}
 		else
 			if (!$flagDelete)
 			    $image = $item->images;
-		
+			
 		return $image;
 	}
 	

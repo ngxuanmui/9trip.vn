@@ -487,11 +487,24 @@ class CategoriesModelCategory extends JModelAdmin
 				die($db->getErrorMsg ());
 		}
 		/* end */
+		
+		/* upload thumb */
+		
+		require_once JPATH_ADMINISTRATOR.'/components/com_ntrip/helpers/ntrip.php';
+		
+		$delImage = isset($data['del_image']) ? $data['del_image'] : null;
+		
+		// Upload thumb
+		$item = $this->getItem();
+		$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, '', 'locations');
+		/* end */
+		
+		$saveResult = parent::save($data);
 
 		// Clear the cache
 		$this->cleanCache();
 
-		return true;
+		return $saveResult;
 	}
 
 	/**

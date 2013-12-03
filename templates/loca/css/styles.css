@@ -1286,3 +1286,5 @@ li#menu-home-page > a:hover { background: url('../images/home-hover.png') no-rep
 .fb-comments-container { margin: 10px 0; }
 
 .bold { font-weight: bold; }
+
+ol { margin-left: 40px; }

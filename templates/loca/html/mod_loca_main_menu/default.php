@@ -132,10 +132,11 @@ jQuery(function($){
 				Khuyến mãi
 			</a>
 		</li>
-		*/ ?>
+		
 		<li><a
 			href="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute('albums', $catId)); ?>">
 				Album ảnh </a></li>
+		*/ ?>
 	</ul>
 	<?php endif; ?>
 </div>

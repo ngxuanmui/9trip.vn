@@ -199,7 +199,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		<div class="clr"></div>
 	</div>
 	
-	*/ ?>
+	
 	<div class="margin-bottom5">
 		<div class="title-category">
 			Album mới nhất
@@ -229,6 +229,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 		
 		<div class="clr"></div>
 	</div>
+	*/ ?>
 	
 	<?php
 	$checkContent = trim(strip_tags($this->category->content));
@@ -236,6 +237,9 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 	if (!empty($checkContent)):
 	?>
 	<div class="margin-bottom5">
+		<div class="title-category">
+				Thông tin thêm về <?php echo $this->category->title; ?>
+			</div>
 		<div class="item-container" style="border-top: 1px solid #E6E6E6;">
 			<?php echo $this->category->content; ?>
 		</div>

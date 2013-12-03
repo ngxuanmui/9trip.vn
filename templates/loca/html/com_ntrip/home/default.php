@@ -54,11 +54,13 @@ defined('_JEXEC') or die;
 								<?php
 									$params = $subItem->getParams();
 									$image = $params->get('image');
+									
+									$locImage = $subItem->images ? $subItem->images : $image;
 
-									if ($image):
+									if ($locImage):
 								?>
 									<a href="<?php echo $link; ?>">
-										<img src="<?php echo $image; ?>" />
+										<img src="<?php echo $locImage; ?>" />
 									</a>
 								<?php endif; ?>
 							</div>

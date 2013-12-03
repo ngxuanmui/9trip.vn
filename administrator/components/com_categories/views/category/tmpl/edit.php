@@ -32,7 +32,7 @@ $arrExt = LocaHelper::getExtensionLocation();
 	}
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_categories&extension='.JRequest::getCmd('extension', 'com_content').'&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_categories&extension='.JRequest::getCmd('extension', 'com_content').'&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate" enctype="multipart/form-data">
 	<div class="width-60 fltlft">
 		<fieldset class="adminform">
 			<legend><?php echo JText::_('COM_CATEGORIES_FIELDSET_DETAILS');?></legend>
@@ -51,6 +51,29 @@ $arrExt = LocaHelper::getExtensionLocation();
 
 				<li><?php echo $this->form->getLabel('published'); ?>
 				<?php echo $this->form->getInput('published'); ?></li>
+
+				<li>
+					<?php echo $this->form->getLabel('images'); ?>
+					<?php echo $this->form->getInput('images'); ?>
+				</li>
+				
+				<?php 
+				$introImages = ($this->item->images) ? $this->item->images : false; 
+				?>
+
+				<?php if ($introImages): ?>
+				<li class="control-group form-inline">
+					<?php echo $this->form->getLabel('del_image'); ?>
+					<?php echo $this->form->getInput('del_image'); ?>
+				</li>
+				
+				<li>
+					<label>Intro image uploaded</label>
+					<a href="<?php echo JUri::root() . $introImages; ?>" class="modal">
+						<img src="<?php echo JUri::root() . $introImages; ?>" style="width: 100px;" />
+					</a>
+				</li>
+				<?php endif; ?>
 				
 				<?php
 //				if (JRequest::getString('extension') != 'com_ntrip'):
