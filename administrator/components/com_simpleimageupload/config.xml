@@ -1,0 +1,10 @@
+<config>
+			<fieldset  name="component" label="COM_SIMPLEIMAGEUPLOAD_CONFIGTEXT" description="COM_SIMPLEIMAGEUPLOAD_CONFIGTEXT" >
+				<field name="folderPath" type="text" default="images" label="COM_SIMPLEIMAGEUPLOAD_FOLDERPATH" description="COM_SIMPLEIMAGEUPLOAD_FOLDERPATH_DESC">
+				</field>
+				<field name="allowedFormats" type="text" default="bmp,gif,jpg,png,jpeg" label="COM_SIMPLEIMAGEUPLOAD_ALLOWEDFORMATS" description="COM_SIMPLEIMAGEUPLOAD_ALLOWEDFORMATS_DESC">
+				</field>
+				<field name="saveInUserFolder" type="checkbox" value="1" label="COM_SIMPLEIMAGEUPLOAD_SAVEINUSERFOLDER" description="COM_SIMPLEIMAGEUPLOAD_SAVEINUSERFOLDER_DESC">
+				</field>
+			</fieldset>
+</config>

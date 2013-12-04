@@ -81,18 +81,18 @@
 		description="COM_CATEGORIES_DESCRIPTION_DESC"
 		class="inputbox"
 		filter="JComponentHelper::filterText"
-		buttons="true"
-		hide="readmore,pagebreak"/>
+		 buttons="true" hide="image,article,readmore,pagebreak" />
 
+	<!-- muinx -->
 	<field
 		name="content"
 		type="editor"
 		label="Content"
 		class="inputbox"
 		filter="JComponentHelper::filterText"
-		buttons="true"
-		hide="readmore,pagebreak"/>
-
+		 buttons="true" hide="image,article,readmore,pagebreak" />
+	<!-- end -->
+	
 	<field
 		name="published"
 		type="list"
@@ -116,13 +116,22 @@
 	</field>
 	
 	<!-- muinx -->
-	
 	<field name="images" type="file" class="inputbox"
 		size="40" label="Images" />
 
 	<field name="del_image" type="checkbox" value="1" label="Delete image" />
 
 	<field name="uploadfile" type="uploadfile" />
+	
+	<field name="ximages2content" type="images2content"
+			label="Images" description="Upload images to content"
+			class="inputbox" rel="description"
+		/>
+		
+	<field name="ximages2content_2" type="images2content"
+			label="Images" description="Upload images to content"
+			class="inputbox" rel="content"
+		/>
 	<!-- end -->
 	
 	

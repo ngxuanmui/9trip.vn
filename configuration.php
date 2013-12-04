@@ -53,8 +53,8 @@ class JConfig {
 	public $sef_suffix = '0';
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
-	public $log_path = 'D:\\www\\muinx\\9trip.vn/logs';
-	public $tmp_path = 'D:\\www\\muinx\\9trip.vn/tmp';
+	public $log_path = 'E:\\www\\muinx\\9trip.vn/logs';
+	public $tmp_path = 'E:\\www\\muinx\\9trip.vn/tmp';
 	public $lifetime = '9999';
 	public $session_handler = 'database';
 	public $MetaRights = '';

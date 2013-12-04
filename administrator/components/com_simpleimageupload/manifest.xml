@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5">
+	<name>SimpleImageUpload</name>
+	<creationDate>08.02.2012</creationDate>
+	<author>Mathias Hortig</author>
+	<authorEmail>jonny132@gmx.at</authorEmail>
+	<authorUrl>http://tuts4you.de/</authorUrl>
+	<copyright>Copyright (C) 2011 http://tuts4you.de/ All rights reserved.
+	</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<version>1.2</version>
+	<description>SimpleImageUpload - Simply Upload your Images to an Article</description>
+	<files folder="site">
+		<folder>views</folder>
+		<folder>controllers</folder>
+		<folder>models</folder>
+		<filename>index.html</filename>
+		<filename>controller.php</filename>
+		<filename>simpleimageupload.php</filename>
+	</files>
+	<languages folder="site">
+		<language tag="en-GB">languages/en-GB.com_simpleimageupload.ini</language>
+		<language tag="de-DE">languages/de-DE.com_simpleimageupload.ini</language>
+	</languages>
+	<administration>
+		<menu>SimpleImageUpload</menu>
+		<files folder="admin">
+			<folder>views</folder>
+			<folder>controllers</folder>
+			<folder>models</folder>
+			<filename>index.html</filename>
+			<filename>controller.php</filename>
+			<filename>simpleimageupload.php</filename>
+			<filename>config.xml</filename>
+		</files>
+		<languages folder="admin">
+			<language tag="en-GB">languages/en-GB.com_simpleimageupload.ini</language>
+			<language tag="de-DE">languages/de-DE.com_simpleimageupload.ini</language>
+		</languages>
+	</administration>
+
+</extension>

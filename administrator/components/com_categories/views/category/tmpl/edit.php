@@ -57,8 +57,8 @@ $arrExt = LocaHelper::getExtensionLocation();
 					<?php echo $this->form->getInput('images'); ?>
 				</li>
 				
-				<?php 
-				$introImages = ($this->item->images) ? $this->item->images : false; 
+				<?php
+				$introImages = ($this->item->images) ? $this->item->images : false;
 				?>
 
 				<?php if ($introImages): ?>
@@ -105,6 +105,8 @@ $arrExt = LocaHelper::getExtensionLocation();
 			<?php echo $this->form->getLabel('description'); ?>
 			<div class="clr"></div>
 			<?php echo $this->form->getInput('description'); ?>
+			<div class="clr"></div>
+			<?php echo $this->form->getInput('images2content'); ?>
 			<?php
 			$ext = JRequest::getString('extension');
 			
@@ -114,6 +116,8 @@ $arrExt = LocaHelper::getExtensionLocation();
 			<?php echo $this->form->getLabel('content'); ?>
 			<div class="clr"></div>
 			<?php echo $this->form->getInput('content'); ?>
+			<div class="clr"></div>
+			<?php echo $this->form->getInput('images2content_2'); ?>
 			<?php endif; ?>
 		</fieldset>
 	</div>
