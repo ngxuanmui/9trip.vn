@@ -146,17 +146,19 @@ ul.main-menu > li > a:hover {
     margin: 0 auto;
 }
 #top-adv img {
-    padding: 10px 0;
+    padding: 10px 0 0;
 }
 #right-content {
     width: 300px;
     margin-left: 10px;
     float: right;
+    margin-top: 10px;
 }
 #left-content {
     width: 650px;
     float: left;
     background: #F5F5F5;
+    margin-top: 10px;
 }
 .register {
     background: url("../images/reg-bg.png") repeat-x;
@@ -1155,7 +1157,7 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 
 .fb-like { z-index: 1000; }
 
-.breadcrumbs { padding: 10px 0; }
+.breadcrumbs { padding: 10px 0 0; }
 
 #menu-holder { display: block; width: 960px; height: 185px; }
 
@@ -1294,3 +1296,5 @@ div.description h2 { text-indent: 0; }
 
 .external-block .contact { font-size: .9em; }
 .external-block a.title { margin: 0px 0px 5px 5px; font-weight: bold; display: block; font-size: 12px !important; }
+
+#right-content .banneritem { width: 300px; overflow: hidden; padding: 10px 0; }

@@ -39,6 +39,14 @@
 		>
 			<option value="*">JALL</option>
 		</field>
+		
+		<field
+			name="location_id"
+			type="location"
+			label="Locations"
+			class="inputbox"
+			extension="com_ntrip">
+		</field>
 
 
 		<field name="description" type="textarea" class="inputbox"
@@ -61,6 +69,13 @@
 
 		<field name="clickurl" type="url" class="inputbox" filter="url"
 				label="COM_BANNERS_FIELD_CLICKURL_LABEL" description="COM_BANNERS_FIELD_CLICKURL_DESC" />
+				
+		
+		
+		<field name="images" type="file" class="inputbox"
+		size="40" label="Images" />
+
+		<field name="del_image" type="checkbox" value="1" label="Delete image" />
 
 	</fieldset>
 
