@@ -169,18 +169,22 @@ class plgSystemJw_ts extends JPlugin {
 		include($pluginTemplateFolderSystem.DS.'sliders.php');
 		$getSlidersTemplate = $this->plg_copyrights_start.ob_get_contents().$this->plg_copyrights_end;
 		ob_end_clean();
+		
+// 		preg_match_all("#{/slider}(.+?){slider=#s", $buf, $matches, PREG_PATTERN_ORDER);
+		
+// 		var_dump($matches); die;
 
 		// Cleanup inbetween markup
 		if(preg_match_all("#{/slide}(.+?){slide=#s", $buf, $matches, PREG_PATTERN_ORDER) > 0) {
 			foreach($matches[1] as $match) {
-				if(strlen($match)<20){
+				if(strlen($match)<9){
 					$buf = str_replace($match,'',$buf);
 				}
 			}
 		}
 		if(preg_match_all("#{/slider}(.+?){slider=#s", $buf, $matches, PREG_PATTERN_ORDER) > 0) {
 			foreach($matches[1] as $match) {
-				if(strlen($match)<20){
+				if(strlen($match)<9){
 					$buf = str_replace($match,'',$buf);
 				}
 			}

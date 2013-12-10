@@ -1298,3 +1298,8 @@ div.description h2 { text-indent: 0; }
 .external-block a.title { margin: 0px 0px 5px 5px; font-weight: bold; display: block; font-size: 12px !important; }
 
 #right-content .banneritem { width: 300px; overflow: hidden; padding: 10px 0; }
+
+div.jwts_tabberlive, div.jwts_tabbertab { clear: both; border: none; margin: 10px 0; }
+ul.jwts_tabbernav li { width: auto; padding-bottom: 3px !important; }
+
+ul.jwts_tabbernav li a { padding: 6px 10px 3px !important; }
