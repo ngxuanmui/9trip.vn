@@ -92,6 +92,12 @@ class NtripHelper
 			'index.php?option=com_ntrip&view=questions',
 			$vName == 'questions'
 		);
+		
+		JSubMenuHelper::addEntry(
+			JText::_('Fix Infos'),
+			'index.php?option=com_ntrip&view=fix_infos',
+			$vName == 'fix_infos'
+		);
 
 		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_LOCATIONS'),
@@ -107,7 +113,7 @@ class NtripHelper
 		JSubMenuHelper::addEntry(
 			JText::_('[Discover: Type]'),
 			'index.php?option=com_categories&extension=com_ntrip.custom_field_discover',
-			$vName == 'categories'
+			$vName == 'discover-categories'
 		);
 		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_discover') {
 			JToolBarHelper::title(
