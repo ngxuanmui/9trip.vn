@@ -19,11 +19,11 @@ a:focus {outline:0;}
 /* Tabs
 ------------------------------------------ */
 .jwts_tabber {display:none;}
-.jwts_tabberlive {margin:4px 0;padding:0;}
+.jwts_tabberlive {margin:10px 0;padding:0;}
 
 /* The tab navigation */
-ul.jwts_tabbernav {text-align:left!important;margin:0 8px!important;padding:0!important;list-style:none!important;list-style-image:none!important;background:none!important;line-height:normal!important;height:auto!important;}
-ul.jwts_tabbernav li {margin:0!important;padding:0!important;line-height:normal!important;list-style:none!important;list-style-image:none!important;background:none!important;display:inline!important;}
+ul.jwts_tabbernav {text-align:left!important;margin:0 8px!important;padding:0!important;list-style:none!important;list-style-image:none!important;background:none!important;line-height:normal!important;height:17px !important;}
+ul.jwts_tabbernav li {margin:0!important;padding:0!important;line-height:normal!important;list-style:none!important;list-style-image:none!important;background:none!important;display:inline!important; width: auto !important}
 ul.jwts_tabbernav li a {font-size:15px;margin:0 3px 0 0;padding:6px 10px 2px;color:#333;border:1px solid #bbb;border-bottom:none;background:#eee;}
 ul.jwts_tabbernav li a:hover {color:#c64934;border:1px solid #aaa;border-bottom:none;background:#f2f2f2;text-decoration:none;}
 ul.jwts_tabbernav li a:active,

@@ -9,11 +9,11 @@ $fields = $this->fields;
 $arrSearch = array(
 					'common'	=> array('all' => 'Tất cả', 1, 2, 3, 4, 5),
 					'price'		=> array(
-											'all' => 'Tất cả', 
-											1 => '0 VNĐ - 200N VNĐ', 
-											2 => '200 VNĐ - 500N VNĐ', 
-											3 => '500 VNĐ - 1TR VNĐ', 
-											4 => '1TR VNĐ - 2TR VNĐ', 
+											'all' => 'Tất cả',
+											1 => '0 VNĐ - 200N VNĐ',
+											2 => '200 VNĐ - 500N VNĐ',
+											3 => '500 VNĐ - 1TR VNĐ',
+											4 => '1TR VNĐ - 2TR VNĐ',
 											5 => 'TRÊN 2TR VNĐ'
 									)
 			);
@@ -22,28 +22,30 @@ $customField = explode(',', JRequest::getString('custom_field'));
 $rating = explode(',', JRequest::getString('rating'));
 $price = explode(',', JRequest::getString('price'));
 $criteria = explode(',', JRequest::getString('criteria'));
+
+$fixInfo = $this->fix_info;
 ?>
 
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-main-item">
 			<label>Khách sạn <?php echo $this->category->title; ?> </label>
-			<span class="icons quote fltlft"></span>
+			<?php /*<span class="icons quote fltlft"></span>
 			<span class="fltlft hotel-quote">
 				Nếu khách sạn của bạn chưa có trên Loca.vn, hãy tạo mới ngay
 			</span>
-			<?php /*
+			
 			<a class="button fltlft" href="<?php echo JRoute::_('index.php?option=com_ntrip&task=user_man_hotel.add'); ?>">
 				Tạo mới khách sạn
 			</a>
-			 * 
+			 *
 			 */ ?>
 			<div class="clear"></div>
 		</div>
 		
 		<div class="clr"></div>
 	</div>
-	<!-- Kết quả tài trợ -->	
+	<!-- Kết quả tài trợ -->
 	
 	<?php echo NtripFrontHelper::itemsMenu('hotels'); ?>
 	<?php # echo LocaHelper::renderModulesOnPosition('menu-main-items'); ?>
@@ -74,9 +76,14 @@ $criteria = explode(',', JRequest::getString('criteria'));
 		*/ ?>
 		<!-- List khach san -->
 		<div class="list-main-items-content list-items">
+			<?php if (!empty($fixInfo->description)): ?>
+			<div class="fix-info">
+				<?php echo $fixInfo->description; ?>
+			</div>
+			<?php endif; ?>
 			<ul>
-				<?php 
-				foreach ($this->items as $item): 
+				<?php
+				foreach ($this->items as $item):
 					$link = JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false);
 				?>
 				<li>
@@ -104,11 +111,11 @@ $criteria = explode(',', JRequest::getString('criteria'));
 						<div class="clr item-address bold"><?php echo $item->address; ?></div>
 						<?php /*?>
 						<b>Xếp hạng:</b> Khách sạn ở <?php echo $this->category->title; ?><br/>
-						<b>Giá: </b><?php echo number_format((float)$item->price_from); ?> - 
+						<b>Giá: </b><?php echo number_format((float)$item->price_from); ?> -
 									<?php echo number_format((float)$item->price_to); ?> VNĐ/người <br />
-						*/ ?>						
-						<?php 
-							// echo JHtml::_('string.truncate', strip_tags($item->description), 100); 
+						*/ ?>
+						<?php
+							// echo JHtml::_('string.truncate', strip_tags($item->description), 100);
 							
 							$string 	= strip_tags($item->description);
 							$maxLength 	= 100;

@@ -56,7 +56,7 @@ endif;
 	}
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_content&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_content&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate" enctype="multipart/form-data">
 	<div class="width-60 fltlft">
 		<fieldset class="adminform">
 			<legend><?php echo empty($this->item->id) ? JText::_('COM_CONTENT_NEW_ARTICLE') : JText::sprintf('COM_CONTENT_EDIT_ARTICLE', $this->item->id); ?></legend>
@@ -69,6 +69,29 @@ endif;
 
 				<li><?php echo $this->form->getLabel('catid'); ?>
 				<?php echo $this->form->getInput('catid'); ?></li>
+				
+				<li>
+					<?php echo $this->form->getLabel('intro_images'); ?>
+					<?php echo $this->form->getInput('intro_images'); ?>
+				</li>
+				
+				<?php
+				$introImages = ($this->item->intro_images) ? $this->item->intro_images : false;
+				?>
+
+				<?php if ($introImages): ?>
+				<li class="control-group form-inline">
+					<?php echo $this->form->getLabel('del_intro_image'); ?>
+					<?php echo $this->form->getInput('del_intro_image'); ?>
+				</li>
+				
+				<li>
+					<label>Intro image uploaded</label>
+					<a href="<?php echo JUri::root() . $introImages; ?>" class="modal">
+						<img src="<?php echo JUri::root() . $introImages; ?>" style="width: 100px;" />
+					</a>
+				</li>
+				<?php endif; ?>
 
 				<li><?php echo $this->form->getLabel('state'); ?>
 				<?php echo $this->form->getInput('state'); ?></li>

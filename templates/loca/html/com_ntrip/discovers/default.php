@@ -9,18 +9,18 @@ $fields = $this->fields;
 	<div class="margin-bottom5">
 		<div class="title-category">Khám phá</div>
 
-		<div class="item-container">
+		<?php /*<div class="item-container">
 			<span class="icons quote fltlft"></span> <span
 				class="fltlft album-quote"> Hãy chia sẻ những trải nghiệm của bạn về
 				chuyến đi của mình, các chia sẻ thực tế của bạn sẽ giúp ích rất
 				nhiều cho các thành viên khác. </span> 
-				<?php /*
+				
 			<a href="#"
 				class="block icons loca-button fltlft"><span class="txt-btn">Chia sẻ
 					trải nghiệm</span></a>
 				 * 
-				 */ ?>
-		</div>
+				
+		</div> */ ?>
 
 		<div class="clr"></div>
 	</div>

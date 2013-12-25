@@ -117,7 +117,7 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 	
 	<div class="margin-bottom5">
 		<div class="title-category">
-			Khám phá du lịch mới nhất
+			Lịch trình tham khảo
 		</div>
 		
 		<div class="item-container">

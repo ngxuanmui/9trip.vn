@@ -6,6 +6,8 @@ abstract class AbsNtripModelItems extends JModelList
 {
 	protected $thumbWidth = 200;
 	protected $thumbHeight = 0;
+	protected $fixInfoType = '';
+	protected $getFeatured = false;
 	
 	protected function populateState($ordering = null, $direction = null)
 	{
@@ -38,8 +40,56 @@ abstract class AbsNtripModelItems extends JModelList
 		$value = JRequest::getUInt('limitstart', 0);
 		$this->setState('list.start', $value);
 	}
+	
+	public function getFeaturedItems()
+	{
+		// Filter by location
+		$loc = $this->getState('filter.location', 0);
+		
+		if (!$loc)
+			return 0;
+		
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		$query->select('*')
+				->from('#__ntrip_fix_infos')
+				->where('type = "'.$this->fixInfoType.'"')
+				->where('catid = ' . (int) $loc)
+				->where('state = 1')
+		;
+		
+		$db->setQuery($query);
+		$res = $db->loadObject();
+		
+		return $res;
+	}
+	
+	public function getFixInfo()
+	{
+		// Filter by location
+		$loc = $this->getState('filter.location', 0);
+		
+		if (!$loc)
+			return 0;
+		
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		
+		$query->select('*')
+				->from('#__ntrip_fix_infos')
+				->where('type = "'.$this->fixInfoType.'"')
+				->where('catid = ' . (int) $loc)
+				->where('state = 1')
+		;
+		
+		$db->setQuery($query);
+		$res = $db->loadObject();
+		
+		return $res;
+	}
 
-	protected function _query($type = 'hotels') 
+	protected function _query($type = 'hotels')
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -50,7 +100,7 @@ abstract class AbsNtripModelItems extends JModelList
 		
 		if ($id)
 		{
-			$query->where('(a.catid = ' . $id . ' 
+			$query->where('(a.catid = ' . $id . '
 							OR a.catid IN (SELECT id FROM #__categories WHERE parent_id = ' . $id . '))');
 		}
 		
@@ -248,7 +298,7 @@ abstract class AbsNtripModelItems extends JModelList
 		$id = $this->getState('filter.location');
 		
 		$query->select('*')
-				->from('#__categories');				
+				->from('#__categories');
 		
 		switch ($type)
 		{

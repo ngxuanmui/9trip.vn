@@ -29,7 +29,7 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 ?>
 
 <div class="left-module-content">
-	<div class="promotion-bar">Tìm kiếm</div>
+	<div class="promotion-bar">Bộ Lọc</div>
 	
 	<form action="<?php echo JRoute::_(NtripHelperRoute::getMainItemsRoute(JRequest::getString('view'), JRequest::getInt('catid'))); ?>" method="get">
 		<script type="text/javascript">
@@ -101,12 +101,16 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 		
 		<div class="search-conditions">
 			<div class="style">
-				<label class="title">Loại hình</label>
+				<?php if (JRequest::getVar('view') == 'hotels'): ?>
+				<label class="title">Địa điểm</label>
+				<?php endif; ?>
 				<div style="float: left; margin-right: 10px;">
 					<ul>
+						<?php /*?>
 						<li class="row-input fltlft custom-field-input">
 							<input type="checkbox" class="custom_field" value="all" <?php if (in_array('all', $customField)) echo 'checked="checked"'?> /> Tất cả
 						</li>
+						*/ ?>
 						<?php
 						if (!empty($fields)):
 							foreach ($fields as $field):
@@ -164,7 +168,9 @@ $criteria 		= explode(',', JRequest::getString('criteria'));
 					foreach ($arrSearch['common'] as $key => $val): 
 						if ($key === 'all'):
 					?>
+						<?php /*?>
 							<div class="row-input"><input class="criteria" type="checkbox" value="all" <?php if (in_array('all', $criteria)) echo 'checked="checked"'?> /> Tất cả </div>
+						*/ ?>
 						<?php else: ?>
 							<div class="row-input"><input class="criteria" type="checkbox" value="<?php echo $val; ?>" <?php if (in_array($val, $criteria)) echo 'checked="checked"'?> /> <div class="star-yellow<?php echo $val; ?>"></div> </div>
 					<?php 

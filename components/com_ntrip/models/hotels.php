@@ -7,6 +7,8 @@ class NtripModelHotels extends AbsNtripModelItems
 {
 	protected $thumbWidth = 150;
 	protected $thumbHeight = 0;
+	protected $fixInfoType = 'hotels';
+	protected $getFeatured = true;
 	
 	public function getListQuery() {
 		return $this->_query('hotels');
@@ -19,7 +21,7 @@ class NtripModelHotels extends AbsNtripModelItems
 		return $rs;
 	}
 	
-	protected function populateState($ordering = null, $direction = null) 
+	protected function populateState($ordering = null, $direction = null)
 	{
 		parent::populateState($ordering, $direction);
 		

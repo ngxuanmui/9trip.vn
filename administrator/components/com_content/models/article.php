@@ -415,13 +415,25 @@ class ContentModelArticle extends JModelAdmin
 			if (isset($data['featured'])) {
 				$this->featured($this->getState($this->getName().'.id'), $data['featured']);
 			}
+			
+			/* upload thumb */
+			
+			require_once JPATH_ADMINISTRATOR.'/components/com_ntrip/helpers/ntrip.php';
+			
+			$delImage = isset($data['del_intro_image']) ? $data['del_intro_image'] : null;
+			
+			// Upload thumb
+			$item = $this->getItem();
+			$data['intro_images'] = NtripHelper::uploadImages('intro_images', $item, $delImage, '', 'content');
+			
+			/* end */
+			
+			$saveResult = parent::save($data);
 
-
-			return true;
+			return $saveResult;
 		}
 
-
-		return false;
+		return $saveResult;
 	}
 
 	/**

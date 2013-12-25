@@ -5,6 +5,8 @@ defined('_JEXEC') or die;
 
 class NtripModelTours extends AbsNtripModelItems
 {
+	protected $fixInfoType = 'tours';
+	
 	public function getListQuery() {
 		return $this->_query('tours');
 	}

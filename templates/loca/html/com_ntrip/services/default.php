@@ -3,17 +3,19 @@
 defined('_JEXEC') or die;
 
 $fields = $this->fields;
+
+$fixInfo = $this->fix_info;
 ?>
 
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-main-item">
 			<label>Dịch vụ <?php echo $this->category->title; ?> </label>
-			<span class="icons quote fltlft"></span>
+			<?php /*<span class="icons quote fltlft"></span>
 			<span class="fltlft service-quote">
 				Nếu dịch vụ của bạn chưa có trên Loca.vn, hãy tạo mới ngay
 			</span>
-			<?php /*
+			
 			<a href="<?php echo JRoute::_(NtripHelperRoute::getFormRoute('user_man_service', 'add')); ?>" class="button fltrgt">
 				Tạo mới dịch vụ
 			</a>
@@ -37,6 +39,11 @@ $fields = $this->fields;
 		</ul>
 		<!-- List nha hang -->
 		<div class="list-main-items-content list-items">
+			<?php if (!empty($fixInfo->description)): ?>
+			<div class="fix-info">
+				<?php echo $fixInfo->description; ?>
+			</div>
+			<?php endif; ?>
 			<ul>
 				<?php
 				foreach ($this->items as $item):

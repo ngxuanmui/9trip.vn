@@ -146,19 +146,17 @@ ul.main-menu > li > a:hover {
     margin: 0 auto;
 }
 #top-adv img {
-    padding: 10px 0 0;
+    padding: 1px 0;
 }
 #right-content {
     width: 300px;
     margin-left: 10px;
     float: right;
-    margin-top: 10px;
 }
 #left-content {
     width: 650px;
     float: left;
     background: #F5F5F5;
-    margin-top: 10px;
 }
 .register {
     background: url("../images/reg-bg.png") repeat-x;
@@ -433,7 +431,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 	background: url("../images/bg-intro-hotels.gif") #EBE9E9 top left repeat-x;
 	height: auto;
 	border: 1px solid #E5E5E5;
-	padding: 10px 5px 15px 20px;
+	padding: 0px 5px 0px 20px;
 }
 .intro-list-main-item label {
 	font-size: 18px;
@@ -441,6 +439,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 	display: block;
 	color: #000;
 	height: 40px;
+	line-height: 40px;
 }
 .intro-list-main-item input[type=button], .button {
 	background: url('../images/bg-button.png') repeat-x;
@@ -1157,7 +1156,7 @@ div.item-paging { background: #ebe9e9; padding: 15px 0; }
 
 .fb-like { z-index: 1000; }
 
-.breadcrumbs { padding: 10px 0 0; }
+.breadcrumbs { padding: 10px 0; }
 
 #menu-holder { display: block; width: 960px; height: 185px; }
 
@@ -1291,15 +1290,8 @@ li#menu-home-page > a:hover { background: url('../images/home-hover.png') no-rep
 
 ol { margin-left: 40px; }
 
-div.description { margin-left: 5px; }
-div.description h2 { text-indent: 0; }
+.fix-info { padding: 10px; text-align: justify; }
 
-.external-block .contact { font-size: .9em; }
-.external-block a.title { margin: 0px 0px 5px 5px; font-weight: bold; display: block; font-size: 12px !important; }
+#right-content .banneritem img { max-width: 300px; margin-top: 10px;}
 
-#right-content .banneritem { width: 300px; overflow: hidden; padding: 10px 0; }
-
-div.jwts_tabberlive, div.jwts_tabbertab { clear: both; border: none; margin: 10px 0; }
-ul.jwts_tabbernav li { width: auto; padding-bottom: 3px !important; }
-
-ul.jwts_tabbernav li a { padding: 6px 10px 3px !important; }
+#top-adv { margin: 5px 0; }

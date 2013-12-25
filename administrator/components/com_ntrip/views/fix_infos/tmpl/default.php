@@ -55,6 +55,9 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php echo JHtml::_('grid.sort',  'COM_NTRIP_HEADING_NAME', 'a.name', $listDirn, $listOrder); ?>
 				</th>
 				<th width="5%">
+					<?php echo JHtml::_('grid.sort', 'Type', 'a.type', $listDirn, $listOrder); ?>
+				</th>
+				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 				</th>
 				<th width="10%">
@@ -104,6 +107,9 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 					<?php else : ?>
 							<?php echo $this->escape($item->name); ?>
 					<?php endif; ?>
+				</td>
+				<td class="center">
+					<?php echo $this->escape($item->type); ?>
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'fix_infos.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>

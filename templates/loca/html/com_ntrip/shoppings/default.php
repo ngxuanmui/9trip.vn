@@ -3,17 +3,19 @@
 defined('_JEXEC') or die;
 
 $fields = $this->fields;
+
+$fixInfo = $this->fix_info;
 ?>
 
 <div id="left-content">
 	<div class="margin-bottom5">
 		<div class="intro-list-main-item">
 			<label>Mua sắm <?php echo $this->category->title; ?> </label>
-			<span class="icons quote fltlft"></span>
+			<?php /*<span class="icons quote fltlft"></span>
 			<span class="fltlft shopping-quote">
 				Nếu thông tin mua sắm của bạn chưa có trên Loca.vn, hãy tạo mới ngay
 			</span>
-			<?php /*
+			
 			<input type="button" value="Tạo mới mua sắm" class="fltlft" />
 			 */ ?>
 			<div class="clear"></div>
@@ -35,6 +37,11 @@ $fields = $this->fields;
 		</ul>
 		<!-- List nha hang -->
 		<div class="list-main-items-content list-items">
+			<?php if (!empty($fixInfo->description)): ?>
+			<div class="fix-info">
+				<?php echo $fixInfo->description; ?>
+			</div>
+			<?php endif; ?>
 			<ul>
 				<?php
 				foreach ($this->items as $item):

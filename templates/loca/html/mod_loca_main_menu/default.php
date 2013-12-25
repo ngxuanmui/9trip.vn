@@ -73,15 +73,14 @@ jQuery(function($){
 	<ul class="main-menu">
 		<li id="menu-home-page"><a href="<?php echo JURI::base(); ?>"
 			class='home'></a></li>
-		<li class='loca-location-container relative'><a id='loca-location'>
+		<li class='loca-location-container relative'>
 				<?php
 				if (is_object($locaCategory) && $locaCategory->title != 'ROOT')
-					echo $locaCategory->title;
+					echo '<a href="'.NtripHelperRoute::getCategoryRoute($catId).'">' . $locaCategory->title . '</a>';
 				else
-					echo 'Địa danh';
+					echo '<a id="loca-location">Địa danh</a>';
 				?>
 				
-			</a>
 
 			<ul class='show-locations absolute'
 				<?php /*if ($homePage && JRequest::getCmd('view', '') != 'not_found'):?>style="display: block;"<?php endif; */ ?>>
