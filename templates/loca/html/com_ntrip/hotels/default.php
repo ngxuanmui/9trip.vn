@@ -74,6 +74,7 @@ $fixInfo = $this->fix_info;
 			<div class="clr"></div>
 		</ul>
 		*/ ?>
+		
 		<!-- List khach san -->
 		<div class="list-main-items-content list-items">
 			<?php if (!empty($fixInfo->description)): ?>
@@ -81,6 +82,57 @@ $fixInfo = $this->fix_info;
 				<?php echo $fixInfo->description; ?>
 			</div>
 			<?php endif; ?>
+			
+			<!-- Start Featured items -->
+			<ul>
+				<?php
+				foreach ($this->featured_items as $item):
+					$link = JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false);
+				?>
+				<li>
+					
+					<div class="clr"></div>
+					
+					<div class="img-container">
+					
+						<a class="title" href="<?php echo $link; ?>">
+							<?php if (!empty($item->thumb)): ?>
+							<img src="<?php echo $item->thumb; ?>" />
+							<?php else: ?>
+							NO IMAGE
+							<?php endif; ?>
+						</a>
+					</div>
+					<div class="content">
+						<h1>
+							<a class="title" href="<?php echo $link; ?>">
+								*** <?php echo $item->name; ?>
+							</a>
+							
+							<span class="fltlft full-star-over-yellow">
+								<span class="star-yellow<?php echo str_replace('.', '-', $item->hotel_class); ?>"></span>
+							</span>
+							
+							
+						</h1>
+						
+						<div class="clr item-address bold"><?php echo $item->address; ?></div>
+						<?php
+							// echo JHtml::_('string.truncate', strip_tags($item->description), 100);
+							
+							$string 	= strip_tags($item->description);
+							$maxLength 	= 100;
+							
+							echo LocaHelper::mbCutWord($string, $maxLength);
+						?>
+						<div class="clear"></div>
+					</div>
+					<div class="clr"></div>
+				</li>
+				<?php endforeach; ?>
+			</ul>
+			<!-- End featured items -->
+			
 			<ul>
 				<?php
 				foreach ($this->items as $item):

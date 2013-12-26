@@ -41,30 +41,6 @@ abstract class AbsNtripModelItems extends JModelList
 		$this->setState('list.start', $value);
 	}
 	
-	public function getFeaturedItems()
-	{
-		// Filter by location
-		$loc = $this->getState('filter.location', 0);
-		
-		if (!$loc)
-			return 0;
-		
-		$db = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		
-		$query->select('*')
-				->from('#__ntrip_fix_infos')
-				->where('type = "'.$this->fixInfoType.'"')
-				->where('catid = ' . (int) $loc)
-				->where('state = 1')
-		;
-		
-		$db->setQuery($query);
-		$res = $db->loadObject();
-		
-		return $res;
-	}
-	
 	public function getFixInfo()
 	{
 		// Filter by location
@@ -89,7 +65,7 @@ abstract class AbsNtripModelItems extends JModelList
 		return $res;
 	}
 
-	protected function _query($type = 'hotels')
+	protected function _query($type = 'hotels', $featured = 0, $orderByFeatured = false)
 	{
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -144,6 +120,18 @@ abstract class AbsNtripModelItems extends JModelList
 				$query->where('('.$tmp.')');
 			}
 		}
+		
+		// get featured items
+		if ($this->getFeatured)
+		{
+			if ($featured)
+				$query->where('a.featured = 1');
+			else
+				$query->where('(a.featured = 0 || ISNULL(a.featured))');
+		}
+		
+		if ($orderByFeatured)
+			$query->order('a.featured DESC');
 		
 		// filter by price
 		$price = $this->getState('filter.price');
@@ -230,6 +218,8 @@ abstract class AbsNtripModelItems extends JModelList
 		// order
 		$query->order('a.id DESC');
 		
+// 		echo $query->dump();
+		
 //		$query->join('INNER', '#__category_location cl ON a.type = cl.category_id');
 //		$query->where('cl.category_id = ');
 
@@ -282,6 +272,60 @@ abstract class AbsNtripModelItems extends JModelList
 		}
 		
 		return $items;
+	}
+	
+
+
+	protected function _getFeaturedItems($type = 'hotels')
+	{
+		$db = JFactory::getDbo();
+	
+		$query = $this->_query($type, $featured = 1);
+	
+		$db->setQuery($query);
+	
+		$res = $db->loadObjectList();
+	
+		foreach ($res as & $item)
+		{
+			$item->thumb = '';
+	
+			if (!empty($item->images))
+			{
+				$tmp = explode('/', $item->images);
+	
+				$image_name = end($tmp);
+	
+				$imagePath = JPATH_ROOT . DS . 'images';
+	
+				// shift an el (image folder) in $tmp
+				array_shift($tmp);
+	
+				// remove last el (file name) in $tmp
+				array_pop($tmp);
+	
+				$image_path = $imagePath . DS . implode('/', $tmp);
+	
+				$thumb_path = $imagePath . '/thumbs/' . implode('/', $tmp);
+	
+				$thumb_image_path = $thumb_path . DS . $image_name;
+	
+				$thumbSize = $this->getThumbSize();
+	
+				$thumbW = $thumbSize['w'];
+				$thumbH = $thumbSize['h'];
+	
+				@JFolder::create($thumb_path);
+	
+				// create thumb if not exist
+				if (!file_exists($thumb_image_path) && file_exists($image_path . DS . $image_name))
+					LocaHelper::thumbnail($image_path, $thumb_path, $image_name, $thumbW, $thumbH);
+	
+				$item->thumb = JURI::root() . 'images/thumbs/' . implode('/', $tmp) . '/' . 't-' . $thumbW . 'x' . $thumbH . '-' . $image_name;
+			}
+		}
+	
+		return $res;
 	}
 	
 	protected function getThumbSize()

@@ -11,7 +11,14 @@ class NtripModelHotels extends AbsNtripModelItems
 	protected $getFeatured = true;
 	
 	public function getListQuery() {
-		return $this->_query('hotels');
+		return $this->_query('hotels', $featured = 0);
+	}
+	
+	public function getFeaturedItems()
+	{
+		$res = $this->_getFeaturedItems('hotels');
+		
+		return $res;
 	}
 	
 	public function getCustomField()
