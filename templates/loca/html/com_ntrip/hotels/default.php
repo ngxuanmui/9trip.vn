@@ -23,11 +23,11 @@ $rating = explode(',', JRequest::getString('rating'));
 $price = explode(',', JRequest::getString('price'));
 $criteria = explode(',', JRequest::getString('criteria'));
 
-$fixInfo = $this->fix_info;
+@$fixInfo = $this->fix_info;
 ?>
 
 <div id="left-content">
-	<div class="margin-bottom5">
+	<div class="margin-bottom5 display-none">
 		<div class="intro-list-main-item">
 			<label>Khách sạn <?php echo $this->category->title; ?> </label>
 			<?php /*<span class="icons quote fltlft"></span>
@@ -90,7 +90,7 @@ $fixInfo = $this->fix_info;
 				foreach ($this->featured_items as $item):
 					$link = JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false);
 				?>
-				<li class="relative">
+				<li>
 					
 					<div class="clr"></div>
 					
@@ -107,7 +107,7 @@ $fixInfo = $this->fix_info;
 					<div class="content">
 						<h1>
 							<a class="title" href="<?php echo $link; ?>">
-								<?php echo $item->name; ?>
+								*** <?php echo $item->name; ?>
 							</a>
 							
 							<span class="fltlft full-star-over-yellow">
@@ -129,8 +129,6 @@ $fixInfo = $this->fix_info;
 						<div class="clear"></div>
 					</div>
 					<div class="clr"></div>
-					
-					<div class="absolute icon-donation"></div>
 				</li>
 				<?php endforeach; ?>
 			</ul>

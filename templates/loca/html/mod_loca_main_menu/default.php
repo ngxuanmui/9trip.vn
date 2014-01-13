@@ -8,7 +8,7 @@ $app = JFactory::getApplication();
 
 $menu = $app->getMenu();
 
-if ($menu->getActive() == $menu->getDefault())
+if ($menu->getActive() == $menu->getDefault()) 
 	$homePage = true;
 
 $id = JRequest::getInt('id');
@@ -41,7 +41,7 @@ jQuery(function($){
 	    }, this), 200));
 	});
 
-	// grab the initial top offset of the navigation
+	// grab the initial top offset of the navigation 
     var sticky_navigation_offset_top = $('.menu-container').offset().top;
      
     // our function that decides weather the navigation bar should have "fixed" css position or not.
@@ -50,11 +50,11 @@ jQuery(function($){
          
         // if we've scrolled more than the navigation, change its position to fixed to stick to top,
         // otherwise change it back to relative
-        if (scroll_top > sticky_navigation_offset_top) {
+        if (scroll_top > sticky_navigation_offset_top) { 
             $('.menu-container').css({ 'position': 'fixed', 'top':0, 'left':0, 'z-index': 1010 });
         } else {
-            $('.menu-container').css({ 'position': 'relative' });
-        }
+            $('.menu-container').css({ 'position': 'relative' }); 
+        }   
     };
      
     // run our function on load
@@ -73,14 +73,15 @@ jQuery(function($){
 	<ul class="main-menu">
 		<li id="menu-home-page"><a href="<?php echo JURI::base(); ?>"
 			class='home'></a></li>
-		<li class='loca-location-container relative'>
-				<?php
-				if (is_object($locaCategory) && $locaCategory->title != 'ROOT')
-					echo '<a href="'.NtripHelperRoute::getCategoryRoute($catId).'">' . $locaCategory->title . '</a>';
+		<li class='loca-location-container relative'><a id='loca-location'>
+				<?php 
+				if ($locaCategory->title != 'ROOT')
+					echo $locaCategory->title;
 				else
-					echo '<a id="loca-location">Địa danh</a>';
+					echo 'Địa danh';					
 				?>
 				
+			</a>
 
 			<ul class='show-locations absolute'
 				<?php /*if ($homePage && JRequest::getCmd('view', '') != 'not_found'):?>style="display: block;"<?php endif; */ ?>>
@@ -96,9 +97,9 @@ jQuery(function($){
 			</ul></li>
 	</ul>
 	
-	<?php
+	<?php 
 	//if (!JRequest::getInt('id') || !JRequest::getInt('catid')):
-		//echo LocaHelper::renderModulesOnPosition('main-top-menu');
+		//echo LocaHelper::renderModulesOnPosition('main-top-menu'); 
 	//else:
 	?>
 	

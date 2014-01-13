@@ -4,11 +4,11 @@ defined('_JEXEC') or die;
 
 $fields = $this->fields;
 
-$fixInfo = $this->fix_info;
+@$fixInfo = $this->fix_info;
 ?>
 
 <div id="left-content">
-	<div class="margin-bottom5">
+	<div class="margin-bottom5 display-none">
 		<div class="intro-list-main-item">
 			<label>Giải trí ở <?php echo $this->category->title; ?> </label>
 			<?php /*<span class="icons quote fltlft"></span>
