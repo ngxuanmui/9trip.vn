@@ -54,14 +54,11 @@ $fields = $this->fields;
 					
 					$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid, $item->type));
 				?>
-				<li>
+				<li class="<?php if ($item->featured == 1) echo 'relative'; ?>">
 					<h2>
 						<a href="<?php echo $link; ?>">
 							<?php
-							if ($item->featured == 1)
-								echo '* ' . $item->name;
-							else
-								echo $item->name;
+							echo $item->name;
 							?>
 						</a>
 					</h2>
@@ -97,6 +94,10 @@ $fields = $this->fields;
 				</a>
 					<div class="clr"></div>
 					<div class="saparate-line"></div>
+					
+					<?php if ($item->featured == 1): ?>
+					<div class="absolute icon-featured"></div>
+					<?php endif; ?>
 				</li>
 				<?php endforeach; ?>
 			</ul>

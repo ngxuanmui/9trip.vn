@@ -84,12 +84,13 @@ $fixInfo = $this->fix_info;
 			<?php endif; ?>
 			
 			<!-- Start Featured items -->
+			<?php if (!empty($this->featured_items)): ?>
 			<ul>
 				<?php
 				foreach ($this->featured_items as $item):
 					$link = JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false);
 				?>
-				<li>
+				<li class="relative">
 					
 					<div class="clr"></div>
 					
@@ -106,7 +107,7 @@ $fixInfo = $this->fix_info;
 					<div class="content">
 						<h1>
 							<a class="title" href="<?php echo $link; ?>">
-								*** <?php echo $item->name; ?>
+								<?php echo $item->name; ?>
 							</a>
 							
 							<span class="fltlft full-star-over-yellow">
@@ -128,9 +129,12 @@ $fixInfo = $this->fix_info;
 						<div class="clear"></div>
 					</div>
 					<div class="clr"></div>
+					
+					<div class="absolute icon-donation"></div>
 				</li>
 				<?php endforeach; ?>
 			</ul>
+			<?php endif; ?>
 			<!-- End featured items -->
 			
 			<ul>

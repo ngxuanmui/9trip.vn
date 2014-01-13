@@ -117,22 +117,29 @@ $userGuest = JFactory::getUser()->guest ? true : false;
 	
 	<div class="margin-bottom5">
 		<div class="title-category">
-			Lịch trình tham khảo
+			Lịch trình tham khảo mới nhất
 		</div>
 		
 		<div class="item-container">
 			<ul>
 				<?php
 				foreach ($items['discovers'] as $discover):
-					$link = JRoute::_(NtripHelperRoute::getItemRoute($discover->id, 'discover', $discover->catid));
+// 					$link = JRoute::_(NtripHelperRoute::getItemRoute($discover->id, 'discover', $discover->catid));
+
+				$discover->slug = $discover->id . ':' . $discover->alias;
+				$view = 'discover';
+				
+				//$link = JRoute::_(NtripHelperRoute::getItemRoute($item->slug, $view, $item->catid));
+				$link = JRoute::_(NtripHelperRoute::getItemRoute($discover->slug, $view, $discover->catid, $discover->type));
+					
 				?>
 				<li>
 					<div class="img">
-						<a href="<?php echo $link; ?>">
+						<a href="<?php echo $link; ?>" title="<?php echo htmlspecialchars($discover->name); ?>">
 							<img src="<?php echo $discover->thumb; ?>" />
 						</a>
 					</div>
-					<a href="<?php echo $link; ?>">
+					<a href="<?php echo $link; ?>" title="<?php echo htmlspecialchars($discover->name); ?>">
 						<?php echo $discover->name; ?>
 					</a>
 				</li>

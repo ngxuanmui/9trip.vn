@@ -21,11 +21,8 @@ $catId = JRequest::getInt('catid', 0);
 
 // var_dump($_GET);
 
-if ($_GET['option'] != 'com_ntrip')
-{
-	$sess = JFactory::getSession();
-	$catId = $sess->get('loca-location', null);
-}
+if (!$catId && $_GET['option'] == 'com_ntrip' && $_GET['view'] != 'search')
+	$catId = $id;
 
 jimport('joomla.application.categories');
 
