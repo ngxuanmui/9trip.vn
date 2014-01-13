@@ -9,18 +9,18 @@ $fields = $this->fields;
 	<div class="margin-bottom5">
 		<div class="title-category">Khám phá</div>
 
-		<div class="item-container">
+		<?php /*<div class="item-container">
 			<span class="icons quote fltlft"></span> <span
 				class="fltlft album-quote"> Hãy chia sẻ những trải nghiệm của bạn về
 				chuyến đi của mình, các chia sẻ thực tế của bạn sẽ giúp ích rất
-				nhiều cho các thành viên khác. </span> 
-				<?php /*
+				nhiều cho các thành viên khác. </span>
+				
 			<a href="#"
 				class="block icons loca-button fltlft"><span class="txt-btn">Chia sẻ
 					trải nghiệm</span></a>
-				 * 
-				 */ ?>
-		</div>
+				 *
+				
+		</div> */ ?>
 
 		<div class="clr"></div>
 	</div>
@@ -46,8 +46,8 @@ $fields = $this->fields;
 
 		<div class="items">
 			<ul class="list-discovers">
-				<?php 
-				foreach ($this->items as $item): 
+				<?php
+				foreach ($this->items as $item):
 					
 					$item->slug = $item->id . ':' . $item->alias;
 					$view = 'discover';
@@ -57,7 +57,12 @@ $fields = $this->fields;
 				<li>
 					<h2>
 						<a href="<?php echo $link; ?>">
-							<?php echo $item->name; ?>
+							<?php
+							if ($item->featured == 1)
+								echo '* ' . $item->name;
+							else
+								echo $item->name;
+							?>
 						</a>
 					</h2>
 
@@ -78,9 +83,9 @@ $fields = $this->fields;
 					<div class="description"><?php echo JHtml::_('string.truncate', strip_tags($item->description), 100); ?></div>
 					<div class="clr" style="padding-top: 10px;"></div>
 					
-					<?php 
+					<?php
 					/*
-					 * 
+					 *
 					 * <div class="social-info fltlft">
 						<span>12 thành viên thích</span>
 					</div>

@@ -146,7 +146,7 @@ ul.main-menu > li > a:hover {
     margin: 0 auto;
 }
 #top-adv img {
-    padding: 10px 0;
+    padding: 1px 0;
 }
 #right-content {
     width: 300px;
@@ -431,7 +431,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 	background: url("../images/bg-intro-hotels.gif") #EBE9E9 top left repeat-x;
 	height: auto;
 	border: 1px solid #E5E5E5;
-	padding: 10px 5px 15px 20px;
+	padding: 0px 5px 0px 20px;
 }
 .intro-list-main-item label {
 	font-size: 18px;
@@ -439,6 +439,7 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 	display: block;
 	color: #000;
 	height: 40px;
+	line-height: 40px;
 }
 .intro-list-main-item input[type=button], .button {
 	background: url('../images/bg-button.png') repeat-x;
@@ -1288,3 +1289,9 @@ li#menu-home-page > a:hover { background: url('../images/home-hover.png') no-rep
 .bold { font-weight: bold; }
 
 ol { margin-left: 40px; }
+
+.fix-info { padding: 10px; text-align: justify; }
+
+#right-content .banneritem img { max-width: 300px; margin-top: 10px;}
+
+#top-adv { margin: 5px 0; }
