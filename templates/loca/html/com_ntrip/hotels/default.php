@@ -23,11 +23,11 @@ $rating = explode(',', JRequest::getString('rating'));
 $price = explode(',', JRequest::getString('price'));
 $criteria = explode(',', JRequest::getString('criteria'));
 
-$fixInfo = $this->fix_info;
+@$fixInfo = $this->fix_info;
 ?>
 
 <div id="left-content">
-	<div class="margin-bottom5">
+	<div class="margin-bottom5 display-none">
 		<div class="intro-list-main-item">
 			<label>Khách sạn <?php echo $this->category->title; ?> </label>
 			<?php /*<span class="icons quote fltlft"></span>
@@ -84,6 +84,7 @@ $fixInfo = $this->fix_info;
 			<?php endif; ?>
 			
 			<!-- Start Featured items -->
+			<?php if (!empty($this->featured_items)): ?>
 			<ul>
 				<?php
 				foreach ($this->featured_items as $item):
@@ -131,6 +132,7 @@ $fixInfo = $this->fix_info;
 				</li>
 				<?php endforeach; ?>
 			</ul>
+			<?php endif; ?>
 			<!-- End featured items -->
 			
 			<ul>

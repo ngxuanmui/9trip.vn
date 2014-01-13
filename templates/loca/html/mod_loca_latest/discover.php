@@ -21,9 +21,9 @@ defined('_JEXEC') or die;
 				<?php echo $item->name; ?>
 			</a>
 		</div>
-		<?php if ($key > 0): ?>
+		<?php //if ($key > 0): ?>
 		<div class="date">(<?php echo date('d.m.Y', $item->unix_time_created); ?>)</div>
-		<?php endif; ?>
+		<?php //endif; ?>
 		<div class="clear"></div>
 	</div>
 	<?php endforeach; ?>
