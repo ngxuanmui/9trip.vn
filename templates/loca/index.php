@@ -27,6 +27,7 @@ $doc->addScript(JURI::base() . 'media/loca/jquery.validate.js');
 JHtml::_('behavior.modal');
 
 $this->setGenerator('Loca.vn');
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" xmlns:fb="http://www.facebook.com/2008/fbml">
@@ -61,16 +62,16 @@ $this->setGenerator('Loca.vn');
 		
 		<jdoc:include type="modules" name="loca-main-menu" />
 		
-				
+		<div class="banner">
+			<jdoc:include type="modules" name="banner" />
+		</div>
 		
 		<div class="component">
 				
 			<div class="main-content">
 				
 				<div id="top-adv">
-					<div class="banner">
-						<jdoc:include type="modules" name="loca-top-banner" />
-					</div>
+					<img src="<?php echo JURI::base() . 'templates/loca/images/top-adv.jpg'; ?>" />
 				</div>
 				
 				<div class="clear"></div>
@@ -84,13 +85,28 @@ $this->setGenerator('Loca.vn');
 				<jdoc:include type="message" />
 				 
 				<jdoc:include type="component" />
-			</div>
+			</div>			
 		</div>
 		
 		<!-- footer -->
 		<div id="footer">
 			<div class="main-footer">
 				<jdoc:include type="modules" name="bottom-links" />
+				<?php 
+				
+				/*
+				<div class="tab">
+					<div class="title">Chuẩn bị</div>
+					<div class="list-content">
+						<a href="">Chuẩn bị trước chuyến đi</a>
+						<a href="">Chăm sóc sức khỏe</a>
+						<a href="">Du lịch an toàn</a>
+						<a href="">Thiết bị hỗ trợ</a>
+						<a href="">Phương tiện di chuyển</a>
+						<a href="">An toàn thực phẩm</a>
+					</div>
+				</div>
+				 */ ?>
 				<div class="clear"></div>
 			</div>
 		</div>

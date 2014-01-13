@@ -92,12 +92,6 @@ class NtripHelper
 			'index.php?option=com_ntrip&view=questions',
 			$vName == 'questions'
 		);
-		
-		JSubMenuHelper::addEntry(
-			JText::_('Fix Infos'),
-			'index.php?option=com_ntrip&view=fix_infos',
-			$vName == 'fix_infos'
-		);
 
 		JSubMenuHelper::addEntry(
 			JText::_('COM_NTRIP_SUBMENU_LOCATIONS'),
@@ -113,7 +107,7 @@ class NtripHelper
 		JSubMenuHelper::addEntry(
 			JText::_('[Discover: Type]'),
 			'index.php?option=com_categories&extension=com_ntrip.custom_field_discover',
-			$vName == 'discover-categories'
+			$vName == 'categories'
 		);
 		if ($vName=='categories' && $extension == 'com_ntrip.custom_field_discover') {
 			JToolBarHelper::title(
@@ -239,12 +233,12 @@ class NtripHelper
 	    $tmpFolder = JPATH_ROOT . DS . 'tmp' . DS . JFactory::getUser()->id . DS . JFactory::getSession()->getId() . DS;
 	    $tmpThumbFolder = $tmpFolder . 'thumbnail' . DS;
 	    
-	    $destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;
+	    $destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
 	    $destThumbFolder = $destFolder . 'thumbnail' . DS;
 	    
 	    jimport( 'joomla.filesystem.folder' );
 	    
-	    // make folder
+	    // make folder	    
 	    JFolder::create($destFolder, 0777);
 	    
 	    // make thumb
@@ -295,7 +289,7 @@ class NtripHelper
 	    $images = NtripHelper::getImages($itemId, $itemType);
 		
 //		var_dump($images, $curentImages, $currentDesc);
-//
+//		
 //		die;
 	    
 	    foreach ($images as $img)
@@ -307,7 +301,7 @@ class NtripHelper
 			if (!in_array($img->id, array_keys($curentImages)))
 			{
 				// delete image
-				$destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;
+				$destFolder = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $itemId . DS;	    
 				$destThumbFolder = $destFolder . 'thumbnail' . DS;
 
 				@unlink($destThumbFolder . $image);
@@ -320,7 +314,7 @@ class NtripHelper
 			}
 			else
 			{
-				$query->update('#__ntrip_images')->set('description = "'.$currentDesc[$img->id].'"')->where('id = ' . $img->id);
+				$query->update('#__ntrip_images')->set('description = "'.$currentDesc[$img->id].'"')->where('id = ' . $img->id);				
 			}
 			
 			$db->setQuery($query);
@@ -367,7 +361,7 @@ class NtripHelper
 		
 		// if delete old image checked or upload new file
 		if ($delImage || $fileName)
-		{
+		{			
 			$oldImage = JPATH_ROOT . DS . str_replace('/', DS, $item->images);
 			
 			// unlink file
@@ -383,7 +377,7 @@ class NtripHelper
 		
 		if ($dest == '')
 			$destination = JPATH_ROOT . DS . 'images' . DS . $itemType . DS . $date . DS . $item->id . DS;
-		else
+		else 
 			$destination = JPATH_ROOT . DS . 'images' . DS . $dest . DS;
 		
 		// Make directory
@@ -411,7 +405,7 @@ class NtripHelper
 			// set value to return
 			if ($dest == '')
 				$image = 'images/'.$itemType.'/' . str_replace(DS, '/', $date) . '/' . $item->id . '/' . $fileName;
-			else
+			else 
 				$image = 'images/'.$dest.'/' . $fileName;
 		}
 		else

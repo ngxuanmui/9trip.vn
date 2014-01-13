@@ -71,7 +71,6 @@ class BannersModelBanners extends JModelList
 			'a.name as name,'.
 			'a.clickurl as clickurl,'.
 			'a.cid as cid,'.
-			'a.images, '.
 			'a.params as params,'.
 			'a.custombannercode as custombannercode,'.
 			'a.track_impressions as track_impressions,'.
@@ -162,21 +161,8 @@ class BannersModelBanners extends JModelList
 		if ($this->getState('filter.language')) {
 			$query->where('a.language in (' . $db->Quote(JFactory::getLanguage()->getTag()) . ',' . $db->Quote('*') . ')');
 		}
-		
-		// Filter by location
-		$locationId = $this->getState('filter.location_id');
-		if ($locationId) {
-			$query->where('a.location_id = ' . $locationId);
-		}
-		else
-		{
-			$query->where('(a.location_id = 0 OR a.location_id = "")');
-		}
 
 		$query->order('a.sticky DESC,'. ($randomise ? 'RAND()' : 'a.ordering'));
-		
-// 		echo $query->dump();
-		
 		return $query;
 	}
 

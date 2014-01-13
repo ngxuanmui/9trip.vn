@@ -28,7 +28,6 @@ class NtripViewServices extends JViewLegacy
 		$this->fields = $this->get('CustomField');
 		$this->pagination = $this->get('Pagination');
 		$this->category = $this->get('Category');
-		$this->fix_info		= $this->get('FixInfo');
 		
 		$this->_prepareDocument();
 		

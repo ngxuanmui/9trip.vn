@@ -12,8 +12,6 @@ defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
-
-JHtml::_('behavior.modal');
 ?>
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
@@ -41,7 +39,7 @@ JHtml::_('behavior.modal');
 	});
 </script>
 
-<form action="<?php echo JRoute::_('index.php?option=com_banners&layout=edit&id='.(int) $this->item->id); ?>" enctype="multipart/form-data" method="post" name="adminForm" id="banner-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_banners&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="banner-form" class="form-validate">
 	<div class="width-60 fltlft">
 		<fieldset class="adminform">
 			<legend><?php echo empty($this->item->id) ? JText::_('COM_BANNERS_NEW_BANNER') : JText::sprintf('COM_BANNERS_BANNER_DETAILS', $this->item->id); ?></legend>
@@ -57,9 +55,6 @@ JHtml::_('behavior.modal');
 
 				<li><?php echo $this->form->getLabel('catid'); ?>
 				<?php echo $this->form->getInput('catid'); ?></li>
-				
-				<li><?php echo $this->form->getLabel('location_id'); ?>
-				<?php echo $this->form->getInput('location_id'); ?></li>
 
 				<li><?php echo $this->form->getLabel('state'); ?>
 				<?php echo $this->form->getInput('state'); ?></li>
@@ -69,34 +64,10 @@ JHtml::_('behavior.modal');
 
 				<li>
 				<div id="image">
-					<?php /* foreach($this->form->getFieldset('image') as $field): ?>
+					<?php foreach($this->form->getFieldset('image') as $field): ?>
 						<?php echo $field->label; ?>
 						<?php echo $field->input; ?>
-					<?php endforeach; */ ?>
-					
-					<?php echo $this->form->getLabel('images'); ?>
-					<?php echo $this->form->getInput('images'); ?>
-					
-					<?php
-					$introImages = ($this->item->images) ? $this->item->images : false;
-					?>
-	
-					<?php if ($introImages): ?>
-					<ul>
-						<li class="control-group form-inline">
-							<?php echo $this->form->getLabel('del_image'); ?>
-							<?php echo $this->form->getInput('del_image'); ?>
-						</li>
-						
-						<li>
-							<label>Intro image uploaded</label>
-							<a href="<?php echo JUri::root() . $introImages; ?>" class="modal">
-								<img src="<?php echo JUri::root() . $introImages; ?>" style="width: 100px;" />
-							</a>
-						</li>
-					</ul>
-					<?php endif; ?>
-					
+					<?php endforeach; ?>
 				</div>
 				</li>
 

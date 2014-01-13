@@ -484,26 +484,4 @@ class BannersModelBanner extends JModelAdmin
 		$condition[] = 'state >= 0';
 		return $condition;
 	}
-	
-	public function save($data)
-	{
-		if (parent::save($data))
-		{
-			/* upload thumb */
-			require_once JPATH_ADMINISTRATOR.'/components/com_ntrip/helpers/ntrip.php';
-			
-			$delImage = isset($data['del_image']) ? $data['del_image'] : null;
-			
-			// Upload thumb
-			$item = $this->getItem();
-			$data['images'] = NtripHelper::uploadImages('images', $item, $delImage, '', 'banners');
-			/* end */
-			
-			$saveResult = parent::save($data);
-			
-			return $saveResult;
-		}
-		
-		return false;
-	}
 }

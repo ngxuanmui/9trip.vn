@@ -86,11 +86,11 @@
 
 		<field name="description" type="editor" class="inputbox"
 			label="JGLOBAL_DESCRIPTION" 
-			filter="JComponentHelper::filterText" buttons="true" hide="image,article,readmore,pagebreak" />
+			filter="JComponentHelper::filterText" buttons="false" />
 
 		<field name="content" type="editor" class="inputbox"
 			label="Content" 
-			filter="JComponentHelper::filterText" buttons="true" hide="image,article,readmore,pagebreak" />
+			filter="JComponentHelper::filterText" buttons="false" />
 
 	</fieldset>
 

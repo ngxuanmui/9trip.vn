@@ -5,12 +5,13 @@ class NtripFrontHelper
 	public static function itemsMenu($itemType)
 	{
 		$arr = array(
+						'services'		=> 'Phương tiện Dịch vụ'	,
 						'hotels'		=> 'Khách sạn'	, 
-						'restaurants'	=> 'Ẩm thực'	, 
+						'restaurants'	=> 'Ẩm thực Nhà hàng'	, 
+						'tours'			=> 'Thưởng ngoạn'	, 
 						'relaxes'		=> 'Giải trí'	, 
-						'tours'			=> 'Tham quan'	, 
 						'shoppings'		=> 'Mua sắm'	, 
-						'services'		=> 'Dịch vụ'
+						
 				);
 		
 		$html  = '<ul class="tab-categories">';
@@ -31,8 +32,17 @@ class NtripFrontHelper
 				$link .= '&id=' . JRequest::getInt ('id');
 			
 			$itemMenu = '<a href="' . $link . '">' . $itemMenu . '</a>';
+			
+			$style_1 = '';
+			$style_2 = '';
+			
+// 			if ($itemKey == 'services')
+// 				$style_1 = 'style="width: 78px;"';
+			
+// 			if ($itemKey == 'restaurants')
+// 				$style_1 = 'style="width: 61px;"';
 				
-			$html .= '<li class="' . $classMenu . $classActive . '">'.$itemMenu.'</li>';
+			$html .= '<li class="' . $classMenu . $classActive . '" '. $style_1.'>'.$itemMenu.'</li>';
 			
 			$idx ++;
 		}

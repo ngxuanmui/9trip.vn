@@ -57,9 +57,6 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder); ?>
 				</th>
-				<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'JFEATURED', 'a.featured', $listDirn, $listOrder, NULL, 'desc'); ?>
-				</th>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort', 'COM_NTRIP_HEADING_LOCATION', 'category_title', $listDirn, $listOrder); ?>
 				</th>
@@ -112,9 +109,6 @@ $params		= (isset($this->state->params)) ? $this->state->params : new JObject();
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'discovers.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
-				</td>
-				<td class="center">
-					<?php echo JHtml::_('ntripadministrator.featured', $item->featured, $i, $canChange, 'discovers'); ?>
 				</td>
 				<td class="center">
 					<?php echo $this->escape($item->category_title); ?>

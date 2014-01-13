@@ -179,7 +179,7 @@ class NtripModelDiscover extends JModelAdmin
 	}
 	
 	/**
-	 *
+	 * 
 	 * @param int $pk
 	 * @return object
 	 */
@@ -209,7 +209,7 @@ class NtripModelDiscover extends JModelAdmin
 		return $condition;
 	}
 	
-	public function save($data)
+	public function save($data) 
 	{
 	    if (parent::save($data))
 	    {
@@ -223,7 +223,7 @@ class NtripModelDiscover extends JModelAdmin
 			// Temp files
 			if (isset($_POST['tmp_other_img']))
 			{
-				// Copy file
+				// Copy file 
 				NtripHelper::copyTempFiles($id, $_POST['tmp_other_img'], 'discovers');
 				// Insert images
 				NtripHelper::insertImages($id, $_POST['tmp_other_img'], $_POST['tmp_desc'], 'discovers');
@@ -253,44 +253,5 @@ class NtripModelDiscover extends JModelAdmin
 	    }
 
 	    return false;
-	}
-
-	/**
-	 * Method to toggle the featured setting of articles.
-	 *
-	 * @param	array	The ids of the items to toggle.
-	 * @param	int		The value to toggle to.
-	 *
-	 * @return	boolean	True on success.
-	 */
-	public function featured($pks, $value = 0)
-	{
-		// Sanitize the ids.
-		$pks = (array) $pks;
-		JArrayHelper::toInteger($pks);
-
-		if (empty($pks)) {
-			$this->setError(JText::_('COM_CONTENT_NO_ITEM_SELECTED'));
-			return false;
-		}
-
-		try {
-			$db = $this->getDbo();
-
-			$db->setQuery(
-				'UPDATE #__ntrip_discovers' .
-				' SET featured = '.(int) $value.
-				' WHERE id IN ('.implode(',', $pks).')'
-			);
-			if (!$db->query()) {
-				throw new Exception($db->getErrorMsg());
-			}
-
-		} catch (Exception $e) {
-			$this->setError($e->getMessage());
-			return false;
-		}
-
-		return true;
 	}
 }

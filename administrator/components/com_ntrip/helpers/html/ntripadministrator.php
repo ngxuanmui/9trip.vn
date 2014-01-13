@@ -17,12 +17,12 @@ abstract class JHtmlNtripAdministrator
 	 * @param	int $value	The state value
 	 * @param	int $i
 	 */
-	static function featured($value = 0, $i, $canChange = true, $controller = 'hotels')
+	static function featured($value = 0, $i, $canChange = true)
 	{
 		// Array of image, task, title, action
 		$states	= array(
-			0	=> array('disabled.png',	$controller. '.featured',	'Unfeatured',	'Toggle to featured'),
-			1	=> array('featured.png',		$controller. '.unfeatured',	'Featured',		'Toggle to unfeatured'),
+			0	=> array('disabled.png',	'hotels.featured',	'Unfeatured',	'Toggle to featured'),
+			1	=> array('featured.png',		'hotels.unfeatured',	'Featured',		'Toggle to unfeatured'),
 		);
 		$state	= JArrayHelper::getValue($states, (int) $value, $states[1]);
 		$html	= JHtml::_('image', 'admin/'.$state[0], JText::_($state[2]), NULL, true);

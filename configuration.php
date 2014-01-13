@@ -15,7 +15,7 @@ class JConfig {
 	public $host = 'localhost';
 	public $user = 'root';
 	public $password = '1234';
-	public $db = '_9trip_vn';
+	public $db = '9trip_vn';
 	public $dbprefix = 'jos_';
 	public $live_site = '';
 	public $secret = '5K24brFMpyZvNKDp';
@@ -48,13 +48,13 @@ class JConfig {
 	public $MetaAuthor = '1';
 	public $MetaVersion = '0';
 	public $robots = '';
-	public $sef = '1';
+	public $sef = '0';
 	public $sef_rewrite = '0';
 	public $sef_suffix = '0';
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
-	public $log_path = 'E:\\www\\muinx\\9trip.vn/logs';
-	public $tmp_path = 'E:\\www\\muinx\\9trip.vn/tmp';
+	public $log_path = 'D:\\www\\muinx\\9trip.vn/logs';
+	public $tmp_path = 'D:\\www\\muinx\\9trip.vn/tmp';
 	public $lifetime = '9999';
 	public $session_handler = 'database';
 	public $MetaRights = '';

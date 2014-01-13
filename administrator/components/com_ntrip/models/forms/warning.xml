@@ -50,9 +50,9 @@
 
 		<field name="description" type="editor" class="inputbox"
 			label="JGLOBAL_DESCRIPTION" 
-			filter="JComponentHelper::filterText" buttons="true" hide="image,article,readmore,pagebreak" />
+			filter="JComponentHelper::filterText" buttons="false" />
 		
-		<field name="ximages2content" type="images2content"
+		<field name="images2content" type="images2content"
 			label="Images" description="Upload images to content"
 			class="inputbox"
 		/>

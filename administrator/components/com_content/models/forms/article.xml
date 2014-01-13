@@ -16,7 +16,7 @@
 
 		<field name="articletext" type="editor" class="inputbox"
 			label="COM_CONTENT_FIELD_ARTICLETEXT_LABEL" description="COM_CONTENT_FIELD_ARTICLETEXT_DESC"
-			filter="JComponentHelper::filterText" buttons="true" hide="image" />
+			filter="JComponentHelper::filterText" buttons="true" />
 
 		<field name="state" type="list" label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC" class="inputbox"
@@ -31,13 +31,6 @@
 			<option value="-2">
 				JTRASHED</option>
 		</field>
-	
-		<!-- muinx -->
-		<field name="intro_images" type="file" class="inputbox"
-			size="40" label="Images" />
-	
-		<field name="del_image" type="checkbox" value="1" label="Delete image" />
-		<!-- end -->
 
 		<field name="catid" type="categoryedit"
 			label="JCATEGORY" description="JFIELD_CATEGORY_DESC"
