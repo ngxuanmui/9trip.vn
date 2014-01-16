@@ -18,20 +18,18 @@ class LocaHelper
 //		return true;
 //	}
 	
-	public static function mbCutWord ($string, $max_length)
+	public static function mbCutWord ($text, $limit, $ellipsis = '...')
 	{
-	    if (strlen($string) > $max_length)
-	    {
-	        $string = mb_substr($string, 0, $max_length);
-	        $pos = strrpos($string, " ");
-	        if($pos === false)
-	        {
-	        	return mb_substr($string, 0, $max_length)."...";
-	        }
-	        return mb_substr($string, 0, $pos)."...";
-	    }else{
-	    	return $string;
-	    }
+	     $words = preg_split("/[\n\r\t ]+/", $text, $limit + 1, PREG_SPLIT_NO_EMPTY|PREG_SPLIT_OFFSET_CAPTURE);
+	     
+	     if (count($words) > $limit) {
+	     	end($words); //ignore last element since it contains the rest of the string
+	     	$last_word = prev($words);
+	     	
+	     	$text =  substr($text, 0, $last_word[1] + strlen($last_word[0])) . $ellipsis;
+	     }
+	     
+	     return $text;
 	}
 	
 	static function getCategories($extension = 'com_ntrip')

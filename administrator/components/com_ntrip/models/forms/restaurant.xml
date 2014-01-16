@@ -73,6 +73,9 @@
 			label="Content" 
 			filter="JComponentHelper::filterText" buttons="false" />
 
+		<field name="link_3d" type="textarea" class="inputbox"
+			rows="3" cols="30" label="Link 3D" />
+
 	</fieldset>
 
 	<fieldset name="publish"

@@ -6,7 +6,7 @@ defined('_JEXEC') or die;
 class NtripModelDiscovers extends AbsNtripModelItems
 {
 	public function getListQuery() {
-		return $this->_query('discovers');
+		return $this->_query('discovers', $featured = 0, $orderByFeatured = true);
 	}
 	
 	public function getCustomField()
@@ -16,7 +16,7 @@ class NtripModelDiscovers extends AbsNtripModelItems
 		return $rs;
 	}
 	
-	protected function populateState($ordering = null, $direction = null) 
+	protected function populateState($ordering = null, $direction = null)
 	{
 		parent::populateState($ordering, $direction);
 		

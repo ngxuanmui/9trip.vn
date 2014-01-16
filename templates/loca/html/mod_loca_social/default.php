@@ -46,7 +46,10 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 		<div class="fltlft" style="margin-right: 5px; height: 20px; width: 75px; display: block; border: 0px solid;">
 			<div class="fb-like" data-href="<?php echo CFG_REQUEST_URI; ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 		</div>
-		 
+		
+		<div class="fltlft" style="margin-right: 25px; height: 20px; width: 75px; display: block; border: 0px solid;">
+			<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-type="button_count"></div>
+		</div>
 		<div class="fltlft">
 			<!-- gplus +1 button to render. -->
 			<div class="fltlft gplus">
@@ -85,14 +88,14 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 	<div class="other-album relative">
 		<div class="album absolute" id="show-album" <?php if ($noGallery): ?>style="visibility: hidden;"<?php endif; ?>>
 			<div id="galleria">
-				<?php 
+				<?php
 				if (!empty($item->other_images)):
-					foreach ($item->other_images as $img): 
+					foreach ($item->other_images as $img):
 					?>
 					<img src="<?php echo 'images' . '/' . $itemType . '/' . $item->id . '/' . $img->images; ?>" />
-					<?php 
-					endforeach; 
-				endif; 
+					<?php
+					endforeach;
+				endif;
 				?>
 			</div>
 		</div>

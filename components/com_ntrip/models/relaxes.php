@@ -5,6 +5,8 @@ defined('_JEXEC') or die;
 
 class NtripModelRelaxes extends AbsNtripModelItems
 {
+	protected $fixInfoType = 'relaxes';
+	
 	public function getListQuery() {
 		return $this->_query('relaxes');
 	}
@@ -16,7 +18,7 @@ class NtripModelRelaxes extends AbsNtripModelItems
 		return $rs;
 	}
 	
-	protected function populateState($ordering = null, $direction = null) 
+	protected function populateState($ordering = null, $direction = null)
 	{
 		parent::populateState($ordering, $direction);
 		

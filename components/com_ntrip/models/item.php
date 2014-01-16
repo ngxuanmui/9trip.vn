@@ -13,7 +13,7 @@ abstract class AbsNtripModelItem extends JModelItem
 		
 		$id = JRequest::getInt('id', 0);
 		
-		// Update hits 
+		// Update hits
 		if ($updateHits)
 			$this->updateHits($id, $type);
 		
@@ -71,7 +71,7 @@ abstract class AbsNtripModelItem extends JModelItem
 			}
 		}
 		
-		$item->address = $address;
+// 		$item->address = $address;
 		
 		// var_dump($item);
 		

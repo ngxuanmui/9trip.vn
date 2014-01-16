@@ -72,14 +72,14 @@ $fields = $this->fields;
 						<b>Giá: </b><?php echo number_format((float)$item->price_from); ?> -
 									<?php echo number_format((float)$item->price_to); ?> VNĐ/người <br />
 						*/ ?>
-						<?php
+						<p><?php
 							// echo JHtml::_('string.truncate', strip_tags($item->description), 100);
 							
 							$string 	= strip_tags($item->description);
-							$maxLength 	= 100;
+							$maxLength 	= 30;
 							
 							echo LocaHelper::mbCutWord($string, $maxLength);
-						?>
+						?></p>
 						<div class="clear"></div>
 						<?php /*?>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>

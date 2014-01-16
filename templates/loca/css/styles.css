@@ -647,7 +647,7 @@ div.list-items ul li { background: #FFF; padding: 10px 0 10px 10px; }
 
 .contact { margin: 0; }
 
-div.content p { margin: 5px 0; }
+div.content p { margin: 5px 0; line-height: 17px; }
 div.rating-content .criteria { margin: -6px 5px 0 0; }
 ul.questions li { float: none; width: 100%; font-weight: bold; }
 ul.questions li .question-info { font-weight: normal; }
@@ -836,7 +836,7 @@ span.full-star-over-yellow {
 	width: 94px;
 	height: 20px;
 	background: url('../images/full-over-star-yellow.png') 0 0;
-	margin: 7px 0 0 20px;
+	margin: 9px 0 0 20px;
 }
 span.star-yellow1 {
 	display: block;
@@ -1264,7 +1264,7 @@ top: -2px;
 
 .a-edit-profile { padding: 10px 0; display: block; }
 
-.title-category label { font-weight: bold; font-size: 16px; float: left; margin-top: 10px; }
+.title-category label { font-weight: bold; font-size: 22px; float: left; margin-top: 10px; }
 
 .item-container .address { float: left; font-weight: bold; /* margin-bottom: 15px; */ }
 .item-container .contact { /* float: right; width: 275px; margin-bottom: 15px; */ }
@@ -1295,10 +1295,14 @@ li#menu-home-page > a:hover { background: url('../images/home-hover.png') no-rep
 
 ol { margin-left: 40px; }
 
-.fix-info { padding: 10px; text-align: justify; }
+.fix-info { padding: 10px; text-align: justify; background: #FFF; border-bottom: 1px dashed #CCC; }
 
 #right-content .banneritem img { max-width: 300px; margin-top: 10px;}
 
 #top-adv { margin: 10px 0; }
 
 .widget-block { margin-bottom: 10px; }
+
+
+.icon-donation { background: url('../images/icon-donate.png') 0 -6px no-repeat; right: -2px; top: 10px; width: 45px; height: 22px; }
+.icon-featured { background: url('../images/icon-featured.png') 0 -6px no-repeat; right: -9px; top: 10px; width: 45px; height: 22px; }

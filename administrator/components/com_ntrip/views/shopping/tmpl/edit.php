@@ -62,6 +62,10 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				    <?php echo $this->form->getInput('email'); ?>
 				</li>
 
+				<li><?php echo $this->form->getLabel('link_3d'); ?>
+				    <?php echo $this->form->getInput('link_3d'); ?>
+				</li>
+
 				<li><?php echo $this->form->getLabel('user_rank'); ?>
 				    <?php echo $this->form->getInput('user_rank'); ?>
 				</li>

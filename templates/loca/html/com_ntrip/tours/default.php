@@ -62,14 +62,16 @@ $fields = $this->fields;
 						
 						<div class="clr item-address bold"><?php echo $item->address; ?></div>
 						
-						<?php
-							// echo JHtml::_('string.truncate', strip_tags($item->description), 100);
-							
-							$string 	= strip_tags($item->description);
-							$maxLength 	= 100;
-							
-							echo LocaHelper::mbCutWord($string, $maxLength);
-						?>
+						<p>
+							<?php
+								// echo JHtml::_('string.truncate', strip_tags($item->description), 100);
+								
+								$string 	= strip_tags($item->description);
+								$maxLength 	= 25;
+								
+								echo LocaHelper::mbCutWord($string, $maxLength);
+							?>
+						</p>
 						<div class="clear"></div>
 					</div>
 					<div class="clear"></div>

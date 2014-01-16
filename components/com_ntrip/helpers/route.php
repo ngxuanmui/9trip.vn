@@ -147,7 +147,7 @@ abstract class NtripHelperRoute
 	
 		if ($item = self::_findItem($needles)) {
 			$link .= '&Itemid='.$item;
-		}		
+		}
 		
 // 		if ($view == 'discovers')
 // 			var_dump($link);
@@ -155,7 +155,7 @@ abstract class NtripHelperRoute
 		return $link;
 	}
 	
-	public static function getFormRoute($view, $task = '', $itemId = 0, $id = 0)	
+	public static function getFormRoute($view, $task = '', $itemId = 0, $id = 0)
 	{
 		$needles = array(
 			'user_man_service'  => array(),
@@ -175,7 +175,7 @@ abstract class NtripHelperRoute
 		if ($id)
 			$link .= '&id=' . $id;
 		
-		return $link;		
+		return $link;
 	}
 
 	public static function getItemsRoute($view = 'hotels', $customField = false)
@@ -198,10 +198,10 @@ abstract class NtripHelperRoute
 		{
 // 			var_dump($menu->id, $menu->link, 'custom_field=' . $customField, strpos($menu->link, 'custom_field=' . $customField));
 			
-			if ( 
-					(strpos($menu->link, $view) !== false && !$customField) 
-					|| 
-					(strpos($menu->link, $view) !== false && strpos($menu->link, 'custom_field=' . $customField) !== false && $customField) 
+			if (
+					(strpos($menu->link, $view) !== false && !$customField)
+					||
+					(strpos($menu->link, $view) !== false && strpos($menu->link, 'custom_field=' . $customField) !== false && $customField)
 				)
 			{
 				$link .= '&Itemid=' . $menu->id;
@@ -289,7 +289,7 @@ abstract class NtripHelperRoute
 					if (isset($item->query['custom_field']))
 					{
 						$customFieldId = $item->query['custom_field'];
-						$catId = $item->query['catid'];
+						$catId = (!empty($item->query['catid'])) ? $item->query['catid'] : 0;
 						self::$lookup['custom-field'][$catId][$customFieldId] = $item->id;
 					}
 				}
@@ -329,7 +329,7 @@ abstract class NtripHelperRoute
 							$catId = isset($customField['catid']) ? $customField['catid'] : 0;
 							$customFieldId = isset($customField['custom_field']) ? $customField['custom_field'] : 0;
 							
-							if (isset(self::$lookup['custom-field'][$catId][$customFieldId])) 
+							if (isset(self::$lookup['custom-field'][$catId][$customFieldId]))
 							{
 								$itemId = self::$lookup['custom-field'][$catId][$customFieldId];
 								
@@ -338,10 +338,10 @@ abstract class NtripHelperRoute
 						}
 					}
 				}
-				else 
+				else
 				{
 					if (isset(self::$lookup[$view]))
-					{					
+					{
 						foreach($ids as $id)
 						{
 							if (isset(self::$lookup[$view][(int)$id])) {

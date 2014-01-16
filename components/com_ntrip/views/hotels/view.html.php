@@ -21,6 +21,7 @@ class NtripViewHotels extends JViewLegacy
 	protected $fields;
 	protected $pagination;
 	protected $category;
+	protected $featured_items;
 
 	function display($tpl = null)
 	{
@@ -28,6 +29,10 @@ class NtripViewHotels extends JViewLegacy
 		$this->fields		= $this->get('CustomField');
 		$this->pagination	= $this->get('Pagination');
 		$this->category		= $this->get('Category');
+		$this->fix_info		= $this->get('FixInfo');
+		$this->featured_items		= $this->get('FeaturedItems');
+		
+// 		var_dump($this->featured_items);
 		
 		$this->_prepareDocument();
 

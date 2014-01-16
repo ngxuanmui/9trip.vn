@@ -65,6 +65,10 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				    <?php echo $this->form->getInput('email'); ?>
 				</li>
 
+				<li><?php echo $this->form->getLabel('link_3d'); ?>
+				    <?php echo $this->form->getInput('link_3d'); ?>
+				</li>
+
 				<li><?php echo $this->form->getLabel('price_from'); ?>
 				    <?php echo $this->form->getInput('price_from'); ?>
 				</li>
@@ -101,8 +105,8 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 					<?php echo $this->form->getInput('images'); ?>
 				</li>
 				
-				<?php 
-				$introImages = ($this->item->images) ? $this->item->images : false; 
+				<?php
+				$introImages = ($this->item->images) ? $this->item->images : false;
 				?>
 
 				<?php if ($introImages): ?>
@@ -168,7 +172,7 @@ $jqueryFileUploadPath = JURI::root() . 'media/jquery-ui-upload/';
 				</li>
 				<li>
 				    <div id="tmp-uploaded">
-					<?php 
+					<?php
 					$images = $this->item->other_images;
 					
 					$path = JURI::root() . 'images/hotels/' . $this->item->id . '/';

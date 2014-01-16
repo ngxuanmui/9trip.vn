@@ -23,7 +23,7 @@ $rating = explode(',', JRequest::getString('rating'));
 $price = explode(',', JRequest::getString('price'));
 $criteria = explode(',', JRequest::getString('criteria'));
 
-@$fixInfo = $this->fix_info;
+$fixInfo = $this->fix_info;
 ?>
 
 <div id="left-content">
@@ -90,7 +90,7 @@ $criteria = explode(',', JRequest::getString('criteria'));
 				foreach ($this->featured_items as $item):
 					$link = JRoute::_('index.php?option=com_ntrip&view=hotel&id=' . $item->id . ':' . $item->alias, false);
 				?>
-				<li>
+				<li class="relative">
 					
 					<div class="clr"></div>
 					
@@ -107,7 +107,7 @@ $criteria = explode(',', JRequest::getString('criteria'));
 					<div class="content">
 						<h1>
 							<a class="title" href="<?php echo $link; ?>">
-								*** <?php echo $item->name; ?>
+								<?php echo $item->name; ?>
 							</a>
 							
 							<span class="fltlft full-star-over-yellow">
@@ -118,17 +118,19 @@ $criteria = explode(',', JRequest::getString('criteria'));
 						</h1>
 						
 						<div class="clr item-address bold"><?php echo $item->address; ?></div>
-						<?php
+						<p><?php
 							// echo JHtml::_('string.truncate', strip_tags($item->description), 100);
 							
 							$string 	= strip_tags($item->description);
-							$maxLength 	= 100;
+							$maxLength 	= 30;
 							
 							echo LocaHelper::mbCutWord($string, $maxLength);
-						?>
+						?></p>
 						<div class="clear"></div>
 					</div>
 					<div class="clr"></div>
+					
+					<div class="absolute icon-donation"></div>
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -168,14 +170,14 @@ $criteria = explode(',', JRequest::getString('criteria'));
 						<b>Giá: </b><?php echo number_format((float)$item->price_from); ?> -
 									<?php echo number_format((float)$item->price_to); ?> VNĐ/người <br />
 						*/ ?>
-						<?php
+						<p><?php
 							// echo JHtml::_('string.truncate', strip_tags($item->description), 100);
 							
 							$string 	= strip_tags($item->description);
-							$maxLength 	= 100;
+							$maxLength 	= 30;
 							
 							echo LocaHelper::mbCutWord($string, $maxLength);
-						?>
+						?></p>
 						<div class="clear"></div>
 						<?php /*?>
 						<span class="full-star-over fltlft"><span class="star<?php echo round($item->user_rank); ?>"></span></span>
