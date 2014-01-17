@@ -14,6 +14,8 @@ $userGuest = JFactory::getUser()->guest;
 $noGallery = (empty($item->other_images)) ? true : false;
 
 $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
+
+$arrShowLink3D = array('hotel', 'restaurant', 'service', 'relax', 'tour', 'shopping');
 ?>
 
 <script type="text/javascript">
@@ -81,6 +83,9 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 		<?php if (JRequest::getString('view', '') != 'category'): ?>
 		<button class="icons show-map-direction"></button>
 		<?php endif; ?>
+		<?php if (in_array(JRequest::getString('view', ''), $arrShowLink3D)): ?>
+		<button class="link-3d" type="button">Show 3D</button>
+		<?php endif; ?>
 	</div>
 	
 	<div class="clr"></div>
@@ -109,6 +114,10 @@ $checkUserLike = NtripFrontHelper::checkUserLike($item->id, $itemType);
 			<input type="text" id="from" name="from" size="0" style="display: none;" />
 			<input type="text" id="to" name="to" size="0" style="display: none;" />
     		<p id="error"></p>
+		</div>
+		
+		<div class="link-3d absolute" id="show-link-3d" style="width: 627px; height: 400px; display: none;">
+			<iframe src="http://3dnet.vn/3d/i-resort/vuon-cay-khuon-vien.html" style="border: none; width: 100%; height: 100%;"></iframe>
 		</div>
 		
 	</div>

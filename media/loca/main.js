@@ -79,7 +79,7 @@ jQuery(function($){
 		Galleria.loadTheme(BASE_URL + 'media/loca/galleria/themes/azur/galleria.azur.min.js');
 		Galleria.configure({
 				imageCrop: 'landscape',
-				imageMargin: 60,
+				imageMargin: 15,
 				imagePosition: 'top',
 				transition: 'fade',
 				showCounter: false,
@@ -222,6 +222,7 @@ jQuery(function($){
 		$('#show-album').css('visibility', 'visible');
 		$('#show-map').css('visibility', 'hidden');
 		$('#show-map-direction').css('visibility', 'hidden');
+		$('#show-link-3d').css('display', 'none');
 		
 		$('div.galleria-thumbnails-container').css('display', 'block');
 		
@@ -235,6 +236,21 @@ jQuery(function($){
 		$('#show-album').css('visibility', 'hidden');
 		$('#show-map').css('visibility', 'visible');
 		$('#show-map-direction').css('visibility', 'hidden');
+		$('#show-link-3d').css('display', 'none');
+		
+		$('div.galleria-thumbnails-container').css('display', 'none');
+		
+		$('button.show-image').removeClass('show-image-focus');
+		$('button.show-map-direction').removeClass('show-map-direction-focus');
+	});
+	
+	$('button.link-3d').click(function(){
+		$(this).addClass('link-3d-focus');
+		
+		$('#show-album').css('visibility', 'hidden');
+		$('#show-map').css('visibility', 'hidden');
+		$('#show-map-direction').css('visibility', 'hidden');
+		$('#show-link-3d').css('display', 'block');
 		
 		$('div.galleria-thumbnails-container').css('display', 'none');
 		
@@ -257,6 +273,7 @@ jQuery(function($){
 		$('#show-album').css('visibility', 'hidden');
 		$('#show-map').css('visibility', 'hidden');
 		$('#show-map-direction').css('visibility', 'visible');
+		$('#show-link-3d').css('display', 'none');
 		
 		$('div.galleria-thumbnails-container').css('display', 'none');
 		
