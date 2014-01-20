@@ -79,7 +79,7 @@ jQuery(function($){
 		Galleria.loadTheme(BASE_URL + 'media/loca/galleria/themes/azur/galleria.azur.min.js');
 		Galleria.configure({
 				imageCrop: 'landscape',
-				imageMargin: 15,
+				imageMargin: 0,
 				imagePosition: 'top',
 				transition: 'fade',
 				showCounter: false,

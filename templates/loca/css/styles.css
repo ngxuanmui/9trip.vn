@@ -411,8 +411,8 @@ p.custom-field-title { border-bottom: 1px solid #E5E5E5; font-size: 20px; font-w
 .list-restaurants .img { width: 200px; height: 150px; overflow: hidden; }
 .list-restaurants .img img { width: 200px; }
 
-.list-discovers .img { width: 640px; margin-bottom: 5px; overflow: hidden; text-align: center; }
-.list-discovers .img img { max-width: 630px; }
+.list-discovers .img { margin-bottom: 5px; overflow: hidden; text-align: center; }
+.list-discovers .img img { max-width: 600px; }
 
 .list-items .img { width: 640px; height: 440px; margin-bottom: 5px; overflow: hidden; }
 .list-items .img img { width: 630px; }
@@ -530,6 +530,8 @@ ul.tab-categories li:nth-child(2), ul.tab-categories li:nth-child(4), ul.tab-cat
 .list-hotels-container {
 	background: #fff;
 	padding: 0 7px 10px 7px;
+	border: 1px solid #E5E5E5;
+	border-top: none;
 }
 
 .list-container {
@@ -943,13 +945,13 @@ h2.title-album {
 ul.list-discovers h2 {
 	line-height: 30px;
 	text-indent: 5px;
-	padding-top: 5px;
+	padding: 5px 0 0 10px;
 }
 .saparate-line {
 	padding: 5px 0;
 	border-bottom: 1px dashed #DBDBDB;
 }
-.discover-info { margin-left: 5px; }
+.discover-info { margin-left: 15px; }
 
 .discover-info, .item-info {
 	line-height: 25px;
@@ -1306,3 +1308,5 @@ ol { margin-left: 40px; }
 
 .icon-donation { background: url('../images/icon-donate.png') 0 -6px no-repeat; right: -2px; top: 10px; width: 45px; height: 22px; }
 .icon-featured { background: url('../images/icon-featured.png') 0 -6px no-repeat; right: -9px; top: 10px; width: 45px; height: 22px; }
+
+.list-discovers .description { padding: 5px 15px 0 15px; }
