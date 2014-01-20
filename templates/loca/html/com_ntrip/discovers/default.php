@@ -6,8 +6,18 @@ $fields = $this->fields;
 ?>
 
 <div id="left-content">
-	<div class="margin-bottom5">
-		<div class="title-category">Khám phá</div>
+	<div class="margin-bottom-1">
+		<div class="title-category">
+			<?php 
+			jimport('joomla.application.categories');
+		
+			$cat = JCategories::getInstance('Ntrip', array('extension' => 'com_ntrip.custom_field_discover', 'table' => ''));
+			
+			$category = $cat->get(JRequest::getInt('custom_field'));
+			
+			echo ($category->title);
+			?>
+		</div>
 
 		<?php /*<div class="item-container">
 			<span class="icons quote fltlft"></span> <span

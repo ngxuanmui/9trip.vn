@@ -49,7 +49,7 @@ $arrShowLink3D = array('hotel', 'restaurant', 'service', 'relax', 'tour', 'shopp
 			<div class="fb-like" data-href="<?php echo CFG_REQUEST_URI; ?>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 		</div>
 		
-		<div class="fltlft" style="margin-right: 25px; height: 20px; width: 75px; display: block; border: 0px solid;">
+		<div class="fltlft" style="margin-right: 25px; height: 20px; width: 75px; display: block; border: 0px solid; overflow: hidden;">
 			<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-type="button_count"></div>
 		</div>
 		<div class="fltlft">
@@ -83,7 +83,7 @@ $arrShowLink3D = array('hotel', 'restaurant', 'service', 'relax', 'tour', 'shopp
 		<?php if (JRequest::getString('view', '') != 'category'): ?>
 		<button class="icons show-map-direction"></button>
 		<?php endif; ?>
-		<?php if (in_array(JRequest::getString('view', ''), $arrShowLink3D)): ?>
+		<?php if (in_array(JRequest::getString('view', ''), $arrShowLink3D) && !empty($item->link_3d)): ?>
 		<button class="link-3d" type="button">Show 3D</button>
 		<?php endif; ?>
 	</div>
@@ -116,10 +116,11 @@ $arrShowLink3D = array('hotel', 'restaurant', 'service', 'relax', 'tour', 'shopp
     		<p id="error"></p>
 		</div>
 		
+		<?php if (!empty($item->link_3d) && $item->link_3d != ''): ?>
 		<div class="link-3d absolute" id="show-link-3d" style="width: 627px; height: 400px; display: none;">
-			<iframe src="http://3dnet.vn/3d/i-resort/vuon-cay-khuon-vien.html" style="border: none; width: 100%; height: 100%;"></iframe>
+			<iframe src="<?php echo $item->link_3d; ?>" style="border: none; width: 100%; height: 100%;"></iframe>
 		</div>
-		
+		<?php endif; ?>
 	</div>
 	
 	<div class="clr"></div>
