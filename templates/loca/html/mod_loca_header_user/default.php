@@ -78,7 +78,7 @@ $loginUrl	= $facebook->getLoginUrl(
 		<?php /*?>
 		<?php if (!$user->id): ?>
 			<div>
-				<a href="<?php echo $loginUrl; ?>" class="icon-fb"  rel="nofollow">Đăng nhập bằng Facebook</a> | 
+				<a href="<?php echo $loginUrl; ?>" class="icon-fb"  rel="nofollow">Đăng nhập bằng Facebook</a> |
 				<a class="modal" href="<?php echo JRoute::_('index.php?option=com_users&view=loca_login&tmpl=component', false); ?>" rel="{handler: 'iframe', size: {x: 340, y: 160}, onClose: function() {}}">Đăng nhập</a> |
 				<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration', false); ?>">Đăng ký</a>
 			</div>
@@ -192,9 +192,37 @@ $loginUrl	= $facebook->getLoginUrl(
 		
 		*/ ?>
 		
+		<script src="<?php echo JURI::base() ?>media/loca/fancybox/source/jquery.fancybox.js?v=2.1.5" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo JURI::base() ?>media/loca/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+		
+		<script type="text/javascript">
+		jQuery(function($){
+			$('#txt-search').keypress(function(event){
+				 
+				var keycode = (event.keyCode ? event.keyCode : event.which);
+				
+				if(keycode == '13'){
+					$.fancybox.open([
+		                 {
+		                     type: 'iframe',
+		                     href : '<?php $searchUrl = NtripHelperRoute::getOtherRoute('search', 'component', 1); echo JRoute::_($searchUrl, false); ?>',
+		                     title : '1st title'
+		                 }
+		             ], {
+		                 padding : 0
+		             });
+				}
+
+				return false;
+			 
+			});
+		});
+		</script>
+		
+		
 		<form method="get" action="<?php $searchUrl = NtripHelperRoute::getOtherRoute('search', '', 1); echo JRoute::_($searchUrl, false); ?>">
-			<input type="text" name="q" value="<?php echo JRequest::getString('q'); ?>" placeholder="Nhập thông tin cần tìm" />
-			<button class="btn-search"></button>
+			<input type="text" name="q" id="txt-search"  value="<?php echo JRequest::getString('q'); ?>" placeholder="Nhập thông tin cần tìm" />
+			<button class="btn-search" id="btn-search"></button>
 		</form>
 	</div>
 </div>

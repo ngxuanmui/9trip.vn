@@ -5,6 +5,7 @@ jimport('joomla.application.component.modelitem');
 abstract class AbsNtripModelItem extends JModelItem
 {
 	public $itemType;
+	protected $contentImageWidth = 600;
 	
 	public function getItem($type = '', $updateHits = true)
 	{
@@ -71,12 +72,80 @@ abstract class AbsNtripModelItem extends JModelItem
 			}
 		}
 		
+		if (!empty($item->description))
+		{
+			$item->description = $this->_prepareText($item->description);
+		}
+		
 // 		$item->address = $address;
 		
 		// var_dump($item);
 		
 		
 		return $item;
+	}
+	
+	protected function _prepareText($text)
+	{
+		// loop all img tags
+		preg_match_all('/<img [^>]*src\s*=\s*"(.*?)"[^>]*\/>/i', $text, $matches);
+		
+		for ($i = 0; $i < count($matches[0]); $i++)
+		{
+			$img = $matches[0][$i];
+			$src = $matches[1][$i];
+			
+// 			$new_src = $this->_resizer->resize($src);
+
+			$tmp = explode('/', $src);
+			
+			$image_name = end($tmp);
+			
+			$imagePath = JPATH_ROOT . DS . 'cache/images';
+			
+			// shift an el (image folder) in $tmp
+			array_shift($tmp);
+			
+			// remove last el (file name) in $tmp
+			array_pop($tmp);
+			
+			$image_path = JPATH_ROOT . DS . 'images' . DS . implode('/', $tmp);
+			
+			$thumb_path = JPATH_ROOT . '/cache/images/' . implode('/', $tmp);
+			
+			JFolder::create($thumb_path);
+			
+			//$thumbName = $thumb_path . '/' . $image_name;
+				
+			$thumbW = $this->contentImageWidth;
+			$thumbH = 0;
+				
+			$thumb_image_path = $thumb_path . DS . $image_name;
+			
+// 			var_dump(file_exists($image_path . DS . $image_name), $image_path . DS . $image_name, $thumb_image_path); die;
+			
+			// create thumb if not exist
+			if (!file_exists($thumb_image_path) && file_exists($image_path . DS . $image_name))
+				LocaHelper::thumbnail($image_path, $thumb_path, $image_name, $thumbW, 0);
+			
+			$new_src = JURI::root() . 'cache/images/' . implode('/', $tmp) . '/' .'t-' . $thumbW . 'x' . $thumbH . '-' . $image_name;
+			
+			// has new src to replace?
+			if ($new_src)
+			{
+				$new_img =  preg_replace('/ src\s*=\s*"(.*?)"/i', ' src="'.$new_src.'"', $img);
+
+				// replace with new width and height
+// 				list($new_width, $new_height) = @getimagesize($new_src);
+				
+// 				$new_img = $this->_replaceOrAddImgAttribute($new_img, 'width', $new_width);
+// 				$new_img = $this->_replaceOrAddImgAttribute($new_img, 'height', $new_height);
+
+				$text = str_replace($img, $new_img, $text);
+			}
+		}
+
+		return $text;
 	}
 	
 	public function getGmapInfo($itemId, $type, $address)
