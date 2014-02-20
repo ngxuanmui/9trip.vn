@@ -50,6 +50,9 @@ class NtripModelCategory extends JModel
 				->where('(a.catid = '. $catid.' OR a.catid IN (SELECT id FROM #__categories WHERE parent_id = '. $catid.'))')
 				->order('a.id DESC');
 		
+		if ($type == 'discovers')
+		    $query->where('a.type = ' . TYPE_DISCOVER_TRIP_ID);
+		
 // 		echo nl2br(str_replace('#__', 'jos_', $query));
 		
 		$db->setQuery($query, 0, $limit);

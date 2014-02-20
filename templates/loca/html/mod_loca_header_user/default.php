@@ -195,26 +195,48 @@ $loginUrl	= $facebook->getLoginUrl(
 		<script src="<?php echo JURI::base() ?>media/loca/fancybox/source/jquery.fancybox.js?v=2.1.5" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo JURI::base() ?>media/loca/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
 		
+		<?php
+		$searchUrl = NtripHelperRoute::getOtherRoute('search', 'component', 1);
+		?>
+		
 		<script type="text/javascript">
+
+		
 		jQuery(function($){
+			
+			function openModalBox(val)
+			{
+				if (val == '')
+					return false;
+				
+				$.fancybox.open([
+	                 {
+	                     type: 'iframe',
+	                     href : '<?php echo JRoute::_($searchUrl, false); ?>&q=' + val
+	                 }
+	             ], {
+	                 padding : 0
+	             });
+			}
+			
 			$('#txt-search').keypress(function(event){
+
+				var val = $(this).val();
 				 
 				var keycode = (event.keyCode ? event.keyCode : event.which);
 				
 				if(keycode == '13'){
-					$.fancybox.open([
-		                 {
-		                     type: 'iframe',
-		                     href : '<?php $searchUrl = NtripHelperRoute::getOtherRoute('search', 'component', 1); echo JRoute::_($searchUrl, false); ?>',
-		                     title : '1st title'
-		                 }
-		             ], {
-		                 padding : 0
-		             });
+					if (val != '')
+					{
+						openModalBox(val);
+						return false;
+					}
 				}
-
-				return false;
 			 
+			});
+
+			$('#btn-search').click(function(){
+				openModalBox($('#txt-search').val());
 			});
 		});
 		</script>
@@ -222,7 +244,7 @@ $loginUrl	= $facebook->getLoginUrl(
 		
 		<form method="get" action="<?php $searchUrl = NtripHelperRoute::getOtherRoute('search', '', 1); echo JRoute::_($searchUrl, false); ?>">
 			<input type="text" name="q" id="txt-search"  value="<?php echo JRequest::getString('q'); ?>" placeholder="Nhập thông tin cần tìm" />
-			<button class="btn-search" id="btn-search"></button>
+			<button class="btn-search" id="btn-search" type="button"></button>
 		</form>
 	</div>
 </div>

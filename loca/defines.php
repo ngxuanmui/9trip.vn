@@ -27,3 +27,6 @@ define('CFG_LIMIT_QUESTIONS', 10);
 define('CFG_LIMIT_WARNINGS', 10);
 define('CFG_LIMIT_ALBUMS', 10);
 define('CFG_LIMIT_DISCOVERY' , 10);
+
+// define type id
+define('TYPE_DISCOVER_TRIP_ID', 107);
